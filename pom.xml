@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.anouyang.hunt</groupId>
+    <artifactId>hunt-admin</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>hunt-admin</name>
+
+    <modules>
+        <module>hunt-parent</module>
+        <module>hunt-system</module>
+        <module>hunt-utils</module>
+    </modules>
+
+    <developers>
+        <developer>
+            <id>oya</id>
+            <name>ouyangan</name>
+            <email>981017952@qq.com</email>
+            <timezone>+8</timezone>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+</project>

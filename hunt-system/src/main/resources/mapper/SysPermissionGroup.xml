@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunt.dao.SysPermissionGroupMapper">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysPermissionGroup">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="descritption" property="descritption" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--  -->
+    <sql id="sql_column">
+        spg.id  id,
+        spg.name name,
+        spg.descritption  descritption,
+        spg.parent_id  parentId,
+        spg.rank  rank,
+        spg.create_time  createTime,
+        spg.update_time  updateTime,
+        spg.create_by  createBy,
+        spg.update_by  updateBy,
+        spg.state  state
+    </sql>
+
+    <sql id="sql_column_where">
+        <if test="id !=null ">
+            AND spg.id = #{id}
+        </if>
+        <if test="name !=null and name.length() != 0">
+            AND spg.name = #{name}
+        </if>
+        <if test="descritption !=null and descritption.length() != 0">
+            AND spg.descritption = #{descritption}
+        </if>
+        <if test="parentId !=null ">
+            AND spg.parent_id = #{parentId}
+        </if>
+        <if test="rank !=null ">
+            AND spg.rank = #{rank}
+        </if>
+        <if test="createTime !=null ">
+            AND spg.create_time = #{createTime}
+        </if>
+        <if test="updateTime !=null ">
+            AND spg.update_time = #{updateTime}
+        </if>
+        <if test="createBy !=null ">
+            AND spg.create_by = #{createBy}
+        </if>
+        <if test="updateBy !=null ">
+            AND spg.update_by = #{updateBy}
+        </if>
+        <if test="state !=null ">
+            AND spg.state = #{state}
+        </if>
+    </sql>
+
+
+</mapper>

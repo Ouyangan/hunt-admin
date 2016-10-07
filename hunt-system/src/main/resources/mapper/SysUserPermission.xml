@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunt.dao.SysUserPermissionMapper">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysUserPermission">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="sys_user_id" property="sysUserId" jdbcType="BIGINT"/>
+        <result column="sys_permission_id" property="sysPermissionId" jdbcType="BIGINT"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--  -->
+    <sql id="sql_column">
+        sup.id  id,
+        sup.sys_user_id  sysUserId,
+        sup.sys_permission_id  sysPermissionId,
+        sup.rank  rank,
+        sup.create_time  createTime,
+        sup.update_time  updateTime,
+        sup.create_by  createBy,
+        sup.update_by  updateBy,
+        sup.state  state
+    </sql>
+
+    <sql id="sql_column_where">
+        <if test="id !=null ">
+            AND sup.id = #{id}
+        </if>
+        <if test="sysUserId !=null ">
+            AND sup.sys_user_id = #{sysUserId}
+        </if>
+        <if test="sysPermissionId !=null ">
+            AND sup.sys_permission_id = #{sysPermissionId}
+        </if>
+        <if test="rank !=null ">
+            AND sup.rank = #{rank}
+        </if>
+        <if test="createTime !=null ">
+            AND sup.create_time = #{createTime}
+        </if>
+        <if test="updateTime !=null ">
+            AND sup.update_time = #{updateTime}
+        </if>
+        <if test="createBy !=null ">
+            AND sup.create_by = #{createBy}
+        </if>
+        <if test="updateBy !=null ">
+            AND sup.update_by = #{updateBy}
+        </if>
+        <if test="state !=null ">
+            AND sup.state = #{state}
+        </if>
+    </sql>
+
+
+</mapper>

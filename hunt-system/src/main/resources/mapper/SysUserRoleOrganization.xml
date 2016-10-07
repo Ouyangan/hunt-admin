@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunt.dao.SysUserRoleOrganizationMapper">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysUserRoleOrganization">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="sys_user_id" property="sysUserId" jdbcType="BIGINT"/>
+        <result column="sys_organization_id" property="sysOrganizationId" jdbcType="BIGINT"/>
+        <result column="sys_role_id" property="sysRoleId" jdbcType="BIGINT"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--  -->
+    <sql id="sql_column">
+        sur.id  id,
+        sur.sys_user_id  sysUserId,
+        sur.sys_organization_id  sysOrganizationId,
+        sur.sys_role_id  sysRoleId,
+        sur.rank  rank,
+        sur.create_time  createTime,
+        sur.update_time  updateTime,
+        sur.create_by  createBy,
+        sur.update_by  updateBy,
+        sur.state  state
+    </sql>
+
+    <sql id="sql_column_where">
+        <if test="id !=null ">
+            AND sur.id = #{id}
+        </if>
+        <if test="sysUserId !=null ">
+            AND sur.sys_user_id = #{sysUserId}
+        </if>
+        <if test="sysOrganizationId !=null ">
+            AND sur.sys_organization_id = #{sysOrganizationId}
+        </if>
+        <if test="sysRoleId !=null ">
+            AND sur.sys_role_id = #{sysRoleId}
+        </if>
+        <if test="rank !=null ">
+            AND sur.rank = #{rank}
+        </if>
+        <if test="createTime !=null ">
+            AND sur.create_time = #{createTime}
+        </if>
+        <if test="updateTime !=null ">
+            AND sur.update_time = #{updateTime}
+        </if>
+        <if test="createBy !=null ">
+            AND sur.create_by = #{createBy}
+        </if>
+        <if test="updateBy !=null ">
+            AND sur.update_by = #{updateBy}
+        </if>
+        <if test="state !=null ">
+            AND sur.state = #{state}
+        </if>
+    </sql>
+
+</mapper>

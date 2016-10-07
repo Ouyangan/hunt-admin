@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunt.dao.SysRolePerrmissionMapper">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysRolePerrmission">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="sys_permission_id" property="sysPermissionId" jdbcType="BIGINT"/>
+        <result column="sys_role_id" property="sysRoleId" jdbcType="BIGINT"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--  -->
+    <sql id="sql_column">
+        srp.id  id,
+        srp.sys_permission_id  sysPermissionId,
+        srp.sys_role_id  sysRoleId,
+        srp.rank  rank,
+        srp.create_time  createTime,
+        srp.update_time  updateTime,
+        srp.create_by  createBy,
+        srp.update_by  updateBy,
+        srp.state  state
+    </sql>
+
+    <sql id="sql_column_where">
+        <if test="id !=null ">
+            AND srp.id = #{id}
+        </if>
+        <if test="sysPermissionId !=null ">
+            AND srp.sys_permission_id = #{sysPermissionId}
+        </if>
+        <if test="sysRoleId !=null ">
+            AND srp.sys_role_id = #{sysRoleId}
+        </if>
+        <if test="rank !=null ">
+            AND srp.rank = #{rank}
+        </if>
+        <if test="createTime !=null ">
+            AND srp.create_time = #{createTime}
+        </if>
+        <if test="updateTime !=null ">
+            AND srp.update_time = #{updateTime}
+        </if>
+        <if test="createBy !=null ">
+            AND srp.create_by = #{createBy}
+        </if>
+        <if test="updateBy !=null ">
+            AND srp.update_by = #{updateBy}
+        </if>
+        <if test="state !=null ">
+            AND srp.state = #{state}
+        </if>
+    </sql>
+
+</mapper>

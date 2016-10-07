@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunt.dao.SysRoleMapper">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysRole">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--  -->
+    <sql id="sql_column">
+        sr.id  id,
+        sr.description  description,
+        sr.name name,
+        sr.rank  rank,
+        sr.create_time  createTime,
+        sr.update_time  updateTime,
+        sr.create_by  createBy,
+        sr.update_by  updateBy,
+        sr.state  state
+    </sql>
+
+    <sql id="sql_column_where">
+        <if test="id !=null ">
+            AND sr.id = #{id}
+        </if>
+        <if test="description !=null and description.length() != 0">
+            AND sr.description = #{description}
+        </if>
+        <if test="name !=null and name.length() != 0">
+            AND sr.name = #{name}
+        </if>
+        <if test="rank !=null ">
+            AND sr.rank = #{rank}
+        </if>
+        <if test="createTime !=null ">
+            AND sr.create_time = #{createTime}
+        </if>
+        <if test="updateTime !=null ">
+            AND sr.update_time = #{updateTime}
+        </if>
+        <if test="createBy !=null ">
+            AND sr.create_by = #{createBy}
+        </if>
+        <if test="updateBy !=null ">
+            AND sr.update_by = #{updateBy}
+        </if>
+        <if test="state !=null ">
+            AND sr.state = #{state}
+        </if>
+    </sql>
+
+
+</mapper>

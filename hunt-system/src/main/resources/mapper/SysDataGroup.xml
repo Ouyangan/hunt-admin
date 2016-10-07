@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunt.dao.SysDataGroupMapper">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysDataGroup">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--  -->
+    <sql id="sql_column">
+        sdg.id  id,
+        sdg.description  description,
+        sdg.parent_id  parentId,
+        sdg.name name,
+        sdg.rank  rank,
+        sdg.create_time  createTime,
+        sdg.update_time  updateTime,
+        sdg.create_by  createBy,
+        sdg.update_by  updateBy,
+        sdg.state  state
+    </sql>
+
+    <sql id="sql_column_where">
+        <if test="id !=null ">
+            AND sdg.id = #{id}
+        </if>
+        <if test="description !=null and description.length() != 0">
+            AND sdg.description = #{description}
+        </if>
+        <if test="parentId !=null ">
+            AND sdg.parent_id = #{parentId}
+        </if>
+        <if test="name !=null and name.length() != 0">
+            AND sdg.name = #{name}
+        </if>
+        <if test="rank !=null ">
+            AND sdg.rank = #{rank}
+        </if>
+        <if test="createTime !=null ">
+            AND sdg.create_time = #{createTime}
+        </if>
+        <if test="updateTime !=null ">
+            AND sdg.update_time = #{updateTime}
+        </if>
+        <if test="createBy !=null ">
+            AND sdg.create_by = #{createBy}
+        </if>
+        <if test="updateBy !=null ">
+            AND sdg.update_by = #{updateBy}
+        </if>
+        <if test="state !=null ">
+            AND sdg.state = #{state}
+        </if>
+    </sql>
+
+</mapper>
