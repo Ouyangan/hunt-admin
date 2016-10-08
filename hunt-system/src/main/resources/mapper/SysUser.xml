@@ -94,5 +94,10 @@
             AND su.state = #{state}
         </if>
     </sql>
+    <select id="selectUserByLoginName" resultType="com.hunt.model.entity.SysUser">
+        SELECT *
+        FROM sys_user
+        WHERE state != 2 AND login_name = #{username};
+    </select>
 
 </mapper>

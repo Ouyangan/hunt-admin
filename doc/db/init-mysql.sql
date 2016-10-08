@@ -22,7 +22,7 @@ drop table if exists sys_user;
 
 drop table if exists sys_user_permission;
 
-drop table if exists sys_user_role;
+drop table if exists sys_user_role_organization;
 
 /*==============================================================*/
 /* Table: sys_data_group                                        */

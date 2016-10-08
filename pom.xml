@@ -13,7 +13,7 @@
     <modules>
         <module>hunt-parent</module>
         <module>hunt-system</module>
-        <module>hunt-utils</module>
+        <module>hunt-common</module>
     </modules>
 
     <developers>

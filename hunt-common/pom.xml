@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.anouyang.hunt</groupId>
-    <artifactId>hunt-utils</artifactId>
+    <artifactId>hunt-common</artifactId>
     
     <dependencies>
         <dependency>
