@@ -10,6 +10,7 @@
     </context:component-scan>
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
+    <mvc:resources mapping="/static/**" location="/static/"/>
     <mvc:cors>
         <mvc:mapping path="/**"/>
     </mvc:cors>
@@ -27,6 +28,7 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="maxUploadSize" value="102400000"/>
