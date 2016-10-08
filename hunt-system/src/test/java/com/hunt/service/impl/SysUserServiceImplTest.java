@@ -52,7 +52,7 @@ public class SysUserServiceImplTest {
         sysUser.setEnName("an.ouyang");
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         sysUser.setPasswordSalt(uuid);
-        sysUser.setPassword(StringUtil.createPassword("anan", uuid));
+        sysUser.setPassword(StringUtil.createPassword("ananan", uuid,2));
 
         SysOrganization organization = new SysOrganization();
         organization.setName("总公司");
@@ -72,6 +72,14 @@ public class SysUserServiceImplTest {
         list.add(sysUserRoleOrganization);
         long l = sysUserService.insertUser(sysUser, list);
         System.out.println(l);
+    }
+
+    @Test
+    public void testDemo(){
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        String password = StringUtil.createPassword("ananan", uuid, 2);
+        System.out.println(uuid);
+        System.out.println(password);
     }
 
 

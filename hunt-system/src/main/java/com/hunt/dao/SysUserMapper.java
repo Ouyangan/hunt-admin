@@ -8,4 +8,6 @@ import tk.mybatis.mapper.common.Mapper;
 public interface SysUserMapper  extends Mapper<SysUser> {
 
     SysUser selectUserByLoginName(@Param("username") String username);
+
+    SysUser selectById(@Param("id") Long id);
 }

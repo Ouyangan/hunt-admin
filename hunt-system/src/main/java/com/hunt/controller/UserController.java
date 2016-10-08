@@ -6,6 +6,8 @@ import com.hunt.service.SysUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +27,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @RequestMapping("user")
-public class UserController {
-
+public class UserController extends BaseController {
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private SysUserService sysUserService;
 
@@ -46,6 +48,7 @@ public class UserController {
                         @RequestParam int platform,
                         HttpServletRequest request) {
         SysUser user = sysUserService.selectUserByLoginName(username);
+        log.debug(user.toString());
         if (user == null) {
             return Result.error(ResponseCode.unknown_account.getMsg());
         }

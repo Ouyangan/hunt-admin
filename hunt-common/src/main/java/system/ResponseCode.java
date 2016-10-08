@@ -13,6 +13,8 @@ public enum ResponseCode {
     unknown_account(20001, "账户不存在"),
     forbidden_account(20002, "账户已禁用"),
     password_incorrect(20003, "密码错误"),
+    unauthorized(20004, "无操作权限"),
+    unauthenticated(20004, "未登录"),
     param_format_error(30001, "参数格式错误"),
     missing_parameter(30002,"缺少参数");
 

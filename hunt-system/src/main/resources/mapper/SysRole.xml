@@ -54,6 +54,9 @@
             AND sr.state = #{state}
         </if>
     </sql>
+    <select id="selectById" resultType="com.hunt.model.entity.SysRole">
+        SELECT * FROM sys_role WHERE state=1 AND id=#{id}
+    </select>
 
 
 </mapper>

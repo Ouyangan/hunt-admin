@@ -25,6 +25,10 @@ public class Result {
     public Result() {
     }
 
+    public static Result instance(int code, String msg) {
+        return new Result(code, msg);
+    }
+
     public static Result success() {
         return new Result(ResponseCode.success.getCode(), ResponseCode.success.getMsg());
     }

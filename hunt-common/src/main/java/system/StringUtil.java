@@ -14,8 +14,8 @@ public class StringUtil {
      * @param salt 密码盐
      * @return
      */
-    public static String createPassword(String password, String salt) {
-        Md5Hash md5Hash = new Md5Hash(password.trim(), salt, 2);
+    public static String createPassword(String password, String salt, int hashIterations) {
+        Md5Hash md5Hash = new Md5Hash(password.trim(), salt, hashIterations);
         return md5Hash.toString();
     }
 }

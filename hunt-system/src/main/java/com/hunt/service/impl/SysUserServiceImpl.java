@@ -11,6 +11,8 @@ import com.hunt.model.entity.SysRole;
 import com.hunt.model.entity.SysUser;
 import com.hunt.model.entity.SysUserRoleOrganization;
 import com.hunt.service.SysUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,16 +52,19 @@ public class SysUserServiceImpl implements SysUserService {
         return sysUserMapper.selectUserByLoginName(username);
     }
 
+    private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
     @Override
     public LoginUserInfo selectUserLoginInfo(Long id) {
-        SysUser user = sysUserMapper.selectByPrimaryKey(id);
+        log.debug("begin...");
+        SysUser user = sysUserMapper.selectById(id);
+        log.debug("end...");
         List<SysUserRoleOrganization> list = sysUserRoleOrganizationMapper.selectByUserId(id);
 
         List<UserRoleOriganization> userRoleOriganizationList = new ArrayList<>();
 
         for (SysUserRoleOrganization sysUserRoleOrganization : list) {
-            SysRole sysRole = sysRoleMapper.selectByPrimaryKey(sysUserRoleOrganization.getSysRoleId());
-            SysOrganization sysOrganization = sysOrganizationMapper.selectByPrimaryKey(sysUserRoleOrganization.getSysOrganizationId());
+            SysRole sysRole = sysRoleMapper.selectById(sysUserRoleOrganization.getSysRoleId());
+            SysOrganization sysOrganization = sysOrganizationMapper.selectById(sysUserRoleOrganization.getSysOrganizationId());
             UserRoleOriganization userRoleOriganization = new UserRoleOriganization(sysRole, sysOrganization);
             userRoleOriganizationList.add(userRoleOriganization);
         }
