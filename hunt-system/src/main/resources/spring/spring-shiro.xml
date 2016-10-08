@@ -29,6 +29,8 @@
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
     </bean>
 
+    <bean id="redisSessionDAO" class="com.hunt.system.sercurity.RedisSessionDAO"/>
+
     <!-- credentialsMatcher -->
     <bean id="credentialsMatcher"
           class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
@@ -38,6 +40,7 @@
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <property name="globalSessionTimeout" value="2592000000"/>
         <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <property name="sessionDAO" ref="redisSessionDAO"/>
     </bean>
 
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
