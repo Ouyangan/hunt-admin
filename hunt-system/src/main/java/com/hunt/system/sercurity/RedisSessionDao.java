@@ -16,7 +16,7 @@ import java.util.*;
  */
 public class RedisSessionDao extends AbstractSessionDAO {
 
-    private static final String sessionIdPrefix = "hunt-session-";
+    private static final String sessionIdPrefix = "shiro-session-";
     @Autowired
     private RedisTemplate<Serializable, Session> redisTemplate;
 
@@ -47,7 +47,7 @@ public class RedisSessionDao extends AbstractSessionDAO {
 
     @Override
     public Collection<Session> getActiveSessions() {
-        Set<Serializable> keys = redisTemplate.keys("hunt-session-*");
+        Set<Serializable> keys = redisTemplate.keys(sessionIdPrefix + "*");
         if (keys.size() == 0) {
             return Collections.emptySet();
         }
