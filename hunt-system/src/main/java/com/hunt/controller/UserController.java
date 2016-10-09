@@ -4,7 +4,6 @@ import com.hunt.model.dto.LoginUserInfo;
 import com.hunt.model.entity.SysUser;
 import com.hunt.service.SysUserService;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,6 +67,6 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String index() {
-        return "index/index";
+        return "system/index";
     }
 }
