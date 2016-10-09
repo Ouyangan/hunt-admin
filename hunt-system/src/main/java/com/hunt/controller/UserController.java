@@ -48,7 +48,6 @@ public class UserController extends BaseController {
                         @RequestParam int platform,
                         HttpServletRequest request) {
         SysUser user = sysUserService.selectUserByLoginName(username);
-        log.debug(user.toString());
         if (user == null) {
             return Result.error(ResponseCode.unknown_account.getMsg());
         }
@@ -60,6 +59,15 @@ public class UserController extends BaseController {
         loginUserInfo.setPlatform(platform);
         request.getSession().setAttribute("userInfo", loginUserInfo);
         return Result.success(loginUserInfo);
+    }
 
+    /**
+     * 转到引导页
+     *
+     * @return
+     */
+    @RequestMapping(value = "index", method = RequestMethod.GET)
+    public String index() {
+        return "index/index";
     }
 }
