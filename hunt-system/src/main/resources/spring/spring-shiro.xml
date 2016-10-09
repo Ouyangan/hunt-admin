@@ -29,7 +29,7 @@
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
     </bean>
 
-    <bean id="redisSessionDAO" class="com.hunt.system.sercurity.RedisSessionDAO"/>
+    <bean id="redisSessionDAO" class="com.hunt.system.sercurity.RedisSessionDao"/>
 
     <!-- credentialsMatcher -->
     <bean id="credentialsMatcher"
