@@ -12,6 +12,7 @@
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
+        <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
@@ -24,7 +25,8 @@
         so.update_time  updateTime,
         so.create_by  createBy,
         so.update_by  updateBy,
-        so.state  state
+        so.state  state,
+        so.is_final isFinal
     </sql>
 
     <sql id="sql_column_where">
@@ -58,7 +60,15 @@
         <if test="state !=null ">
             AND so.state = #{state}
         </if>
+        <if test="isFinal !=null ">
+            AND so.is_final = #{isFinal}
+        </if>
     </sql>
+    <update id="deleteById" >
+        UPDATE sys_organization
+        SET state = 2
+        WHERE id = #{id}
+    </update>
 
     <select id="selectById" resultType="com.hunt.model.entity.SysOrganization">
         SELECT *

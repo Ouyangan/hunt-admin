@@ -38,6 +38,33 @@ public class SysOrganization implements Serializable {
 
     // state :数据状态,1:正常,2:删除
     private Integer state;
+    // is_final :
+    private Integer isFinal;
+
+    @Override
+    public String toString() {
+        return "SysOrganization{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", parentId=" + parentId +
+                ", rank=" + rank +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", createBy=" + createBy +
+                ", updateBy=" + updateBy +
+                ", state=" + state +
+                ", isFinal=" + isFinal +
+                '}';
+    }
+
+    public Integer getIsFinal() {
+        return isFinal;
+    }
+
+    public void setIsFinal(Integer isFinal) {
+        this.isFinal = isFinal;
+    }
 
     /**
      * get
@@ -219,19 +246,4 @@ public class SysOrganization implements Serializable {
         this.state = state;
     }
 
-    @Override
-    public String toString() {
-        return "SysOrganization{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", parentId='" + parentId + '\'' +
-                ", rank='" + rank + '\'' +
-                ", createTime='" + createTime + '\'' +
-                ", updateTime='" + updateTime + '\'' +
-                ", createBy='" + createBy + '\'' +
-                ", updateBy='" + updateBy + '\'' +
-                ", state=" + state +
-                '}';
-    }
 }

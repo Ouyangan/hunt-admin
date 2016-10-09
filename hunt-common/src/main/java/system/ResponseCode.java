@@ -14,6 +14,7 @@ public enum ResponseCode {
     forbidden_account(20002, "账户已禁用"),
     password_incorrect(20003, "密码错误"),
     unauthorized(20004, "无操作权限"),
+    can_not_delete(20005, "该数据无法删除"),
     unauthenticated(20004, "未登录"),
     param_format_error(30001, "参数格式错误"),
     missing_parameter(30002,"缺少参数");

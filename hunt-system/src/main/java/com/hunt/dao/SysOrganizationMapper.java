@@ -7,4 +7,6 @@ import tk.mybatis.mapper.common.Mapper;
 public interface SysOrganizationMapper  extends Mapper<SysOrganization> {
 
     SysOrganization selectById(@Param("id") Long id);
+
+    int deleteById(@Param("id") long id);
 }
