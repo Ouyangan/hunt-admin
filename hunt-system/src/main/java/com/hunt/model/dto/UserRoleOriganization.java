@@ -3,12 +3,14 @@ package com.hunt.model.dto;
 import com.hunt.model.entity.SysOrganization;
 import com.hunt.model.entity.SysRole;
 
+import java.io.Serializable;
+
 /**
  * @Author ouyangan
  * @Date 2016/10/8/13:57
  * @Description
  */
-public class UserRoleOriganization {
+public class UserRoleOriganization implements Serializable {
     private SysRole role;
     private SysOrganization organization;
 
