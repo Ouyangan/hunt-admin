@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/10/10 7:44:27                           */
+/* Created on:     2016/10/10 10:17:52                          */
 /*==============================================================*/
 
 
@@ -108,7 +108,7 @@ create table sys_permission_group
 (
   id                   bigint not null auto_increment,
   name                 varchar(256) comment '名称',
-  descritption         varchar(256) comment '描述',
+  description          varchar(256) comment '描述',
   parent_id            bigint default 0 comment '父级id',
   is_final             int default 1 comment '是否可删除',
   rank                 bigint default 0 comment '排序',
@@ -129,7 +129,7 @@ create table sys_role
   description          varchar(1024),
   name                 varchar(256),
   rank                 bigint default 0 comment '排序',
-  if_final             int default 1 comment '是否可删除',
+  is_final             int default 1 comment '是否可删除',
   create_time          datetime default CURRENT_TIMESTAMP comment '创建时间',
   update_time          datetime default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
   create_by            bigint default 0 comment '创建人id',
@@ -211,7 +211,7 @@ create table sys_user_role
   create_time          datetime default CURRENT_TIMESTAMP comment '创建时间',
   update_time          datetime default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
   create_by            bigint default 0 comment '创建人id',
-  update_by            bigint default 0 comment '更新人id',g
+  update_by            bigint default 0 comment '更新人id',
   state                int default 1 comment '数据状态,1:正常,2:删除',
   primary key (id)
 );

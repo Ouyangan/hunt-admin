@@ -166,13 +166,13 @@
     <select id="selectById" parameterType="long" resultMap="baseResultMap">
         SELECT *
         FROM sys_role
-        WHERE id = #{id} AND status = 1
+        WHERE id = #{id} AND state = 1
     </select>
 
     <select id="selectAll" resultMap="baseResultMap">
         SELECT *
         FROM sys_role
-        WHERE status = 1
+        WHERE state = 1
     </select>
 
 

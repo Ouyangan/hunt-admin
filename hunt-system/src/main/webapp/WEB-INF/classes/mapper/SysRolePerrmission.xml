@@ -151,11 +151,11 @@
     </select>
 
     <select id="selectById" parameterType="long" resultMap="baseResultMap">
-        select * from sys_role_perrmission where id =#{id} and status=1
+        select * from sys_role_perrmission where id =#{id} and state=1
     </select>
 
     <select id="selectAll" resultMap="baseResultMap">
-        select * from sys_role_perrmission where status=1
+        select * from sys_role_perrmission where state=1
     </select>
 
 
