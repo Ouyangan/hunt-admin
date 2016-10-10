@@ -1,176 +1,167 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hunt.dao.SysUserRoleOrganizationMapper">
-    <resultMap id="baseResultMap" type="SysUserRoleOrganization">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysUserRoleOrganization">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="sys_user_id" property="sysUserId" jdbcType="BIGINT"/>
         <result column="sys_organization_id" property="sysOrganizationId" jdbcType="BIGINT"/>
         <result column="sys_role_id" property="sysRoleId" jdbcType="BIGINT"/>
         <result column="rank" property="rank" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="createTime" jdbcType="DATETIME"/>
+        <result column="update_time" property="updateTime" jdbcType="DATETIME"/>
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-                                id  ,
-                                            sys_user_id  ,
-                                            sys_organization_id  ,
-                                            sys_role_id  ,
-                                            rank  ,
-                                            create_time  ,
-                                            update_time  ,
-                                            create_by  ,
-                                            update_by  ,
-                                               state
-                        </sql>
+        suro.id id,
+        suro.sys_user_id sysUserId,
+        suro.sys_organization_id sysOrganizationId,
+        suro.sys_role_id sysRoleId,
+        suro.rank rank,
+        suro.create_time createTime,
+        suro.update_time updateTime,
+        suro.create_by createBy,
+        suro.update_by updateBy,
+        suro.state state
+    </sql>
 
     <sql id="sql_column_where">
-        <if test="id != null ">
-            AND id = #{id}
+        <if test="id !=null ">
+            AND suro.id = #{id}
         </if>
-        <if test="sysUserId != null ">
-            AND sys_user_id = #{sysUserId}
+        <if test="sysUserId !=null ">
+            AND suro.sys_user_id = #{sysUserId}
         </if>
-        <if test="sysOrganizationId != null ">
-            AND sys_organization_id = #{sysOrganizationId}
+        <if test="sysOrganizationId !=null ">
+            AND suro.sys_organization_id = #{sysOrganizationId}
         </if>
-        <if test="sysRoleId != null ">
-            AND sys_role_id = #{sysRoleId}
+        <if test="sysRoleId !=null ">
+            AND suro.sys_role_id = #{sysRoleId}
         </if>
-        <if test="rank != null ">
-            AND rank = #{rank}
+        <if test="rank !=null ">
+            AND suro.rank = #{rank}
         </if>
-        <if test="createTime != null ">
-            AND create_time = #{createTime}
+        <if test="createTime !=null ">
+            AND suro.create_time = #{createTime}
         </if>
-        <if test="updateTime != null ">
-            AND update_time = #{updateTime}
+        <if test="updateTime !=null ">
+            AND suro.update_time = #{updateTime}
         </if>
-        <if test="createBy != null ">
-            AND create_by = #{createBy}
+        <if test="createBy !=null ">
+            AND suro.create_by = #{createBy}
         </if>
-        <if test="updateBy != null ">
-            AND update_by = #{updateBy}
+        <if test="updateBy !=null ">
+            AND suro.update_by = #{updateBy}
         </if>
-        <if test="state != null ">
-            AND state = #{state}
+        <if test="state !=null ">
+            AND suro.state = #{state}
         </if>
     </sql>
 
     <insert id="insertSysUserRoleOrganization" parameterType="SysUserRoleOrganization" useGeneratedKeys="true"
-            keyProperty="id" keyColumn="id">
-        insert into sys_user_role_organization
+            keyProperty="id">
+        insert into sys_user_role_organization suro
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="sysUserId != null">
-                sys_user_id,
-            </if>
-            <if test="sysOrganizationId != null">
-                sys_organization_id,
-            </if>
-            <if test="sysRoleId != null">
-                sys_role_id,
-            </if>
-            <if test="rank != null">
-                rank,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="updateTime != null">
-                update_time,
-            </if>
-            <if test="createBy != null">
-                create_by,
-            </if>
-            <if test="updateBy != null">
-                update_by,
-            </if>
-            <if test="state != null">
-                state,
-            </if>
+            suro.id,
+            suro.sys_user_id,
+            suro.sys_organization_id,
+            suro.sys_role_id,
+            suro.rank,
+            suro.create_time,
+            suro.update_time,
+            suro.create_by,
+            suro.update_by,
+            suro.state,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="sysUserId != null">
-                #{sysUserId},
+            <if test="id !=null">
+                suro.id = #{id},
             </if>
-            <if test="sysOrganizationId != null">
-                #{sysOrganizationId},
+            <if test="sysUserId !=null">
+                suro.sys_user_id = #{sysUserId},
             </if>
-            <if test="sysRoleId != null">
-                #{sysRoleId},
+            <if test="sysOrganizationId !=null">
+                suro.sys_organization_id = #{sysOrganizationId},
             </if>
-            <if test="rank != null">
-                #{rank},
+            <if test="sysRoleId !=null">
+                suro.sys_role_id = #{sysRoleId},
             </if>
-            <if test="createTime != null">
-                #{createTime},
+            <if test="rank !=null">
+                suro.rank = #{rank},
             </if>
-            <if test="updateTime != null">
-                #{updateTime},
+            <if test="createTime !=null">
+                suro.create_time = #{createTime},
             </if>
-            <if test="createBy != null">
-                #{createBy},
+            <if test="updateTime !=null">
+                suro.update_time = #{updateTime},
             </if>
-            <if test="updateBy != null">
-                #{updateBy},
+            <if test="createBy !=null">
+                suro.create_by = #{createBy},
             </if>
-            <if test="state != null">
-                #{state},
+            <if test="updateBy !=null">
+                suro.update_by = #{updateBy},
+            </if>
+            <if test="state !=null">
+                suro.state = #{state},
             </if>
         </trim>
     </insert>
 
+
     <update id="updateSysUserRoleOrganization" parameterType="SysUserRoleOrganization">
-        update sys_user_role_organization
+        update sys_user_role_organization suro
         <set>
-            <if test="sysUserId != null">
-                sys_user_id = #{sysUserId},
+            <if test="id !=null">
+                suro.id = #{id},
             </if>
-            <if test="sysOrganizationId != null">
-                sys_organization_id = #{sysOrganizationId},
+            <if test="sysUserId !=null">
+                suro.sys_user_id = #{sysUserId},
             </if>
-            <if test="sysRoleId != null">
-                sys_role_id = #{sysRoleId},
+            <if test="sysOrganizationId !=null">
+                suro.sys_organization_id = #{sysOrganizationId},
             </if>
-            <if test="rank != null">
-                rank = #{rank},
+            <if test="sysRoleId !=null">
+                suro.sys_role_id = #{sysRoleId},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime},
+            <if test="rank !=null">
+                suro.rank = #{rank},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime},
+            <if test="createTime !=null">
+                suro.create_time = #{createTime},
             </if>
-            <if test="createBy != null">
-                create_by = #{createBy},
+            <if test="updateTime !=null">
+                suro.update_time = #{updateTime},
             </if>
-            <if test="updateBy != null">
-                update_by = #{updateBy},
+            <if test="createBy !=null">
+                suro.create_by = #{createBy},
             </if>
-            <if test="state != null">
-                state = #{state},
+            <if test="updateBy !=null">
+                suro.update_by = #{updateBy},
+            </if>
+            <if test="state !=null">
+                suro.state = #{state},
             </if>
         </set>
-        where suro.id =#{id}
+        where suro.id =#{id} and state=1
     </update>
 
-    <select id="select" parameterType="SysUserRoleOrganization" resultMap="baseResultMap">
-        select * from sys_user_role_organization
+    <select id="selectSysUserRoleOrganization" parameterType="SysUserRoleOrganization"
+            resultType="SysUserRoleOrganization">
+        select * from sys_user_role_organization suro where
         <where>
             <include refid="sql_column_where"/>
         </where>
     </select>
 
-    <select id="selectById" parameterType="long" resultMap="baseResultMap">
+    <select id="selectSysUserRoleOrganizationById" parameterType="Long" resultType="SysUserRoleOrganization">
         SELECT *
-        FROM sys_user_role_organization
-        WHERE id = #{id} AND state = 1
+        FROM sys_user_role_organization suro
+        WHERE suro.id = #{id} AND $meta.aliasName.state = 1
     </select>
 
-    <select id="selectAll" resultMap="baseResultMap">
+    <select id="selectSysUserRoleOrganizationAll" resultType="SysUserRoleOrganization">
         SELECT *
         FROM sys_user_role_organization
         WHERE state = 1
@@ -180,6 +171,5 @@
         FROM sys_user_role_organization
         WHERE state = 1 AND sys_user_id = #{userId}
     </select>
-
 
 </mapper>

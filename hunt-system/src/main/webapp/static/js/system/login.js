@@ -48,10 +48,10 @@ $(function () {
                         alert("loading")
                     } else {
                         $.messager.show({
-                            title:'系统提示',
-                            msg:data.msg,
-                            timeout:2000,
-                            showType:'slide'
+                            title: '系统提示',
+                            msg: data.msg,
+                            timeout: 2000,
+                            showType: 'slide'
                         });
 
                     }

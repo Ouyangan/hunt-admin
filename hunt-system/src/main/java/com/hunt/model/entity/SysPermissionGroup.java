@@ -2,7 +2,7 @@ package com.hunt.model.entity;
 
 /**
  * @Author: ouyangan
- * @Date: 2016-10-10 09:38
+ * @Date: 2016-10-10 22:01
  * @Description:
  */
 public class SysPermissionGroup {
@@ -76,10 +76,20 @@ public class SysPermissionGroup {
         this.name = name;
     }
 
+    /**
+     * get 描述
+     *
+     * @return String
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * set 描述
+     *
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }

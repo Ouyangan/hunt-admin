@@ -21,12 +21,18 @@
         <div title="系统设置" data-options="selected:true,collapsed:true,collapsible:true">
             <div>
                 <ul style="list-style: none;padding:0 0 0 20px">
-                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;" href="/user/user">用户管理</a></li>
-                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;" href="/organization/organization">组织管理</a></li>
-                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;" href="/role/role">角色管理</a></li>
-                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;" href="/permission/permission">权限管理</a></li>
-                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;" href="/user/status">在线状态</a></li>
-                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;" href="/data/data">字典管理</a></li>
+                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
+                                                                 href="/user/user">用户管理</a></li>
+                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
+                                                                 href="/organization/organization">组织管理</a></li>
+                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
+                                                                 href="/role/role">角色管理</a></li>
+                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
+                                                                 href="/permission/permission">权限管理</a></li>
+                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;" href="/user/status">在线状态</a>
+                    </li>
+                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
+                                                                 href="/data/data">字典管理</a></li>
                 </ul>
             </div>
         </div>

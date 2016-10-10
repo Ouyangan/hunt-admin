@@ -2,7 +2,7 @@ package com.hunt.model.entity;
 
 /**
  * @Author: ouyangan
- * @Date: 2016-10-10 09:38
+ * @Date: 2016-10-10 22:01
  * @Description:
  */
 public class SysUserPermission {

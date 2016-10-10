@@ -2,7 +2,7 @@ package com.hunt.model.entity;
 
 /**
  * @Author: ouyangan
- * @Date: 2016-10-10 09:38
+ * @Date: 2016-10-10 22:01
  * @Description:
  */
 public class SysRole {
@@ -19,7 +19,7 @@ public class SysRole {
     // rank :排序
     private Long rank;
 
-    // if_final :是否可删除
+    // is_final :是否可删除
     private Integer isFinal;
 
     // create_time :创建时间
@@ -109,10 +109,20 @@ public class SysRole {
         this.rank = rank;
     }
 
+    /**
+     * get 是否可删除
+     *
+     * @return Integer
+     */
     public Integer getIsFinal() {
         return isFinal;
     }
 
+    /**
+     * set 是否可删除
+     *
+     * @param isFinal
+     */
     public void setIsFinal(Integer isFinal) {
         this.isFinal = isFinal;
     }
@@ -210,15 +220,15 @@ public class SysRole {
     @Override
     public String toString() {
         return "SysRole{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", description='" + description + '\'' +
                 ", name='" + name + '\'' +
-                ", rank=" + rank +
-                ", isFinal=" + isFinal +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", createBy=" + createBy +
-                ", updateBy=" + updateBy +
+                ", rank='" + rank + '\'' +
+                ", isFinal='" + isFinal + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", updateBy='" + updateBy + '\'' +
                 ", state=" + state +
                 '}';
     }

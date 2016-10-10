@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--配置mybatis工厂对象-->
@@ -11,10 +11,10 @@
     </bean>
     <!-- mapper扫描器-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.hunt.dao"/>
         <!-- 通用mapper配置选项-->
         <property name="markerInterface" value="tk.mybatis.mapper.common.Mapper"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
     <!--通用mapper-->
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">

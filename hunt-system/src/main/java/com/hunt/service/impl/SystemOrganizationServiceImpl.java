@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class SystemOrganizationServiceImpl implements SystemOrganizationService {
-    @SuppressWarnings("all")
+
     @Autowired
     private SysOrganizationMapper sysOrganizationMapper;
 
@@ -26,13 +26,13 @@ public class SystemOrganizationServiceImpl implements SystemOrganizationService 
 
     @Override
     public int deleteOrganization(long id) {
-        SysOrganization sysOrganization = sysOrganizationMapper.selectById(id);
+        SysOrganization sysOrganization = sysOrganizationMapper.selectSysOrganizationById(id);
         if (sysOrganization.getIsFinal() == 2) {
             return 2;
         }
         sysOrganization.setState(2);
-        int i = sysOrganizationMapper.updateSysOrganization(sysOrganization);
-        return i;
+        sysOrganizationMapper.updateSysOrganization(sysOrganization);
+        return 1;
     }
 
     @Override

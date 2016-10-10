@@ -1,194 +1,180 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hunt.dao.SysOrganizationMapper">
-    <resultMap id="baseResultMap" type="SysOrganization">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysOrganization">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="description" property="description" jdbcType="VARCHAR"/>
         <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
         <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
         <result column="rank" property="rank" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="createTime" jdbcType="DATETIME"/>
+        <result column="update_time" property="updateTime" jdbcType="DATETIME"/>
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-                                id  ,
-                                            name  ,
-                                            description  ,
-                                            is_final  ,
-                                            parent_id  ,
-                                            rank  ,
-                                            create_time  ,
-                                            update_time  ,
-                                            create_by  ,
-                                            update_by  ,
-                                               state
-                        </sql>
+        so.id  id,
+        so.name name,
+        so.description  description,
+        so.is_final  isFinal,
+        so.parent_id  parentId,
+        so.rank  rank,
+        so.create_time  createTime,
+        so.update_time  updateTime,
+        so.create_by  createBy,
+        so.update_by  updateBy,
+        so.state  state
+    </sql>
 
     <sql id="sql_column_where">
-        <if test="id != null ">
-            AND id = #{id}
+        <if test="id !=null ">
+            AND so.id = #{id}
         </if>
-        <if test="name != null and name.length() !=  0">
-            AND name = #{name}
+        <if test="name !=null and name.length() != 0">
+            AND so.name = #{name}
         </if>
-        <if test="description != null and description.length() !=  0">
-            AND description = #{description}
+        <if test="description !=null and description.length() != 0">
+            AND so.description = #{description}
         </if>
-        <if test="isFinal != null ">
-            AND is_final = #{isFinal}
+        <if test="isFinal !=null ">
+            AND so.is_final = #{isFinal}
         </if>
-        <if test="parentId != null ">
-            AND parent_id = #{parentId}
+        <if test="parentId !=null ">
+            AND so.parent_id = #{parentId}
         </if>
-        <if test="rank != null ">
-            AND rank = #{rank}
+        <if test="rank !=null ">
+            AND so.rank = #{rank}
         </if>
-        <if test="createTime != null ">
-            AND create_time = #{createTime}
+        <if test="createTime !=null ">
+            AND so.create_time = #{createTime}
         </if>
-        <if test="updateTime != null ">
-            AND update_time = #{updateTime}
+        <if test="updateTime !=null ">
+            AND so.update_time = #{updateTime}
         </if>
-        <if test="createBy != null ">
-            AND create_by = #{createBy}
+        <if test="createBy !=null ">
+            AND so.create_by = #{createBy}
         </if>
-        <if test="updateBy != null ">
-            AND update_by = #{updateBy}
+        <if test="updateBy !=null ">
+            AND so.update_by = #{updateBy}
         </if>
-        <if test="state != null ">
-            AND state = #{state}
+        <if test="state !=null ">
+            AND so.state = #{state}
         </if>
     </sql>
 
-    <insert id="insertSysOrganization" parameterType="SysOrganization" useGeneratedKeys="true" keyProperty="id"
-            keyColumn="id">
-        insert into sys_organization
+    <insert id="insertSysOrganization" parameterType="SysOrganization" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_organization so
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="name != null and name.length() != 0">
-                name,
-            </if>
-            <if test="description != null and description.length() != 0">
-                description,
-            </if>
-            <if test="isFinal != null">
-                is_final,
-            </if>
-            <if test="parentId != null">
-                parent_id,
-            </if>
-            <if test="rank != null">
-                rank,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="updateTime != null">
-                update_time,
-            </if>
-            <if test="createBy != null">
-                create_by,
-            </if>
-            <if test="updateBy != null">
-                update_by,
-            </if>
-            <if test="state != null">
-                state,
-            </if>
+            so.id,
+            so.name,
+            so.description,
+            so.is_final,
+            so.parent_id,
+            so.rank,
+            so.create_time,
+            so.update_time,
+            so.create_by,
+            so.update_by,
+            so.state,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="name != null and name.length() != 0">
-                #{name},
+            <if test="id !=null">
+                so.id = #{id},
             </if>
-            <if test="description != null and description.length() != 0">
-                #{description},
+            <if test="name !=null and name.length() !=0">
+                so.name = #{name},
             </if>
-            <if test="isFinal != null">
-                #{isFinal},
+            <if test="description !=null and description.length() !=0">
+                so.description = #{description},
             </if>
-            <if test="parentId != null">
-                #{parentId},
+            <if test="isFinal !=null">
+                so.is_final = #{isFinal},
             </if>
-            <if test="rank != null">
-                #{rank},
+            <if test="parentId !=null">
+                so.parent_id = #{parentId},
             </if>
-            <if test="createTime != null">
-                #{createTime},
+            <if test="rank !=null">
+                so.rank = #{rank},
             </if>
-            <if test="updateTime != null">
-                #{updateTime},
+            <if test="createTime !=null">
+                so.create_time = #{createTime},
             </if>
-            <if test="createBy != null">
-                #{createBy},
+            <if test="updateTime !=null">
+                so.update_time = #{updateTime},
             </if>
-            <if test="updateBy != null">
-                #{updateBy},
+            <if test="createBy !=null">
+                so.create_by = #{createBy},
             </if>
-            <if test="state != null">
-                #{state},
+            <if test="updateBy !=null">
+                so.update_by = #{updateBy},
+            </if>
+            <if test="state !=null">
+                so.state = #{state},
             </if>
         </trim>
     </insert>
 
+
     <update id="updateSysOrganization" parameterType="SysOrganization">
-        update sys_organization
+        update sys_organization so
         <set>
-            <if test="name != null and name.length() != 0">
-                name = #{name},
+            <if test="id !=null">
+                so.id = #{id},
             </if>
-            <if test="description != null and description.length() != 0">
-                description = #{description},
+            <if test="name !=null and name.length() !=0">
+                so.name = #{name},
             </if>
-            <if test="isFinal != null">
-                is_final = #{isFinal},
+            <if test="description !=null and description.length() !=0">
+                so.description = #{description},
             </if>
-            <if test="parentId != null">
-                parent_id = #{parentId},
+            <if test="isFinal !=null">
+                so.is_final = #{isFinal},
             </if>
-            <if test="rank != null">
-                rank = #{rank},
+            <if test="parentId !=null">
+                so.parent_id = #{parentId},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime},
+            <if test="rank !=null">
+                so.rank = #{rank},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime},
+            <if test="createTime !=null">
+                so.create_time = #{createTime},
             </if>
-            <if test="createBy != null">
-                create_by = #{createBy},
+            <if test="updateTime !=null">
+                so.update_time = #{updateTime},
             </if>
-            <if test="updateBy != null">
-                update_by = #{updateBy},
+            <if test="createBy !=null">
+                so.create_by = #{createBy},
             </if>
-            <if test="state != null">
-                state = #{state},
+            <if test="updateBy !=null">
+                so.update_by = #{updateBy},
+            </if>
+            <if test="state !=null">
+                so.state = #{state},
             </if>
         </set>
-        where so.id =#{id}
+        where so.id =#{id} and state=1
     </update>
 
-    <select id="select" parameterType="SysOrganization" resultMap="baseResultMap">
-        select * from sys_organization
+    <select id="selectSysOrganization" parameterType="SysOrganization" resultType="SysOrganization">
+        select * from sys_organization so where
         <where>
             <include refid="sql_column_where"/>
         </where>
     </select>
 
-    <select id="selectById" parameterType="long" resultMap="baseResultMap">
+    <select id="selectSysOrganizationById" parameterType="Long" resultType="SysOrganization">
         SELECT *
-        FROM sys_organization
-        WHERE id = #{id} AND state = 1
+        FROM sys_organization so
+        WHERE so.id = #{id} AND $meta.aliasName.state = 1
     </select>
 
-    <select id="selectAll" resultMap="baseResultMap">
+    <select id="selectSysOrganizationAll" resultType="SysOrganization">
         SELECT *
         FROM sys_organization
         WHERE state = 1
     </select>
-
 
 </mapper>

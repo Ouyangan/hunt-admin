@@ -1,18 +1,22 @@
 #login {
     padding: 10px 0 0 0;
 }
+
 p {
     height: 25px;
     line-height: 25px;
     padding: 10px 0 0 80px;
 }
-.textbox{
+
+.textbox {
     height: 25px;
-    padding: 0 0 0 5px ;
+    padding: 0 0 0 5px;
 }
-#login-btn{
+
+#login-btn {
     text-align: center;
 }
-.easyui-linkbutton{
+
+.easyui-linkbutton {
     padding: 0px 15px;
 }

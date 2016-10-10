@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class shiroRealm extends AuthorizingRealm {
     @Autowired
     private SysUserService sysUserService;
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         return null;

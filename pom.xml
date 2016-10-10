@@ -12,8 +12,8 @@
 
     <modules>
         <module>hunt-parent</module>
-        <module>hunt-system</module>
         <module>hunt-common</module>
+        <module>hunt-system</module>
     </modules>
 
     <developers>

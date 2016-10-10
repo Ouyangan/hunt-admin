@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hunt.dao.SysUserMapper">
-    <resultMap id="baseResultMap" type="SysUser">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysUser">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="login_name" property="loginName" jdbcType="VARCHAR"/>
         <result column="zh_name" property="zhName" jdbcType="VARCHAR"/>
@@ -14,269 +14,241 @@
         <result column="password" property="password" jdbcType="VARCHAR"/>
         <result column="password_salt" property="passwordSalt" jdbcType="VARCHAR"/>
         <result column="rank" property="rank" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="createTime" jdbcType="DATETIME"/>
+        <result column="update_time" property="updateTime" jdbcType="DATETIME"/>
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-                                id  ,
-                                            login_name  ,
-                                            zh_name  ,
-                                            en_name  ,
-                                            sex  ,
-                                            birth  ,
-                                            email  ,
-                                            phone  ,
-                                            address  ,
-                                            password  ,
-                                            password_salt  ,
-                                            rank  ,
-                                            create_time  ,
-                                            update_time  ,
-                                            create_by  ,
-                                            update_by  ,
-                                               state
-                        </sql>
+        su.id id ,
+        su.login_name loginName ,
+        su.zh_name zhName ,
+        su.en_name enName ,
+        su.sex sex ,
+        su.birth birth ,
+        su.email email ,
+        su.phone phone ,
+        su.address address ,
+        su.password password ,
+        su.password_salt passwordSalt ,
+        su.rank rank ,
+        su.create_time createTime ,
+        su.update_time updateTime ,
+        su.create_by createBy ,
+        su.update_by updateBy ,
+        su.state state
+    </sql>
 
     <sql id="sql_column_where">
-        <if test="id != null ">
-            AND id = #{id}
+        <if test="id !=null ">
+            AND su.id = #{id}
         </if>
-        <if test="loginName != null and loginName.length() !=  0">
-            AND login_name = #{loginName}
+        <if test="loginName !=null and loginName.length() != 0">
+            AND su.login_name = #{loginName}
         </if>
-        <if test="zhName != null and zhName.length() !=  0">
-            AND zh_name = #{zhName}
+        <if test="zhName !=null and zhName.length() != 0">
+            AND su.zh_name = #{zhName}
         </if>
-        <if test="enName != null and enName.length() !=  0">
-            AND en_name = #{enName}
+        <if test="enName !=null and enName.length() != 0">
+            AND su.en_name = #{enName}
         </if>
-        <if test="sex != null ">
-            AND sex = #{sex}
+        <if test="sex !=null ">
+            AND su.sex = #{sex}
         </if>
-        <if test="birth != null and birth.length() !=  0">
-            AND birth = #{birth}
+        <if test="birth !=null and birth.length() != 0">
+            AND su.birth = #{birth}
         </if>
-        <if test="email != null and email.length() !=  0">
-            AND email = #{email}
+        <if test="email !=null and email.length() != 0">
+            AND su.email = #{email}
         </if>
-        <if test="phone != null and phone.length() !=  0">
-            AND phone = #{phone}
+        <if test="phone !=null and phone.length() != 0">
+            AND su.phone = #{phone}
         </if>
-        <if test="address != null and address.length() !=  0">
-            AND address = #{address}
+        <if test="address !=null and address.length() != 0">
+            AND su.address = #{address}
         </if>
-        <if test="password != null and password.length() !=  0">
-            AND password = #{password}
+        <if test="password !=null and password.length() != 0">
+            AND su.password = #{password}
         </if>
-        <if test="passwordSalt != null and passwordSalt.length() !=  0">
-            AND password_salt = #{passwordSalt}
+        <if test="passwordSalt !=null and passwordSalt.length() != 0">
+            AND su.password_salt = #{passwordSalt}
         </if>
-        <if test="rank != null ">
-            AND rank = #{rank}
+        <if test="rank !=null ">
+            AND su.rank = #{rank}
         </if>
-        <if test="createTime != null ">
-            AND create_time = #{createTime}
+        <if test="createTime !=null ">
+            AND su.create_time = #{createTime}
         </if>
-        <if test="updateTime != null ">
-            AND update_time = #{updateTime}
+        <if test="updateTime !=null ">
+            AND su.update_time = #{updateTime}
         </if>
-        <if test="createBy != null ">
-            AND create_by = #{createBy}
+        <if test="createBy !=null ">
+            AND su.create_by = #{createBy}
         </if>
-        <if test="updateBy != null ">
-            AND update_by = #{updateBy}
+        <if test="updateBy !=null ">
+            AND su.update_by = #{updateBy}
         </if>
-        <if test="state != null ">
-            AND state = #{state}
+        <if test="state !=null ">
+            AND su.state = #{state}
         </if>
     </sql>
 
-    <insert id="insertSysUser" parameterType="SysUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        insert into sys_user
+    <insert id="insertSysUser" parameterType="SysUser" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_user su
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="loginName != null and loginName.length() != 0">
-                login_name,
-            </if>
-            <if test="zhName != null and zhName.length() != 0">
-                zh_name,
-            </if>
-            <if test="enName != null and enName.length() != 0">
-                en_name,
-            </if>
-            <if test="sex != null">
-                sex,
-            </if>
-            <if test="birth != null and birth.length() != 0">
-                birth,
-            </if>
-            <if test="email != null and email.length() != 0">
-                email,
-            </if>
-            <if test="phone != null and phone.length() != 0">
-                phone,
-            </if>
-            <if test="address != null and address.length() != 0">
-                address,
-            </if>
-            <if test="password != null and password.length() != 0">
-                password,
-            </if>
-            <if test="passwordSalt != null and passwordSalt.length() != 0">
-                password_salt,
-            </if>
-            <if test="rank != null">
-                rank,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="updateTime != null">
-                update_time,
-            </if>
-            <if test="createBy != null">
-                create_by,
-            </if>
-            <if test="updateBy != null">
-                update_by,
-            </if>
-            <if test="state != null">
-                state,
-            </if>
+            su.id,
+            su.login_name,
+            su.zh_name,
+            su.en_name,
+            su.sex,
+            su.birth,
+            su.email,
+            su.phone,
+            su.address,
+            su.password,
+            su.password_salt,
+            su.rank,
+            su.create_time,
+            su.update_time,
+            su.create_by,
+            su.update_by,
+            su.state,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="loginName != null and loginName.length() != 0">
-                #{loginName},
+            <if test="id !=null">
+                su.id = #{id},
             </if>
-            <if test="zhName != null and zhName.length() != 0">
-                #{zhName},
+            <if test="loginName !=null and loginName.length() !=0">
+                su.login_name = #{loginName},
             </if>
-            <if test="enName != null and enName.length() != 0">
-                #{enName},
+            <if test="zhName !=null and zhName.length() !=0">
+                su.zh_name = #{zhName},
             </if>
-            <if test="sex != null">
-                #{sex},
+            <if test="enName !=null and enName.length() !=0">
+                su.en_name = #{enName},
             </if>
-            <if test="birth != null and birth.length() != 0">
-                #{birth},
+            <if test="sex !=null">
+                su.sex = #{sex},
             </if>
-            <if test="email != null and email.length() != 0">
-                #{email},
+            <if test="birth !=null and birth.length() !=0">
+                su.birth = #{birth},
             </if>
-            <if test="phone != null and phone.length() != 0">
-                #{phone},
+            <if test="email !=null and email.length() !=0">
+                su.email = #{email},
             </if>
-            <if test="address != null and address.length() != 0">
-                #{address},
+            <if test="phone !=null and phone.length() !=0">
+                su.phone = #{phone},
             </if>
-            <if test="password != null and password.length() != 0">
-                #{password},
+            <if test="address !=null and address.length() !=0">
+                su.address = #{address},
             </if>
-            <if test="passwordSalt != null and passwordSalt.length() != 0">
-                #{passwordSalt},
+            <if test="password !=null and password.length() !=0">
+                su.password = #{password},
             </if>
-            <if test="rank != null">
-                #{rank},
+            <if test="passwordSalt !=null and passwordSalt.length() !=0">
+                su.password_salt = #{passwordSalt},
             </if>
-            <if test="createTime != null">
-                #{createTime},
+            <if test="rank !=null">
+                su.rank = #{rank},
             </if>
-            <if test="updateTime != null">
-                #{updateTime},
+            <if test="createTime !=null">
+                su.create_time = #{createTime},
             </if>
-            <if test="createBy != null">
-                #{createBy},
+            <if test="updateTime !=null">
+                su.update_time = #{updateTime},
             </if>
-            <if test="updateBy != null">
-                #{updateBy},
+            <if test="createBy !=null">
+                su.create_by = #{createBy},
             </if>
-            <if test="state != null">
-                #{state},
+            <if test="updateBy !=null">
+                su.update_by = #{updateBy},
+            </if>
+            <if test="state !=null">
+                su.state = #{state},
             </if>
         </trim>
     </insert>
 
+
     <update id="updateSysUser" parameterType="SysUser">
-        update sys_user
+        update sys_user su
         <set>
-            <if test="loginName != null and loginName.length() != 0">
-                login_name = #{loginName},
+            <if test="id !=null">
+                su.id = #{id},
             </if>
-            <if test="zhName != null and zhName.length() != 0">
-                zh_name = #{zhName},
+            <if test="loginName !=null and loginName.length() !=0">
+                su.login_name = #{loginName},
             </if>
-            <if test="enName != null and enName.length() != 0">
-                en_name = #{enName},
+            <if test="zhName !=null and zhName.length() !=0">
+                su.zh_name = #{zhName},
             </if>
-            <if test="sex != null">
-                sex = #{sex},
+            <if test="enName !=null and enName.length() !=0">
+                su.en_name = #{enName},
             </if>
-            <if test="birth != null and birth.length() != 0">
-                birth = #{birth},
+            <if test="sex !=null">
+                su.sex = #{sex},
             </if>
-            <if test="email != null and email.length() != 0">
-                email = #{email},
+            <if test="birth !=null and birth.length() !=0">
+                su.birth = #{birth},
             </if>
-            <if test="phone != null and phone.length() != 0">
-                phone = #{phone},
+            <if test="email !=null and email.length() !=0">
+                su.email = #{email},
             </if>
-            <if test="address != null and address.length() != 0">
-                address = #{address},
+            <if test="phone !=null and phone.length() !=0">
+                su.phone = #{phone},
             </if>
-            <if test="password != null and password.length() != 0">
-                password = #{password},
+            <if test="address !=null and address.length() !=0">
+                su.address = #{address},
             </if>
-            <if test="passwordSalt != null and passwordSalt.length() != 0">
-                password_salt = #{passwordSalt},
+            <if test="password !=null and password.length() !=0">
+                su.password = #{password},
             </if>
-            <if test="rank != null">
-                rank = #{rank},
+            <if test="passwordSalt !=null and passwordSalt.length() !=0">
+                su.password_salt = #{passwordSalt},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime},
+            <if test="rank !=null">
+                su.rank = #{rank},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime},
+            <if test="createTime !=null">
+                su.create_time = #{createTime},
             </if>
-            <if test="createBy != null">
-                create_by = #{createBy},
+            <if test="updateTime !=null">
+                su.update_time = #{updateTime},
             </if>
-            <if test="updateBy != null">
-                update_by = #{updateBy},
+            <if test="createBy !=null">
+                su.create_by = #{createBy},
             </if>
-            <if test="state != null">
-                state = #{state},
+            <if test="updateBy !=null">
+                su.update_by = #{updateBy},
+            </if>
+            <if test="state !=null">
+                su.state = #{state},
             </if>
         </set>
-        where su.id =#{id}
+        where su.id =#{id} and state=1
     </update>
 
-    <select id="select" parameterType="SysUser" resultMap="baseResultMap">
-        select * from sys_user
+    <select id="selectSysUser" parameterType="SysUser" resultType="SysUser">
+        select * from sys_user su where
         <where>
             <include refid="sql_column_where"/>
         </where>
     </select>
 
-    <select id="selectById" parameterType="long" resultMap="baseResultMap">
-        SELECT *
-        FROM sys_user
-        WHERE id = #{id} AND state = 1
+    <select id="selectSysUserById" parameterType="Long" resultType="SysUser">
+        select * from sys_user su where su.id =#{id} and $meta.aliasName.state=1
     </select>
 
-    <select id="selectAll" resultMap="baseResultMap">
-        SELECT *
-        FROM sys_user
-        WHERE state = 1
+    <select id="selectSysUserAll" resultType="SysUser">
+        select * from sys_user where state=1
     </select>
     <select id="selectUserByLoginName" resultType="com.hunt.model.entity.SysUser">
         SELECT *
         FROM sys_user
-        WHERE state = 1 AND login_name = #{username}
-    </select>
+        WHERE state = 1 AND login_name = #{username};
 
+    </select>
 
 </mapper>

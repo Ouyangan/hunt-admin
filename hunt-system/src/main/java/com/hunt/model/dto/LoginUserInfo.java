@@ -12,7 +12,7 @@ import java.util.List;
  * @Description
  */
 public class LoginUserInfo implements Serializable {
-   private SysUser user;
+    private SysUser user;
 
     private List<UserRoleOriganization> userRoleOriganizationList = new ArrayList<>();
 

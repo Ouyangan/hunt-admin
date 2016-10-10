@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentMap;
  * @Date 2016/10/9/14:13
  * @Description
  */
-public class RedisCacheManger implements CacheManager, Initializable, Destroyable  {
+public class RedisCacheManger implements CacheManager, Initializable, Destroyable {
 
     private final ConcurrentMap<String, Cache> caches = new ConcurrentHashMap<String, Cache>();
     @Autowired
