@@ -211,7 +211,7 @@ create table sys_user_role
   create_time          datetime default CURRENT_TIMESTAMP comment '创建时间',
   update_time          datetime default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
   create_by            bigint default 0 comment '创建人id',
-  update_by            bigint default 0 comment '更新人id',
+  update_by            bigint default 0 comment '更新人id',g
   state                int default 1 comment '数据状态,1:正常,2:删除',
   primary key (id)
 );

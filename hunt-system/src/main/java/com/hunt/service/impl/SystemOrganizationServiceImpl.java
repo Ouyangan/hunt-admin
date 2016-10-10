@@ -14,12 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class SystemOrganizationServiceImpl implements SystemOrganizationService {
+    @SuppressWarnings("all")
     @Autowired
     private SysOrganizationMapper sysOrganizationMapper;
 
     @Override
-    public int insertOrganization(SysOrganization sysOrganization) {
-        int i = sysOrganizationMapper.insertSelective(sysOrganization);
+    public Long insertOrganization(SysOrganization sysOrganization) {
+        Long i = sysOrganizationMapper.insertSysOrganization(sysOrganization);
         return i;
     }
 
@@ -29,12 +30,13 @@ public class SystemOrganizationServiceImpl implements SystemOrganizationService 
         if (sysOrganization.getIsFinal() == 2) {
             return 2;
         }
-        int i = sysOrganizationMapper.deleteById(id);
+        int i = sysOrganizationMapper.updateSysOrganization(id);
         return i;
     }
 
     @Override
-    public int updateOrganization(long id, String name, String description, long parentId) {
+    public int updateOrganization(SysOrganization organization) {
         return 0;
     }
+
 }

@@ -1,13 +1,11 @@
 package com.hunt.model.entity;
 
-import java.io.Serializable;
-
 /**
  * @Author: ouyangan
- * @Date: 2016-10-07 21:40
+ * @Date: 2016-10-10 09:38
  * @Description:
  */
-public class SysUser implements Serializable {
+public class SysUser {
 
     // id :
     private Long id;

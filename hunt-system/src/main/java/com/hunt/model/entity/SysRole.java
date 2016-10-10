@@ -1,13 +1,11 @@
 package com.hunt.model.entity;
 
-import java.io.Serializable;
-
 /**
  * @Author: ouyangan
- * @Date: 2016-10-07 21:40
+ * @Date: 2016-10-10 09:38
  * @Description:
  */
-public class SysRole implements Serializable {
+public class SysRole {
 
     // id :
     private Long id;
@@ -20,6 +18,9 @@ public class SysRole implements Serializable {
 
     // rank :排序
     private Long rank;
+
+    // if_final :是否可删除
+    private Integer isFinal;
 
     // create_time :创建时间
     private java.util.Date createTime;
@@ -106,6 +107,14 @@ public class SysRole implements Serializable {
      */
     public void setRank(Long rank) {
         this.rank = rank;
+    }
+
+    public Integer getIsFinal() {
+        return isFinal;
+    }
+
+    public void setIsFinal(Integer isFinal) {
+        this.isFinal = isFinal;
     }
 
     /**
@@ -201,14 +210,15 @@ public class SysRole implements Serializable {
     @Override
     public String toString() {
         return "SysRole{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", description='" + description + '\'' +
                 ", name='" + name + '\'' +
-                ", rank='" + rank + '\'' +
-                ", createTime='" + createTime + '\'' +
-                ", updateTime='" + updateTime + '\'' +
-                ", createBy='" + createBy + '\'' +
-                ", updateBy='" + updateBy + '\'' +
+                ", rank=" + rank +
+                ", isFinal=" + isFinal +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", createBy=" + createBy +
+                ", updateBy=" + updateBy +
                 ", state=" + state +
                 '}';
     }

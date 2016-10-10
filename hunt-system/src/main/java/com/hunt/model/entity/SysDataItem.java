@@ -2,7 +2,7 @@ package com.hunt.model.entity;
 
 /**
  * @Author: ouyangan
- * @Date: 2016-10-07 21:40
+ * @Date: 2016-10-10 09:38
  * @Description:
  */
 public class SysDataItem {
@@ -18,6 +18,9 @@ public class SysDataItem {
 
     // key_name :名称
     private String keyName;
+
+    // is_final :是否可删除
+    private Integer isFinal;
 
     // rank :排序
     private Long rank;
@@ -107,6 +110,24 @@ public class SysDataItem {
      */
     public void setKeyName(String keyName) {
         this.keyName = keyName;
+    }
+
+    /**
+     * get 是否可删除
+     *
+     * @return Integer
+     */
+    public Integer getIsFinal() {
+        return isFinal;
+    }
+
+    /**
+     * set 是否可删除
+     *
+     * @param isFinal
+     */
+    public void setIsFinal(Integer isFinal) {
+        this.isFinal = isFinal;
     }
 
     /**
@@ -224,6 +245,7 @@ public class SysDataItem {
                 ", sysDataGroupId='" + sysDataGroupId + '\'' +
                 ", keyValue='" + keyValue + '\'' +
                 ", keyName='" + keyName + '\'' +
+                ", isFinal='" + isFinal + '\'' +
                 ", rank='" + rank + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", updateTime='" + updateTime + '\'' +

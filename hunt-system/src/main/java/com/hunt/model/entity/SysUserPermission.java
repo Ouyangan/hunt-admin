@@ -2,7 +2,7 @@ package com.hunt.model.entity;
 
 /**
  * @Author: ouyangan
- * @Date: 2016-10-07 21:40
+ * @Date: 2016-10-10 09:38
  * @Description:
  */
 public class SysUserPermission {
@@ -15,6 +15,9 @@ public class SysUserPermission {
 
     // sys_permission_id :
     private Long sysPermissionId;
+
+    // is_final :
+    private Integer isFinal;
 
     // rank :排序
     private Long rank;
@@ -86,6 +89,24 @@ public class SysUserPermission {
      */
     public void setSysPermissionId(Long sysPermissionId) {
         this.sysPermissionId = sysPermissionId;
+    }
+
+    /**
+     * get
+     *
+     * @return Integer
+     */
+    public Integer getIsFinal() {
+        return isFinal;
+    }
+
+    /**
+     * set
+     *
+     * @param isFinal
+     */
+    public void setIsFinal(Integer isFinal) {
+        this.isFinal = isFinal;
     }
 
     /**
@@ -202,6 +223,7 @@ public class SysUserPermission {
                 "id='" + id + '\'' +
                 ", sysUserId='" + sysUserId + '\'' +
                 ", sysPermissionId='" + sysPermissionId + '\'' +
+                ", isFinal='" + isFinal + '\'' +
                 ", rank='" + rank + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", updateTime='" + updateTime + '\'' +

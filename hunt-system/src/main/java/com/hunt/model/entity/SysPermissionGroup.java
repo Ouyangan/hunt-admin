@@ -2,7 +2,7 @@ package com.hunt.model.entity;
 
 /**
  * @Author: ouyangan
- * @Date: 2016-10-07 21:40
+ * @Date: 2016-10-10 09:38
  * @Description:
  */
 public class SysPermissionGroup {
@@ -13,11 +13,14 @@ public class SysPermissionGroup {
     // name :名称
     private String name;
 
-    // descritption :描述
-    private String descritption;
+    // description :描述
+    private String description;
 
     // parent_id :父级id
     private Long parentId;
+
+    // is_final :是否可删除
+    private Integer isFinal;
 
     // rank :排序
     private Long rank;
@@ -73,22 +76,12 @@ public class SysPermissionGroup {
         this.name = name;
     }
 
-    /**
-     * get 描述
-     *
-     * @return String
-     */
-    public String getDescritption() {
-        return descritption;
+    public String getDescription() {
+        return description;
     }
 
-    /**
-     * set 描述
-     *
-     * @param descritption
-     */
-    public void setDescritption(String descritption) {
-        this.descritption = descritption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
@@ -107,6 +100,24 @@ public class SysPermissionGroup {
      */
     public void setParentId(Long parentId) {
         this.parentId = parentId;
+    }
+
+    /**
+     * get 是否可删除
+     *
+     * @return Integer
+     */
+    public Integer getIsFinal() {
+        return isFinal;
+    }
+
+    /**
+     * set 是否可删除
+     *
+     * @param isFinal
+     */
+    public void setIsFinal(Integer isFinal) {
+        this.isFinal = isFinal;
     }
 
     /**
@@ -222,8 +233,9 @@ public class SysPermissionGroup {
         return "SysPermissionGroup{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", descritption='" + descritption + '\'' +
+                ", description='" + description + '\'' +
                 ", parentId='" + parentId + '\'' +
+                ", isFinal='" + isFinal + '\'' +
                 ", rank='" + rank + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", updateTime='" + updateTime + '\'' +

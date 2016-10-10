@@ -1,22 +1,23 @@
 package com.hunt.model.entity;
 
-import java.io.Serializable;
-
 /**
  * @Author: ouyangan
- * @Date: 2016-10-07 21:40
+ * @Date: 2016-10-10 09:38
  * @Description:
  */
-public class SysOrganization implements Serializable {
+public class SysOrganization {
 
     // id :
     private Long id;
 
-    // name :
+    // name :名称
     private String name;
 
-    // description :
+    // description :描述
     private String description;
+
+    // is_final :是否可删除
+    private Integer isFinal;
 
     // parent_id :
     private Long parentId;
@@ -38,33 +39,6 @@ public class SysOrganization implements Serializable {
 
     // state :数据状态,1:正常,2:删除
     private Integer state;
-    // is_final :
-    private Integer isFinal;
-
-    @Override
-    public String toString() {
-        return "SysOrganization{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", parentId=" + parentId +
-                ", rank=" + rank +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", createBy=" + createBy +
-                ", updateBy=" + updateBy +
-                ", state=" + state +
-                ", isFinal=" + isFinal +
-                '}';
-    }
-
-    public Integer getIsFinal() {
-        return isFinal;
-    }
-
-    public void setIsFinal(Integer isFinal) {
-        this.isFinal = isFinal;
-    }
 
     /**
      * get
@@ -85,7 +59,7 @@ public class SysOrganization implements Serializable {
     }
 
     /**
-     * get
+     * get 名称
      *
      * @return String
      */
@@ -94,7 +68,7 @@ public class SysOrganization implements Serializable {
     }
 
     /**
-     * set
+     * set 名称
      *
      * @param name
      */
@@ -103,7 +77,7 @@ public class SysOrganization implements Serializable {
     }
 
     /**
-     * get
+     * get 描述
      *
      * @return String
      */
@@ -112,12 +86,30 @@ public class SysOrganization implements Serializable {
     }
 
     /**
-     * set
+     * set 描述
      *
      * @param description
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * get 是否可删除
+     *
+     * @return Integer
+     */
+    public Integer getIsFinal() {
+        return isFinal;
+    }
+
+    /**
+     * set 是否可删除
+     *
+     * @param isFinal
+     */
+    public void setIsFinal(Integer isFinal) {
+        this.isFinal = isFinal;
     }
 
     /**
@@ -246,4 +238,20 @@ public class SysOrganization implements Serializable {
         this.state = state;
     }
 
+    @Override
+    public String toString() {
+        return "SysOrganization{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", isFinal='" + isFinal + '\'' +
+                ", parentId='" + parentId + '\'' +
+                ", rank='" + rank + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", updateBy='" + updateBy + '\'' +
+                ", state=" + state +
+                '}';
+    }
 }

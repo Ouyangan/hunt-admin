@@ -27,6 +27,7 @@ import java.util.List;
 @Service
 @Transactional
 public class SysUserServiceImpl implements SysUserService {
+    private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
     @Autowired
     private SysUserMapper sysUserMapper;
     @Autowired
@@ -38,11 +39,11 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public long insertUser(SysUser sysUser, List<SysUserRoleOrganization> sysUserRoleOrganizationList) {
-        int i = sysUserMapper.insertSelective(sysUser);
+        Long i = sysUserMapper.insertSysUser(sysUser);
         for (int j = 0; j < sysUserRoleOrganizationList.size(); j++) {
             SysUserRoleOrganization sysUserRoleOrganization = sysUserRoleOrganizationList.get(j);
-            sysUserRoleOrganization.setSysUserId((long) i);
-            sysUserRoleOrganizationMapper.insertSelective(sysUserRoleOrganization);
+            sysUserRoleOrganization.setSysUserId(i);
+            sysUserRoleOrganizationMapper.insertSysUserRoleOrganization(sysUserRoleOrganization);
         }
         return i;
     }
@@ -52,7 +53,6 @@ public class SysUserServiceImpl implements SysUserService {
         return sysUserMapper.selectUserByLoginName(username);
     }
 
-    private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
     @Override
     public LoginUserInfo selectUserLoginInfo(Long id) {
         log.debug("begin...");

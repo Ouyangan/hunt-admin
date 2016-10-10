@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class BaseController {
     private static final Logger log = LoggerFactory.getLogger(BaseController.class);
+
+
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result exceptionHandler(HttpServletRequest request, Exception exception) {

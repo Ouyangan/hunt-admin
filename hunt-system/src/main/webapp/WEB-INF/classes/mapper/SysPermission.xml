@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunt.dao.SysPermissionMapper">
+    <resultMap id="baseResultMap" type="SysPermission">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="sys_permission_group_id" property="sysPermissionGroupId" jdbcType="BIGINT"/>
+        <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--  -->
+    <sql id="sql_column">
+                                id  ,
+                                            name  ,
+                                            description  ,
+                                            code  ,
+                                            sys_permission_group_id  ,
+                                            is_final  ,
+                                            rank  ,
+                                            create_time  ,
+                                            update_time  ,
+                                            create_by  ,
+                                            update_by  ,
+                                               state
+                        </sql>
+
+    <sql id="sql_column_where">
+        <if test="id != null ">
+            AND id = #{id}
+        </if>
+        <if test="name != null and name.length() !=  0">
+            AND name = #{name}
+        </if>
+        <if test="description != null and description.length() !=  0">
+            AND description = #{description}
+        </if>
+        <if test="code != null and code.length() !=  0">
+            AND code = #{code}
+        </if>
+        <if test="sysPermissionGroupId != null ">
+            AND sys_permission_group_id = #{sysPermissionGroupId}
+        </if>
+        <if test="isFinal != null ">
+            AND is_final = #{isFinal}
+        </if>
+        <if test="rank != null ">
+            AND rank = #{rank}
+        </if>
+        <if test="createTime != null ">
+            AND create_time = #{createTime}
+        </if>
+        <if test="updateTime != null ">
+            AND update_time = #{updateTime}
+        </if>
+        <if test="createBy != null ">
+            AND create_by = #{createBy}
+        </if>
+        <if test="updateBy != null ">
+            AND update_by = #{updateBy}
+        </if>
+        <if test="state != null ">
+            AND state = #{state}
+        </if>
+    </sql>
+
+    <insert id="insertSysPermission" parameterType="SysPermission" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
+        insert into sys_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name.length() != 0">
+                name,
+            </if>
+            <if test="description != null and description.length() != 0">
+                description,
+            </if>
+            <if test="code != null and code.length() != 0">
+                code,
+            </if>
+            <if test="sysPermissionGroupId != null">
+                sys_permission_group_id,
+            </if>
+            <if test="isFinal != null">
+                is_final,
+            </if>
+            <if test="rank != null">
+                rank,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null and name.length() != 0">
+                #{name},
+            </if>
+            <if test="description != null and description.length() != 0">
+                #{description},
+            </if>
+            <if test="code != null and code.length() != 0">
+                #{code},
+            </if>
+            <if test="sysPermissionGroupId != null">
+                #{sysPermissionGroupId},
+            </if>
+            <if test="isFinal != null">
+                #{isFinal},
+            </if>
+            <if test="rank != null">
+                #{rank},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+            <if test="state != null">
+                #{state},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateSysPermission" parameterType="SysPermission">
+        update sys_permission
+        <set>
+            <if test="name != null and name.length() != 0">
+                name = #{name},
+            </if>
+            <if test="description != null and description.length() != 0">
+                description = #{description},
+            </if>
+            <if test="code != null and code.length() != 0">
+                code = #{code},
+            </if>
+            <if test="sysPermissionGroupId != null">
+                sys_permission_group_id = #{sysPermissionGroupId},
+            </if>
+            <if test="isFinal != null">
+                is_final = #{isFinal},
+            </if>
+            <if test="rank != null">
+                rank = #{rank},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+        </set>
+        where sp.id =#{id}
+    </update>
+
+    <select id="select" parameterType="SysPermission" resultMap="baseResultMap">
+        select * from sys_permission
+        <where>
+            <include refid="sql_column_where"/>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="long" resultMap="baseResultMap">
+        SELECT *
+        FROM sys_permission
+        WHERE id = #{id} AND status = 1
+    </select>
+
+    <select id="selectAll" resultMap="baseResultMap">
+        SELECT *
+        FROM sys_permission
+        WHERE status = 1
+    </select>
+
+
+</mapper>

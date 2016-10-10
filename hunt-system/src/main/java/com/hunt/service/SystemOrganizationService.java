@@ -7,9 +7,9 @@ import com.hunt.model.entity.SysOrganization;
  * @Date : 2016/10/10
  */
 public interface SystemOrganizationService {
-    int insertOrganization(SysOrganization sysOrganization);
+    Long insertOrganization(SysOrganization sysOrganization);
 
     int deleteOrganization(long id);
 
-    int updateOrganization(long id, String name, String description, long parentId);
+    int updateOrganization(SysOrganization organization);
 }

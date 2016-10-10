@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunt.dao.SysRolePerrmissionMapper">
+    <resultMap id="baseResultMap" type="SysRolePerrmission">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="sys_permission_id" property="sysPermissionId" jdbcType="BIGINT"/>
+        <result column="sys_role_id" property="sysRoleId" jdbcType="BIGINT"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--  -->
+    <sql id="sql_column">
+                                id  ,
+                                            sys_permission_id  ,
+                                            sys_role_id  ,
+                                            rank  ,
+                                            create_time  ,
+                                            update_time  ,
+                                            create_by  ,
+                                            update_by  ,
+                                               state
+                        </sql>
+
+    <sql id="sql_column_where">
+        <if test="id != null ">
+            AND id = #{id}
+        </if>
+        <if test="sysPermissionId != null ">
+            AND sys_permission_id = #{sysPermissionId}
+        </if>
+        <if test="sysRoleId != null ">
+            AND sys_role_id = #{sysRoleId}
+        </if>
+        <if test="rank != null ">
+            AND rank = #{rank}
+        </if>
+        <if test="createTime != null ">
+            AND create_time = #{createTime}
+        </if>
+        <if test="updateTime != null ">
+            AND update_time = #{updateTime}
+        </if>
+        <if test="createBy != null ">
+            AND create_by = #{createBy}
+        </if>
+        <if test="updateBy != null ">
+            AND update_by = #{updateBy}
+        </if>
+        <if test="state != null ">
+            AND state = #{state}
+        </if>
+    </sql>
+
+    <insert id="insertSysRolePerrmission" parameterType="SysRolePerrmission" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
+        insert into sys_role_perrmission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sysPermissionId != null">
+                sys_permission_id,
+            </if>
+            <if test="sysRoleId != null">
+                sys_role_id,
+            </if>
+            <if test="rank != null">
+                rank,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sysPermissionId != null">
+                #{sysPermissionId},
+            </if>
+            <if test="sysRoleId != null">
+                #{sysRoleId},
+            </if>
+            <if test="rank != null">
+                #{rank},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+            <if test="state != null">
+                #{state},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateSysRolePerrmission" parameterType="SysRolePerrmission">
+        update sys_role_perrmission
+        <set>
+            <if test="sysPermissionId != null">
+                sys_permission_id = #{sysPermissionId},
+            </if>
+            <if test="sysRoleId != null">
+                sys_role_id = #{sysRoleId},
+            </if>
+            <if test="rank != null">
+                rank = #{rank},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+        </set>
+        where srp.id =#{id}
+    </update>
+
+    <select id="select" parameterType="SysRolePerrmission" resultMap="baseResultMap">
+        select * from sys_role_perrmission
+        <where>
+            <include refid="sql_column_where"/>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="long" resultMap="baseResultMap">
+        select * from sys_role_perrmission where id =#{id} and status=1
+    </select>
+
+    <select id="selectAll" resultMap="baseResultMap">
+        select * from sys_role_perrmission where status=1
+    </select>
+
+
+</mapper>
