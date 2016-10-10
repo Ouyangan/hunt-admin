@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @Author: ouyangan
  * @Date : 2016/10/10
  */
-@Service
+@Service("systemOrganizationService")
 @Transactional
 public class SystemOrganizationServiceImpl implements SystemOrganizationService {
 

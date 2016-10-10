@@ -1,22 +1,16 @@
-package com.hunt.system.sercurity;
+package com.hunt.system.security;
 
-import com.google.gson.Gson;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.SimpleSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
-import org.springframework.data.redis.serializer.SerializationUtils;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.Serializable;
 import java.util.UUID;
-
-import static org.junit.Assert.*;
 
 /**
  * @Author ouyangan

@@ -24,7 +24,7 @@ import java.util.List;
  * @Author: ouyangan
  * @Date : 2016/10/7
  */
-@Service
+@Service("sysUserService")
 @Transactional
 public class SysUserServiceImpl implements SysUserService {
     private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);

@@ -1,4 +1,4 @@
-package com.hunt.system.sercurity;
+package com.hunt.system.security;
 
 import com.hunt.model.entity.SysUser;
 import com.hunt.service.SysUserService;

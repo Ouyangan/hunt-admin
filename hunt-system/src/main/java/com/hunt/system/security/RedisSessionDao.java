@@ -1,4 +1,4 @@
-package com.hunt.system.sercurity;
+package com.hunt.system.security;
 
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;

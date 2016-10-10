@@ -1,4 +1,4 @@
-package com.hunt.system.sercurity;
+package com.hunt.system.security;
 
 import org.apache.shiro.ShiroException;
 import org.apache.shiro.cache.Cache;
@@ -6,8 +6,6 @@ import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.util.Destroyable;
 import org.apache.shiro.util.Initializable;
-import org.apache.shiro.util.LifecycleUtils;
-import org.apache.shiro.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 

@@ -1,10 +1,9 @@
-package com.hunt.system.sercurity;
+package com.hunt.system.security;
 
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.RedisSerializer;
 
 import java.util.Collection;
 import java.util.Collections;
