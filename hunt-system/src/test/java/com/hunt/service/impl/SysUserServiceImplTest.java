@@ -1,5 +1,12 @@
 package com.hunt.service.impl;
 
+import com.hunt.dao.SysOrganizationMapper;
+import com.hunt.dao.SysRoleMapper;
+import com.hunt.dao.SysUserMapper;
+import com.hunt.model.entity.SysOrganization;
+import com.hunt.model.entity.SysRole;
+import com.hunt.model.entity.SysUser;
+import com.hunt.model.entity.SysUserRoleOrganization;
 import com.hunt.service.SysUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,16 +57,16 @@ public class SysUserServiceImplTest {
         organization.setName("总公司");
         organization.setParentId(0L);
         organization.setDescription("");
-        int i = organizationMapper.insert(organization);
+        Long i = organizationMapper.insertSysOrganization(organization);
 
         SysRole role = new SysRole();
         role.setName("超级管理员");
         role.setDescription("拥有系统全部操作权限");
-        int i1 = roleMapper.insertSelective(role);
+        Long i1 = roleMapper.insertSysRole(role);
 
         SysUserRoleOrganization sysUserRoleOrganization = new SysUserRoleOrganization();
-        sysUserRoleOrganization.setSysOrganizationId((long) i);
-        sysUserRoleOrganization.setSysOrganizationId((long) i1);
+        sysUserRoleOrganization.setSysOrganizationId(i);
+        sysUserRoleOrganization.setSysOrganizationId(i1);
         List<SysUserRoleOrganization> list = new ArrayList<>();
         list.add(sysUserRoleOrganization);
         long l = sysUserService.insertUser(sysUser, list);

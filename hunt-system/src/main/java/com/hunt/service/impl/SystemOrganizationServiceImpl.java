@@ -30,7 +30,8 @@ public class SystemOrganizationServiceImpl implements SystemOrganizationService 
         if (sysOrganization.getIsFinal() == 2) {
             return 2;
         }
-        int i = sysOrganizationMapper.updateSysOrganization(id);
+        sysOrganization.setState(2);
+        int i = sysOrganizationMapper.updateSysOrganization(sysOrganization);
         return i;
     }
 
