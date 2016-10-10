@@ -262,11 +262,20 @@
     </select>
 
     <select id="selectById" parameterType="long" resultMap="baseResultMap">
-        select * from sys_user where id =#{id} and state=1
+        SELECT *
+        FROM sys_user
+        WHERE id = #{id} AND state = 1
     </select>
 
     <select id="selectAll" resultMap="baseResultMap">
-        select * from sys_user where state=1
+        SELECT *
+        FROM sys_user
+        WHERE state = 1
+    </select>
+    <select id="selectUserByLoginName" resultType="com.hunt.model.entity.SysUser">
+        SELECT *
+        FROM sys_user
+        WHERE state = 1 AND login_name = #{username}
     </select>
 
 

@@ -175,6 +175,11 @@
         FROM sys_user_role_organization
         WHERE state = 1
     </select>
+    <select id="selectByUserId" resultType="com.hunt.model.entity.SysUserRoleOrganization">
+        SELECT *
+        FROM sys_user_role_organization
+        WHERE state = 1 AND sys_user_id = #{userId}
+    </select>
 
 
 </mapper>

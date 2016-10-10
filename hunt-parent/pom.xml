@@ -52,7 +52,7 @@
             <!--utils-->
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>hunt-utils</artifactId>
+                <artifactId>hunt-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--spring-->

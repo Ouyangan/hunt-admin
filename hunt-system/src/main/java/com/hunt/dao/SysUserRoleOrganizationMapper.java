@@ -22,5 +22,5 @@ public interface SysUserRoleOrganizationMapper  {
     //查询全部
     public List<SysUserRoleOrganization > selectAll();
 
-    List<SysUserRoleOrganization> selectByUserId(Long id);
+    List<SysUserRoleOrganization> selectByUserId(@Param("userId") Long userId);
 }
