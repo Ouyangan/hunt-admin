@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Author: ouyangan
  * @Date : 2016/10/7
  */
-public class shiroRealm extends AuthorizingRealm {
+public class ShiroRealm extends AuthorizingRealm {
     @Autowired
     private SysUserService sysUserService;
 

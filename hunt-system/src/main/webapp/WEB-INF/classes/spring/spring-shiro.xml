@@ -25,11 +25,11 @@
         <property name="sessionManager" ref="sessionManager"/>
         <!-- 记住我 -->
     </bean>
-    <bean id="shiroRealm" class="com.hunt.system.sercurity.shiroRealm">
+    <bean id="shiroRealm" class="com.hunt.system.security.ShiroRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
     </bean>
 
-    <bean id="redisSessionDAO" class="com.hunt.system.sercurity.RedisSessionDao"/>
+    <bean id="redisSessionDAO" class="com.hunt.system.security.RedisSessionDao"/>
 
     <!-- credentialsMatcher -->
     <bean id="credentialsMatcher"

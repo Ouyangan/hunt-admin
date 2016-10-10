@@ -25,7 +25,7 @@
         <property name="sessionManager" ref="sessionManager"/>
         <!-- 记住我 -->
     </bean>
-    <bean id="shiroRealm" class="com.hunt.system.security.shiroRealm">
+    <bean id="shiroRealm" class="com.hunt.system.security.ShiroRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
     </bean>
 
