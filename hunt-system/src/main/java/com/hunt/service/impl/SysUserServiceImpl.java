@@ -24,7 +24,7 @@ import java.util.List;
  * @Author: ouyangan
  * @Date : 2016/10/7
  */
-@Service("sysUserService")
+@Service
 @Transactional
 public class SysUserServiceImpl implements SysUserService {
     private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
@@ -50,7 +50,9 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public SysUser selectUserByLoginName(String username) {
-        return sysUserMapper.selectUserByLoginName(username);
+        log.debug("begin...");
+        SysUser user = sysUserMapper.selectUserByLoginName(username);
+        return user;
     }
 
     @Override

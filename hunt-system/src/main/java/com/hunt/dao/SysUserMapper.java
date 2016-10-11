@@ -5,8 +5,11 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 import com.hunt.model.entity.SysUser;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.stereotype.Repository;
+import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysUserMapper {
+public interface SysUserMapper extends BaseMapper<SysUser> {
     //新增
     public Long insertSysUser(SysUser SysUser);
 

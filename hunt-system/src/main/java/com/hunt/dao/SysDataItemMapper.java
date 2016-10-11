@@ -5,8 +5,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 import com.hunt.model.entity.SysDataItem;
+import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysDataItemMapper {
+public interface SysDataItemMapper extends BaseMapper<SysDataItem>{
     //新增
     public Long insertSysDataItem(SysDataItem SysDataItem);
 

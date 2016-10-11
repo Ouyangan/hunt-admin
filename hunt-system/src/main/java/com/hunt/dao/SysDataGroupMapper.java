@@ -5,8 +5,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 import com.hunt.model.entity.SysDataGroup;
+import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysDataGroupMapper {
+public interface SysDataGroupMapper extends BaseMapper<SysDataGroup> {
     //新增
     public Long insertSysDataGroup(SysDataGroup SysDataGroup);
 

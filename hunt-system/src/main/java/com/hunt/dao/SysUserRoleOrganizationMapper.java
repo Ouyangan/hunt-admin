@@ -5,8 +5,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 import com.hunt.model.entity.SysUserRoleOrganization;
+import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysUserRoleOrganizationMapper {
+public interface SysUserRoleOrganizationMapper  extends BaseMapper<SysUserRoleOrganization> {
     //新增
     public Long insertSysUserRoleOrganization(SysUserRoleOrganization SysUserRoleOrganization);
 

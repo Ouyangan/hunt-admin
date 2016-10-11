@@ -5,8 +5,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 import com.hunt.model.entity.SysOrganization;
+import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysOrganizationMapper {
+public interface SysOrganizationMapper extends BaseMapper<SysOrganization>{
     //新增
     public Long insertSysOrganization(SysOrganization SysOrganization);
 

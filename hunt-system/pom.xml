@@ -10,7 +10,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.anouyang.hunt</groupId>
     <artifactId>hunt-system</artifactId>
     <packaging>war</packaging>
     <description>web模块</description>
@@ -225,7 +224,6 @@
 
     <build>
         <finalName>hunt</finalName>
-        <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -249,18 +247,18 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <configuration>
-                    <filesets>
-                        <fileset>
-                            <directory>src/main/webapp/WEB-INF/classes</directory>
-                            <directory>src/main/webapp/WEB-INF/lib</directory>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                    </filesets>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<artifactId>maven-clean-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<filesets>-->
+                        <!--<fileset>-->
+                            <!--<directory>src/main/webapp/WEB-INF/classes</directory>-->
+                            <!--<directory>src/main/webapp/WEB-INF/lib</directory>-->
+                            <!--<followSymlinks>false</followSymlinks>-->
+                        <!--</fileset>-->
+                    <!--</filesets>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 
             <!--<plugin>-->
             <!--<artifactId>maven-dependency-plugin</artifactId>-->

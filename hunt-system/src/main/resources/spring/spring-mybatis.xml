@@ -4,15 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--配置mybatis工厂对象-->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <bean id="mybatisSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:spring/mybatis.xml"/>
-        <property name="mapperLocations" value="classpath*:mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath:/mapper/*.xml"/>
     </bean>
     <!-- mapper扫描器-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <property name="basePackage" value="com.hunt.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="mybatisSqlSessionFactory"/>
+        <property name="basePackage" value="com.hunt.dao.*"/>
         <!-- 通用mapper配置选项-->
         <property name="markerInterface" value="tk.mybatis.mapper.common.Mapper"/>
     </bean>

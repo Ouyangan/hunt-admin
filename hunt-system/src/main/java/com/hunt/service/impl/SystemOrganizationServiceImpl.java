@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @Author: ouyangan
  * @Date : 2016/10/10
  */
-@Service("systemOrganizationService")
+@Service
 @Transactional
 public class SystemOrganizationServiceImpl implements SystemOrganizationService {
     @Autowired

@@ -5,8 +5,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 import com.hunt.model.entity.SysRole;
+import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysRoleMapper {
+public interface SysRoleMapper extends BaseMapper<SysRole> {
     //新增
     public Long insertSysRole(SysRole SysRole);
 
