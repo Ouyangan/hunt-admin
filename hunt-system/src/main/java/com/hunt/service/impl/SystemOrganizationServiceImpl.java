@@ -2,11 +2,10 @@ package com.hunt.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.hunt.dao.SysOrganizationMapper;
-import com.hunt.model.dto.Page;
+import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysOrganization;
 import com.hunt.service.SystemOrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,12 +45,11 @@ public class SystemOrganizationServiceImpl implements SystemOrganizationService 
     }
 
     @Override
-    public Page selectPage(int page, int row) {
-        System.out.println(sysOrganizationMapper);
+    public PageInfo selectPage(int page, int row) {
         int total = sysOrganizationMapper.selectCounts();
         PageHelper.startPage(page, row);
         List<SysOrganization> sysOrganizations = sysOrganizationMapper.selectAll();
-        Page page1 = new Page(total, sysOrganizations);
+        PageInfo page1 = new PageInfo(total, sysOrganizations);
         return page1;
     }
 

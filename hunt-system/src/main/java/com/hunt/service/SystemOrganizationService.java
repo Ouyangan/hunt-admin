@@ -1,6 +1,6 @@
 package com.hunt.service;
 
-import com.hunt.model.dto.Page;
+import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysOrganization;
 
 /**
@@ -14,5 +14,5 @@ public interface SystemOrganizationService {
 
     int updateOrganization(SysOrganization organization);
 
-    Page selectPage(int page, int row);
+    PageInfo selectPage(int page, int row);
 }
