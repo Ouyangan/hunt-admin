@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <html>
@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/system/index.css"/>
     <script type="text/javascript" src="/static/js/easyui/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="/static/js/easyui/easyui-lang-zh_CN.js"></script>
+    <%--<script type="text/javascript" src="/static/js/easyui/easyui-lang-zh_CN.js"></script>--%>
     <script type="text/javascript" src="/static/js/system/index.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
@@ -24,7 +24,7 @@
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
                                                                  href="/user/user">用户管理</a></li>
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
-                                                                 href="/organization/organization">组织管理</a></li>
+                                                                 href="/organization/toOrganization">组织管理</a></li>
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
                                                                  href="/role/role">角色管理</a></li>
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
