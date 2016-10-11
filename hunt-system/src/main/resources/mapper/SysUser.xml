@@ -248,7 +248,6 @@
         SELECT *
         FROM sys_user
         WHERE state = 1 AND login_name = #{username};
-
     </select>
 
 </mapper>

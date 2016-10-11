@@ -20,7 +20,6 @@ import system.Result;
 @Controller
 @RequestMapping("organization")
 public class OrganizationController extends BaseController {
-    @Qualifier("systemOrganizationService")
     @Autowired
     private SystemOrganizationService systemOrganizationService;
 

@@ -7,7 +7,7 @@ import java.util.List;
 import com.hunt.model.entity.SysRole;
 import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysRoleMapper extends BaseMapper<SysRole> {
+public interface SysRoleMapper  {
     //新增
     public Long insertSysRole(SysRole SysRole);
 

@@ -7,7 +7,7 @@ import java.util.List;
 import com.hunt.model.entity.SysDataItem;
 import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysDataItemMapper extends BaseMapper<SysDataItem>{
+public interface SysDataItemMapper {
     //新增
     public Long insertSysDataItem(SysDataItem SysDataItem);
 

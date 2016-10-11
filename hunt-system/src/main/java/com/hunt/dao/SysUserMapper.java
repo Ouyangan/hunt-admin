@@ -9,7 +9,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysUserMapper extends BaseMapper<SysUser> {
+public interface SysUserMapper  {
     //新增
     public Long insertSysUser(SysUser SysUser);
 

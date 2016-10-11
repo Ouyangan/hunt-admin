@@ -7,7 +7,7 @@ import java.util.List;
 import com.hunt.model.entity.SysRolePerrmission;
 import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysRolePerrmissionMapper extends BaseMapper<SysRolePerrmission> {
+public interface SysRolePerrmissionMapper {
     //新增
     public Long insertSysRolePerrmission(SysRolePerrmission SysRolePerrmission);
 

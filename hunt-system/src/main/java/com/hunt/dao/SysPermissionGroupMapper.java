@@ -7,7 +7,7 @@ import java.util.List;
 import com.hunt.model.entity.SysPermissionGroup;
 import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysPermissionGroupMapper extends BaseMapper<SysPermissionGroup> {
+public interface SysPermissionGroupMapper{
     //新增
     public Long insertSysPermissionGroup(SysPermissionGroup SysPermissionGroup);
 

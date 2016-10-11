@@ -29,7 +29,6 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("user")
 public class UserController extends BaseController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
-    @Qualifier("sysUserService")
     @Autowired
     private SysUserService sysUserService;
 

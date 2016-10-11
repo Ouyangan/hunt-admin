@@ -7,7 +7,7 @@ import java.util.List;
 import com.hunt.model.entity.SysDataGroup;
 import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysDataGroupMapper extends BaseMapper<SysDataGroup> {
+public interface SysDataGroupMapper {
     //新增
     public Long insertSysDataGroup(SysDataGroup SysDataGroup);
 

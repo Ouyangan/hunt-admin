@@ -7,7 +7,7 @@ import java.util.List;
 import com.hunt.model.entity.SysOrganization;
 import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysOrganizationMapper extends BaseMapper<SysOrganization>{
+public interface SysOrganizationMapper {
     //新增
     public Long insertSysOrganization(SysOrganization SysOrganization);
 

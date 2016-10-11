@@ -7,7 +7,7 @@ import java.util.List;
 import com.hunt.model.entity.SysUserRoleOrganization;
 import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysUserRoleOrganizationMapper  extends BaseMapper<SysUserRoleOrganization> {
+public interface SysUserRoleOrganizationMapper   {
     //新增
     public Long insertSysUserRoleOrganization(SysUserRoleOrganization SysUserRoleOrganization);
 
