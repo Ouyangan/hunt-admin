@@ -5,21 +5,23 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 import com.hunt.model.entity.SysDataItem;
-import tk.mybatis.mapper.common.BaseMapper;
 
 public interface SysDataItemMapper {
     //新增
-    public Long insertSysDataItem(SysDataItem SysDataItem);
+    public Long insert(SysDataItem SysDataItem);
 
     //更新
-    public void updateSysDataItem(SysDataItem SysDataItem);
+    public void update(SysDataItem SysDataItem);
 
     //通过对象进行查询
-    public SysDataItem selectSysDataItem(SysDataItem SysDataItem);
+    public SysDataItem select(SysDataItem SysDataItem);
 
     //通过id进行查询
-    public SysDataItem selectSysDataItemById(@Param("id") Long id);
+    public SysDataItem selectById(@Param("id") Long id);
 
     //查询全部
-    public List<SysDataItem> selectSysDataItemAll();
+    public List<SysDataItem> selectAll();
+
+    //查询数量
+    public int selectCounts();
 }

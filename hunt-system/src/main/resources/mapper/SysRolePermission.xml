@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hunt.dao.SysDataItemMapper">
-    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysDataItem">
+<mapper namespace="com.hunt.dao.SysRolePermissionMapper">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysRolePermission">
         <result column="id" property="id" jdbcType="BIGINT"/>
-        <result column="sys_data_group_id" property="sysDataGroupId" jdbcType="BIGINT"/>
-        <result column="key_value" property="keyValue" jdbcType="VARCHAR"/>
-        <result column="key_name" property="keyName" jdbcType="VARCHAR"/>
-        <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
+        <result column="sys_permission_id" property="sysPermissionId" jdbcType="BIGINT"/>
+        <result column="sys_role_id" property="sysRoleId" jdbcType="BIGINT"/>
         <result column="rank" property="rank" jdbcType="BIGINT"/>
         <result column="create_time" property="createTime" jdbcType="DATETIME"/>
         <result column="update_time" property="updateTime" jdbcType="DATETIME"/>
@@ -16,16 +14,14 @@
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-        id ,
-        sysDataGroupId ,
-        keyValue ,
-        keyName ,
-        isFinal ,
-        rank ,
-        createTime ,
-        updateTime ,
-        createBy ,
-        updateBy ,
+        id,
+        sysPermissionId,
+        sysRoleId,
+        rank,
+        createTime,
+        updateTime,
+        createBy,
+        updateBy,
         state
     </sql>
 
@@ -33,17 +29,11 @@
         <if test="id !=null ">
             AND id = #{id}
         </if>
-        <if test="sysDataGroupId !=null ">
-            AND sys_data_group_id = #{sysDataGroupId}
+        <if test="sysPermissionId !=null ">
+            AND sys_permission_id = #{sysPermissionId}
         </if>
-        <if test="keyValue !=null and keyValue.length() != 0">
-            AND key_value = #{keyValue}
-        </if>
-        <if test="keyName !=null and keyName.length() != 0">
-            AND key_name = #{keyName}
-        </if>
-        <if test="isFinal !=null ">
-            AND is_final = #{isFinal}
+        <if test="sysRoleId !=null ">
+            AND sys_role_id = #{sysRoleId}
         </if>
         <if test="rank !=null ">
             AND rank = #{rank}
@@ -65,13 +55,11 @@
         </if>
     </sql>
 
-    <insert id="insert" parameterType="SysDataItem" useGeneratedKeys="true" keyProperty="id">
-        insert into sys_data_item
+    <insert id="insert" parameterType="SysRolePermission" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_role_permission
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            sys_data_group_id,
-            key_value,
-            key_name,
-            is_final,
+            sys_permission_id,
+            sys_role_id,
             rank,
             create_time,
             update_time,
@@ -80,10 +68,8 @@
             state,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            #{sysDataGroupId},
-            #{keyValue},
-            #{keyName},
-            #{isFinal},
+            #{sysPermissionId},
+            #{sysRoleId},
             #{rank},
             #{createTime},
             #{updateTime},
@@ -94,23 +80,17 @@
     </insert>
 
 
-    <update id="update" parameterType="SysDataItem">
-        update sys_data_item
+    <update id="update" parameterType="SysRolePermission">
+        update sys_role_permission
         <set>
             <if test="id !=null">
                 id = #{id},
             </if>
-            <if test="sysDataGroupId !=null">
-                sys_data_group_id = #{sysDataGroupId},
+            <if test="sysPermissionId !=null">
+                sys_permission_id = #{sysPermissionId},
             </if>
-            <if test="keyValue !=null and keyValue.length() !=0">
-                key_value = #{keyValue},
-            </if>
-            <if test="keyName !=null and keyName.length() !=0">
-                key_name = #{keyName},
-            </if>
-            <if test="isFinal !=null">
-                is_final = #{isFinal},
+            <if test="sysRoleId !=null">
+                sys_role_id = #{sysRoleId},
             </if>
             <if test="rank !=null">
                 rank = #{rank},
@@ -134,23 +114,29 @@
         where .id =#{id} and state=1
     </update>
 
-    <select id="select" parameterType="SysDataItem" resultType="SysDataItem">
-        select * from sys_data_item where
+    <select id="select" parameterType="SysRolePermission" resultType="SysRolePermission">
+        select * from sys_role_permission where
         <where>
             <include refid="sql_column_where"/>
         </where>
     </select>
 
-    <select id="selectById" parameterType="Long" resultType="SysDataItem">
-        select * from sys_data_item where id =#{id} and state=1
+    <select id="selectById" parameterType="Long" resultType="SysRolePermission">
+        SELECT *
+        FROM sys_role_permission
+        WHERE id = #{id} AND state = 1
     </select>
 
-    <select id="selectAll" resultType="SysDataItem">
-        select * from sys_data_item where state=1
+    <select id="selectAll" resultType="SysRolePermission">
+        SELECT *
+        FROM sys_role_permission
+        WHERE state = 1
     </select>
 
     <select id="selectCounts" resultType="int">
-        select count(*) from sys_data_item where state=1
+        SELECT count(*)
+        FROM sys_role_permission
+        WHERE state = 1
     </select>
 
 </mapper>

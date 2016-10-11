@@ -8,169 +8,149 @@
         <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
         <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
         <result column="rank" property="rank" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="createTime" jdbcType="DATETIME"/>
+        <result column="update_time" property="updateTime" jdbcType="DATETIME"/>
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-        spg.id id ,
-        spg.name name ,
-        spg.description description ,
-        spg.parent_id parentId ,
-        spg.is_final isFinal ,
-        spg.rank rank ,
-        spg.create_time createTime ,
-        spg.update_time updateTime ,
-        spg.create_by createBy ,
-        spg.update_by updateBy ,
-        spg.state state
+        id ,
+        name ,
+        description ,
+        parentId ,
+        isFinal ,
+        rank ,
+        createTime ,
+        updateTime ,
+        createBy ,
+        updateBy ,
+        state
     </sql>
 
     <sql id="sql_column_where">
         <if test="id !=null ">
-            AND spg.id = #{id}
+            AND id = #{id}
         </if>
         <if test="name !=null and name.length() != 0">
-            AND spg.name = #{name}
+            AND name = #{name}
         </if>
         <if test="description !=null and description.length() != 0">
-            AND spg.description = #{description}
+            AND description = #{description}
         </if>
         <if test="parentId !=null ">
-            AND spg.parent_id = #{parentId}
+            AND parent_id = #{parentId}
         </if>
         <if test="isFinal !=null ">
-            AND spg.is_final = #{isFinal}
+            AND is_final = #{isFinal}
         </if>
         <if test="rank !=null ">
-            AND spg.rank = #{rank}
+            AND rank = #{rank}
         </if>
         <if test="createTime !=null ">
-            AND spg.create_time = #{createTime}
+            AND create_time = #{createTime}
         </if>
         <if test="updateTime !=null ">
-            AND spg.update_time = #{updateTime}
+            AND update_time = #{updateTime}
         </if>
         <if test="createBy !=null ">
-            AND spg.create_by = #{createBy}
+            AND create_by = #{createBy}
         </if>
         <if test="updateBy !=null ">
-            AND spg.update_by = #{updateBy}
+            AND update_by = #{updateBy}
         </if>
         <if test="state !=null ">
-            AND spg.state = #{state}
+            AND state = #{state}
         </if>
     </sql>
 
-    <insert id="insertSysPermissionGroup" parameterType="SysPermissionGroup" useGeneratedKeys="true" keyProperty="id">
-        insert into sys_permission_group spg
+    <insert id="insert" parameterType="SysPermissionGroup" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_permission_group
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            spg.id,
-            spg.name,
-            spg.description,
-            spg.parent_id,
-            spg.is_final,
-            spg.rank,
-            spg.create_time,
-            spg.update_time,
-            spg.create_by,
-            spg.update_by,
-            spg.state,
+            name,
+            description,
+            parent_id,
+            is_final,
+            rank,
+            create_time,
+            update_time,
+            create_by,
+            update_by,
+            state,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id !=null">
-                spg.id = #{id},
-            </if>
-            <if test="name !=null and name.length() !=0">
-                spg.name = #{name},
-            </if>
-            <if test="description !=null and description.length() !=0">
-                spg.description = #{description},
-            </if>
-            <if test="parentId !=null">
-                spg.parent_id = #{parentId},
-            </if>
-            <if test="isFinal !=null">
-                spg.is_final = #{isFinal},
-            </if>
-            <if test="rank !=null">
-                spg.rank = #{rank},
-            </if>
-            <if test="createTime !=null">
-                spg.create_time = #{createTime},
-            </if>
-            <if test="updateTime !=null">
-                spg.update_time = #{updateTime},
-            </if>
-            <if test="createBy !=null">
-                spg.create_by = #{createBy},
-            </if>
-            <if test="updateBy !=null">
-                spg.update_by = #{updateBy},
-            </if>
-            <if test="state !=null">
-                spg.state = #{state},
-            </if>
+            #{name},
+            #{description},
+            #{parentId},
+            #{isFinal},
+            #{rank},
+            #{createTime},
+            #{updateTime},
+            #{createBy},
+            #{updateBy},
+            #{state},
         </trim>
     </insert>
 
 
-    <update id="updateSysPermissionGroup" parameterType="SysPermissionGroup">
-        update sys_permission_group spg
+    <update id="update" parameterType="SysPermissionGroup">
+        update sys_permission_group
         <set>
             <if test="id !=null">
-                spg.id = #{id},
+                id = #{id},
             </if>
             <if test="name !=null and name.length() !=0">
-                spg.name = #{name},
+                name = #{name},
             </if>
             <if test="description !=null and description.length() !=0">
-                spg.description = #{description},
+                description = #{description},
             </if>
             <if test="parentId !=null">
-                spg.parent_id = #{parentId},
+                parent_id = #{parentId},
             </if>
             <if test="isFinal !=null">
-                spg.is_final = #{isFinal},
+                is_final = #{isFinal},
             </if>
             <if test="rank !=null">
-                spg.rank = #{rank},
+                rank = #{rank},
             </if>
             <if test="createTime !=null">
-                spg.create_time = #{createTime},
+                create_time = #{createTime},
             </if>
             <if test="updateTime !=null">
-                spg.update_time = #{updateTime},
+                update_time = #{updateTime},
             </if>
             <if test="createBy !=null">
-                spg.create_by = #{createBy},
+                create_by = #{createBy},
             </if>
             <if test="updateBy !=null">
-                spg.update_by = #{updateBy},
+                update_by = #{updateBy},
             </if>
             <if test="state !=null">
-                spg.state = #{state},
+                state = #{state},
             </if>
         </set>
-        where spg.id =#{id} and state=1
+        where .id =#{id} and state=1
     </update>
 
-    <select id="selectSysPermissionGroup" parameterType="SysPermissionGroup" resultType="SysPermissionGroup">
-        select * from sys_permission_group spg where
+    <select id="select" parameterType="SysPermissionGroup" resultType="SysPermissionGroup">
+        select * from sys_permission_group where
         <where>
             <include refid="sql_column_where"/>
         </where>
     </select>
 
-    <select id="selectSysPermissionGroupById" parameterType="Long" resultType="SysPermissionGroup">
-        select * from sys_permission_group spg where spg.id =#{id} and $meta.aliasName.state=1
+    <select id="selectById" parameterType="Long" resultType="SysPermissionGroup">
+        select * from sys_permission_group where id =#{id} and state=1
     </select>
 
-    <select id="selectSysPermissionGroupAll" resultType="SysPermissionGroup">
+    <select id="selectAll" resultType="SysPermissionGroup">
         select * from sys_permission_group where state=1
+    </select>
+
+    <select id="selectCounts" resultType="int">
+        select count(*) from sys_permission_group where state=1
     </select>
 
 </mapper>

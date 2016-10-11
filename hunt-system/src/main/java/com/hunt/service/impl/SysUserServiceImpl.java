@@ -39,11 +39,11 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public long insertUser(SysUser sysUser, List<SysUserRoleOrganization> sysUserRoleOrganizationList) {
-        Long i = sysUserMapper.insertSysUser(sysUser);
+        Long i = sysUserMapper.insert(sysUser);
         for (int j = 0; j < sysUserRoleOrganizationList.size(); j++) {
             SysUserRoleOrganization sysUserRoleOrganization = sysUserRoleOrganizationList.get(j);
             sysUserRoleOrganization.setSysUserId(i);
-            sysUserRoleOrganizationMapper.insertSysUserRoleOrganization(sysUserRoleOrganization);
+            sysUserRoleOrganizationMapper.insert(sysUserRoleOrganization);
         }
         return i;
     }
@@ -51,22 +51,22 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public SysUser selectUserByLoginName(String username) {
         log.debug("begin...");
-        SysUser user = sysUserMapper.selectUserByLoginName(username);
+        SysUser user = sysUserMapper.selectByLoginName(username);
         return user;
     }
 
     @Override
     public LoginUserInfo selectUserLoginInfo(Long id) {
         log.debug("begin...");
-        SysUser user = sysUserMapper.selectSysUserById(id);
+        SysUser user = sysUserMapper.selectById(id);
         log.debug("end...");
         List<SysUserRoleOrganization> list = sysUserRoleOrganizationMapper.selectByUserId(id);
 
         List<UserRoleOriganization> userRoleOriganizationList = new ArrayList<>();
 
         for (SysUserRoleOrganization sysUserRoleOrganization : list) {
-            SysRole sysRole = sysRoleMapper.selectSysRoleById(sysUserRoleOrganization.getSysRoleId());
-            SysOrganization sysOrganization = sysOrganizationMapper.selectSysOrganizationById(sysUserRoleOrganization.getSysOrganizationId());
+            SysRole sysRole = sysRoleMapper.selectById(sysUserRoleOrganization.getSysRoleId());
+            SysOrganization sysOrganization = sysOrganizationMapper.selectById(sysUserRoleOrganization.getSysOrganizationId());
             UserRoleOriganization userRoleOriganization = new UserRoleOriganization(sysRole, sysOrganization);
             userRoleOriganizationList.add(userRoleOriganization);
         }

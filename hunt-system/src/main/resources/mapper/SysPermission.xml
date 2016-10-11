@@ -9,180 +9,158 @@
         <result column="sys_permission_group_id" property="sysPermissionGroupId" jdbcType="BIGINT"/>
         <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
         <result column="rank" property="rank" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="createTime" jdbcType="DATETIME"/>
+        <result column="update_time" property="updateTime" jdbcType="DATETIME"/>
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-        sp.id id ,
-        sp.name name ,
-        sp.description description ,
-        sp.code code ,
-        sp.sys_permission_group_id sysPermissionGroupId ,
-        sp.is_final isFinal ,
-        sp.rank rank ,
-        sp.create_time createTime ,
-        sp.update_time updateTime ,
-        sp.create_by createBy ,
-        sp.update_by updateBy ,
-        sp.state state
+        id ,
+        name ,
+        description ,
+        code ,
+        sysPermissionGroupId ,
+        isFinal ,
+        rank ,
+        createTime ,
+        updateTime ,
+        createBy ,
+        updateBy ,
+        state
     </sql>
 
     <sql id="sql_column_where">
         <if test="id !=null ">
-            AND sp.id = #{id}
+            AND id = #{id}
         </if>
         <if test="name !=null and name.length() != 0">
-            AND sp.name = #{name}
+            AND name = #{name}
         </if>
         <if test="description !=null and description.length() != 0">
-            AND sp.description = #{description}
+            AND description = #{description}
         </if>
         <if test="code !=null and code.length() != 0">
-            AND sp.code = #{code}
+            AND code = #{code}
         </if>
         <if test="sysPermissionGroupId !=null ">
-            AND sp.sys_permission_group_id = #{sysPermissionGroupId}
+            AND sys_permission_group_id = #{sysPermissionGroupId}
         </if>
         <if test="isFinal !=null ">
-            AND sp.is_final = #{isFinal}
+            AND is_final = #{isFinal}
         </if>
         <if test="rank !=null ">
-            AND sp.rank = #{rank}
+            AND rank = #{rank}
         </if>
         <if test="createTime !=null ">
-            AND sp.create_time = #{createTime}
+            AND create_time = #{createTime}
         </if>
         <if test="updateTime !=null ">
-            AND sp.update_time = #{updateTime}
+            AND update_time = #{updateTime}
         </if>
         <if test="createBy !=null ">
-            AND sp.create_by = #{createBy}
+            AND create_by = #{createBy}
         </if>
         <if test="updateBy !=null ">
-            AND sp.update_by = #{updateBy}
+            AND update_by = #{updateBy}
         </if>
         <if test="state !=null ">
-            AND sp.state = #{state}
+            AND state = #{state}
         </if>
     </sql>
 
-    <insert id="insertSysPermission" parameterType="SysPermission" useGeneratedKeys="true" keyProperty="id">
-        insert into sys_permission sp
+    <insert id="insert" parameterType="SysPermission" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_permission
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            sp.id,
-            sp.name,
-            sp.description,
-            sp.code,
-            sp.sys_permission_group_id,
-            sp.is_final,
-            sp.rank,
-            sp.create_time,
-            sp.update_time,
-            sp.create_by,
-            sp.update_by,
-            sp.state,
+            name,
+            description,
+            code,
+            sys_permission_group_id,
+            is_final,
+            rank,
+            create_time,
+            update_time,
+            create_by,
+            update_by,
+            state,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id !=null">
-                sp.id = #{id},
-            </if>
-            <if test="name !=null and name.length() !=0">
-                sp.name = #{name},
-            </if>
-            <if test="description !=null and description.length() !=0">
-                sp.description = #{description},
-            </if>
-            <if test="code !=null and code.length() !=0">
-                sp.code = #{code},
-            </if>
-            <if test="sysPermissionGroupId !=null">
-                sp.sys_permission_group_id = #{sysPermissionGroupId},
-            </if>
-            <if test="isFinal !=null">
-                sp.is_final = #{isFinal},
-            </if>
-            <if test="rank !=null">
-                sp.rank = #{rank},
-            </if>
-            <if test="createTime !=null">
-                sp.create_time = #{createTime},
-            </if>
-            <if test="updateTime !=null">
-                sp.update_time = #{updateTime},
-            </if>
-            <if test="createBy !=null">
-                sp.create_by = #{createBy},
-            </if>
-            <if test="updateBy !=null">
-                sp.update_by = #{updateBy},
-            </if>
-            <if test="state !=null">
-                sp.state = #{state},
-            </if>
+            #{name},
+            #{description},
+            #{code},
+            #{sysPermissionGroupId},
+            #{isFinal},
+            #{rank},
+            #{createTime},
+            #{updateTime},
+            #{createBy},
+            #{updateBy},
+            #{state},
         </trim>
     </insert>
 
 
-    <update id="updateSysPermission" parameterType="SysPermission">
-        update sys_permission sp
+    <update id="update" parameterType="SysPermission">
+        update sys_permission
         <set>
             <if test="id !=null">
-                sp.id = #{id},
+                id = #{id},
             </if>
             <if test="name !=null and name.length() !=0">
-                sp.name = #{name},
+                name = #{name},
             </if>
             <if test="description !=null and description.length() !=0">
-                sp.description = #{description},
+                description = #{description},
             </if>
             <if test="code !=null and code.length() !=0">
-                sp.code = #{code},
+                code = #{code},
             </if>
             <if test="sysPermissionGroupId !=null">
-                sp.sys_permission_group_id = #{sysPermissionGroupId},
+                sys_permission_group_id = #{sysPermissionGroupId},
             </if>
             <if test="isFinal !=null">
-                sp.is_final = #{isFinal},
+                is_final = #{isFinal},
             </if>
             <if test="rank !=null">
-                sp.rank = #{rank},
+                rank = #{rank},
             </if>
             <if test="createTime !=null">
-                sp.create_time = #{createTime},
+                create_time = #{createTime},
             </if>
             <if test="updateTime !=null">
-                sp.update_time = #{updateTime},
+                update_time = #{updateTime},
             </if>
             <if test="createBy !=null">
-                sp.create_by = #{createBy},
+                create_by = #{createBy},
             </if>
             <if test="updateBy !=null">
-                sp.update_by = #{updateBy},
+                update_by = #{updateBy},
             </if>
             <if test="state !=null">
-                sp.state = #{state},
+                state = #{state},
             </if>
         </set>
-        where sp.id =#{id} and state=1
+        where .id =#{id} and state=1
     </update>
 
-    <select id="selectSysPermission" parameterType="SysPermission" resultType="SysPermission">
-        select * from sys_permission sp where
+    <select id="select" parameterType="SysPermission" resultType="SysPermission">
+        select * from sys_permission where
         <where>
             <include refid="sql_column_where"/>
         </where>
     </select>
 
-    <select id="selectSysPermissionById" parameterType="Long" resultType="SysPermission">
-        select * from sys_permission sp where sp.id =#{id} and $meta.aliasName.state=1
+    <select id="selectById" parameterType="Long" resultType="SysPermission">
+        select * from sys_permission where id =#{id} and state=1
     </select>
 
-    <select id="selectSysPermissionAll" resultType="SysPermission">
+    <select id="selectAll" resultType="SysPermission">
         select * from sys_permission where state=1
+    </select>
+
+    <select id="selectCounts" resultType="int">
+        select count(*) from sys_permission where state=1
     </select>
 
 </mapper>

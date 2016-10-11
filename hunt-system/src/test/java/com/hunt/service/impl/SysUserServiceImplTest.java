@@ -57,12 +57,12 @@ public class SysUserServiceImplTest {
         organization.setName("总公司");
         organization.setParentId(0L);
         organization.setDescription("");
-        Long i = organizationMapper.insertSysOrganization(organization);
+        Long i = organizationMapper.insert(organization);
 
         SysRole role = new SysRole();
         role.setName("超级管理员");
         role.setDescription("拥有系统全部操作权限");
-        Long i1 = roleMapper.insertSysRole(role);
+        Long i1 = roleMapper.insert(role);
 
         SysUserRoleOrganization sysUserRoleOrganization = new SysUserRoleOrganization();
         sysUserRoleOrganization.setSysOrganizationId(i);
@@ -80,6 +80,7 @@ public class SysUserServiceImplTest {
         System.out.println(uuid);
         System.out.println(password);
     }
+
 
 
 }

@@ -5,21 +5,23 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 import com.hunt.model.entity.SysPermission;
-import tk.mybatis.mapper.common.BaseMapper;
 
 public interface SysPermissionMapper {
     //新增
-    public Long insertSysPermission(SysPermission SysPermission);
+    public Long insert(SysPermission SysPermission);
 
     //更新
-    public void updateSysPermission(SysPermission SysPermission);
+    public void update(SysPermission SysPermission);
 
     //通过对象进行查询
-    public SysPermission selectSysPermission(SysPermission SysPermission);
+    public SysPermission select(SysPermission SysPermission);
 
     //通过id进行查询
-    public SysPermission selectSysPermissionById(@Param("id") Long id);
+    public SysPermission selectById(@Param("id") Long id);
 
     //查询全部
-    public List<SysPermission> selectSysPermissionAll();
+    public List<SysPermission> selectAll();
+
+    //查询数量
+    public int selectCounts();
 }

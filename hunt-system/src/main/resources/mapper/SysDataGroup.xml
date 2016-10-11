@@ -8,169 +8,149 @@
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
         <result column="rank" property="rank" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="createTime" jdbcType="DATETIME"/>
+        <result column="update_time" property="updateTime" jdbcType="DATETIME"/>
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-        sdg.id id ,
-        sdg.description description ,
-        sdg.parent_id parentId ,
-        sdg.name name ,
-        sdg.is_final isFinal ,
-        sdg.rank rank ,
-        sdg.create_time createTime ,
-        sdg.update_time updateTime ,
-        sdg.create_by createBy ,
-        sdg.update_by updateBy ,
-        sdg.state state
+        id ,
+        description ,
+        parentId ,
+        name ,
+        isFinal ,
+        rank ,
+        createTime ,
+        updateTime ,
+        createBy ,
+        updateBy ,
+        state
     </sql>
 
     <sql id="sql_column_where">
         <if test="id !=null ">
-            AND sdg.id = #{id}
+            AND id = #{id}
         </if>
         <if test="description !=null and description.length() != 0">
-            AND sdg.description = #{description}
+            AND description = #{description}
         </if>
         <if test="parentId !=null ">
-            AND sdg.parent_id = #{parentId}
+            AND parent_id = #{parentId}
         </if>
         <if test="name !=null and name.length() != 0">
-            AND sdg.name = #{name}
+            AND name = #{name}
         </if>
         <if test="isFinal !=null ">
-            AND sdg.is_final = #{isFinal}
+            AND is_final = #{isFinal}
         </if>
         <if test="rank !=null ">
-            AND sdg.rank = #{rank}
+            AND rank = #{rank}
         </if>
         <if test="createTime !=null ">
-            AND sdg.create_time = #{createTime}
+            AND create_time = #{createTime}
         </if>
         <if test="updateTime !=null ">
-            AND sdg.update_time = #{updateTime}
+            AND update_time = #{updateTime}
         </if>
         <if test="createBy !=null ">
-            AND sdg.create_by = #{createBy}
+            AND create_by = #{createBy}
         </if>
         <if test="updateBy !=null ">
-            AND sdg.update_by = #{updateBy}
+            AND update_by = #{updateBy}
         </if>
         <if test="state !=null ">
-            AND sdg.state = #{state}
+            AND state = #{state}
         </if>
     </sql>
 
-    <insert id="insertSysDataGroup" parameterType="SysDataGroup" useGeneratedKeys="true" keyProperty="id">
-        insert into sys_data_group sdg
+    <insert id="insert" parameterType="SysDataGroup" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_data_group
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            sdg.id,
-            sdg.description,
-            sdg.parent_id,
-            sdg.name,
-            sdg.is_final,
-            sdg.rank,
-            sdg.create_time,
-            sdg.update_time,
-            sdg.create_by,
-            sdg.update_by,
-            sdg.state,
+            description,
+            parent_id,
+            name,
+            is_final,
+            rank,
+            create_time,
+            update_time,
+            create_by,
+            update_by,
+            state,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id !=null">
-                sdg.id = #{id},
-            </if>
-            <if test="description !=null and description.length() !=0">
-                sdg.description = #{description},
-            </if>
-            <if test="parentId !=null">
-                sdg.parent_id = #{parentId},
-            </if>
-            <if test="name !=null and name.length() !=0">
-                sdg.name = #{name},
-            </if>
-            <if test="isFinal !=null">
-                sdg.is_final = #{isFinal},
-            </if>
-            <if test="rank !=null">
-                sdg.rank = #{rank},
-            </if>
-            <if test="createTime !=null">
-                sdg.create_time = #{createTime},
-            </if>
-            <if test="updateTime !=null">
-                sdg.update_time = #{updateTime},
-            </if>
-            <if test="createBy !=null">
-                sdg.create_by = #{createBy},
-            </if>
-            <if test="updateBy !=null">
-                sdg.update_by = #{updateBy},
-            </if>
-            <if test="state !=null">
-                sdg.state = #{state},
-            </if>
+            #{description},
+            #{parentId},
+            #{name},
+            #{isFinal},
+            #{rank},
+            #{createTime},
+            #{updateTime},
+            #{createBy},
+            #{updateBy},
+            #{state},
         </trim>
     </insert>
 
 
-    <update id="updateSysDataGroup" parameterType="SysDataGroup">
-        update sys_data_group sdg
+    <update id="update" parameterType="SysDataGroup">
+        update sys_data_group
         <set>
             <if test="id !=null">
-                sdg.id = #{id},
+                id = #{id},
             </if>
             <if test="description !=null and description.length() !=0">
-                sdg.description = #{description},
+                description = #{description},
             </if>
             <if test="parentId !=null">
-                sdg.parent_id = #{parentId},
+                parent_id = #{parentId},
             </if>
             <if test="name !=null and name.length() !=0">
-                sdg.name = #{name},
+                name = #{name},
             </if>
             <if test="isFinal !=null">
-                sdg.is_final = #{isFinal},
+                is_final = #{isFinal},
             </if>
             <if test="rank !=null">
-                sdg.rank = #{rank},
+                rank = #{rank},
             </if>
             <if test="createTime !=null">
-                sdg.create_time = #{createTime},
+                create_time = #{createTime},
             </if>
             <if test="updateTime !=null">
-                sdg.update_time = #{updateTime},
+                update_time = #{updateTime},
             </if>
             <if test="createBy !=null">
-                sdg.create_by = #{createBy},
+                create_by = #{createBy},
             </if>
             <if test="updateBy !=null">
-                sdg.update_by = #{updateBy},
+                update_by = #{updateBy},
             </if>
             <if test="state !=null">
-                sdg.state = #{state},
+                state = #{state},
             </if>
         </set>
-        where sdg.id =#{id} and state=1
+        where .id =#{id} and state=1
     </update>
 
-    <select id="selectSysDataGroup" parameterType="SysDataGroup" resultType="SysDataGroup">
-        select * from sys_data_group sdg where
+    <select id="select" parameterType="SysDataGroup" resultType="SysDataGroup">
+        select * from sys_data_group where
         <where>
             <include refid="sql_column_where"/>
         </where>
     </select>
 
-    <select id="selectSysDataGroupById" parameterType="Long" resultType="SysDataGroup">
-        select * from sys_data_group sdg where sdg.id =#{id} and $meta.aliasName.state=1
+    <select id="selectById" parameterType="Long" resultType="SysDataGroup">
+        select * from sys_data_group where id =#{id} and state=1
     </select>
 
-    <select id="selectSysDataGroupAll" resultType="SysDataGroup">
+    <select id="selectAll" resultType="SysDataGroup">
         select * from sys_data_group where state=1
+    </select>
+
+    <select id="selectCounts" resultType="int">
+        select count(*) from sys_data_group where state=1
     </select>
 
 </mapper>

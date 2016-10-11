@@ -1,7 +1,11 @@
 package com.hunt.controller;
 
+import com.hunt.model.dto.Page;
 import com.hunt.model.entity.SysOrganization;
 import com.hunt.service.SystemOrganizationService;
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -20,6 +24,8 @@ import system.Result;
 @Controller
 @RequestMapping("organization")
 public class OrganizationController extends BaseController {
+    private static Logger log = LoggerFactory.getLogger(OrganizationController.class);
+
     @Autowired
     private SystemOrganizationService systemOrganizationService;
 
@@ -82,9 +88,10 @@ public class OrganizationController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.POST)
-    public Result select(@RequestParam int pageNumber,
-                         @RequestParam int pageSize) {
-        return null;
+    public Page select(@RequestParam(value = "page", defaultValue = "1") int page,
+                       @RequestParam(value = "row", defaultValue = "15") int row) {
+        Page pageInfo = systemOrganizationService.selectPage(page, row);
+        return pageInfo;
     }
 
 }

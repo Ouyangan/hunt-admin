@@ -5,25 +5,25 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 import com.hunt.model.entity.SysUser;
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.stereotype.Repository;
-import tk.mybatis.mapper.common.BaseMapper;
 
-public interface SysUserMapper  {
+public interface SysUserMapper {
     //新增
-    public Long insertSysUser(SysUser SysUser);
+    public Long insert(SysUser SysUser);
 
     //更新
-    public void updateSysUser(SysUser SysUser);
+    public void update(SysUser SysUser);
 
     //通过对象进行查询
-    public SysUser selectSysUser(SysUser SysUser);
+    public SysUser select(SysUser SysUser);
 
     //通过id进行查询
-    public SysUser selectSysUserById(@Param("id") Long id);
+    public SysUser selectById(@Param("id") Long id);
 
     //查询全部
-    public List<SysUser> selectSysUserAll();
+    public List<SysUser> selectAll();
 
-    SysUser selectUserByLoginName(@Param("username") String username);
+    //查询数量
+    public int selectCounts();
+
+    SysUser selectByLoginName(@Param("username") String username);
 }

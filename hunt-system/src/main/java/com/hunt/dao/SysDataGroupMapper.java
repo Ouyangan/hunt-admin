@@ -5,21 +5,23 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 import com.hunt.model.entity.SysDataGroup;
-import tk.mybatis.mapper.common.BaseMapper;
 
 public interface SysDataGroupMapper {
     //新增
-    public Long insertSysDataGroup(SysDataGroup SysDataGroup);
+    public Long insert(SysDataGroup SysDataGroup);
 
     //更新
-    public void updateSysDataGroup(SysDataGroup SysDataGroup);
+    public void update(SysDataGroup SysDataGroup);
 
     //通过对象进行查询
-    public SysDataGroup selectSysDataGroup(SysDataGroup SysDataGroup);
+    public SysDataGroup select(SysDataGroup SysDataGroup);
 
     //通过id进行查询
-    public SysDataGroup selectSysDataGroupById(@Param("id") Long id);
+    public SysDataGroup selectById(@Param("id") Long id);
 
     //查询全部
-    public List<SysDataGroup> selectSysDataGroupAll();
+    public List<SysDataGroup> selectAll();
+
+    //查询数量
+    public int selectCounts();
 }

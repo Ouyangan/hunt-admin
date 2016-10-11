@@ -2,10 +2,10 @@ package com.hunt.model.entity;
 
 /**
  * @Author: ouyangan
- * @Date: 2016-10-10 22:01
+ * @Date: 2016-10-11 22:54
  * @Description:
  */
-public class SysRolePerrmission {
+public class SysRolePermission {
 
     // id :
     private Long id;
@@ -198,7 +198,7 @@ public class SysRolePerrmission {
 
     @Override
     public String toString() {
-        return "SysRolePerrmission{" +
+        return "SysRolePermission{" +
                 "id='" + id + '\'' +
                 ", sysPermissionId='" + sysPermissionId + '\'' +
                 ", sysRoleId='" + sysRoleId + '\'' +

@@ -1,5 +1,6 @@
 package com.hunt.service;
 
+import com.hunt.model.dto.Page;
 import com.hunt.model.entity.SysOrganization;
 
 /**
@@ -12,4 +13,6 @@ public interface SystemOrganizationService {
     int deleteOrganization(long id);
 
     int updateOrganization(SysOrganization organization);
+
+    Page selectPage(int page, int row);
 }

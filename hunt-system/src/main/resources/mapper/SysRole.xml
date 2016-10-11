@@ -7,158 +7,146 @@
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="rank" property="rank" jdbcType="BIGINT"/>
         <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="createTime" jdbcType="DATETIME"/>
+        <result column="update_time" property="updateTime" jdbcType="DATETIME"/>
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-        sr.id id ,
-        sr.description description ,
-        sr.name name ,
-        sr.rank rank ,
-        sr.is_final isFinal ,
-        sr.create_time createTime ,
-        sr.update_time updateTime ,
-        sr.create_by createBy ,
-        sr.update_by updateBy ,
-        sr.state state
+        id,
+        description,
+        name,
+        rank,
+        isFinal,
+        createTime,
+        updateTime,
+        createBy,
+        updateBy,
+        state
     </sql>
 
     <sql id="sql_column_where">
         <if test="id !=null ">
-            AND sr.id = #{id}
+            AND id = #{id}
         </if>
         <if test="description !=null and description.length() != 0">
-            AND sr.description = #{description}
+            AND description = #{description}
         </if>
         <if test="name !=null and name.length() != 0">
-            AND sr.name = #{name}
+            AND name = #{name}
         </if>
         <if test="rank !=null ">
-            AND sr.rank = #{rank}
+            AND rank = #{rank}
         </if>
         <if test="isFinal !=null ">
-            AND sr.is_final = #{isFinal}
+            AND is_final = #{isFinal}
         </if>
         <if test="createTime !=null ">
-            AND sr.create_time = #{createTime}
+            AND create_time = #{createTime}
         </if>
         <if test="updateTime !=null ">
-            AND sr.update_time = #{updateTime}
+            AND update_time = #{updateTime}
         </if>
         <if test="createBy !=null ">
-            AND sr.create_by = #{createBy}
+            AND create_by = #{createBy}
         </if>
         <if test="updateBy !=null ">
-            AND sr.update_by = #{updateBy}
+            AND update_by = #{updateBy}
         </if>
         <if test="state !=null ">
-            AND sr.state = #{state}
+            AND state = #{state}
         </if>
     </sql>
 
-    <insert id="insertSysRole" parameterType="SysRole" useGeneratedKeys="true" keyProperty="id">
-        insert into sys_role sr
+    <insert id="insert" parameterType="SysRole" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_role
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            sr.id,
-            sr.description,
-            sr.name,
-            sr.rank,
-            sr.is_final,
-            sr.create_time,
-            sr.update_time,
-            sr.create_by,
-            sr.update_by,
-            sr.state,
+            description,
+            name,
+            rank,
+            is_final,
+            create_time,
+            update_time,
+            create_by,
+            update_by,
+            state,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id !=null">
-                sr.id = #{id},
-            </if>
-            <if test="description !=null and description.length() !=0">
-                sr.description = #{description},
-            </if>
-            <if test="name !=null and name.length() !=0">
-                sr.name = #{name},
-            </if>
-            <if test="rank !=null">
-                sr.rank = #{rank},
-            </if>
-            <if test="isFinal !=null">
-                sr.is_final = #{isFinal},
-            </if>
-            <if test="createTime !=null">
-                sr.create_time = #{createTime},
-            </if>
-            <if test="updateTime !=null">
-                sr.update_time = #{updateTime},
-            </if>
-            <if test="createBy !=null">
-                sr.create_by = #{createBy},
-            </if>
-            <if test="updateBy !=null">
-                sr.update_by = #{updateBy},
-            </if>
-            <if test="state !=null">
-                sr.state = #{state},
-            </if>
+            #{description},
+            #{name},
+            #{rank},
+            #{isFinal},
+            #{createTime},
+            #{updateTime},
+            #{createBy},
+            #{updateBy},
+            #{state},
         </trim>
     </insert>
 
 
-    <update id="updateSysRole" parameterType="SysRole">
-        update sys_role sr
+    <update id="update" parameterType="SysRole">
+        update sys_role
         <set>
             <if test="id !=null">
-                sr.id = #{id},
+                id = #{id},
             </if>
             <if test="description !=null and description.length() !=0">
-                sr.description = #{description},
+                description = #{description},
             </if>
             <if test="name !=null and name.length() !=0">
-                sr.name = #{name},
+                name = #{name},
             </if>
             <if test="rank !=null">
-                sr.rank = #{rank},
+                rank = #{rank},
             </if>
             <if test="isFinal !=null">
-                sr.is_final = #{isFinal},
+                is_final = #{isFinal},
             </if>
             <if test="createTime !=null">
-                sr.create_time = #{createTime},
+                create_time = #{createTime},
             </if>
             <if test="updateTime !=null">
-                sr.update_time = #{updateTime},
+                update_time = #{updateTime},
             </if>
             <if test="createBy !=null">
-                sr.create_by = #{createBy},
+                create_by = #{createBy},
             </if>
             <if test="updateBy !=null">
-                sr.update_by = #{updateBy},
+                update_by = #{updateBy},
             </if>
             <if test="state !=null">
-                sr.state = #{state},
+                state = #{state},
             </if>
         </set>
-        where sr.id =#{id} and state=1
+        where .id =#{id} and state=1
     </update>
 
-    <select id="selectSysRole" parameterType="SysRole" resultType="SysRole">
-        select * from sys_role sr where
+    <select id="select" parameterType="SysRole" resultType="SysRole">
+        select * from sys_role where
         <where>
             <include refid="sql_column_where"/>
         </where>
     </select>
 
-    <select id="selectSysRoleById" parameterType="Long" resultType="SysRole">
-        select * from sys_role sr where sr.id =#{id} and $meta.aliasName.state=1
+    <select id="selectById" parameterType="Long" resultType="SysRole">
+        SELECT *
+        FROM sys_role
+        WHERE id = #{id} AND state = 1
     </select>
 
-    <select id="selectSysRoleAll" resultType="SysRole">
-        select * from sys_role where state=1
+    <select id="selectAll" resultType="SysRole">
+        SELECT *
+        FROM sys_role
+        WHERE state = 1
+    </select>
+
+    <select id="selectCounts" resultType="int">
+        SELECT count(*)
+        FROM sys_role
+        WHERE state = 1
     </select>
 
 </mapper>
