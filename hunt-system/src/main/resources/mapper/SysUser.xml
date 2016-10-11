@@ -14,8 +14,8 @@
         <result column="password" property="password" jdbcType="VARCHAR"/>
         <result column="password_salt" property="passwordSalt" jdbcType="VARCHAR"/>
         <result column="rank" property="rank" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="DATETIME"/>
-        <result column="update_time" property="updateTime" jdbcType="DATETIME"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
@@ -98,40 +98,104 @@
     <insert id="insert" parameterType="SysUser" useGeneratedKeys="true" keyProperty="id">
         insert into sys_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            login_name,
-            zh_name,
-            en_name,
-            sex,
-            birth,
-            email,
-            phone,
-            address,
-            password,
-            password_salt,
-            rank,
-            create_time,
-            update_time,
-            create_by,
-            update_by,
-            state,
+            <if test="loginName !=null and loginName.length() !=0">
+                login_name,
+            </if>
+            <if test="zhName !=null and zhName.length() !=0">
+                zh_name,
+            </if>
+            <if test="enName !=null and enName.length() !=0">
+                en_name,
+            </if>
+            <if test="sex !=null">
+                sex,
+            </if>
+            <if test="birth !=null and birth.length() !=0">
+                birth,
+            </if>
+            <if test="email !=null and email.length() !=0">
+                email,
+            </if>
+            <if test="phone !=null and phone.length() !=0">
+                phone,
+            </if>
+            <if test="address !=null and address.length() !=0">
+                address,
+            </if>
+            <if test="password !=null and password.length() !=0">
+                password,
+            </if>
+            <if test="passwordSalt !=null and passwordSalt.length() !=0">
+                password_salt,
+            </if>
+            <if test="rank !=null">
+                rank,
+            </if>
+            <if test="createTime !=null">
+                create_time,
+            </if>
+            <if test="updateTime !=null">
+                update_time,
+            </if>
+            <if test="createBy !=null">
+                create_by,
+            </if>
+            <if test="updateBy !=null">
+                update_by,
+            </if>
+            <if test="state !=null">
+                state,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            #{loginName},
-            #{zhName},
-            #{enName},
-            #{sex},
-            #{birth},
-            #{email},
-            #{phone},
-            #{address},
-            #{password},
-            #{passwordSalt},
-            #{rank},
-            #{createTime},
-            #{updateTime},
-            #{createBy},
-            #{updateBy},
-            #{state},
+            <if test="loginName !=null and loginName.length() !=0">
+                #{loginName},
+            </if>
+            <if test="zhName !=null and zhName.length() !=0">
+                #{zhName},
+            </if>
+            <if test="enName !=null and enName.length() !=0">
+                #{enName},
+            </if>
+            <if test="sex !=null">
+                #{sex},
+            </if>
+            <if test="birth !=null and birth.length() !=0">
+                #{birth},
+            </if>
+            <if test="email !=null and email.length() !=0">
+                #{email},
+            </if>
+            <if test="phone !=null and phone.length() !=0">
+                #{phone},
+            </if>
+            <if test="address !=null and address.length() !=0">
+                #{address},
+            </if>
+            <if test="password !=null and password.length() !=0">
+                #{password},
+            </if>
+            <if test="passwordSalt !=null and passwordSalt.length() !=0">
+                #{passwordSalt},
+            </if>
+            <if test="rank !=null">
+                #{rank},
+            </if>
+            <if test="createTime !=null">
+                #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime},
+            </if>
+            <if test="createBy !=null">
+                #{createBy},
+            </if>
+            <if test="updateBy !=null">
+                #{updateBy},
+            </if>
+            <if test="state !=null">
+                #{state},
+            </if>
         </trim>
     </insert>
 
@@ -209,11 +273,8 @@
         select * from sys_user where state=1
     </select>
 
-    <select id="selectCounts" resultType="int">
+    <select id="selectCounts" resultType="Integer">
         select count(*) from sys_user where state=1
-    </select>
-    <select id="selectByLoginName" resultType="com.hunt.model.entity.SysUser">
-        SELECT * FROM sys_user WHERE state=1 AND login_name=#{username}
     </select>
 
 </mapper>

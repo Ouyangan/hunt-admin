@@ -6,8 +6,8 @@
         <result column="sys_permission_id" property="sysPermissionId" jdbcType="BIGINT"/>
         <result column="sys_role_id" property="sysRoleId" jdbcType="BIGINT"/>
         <result column="rank" property="rank" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="DATETIME"/>
-        <result column="update_time" property="updateTime" jdbcType="DATETIME"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
@@ -58,24 +58,56 @@
     <insert id="insert" parameterType="SysRolePermission" useGeneratedKeys="true" keyProperty="id">
         insert into sys_role_permission
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            sys_permission_id,
-            sys_role_id,
-            rank,
-            create_time,
-            update_time,
-            create_by,
-            update_by,
-            state,
+            <if test="sysPermissionId !=null">
+                sys_permission_id,
+            </if>
+            <if test="sysRoleId !=null">
+                sys_role_id,
+            </if>
+            <if test="rank !=null">
+                rank,
+            </if>
+            <if test="createTime !=null">
+                create_time,
+            </if>
+            <if test="updateTime !=null">
+                update_time,
+            </if>
+            <if test="createBy !=null">
+                create_by,
+            </if>
+            <if test="updateBy !=null">
+                update_by,
+            </if>
+            <if test="state !=null">
+                state,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            #{sysPermissionId},
-            #{sysRoleId},
-            #{rank},
-            #{createTime},
-            #{updateTime},
-            #{createBy},
-            #{updateBy},
-            #{state},
+            <if test="sysPermissionId !=null">
+                #{sysPermissionId},
+            </if>
+            <if test="sysRoleId !=null">
+                #{sysRoleId},
+            </if>
+            <if test="rank !=null">
+                #{rank},
+            </if>
+            <if test="createTime !=null">
+                #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime},
+            </if>
+            <if test="createBy !=null">
+                #{createBy},
+            </if>
+            <if test="updateBy !=null">
+                #{updateBy},
+            </if>
+            <if test="state !=null">
+                #{state},
+            </if>
         </trim>
     </insert>
 
@@ -132,8 +164,7 @@
         FROM sys_role_permission
         WHERE state = 1
     </select>
-
-    <select id="selectCounts" resultType="int">
+    <select id="selectCounts" resultType="Integer">
         SELECT count(*)
         FROM sys_role_permission
         WHERE state = 1

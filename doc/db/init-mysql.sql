@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/10/10 22:00:36                          */
+/* Created on:     2016/10/11 22:51:47                          */
 /*==============================================================*/
 
 
@@ -16,7 +16,7 @@ drop table if exists sys_permission_group;
 
 drop table if exists sys_role;
 
-drop table if exists sys_role_perrmission;
+drop table if exists sys_role_permission;
 
 drop table if exists sys_user;
 
@@ -139,9 +139,9 @@ create table sys_role
 );
 
 /*==============================================================*/
-/* Table: sys_role_perrmission                                  */
+/* Table: sys_role_permission                                   */
 /*==============================================================*/
-create table sys_role_perrmission
+create table sys_role_permission
 (
   id                   bigint not null auto_increment,
   sys_permission_id    bigint comment '权限id',

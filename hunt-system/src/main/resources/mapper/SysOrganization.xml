@@ -8,8 +8,8 @@
         <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
         <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
         <result column="rank" property="rank" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="DATETIME"/>
-        <result column="update_time" property="updateTime" jdbcType="DATETIME"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="state" property="state" jdbcType="INTEGER"/>
@@ -68,28 +68,68 @@
     <insert id="insert" parameterType="SysOrganization" useGeneratedKeys="true" keyProperty="id">
         insert into sys_organization
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            name,
-            description,
-            is_final,
-            parent_id,
-            rank,
-            create_time,
-            update_time,
-            create_by,
-            update_by,
-            state,
+            <if test="name !=null and name.length() !=0">
+                name,
+            </if>
+            <if test="description !=null and description.length() !=0">
+                description,
+            </if>
+            <if test="isFinal !=null">
+                is_final,
+            </if>
+            <if test="parentId !=null">
+                parent_id,
+            </if>
+            <if test="rank !=null">
+                rank,
+            </if>
+            <if test="createTime !=null">
+                create_time,
+            </if>
+            <if test="updateTime !=null">
+                update_time,
+            </if>
+            <if test="createBy !=null">
+                create_by,
+            </if>
+            <if test="updateBy !=null">
+                update_by,
+            </if>
+            <if test="state !=null">
+                state,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            #{name},
-            #{description},
-            #{isFinal},
-            #{parentId},
-            #{rank},
-            #{createTime},
-            #{updateTime},
-            #{createBy},
-            #{updateBy},
-            #{state},
+            <if test="name !=null and name.length() !=0">
+                #{name},
+            </if>
+            <if test="description !=null and description.length() !=0">
+                #{description},
+            </if>
+            <if test="isFinal !=null">
+                #{isFinal},
+            </if>
+            <if test="parentId !=null">
+                #{parentId},
+            </if>
+            <if test="rank !=null">
+                #{rank},
+            </if>
+            <if test="createTime !=null">
+                #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime},
+            </if>
+            <if test="createBy !=null">
+                #{createBy},
+            </if>
+            <if test="updateBy !=null">
+                #{updateBy},
+            </if>
+            <if test="state !=null">
+                #{state},
+            </if>
         </trim>
     </insert>
 
@@ -149,7 +189,7 @@
         select * from sys_organization where state=1
     </select>
 
-    <select id="selectCounts" resultType="int">
+    <select id="selectCounts" resultType="Integer">
         select count(*) from sys_organization where state=1
     </select>
 

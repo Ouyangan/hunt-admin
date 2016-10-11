@@ -24,16 +24,10 @@ public class SystemOrganizationServiceImplTest {
     @Test
     public void insertOrganization() throws Exception {
         SysOrganization sysOrganization = new SysOrganization();
-        sysOrganization.setCreateBy(0L);
-        sysOrganization.setUpdateBy(0L);
-        sysOrganization.setName("asfdaf");
-        sysOrganization.setDescription("asdfwq");
-        sysOrganization.setParentId(0L);
+        sysOrganization.setName("深圳xx软件公司江西分公司");
+        sysOrganization.setDescription("江西分公司");
         sysOrganization.setIsFinal(2);
-        sysOrganization.setCreateTime(new Date());
-        sysOrganization.setUpdateTime(new Date());
-        sysOrganization.setRank(0L);
-        sysOrganization.setState(1);
+        sysOrganization.setParentId(1L);
         sysOrganizationMapper.insert(sysOrganization);
     }
 
