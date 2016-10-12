@@ -18,6 +18,9 @@ public class SysOrganizationTree {
     // name :名称
     private String name;
 
+    // fullName :全称
+    private String fullName;
+
     // description :描述
     private String description;
 
@@ -52,6 +55,7 @@ public class SysOrganizationTree {
         return "SysOrganizationTree{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", description='" + description + '\'' +
                 ", isFinal=" + isFinal +
                 ", parentId=" + parentId +
@@ -65,7 +69,13 @@ public class SysOrganizationTree {
                 '}';
     }
 
+    public String getFullName() {
+        return fullName;
+    }
 
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
     public Long getId() {
         return id;

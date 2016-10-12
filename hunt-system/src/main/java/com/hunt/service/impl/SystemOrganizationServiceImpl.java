@@ -48,21 +48,37 @@ public class SystemOrganizationServiceImpl implements SystemOrganizationService 
 
     @Override
     public PageInfo selectPage(int page, int row, long id) {
-        List<SysOrganization> list = sysOrganizationMapper.selectChildren(id);
-
-//        int total = sysOrganizationMapper.selectCounts();
-//        SysOrganization sysOrganization = sysOrganizationMapper.selectById(id);
-//        List<SysOrganization> sysOrganizationList = sysOrganizationMapper.selectChildren(id);
-//        SysOrganizationTree sysOrganizationTree = new SysOrganizationTree();
-//        sysOrganizationTree.setChildren(sysOrganizationList);
-//        BeanUtils.copyProperties(sysOrganization, sysOrganizationTree);
-//        List<SysOrganizationTree> list = new ArrayList<>();
-//        list.add(sysOrganizationTree);
-        PageInfo page1 = new PageInfo(1, null);
-        return page1;
+        SysOrganizationTree sysOrganizationTree = selectSysOrganizationTree(id);
+        List<SysOrganizationTree> list = new ArrayList<>();
+        list.add(sysOrganizationTree);
+        PageInfo pageInfo = new PageInfo(sysOrganizationMapper.selectCounts(), list);
+        return pageInfo;
     }
 
+    @Override
+    public SysOrganizationTree selectSysOrganizationTree(long id) {
+        SysOrganizationTree tree = new SysOrganizationTree();
+        SysOrganization sysOrganization = sysOrganizationMapper.selectById(id);
+        BeanUtils.copyProperties(sysOrganization, tree);
+        List<SysOrganizationTree> treeList = selectChildrenTreeList(id);
+        tree.setChildren(treeList);
+        for (int i = 0; i < treeList.size(); i++) {
+            tree.getChildren().set(i, selectSysOrganizationTree(treeList.get(i).getId()));
+        }
+        return tree;
+    }
 
+    @Override
+    public List<SysOrganizationTree> selectChildrenTreeList(long id) {
+        List<SysOrganization> childrenList = sysOrganizationMapper.selectChildren(id);
+        List<SysOrganizationTree> childrenTreeList = new ArrayList<>();
+        for (SysOrganization s : childrenList) {
+            SysOrganizationTree sysOrganizationTree = new SysOrganizationTree();
+            BeanUtils.copyProperties(s, sysOrganizationTree);
+            childrenTreeList.add(sysOrganizationTree);
+        }
+        return childrenTreeList;
+    }
 
 }
 

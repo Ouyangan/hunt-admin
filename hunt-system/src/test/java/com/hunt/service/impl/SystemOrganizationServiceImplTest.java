@@ -26,7 +26,7 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/spring.xml")
-//@Transactional
+@Transactional
 public class SystemOrganizationServiceImplTest {
     private static Logger log = LoggerFactory.getLogger(SystemOrganizationServiceImplTest.class);
     int count = 0;
@@ -35,37 +35,10 @@ public class SystemOrganizationServiceImplTest {
     @Autowired
     private SystemOrganizationService systemOrganizationService;
 
-    public SysOrganizationTree selectSysOrganizationTree(long id) {
-        SysOrganizationTree sysOrganizationTree = new SysOrganizationTree();
-        SysOrganization sysOrganization = sysOrganizationMapper.selectById(id);
-        BeanUtils.copyProperties(sysOrganization, sysOrganizationTree);
-        //第一次进入递归的时候 , 内部生成变量 ,
-        List<SysOrganizationTree> treeList = selectChildrenTreeList(id);
-        sysOrganizationTree.setChildren(treeList);
-        for (int i = 0; i < treeList.size(); i++) {
-            sysOrganizationTree.getChildren().set(i, selectSysOrganizationTree(treeList.get(i).getId()));
-        }
-        return sysOrganizationTree;
-    }
 
-    public List<SysOrganizationTree> selectChildrenTreeList(long id) {
-        List<SysOrganization> childrenList = sysOrganizationMapper.selectChildren(id);
-        List<SysOrganizationTree> childrenTreeList = new ArrayList<>();
-        for (SysOrganization s : childrenList) {
-            SysOrganizationTree sysOrganizationTree = new SysOrganizationTree();
-            BeanUtils.copyProperties(s, sysOrganizationTree);
-            childrenTreeList.add(sysOrganizationTree);
-        }
-        return childrenTreeList;
-    }
 
     @Test
     public void selectChildren() throws Exception {
-        SysOrganizationTree tree = selectSysOrganizationTree(1L);
-        log.debug("--------------json----------");
-//        log.debug(StringUtil.formatJson("\n" + new Gson().toJson(tree)));
-        log.debug("\n" + new Gson().toJson(tree));
-        log.debug("--------------json----------");
 
     }
 

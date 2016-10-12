@@ -4,6 +4,7 @@
     <resultMap id="baseResultMap" type="com.hunt.model.entity.SysOrganization">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="full_name" property="fullName" jdbcType="VARCHAR"/>
         <result column="description" property="description" jdbcType="VARCHAR"/>
         <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
         <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
@@ -16,18 +17,19 @@
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-                                    id ,
-                                                name ,
-                                                description ,
-                                                isFinal ,
-                                                parentId ,
-                                                rank ,
-                                                createTime ,
-                                                updateTime ,
-                                                createBy ,
-                                                updateBy ,
-                                                status
-                        </sql>
+        id,
+        name,
+        fullName,
+        description,
+        isFinal,
+        parentId,
+        rank,
+        createTime,
+        updateTime,
+        createBy,
+        updateBy,
+        status
+    </sql>
 
     <sql id="sql_column_where">
         <if test="id !=null ">
@@ -35,6 +37,9 @@
         </if>
         <if test="name !=null and name.length() != 0">
             AND name = #{name}
+        </if>
+        <if test="fullName !=null and fullName.length() != 0">
+            AND full_name = #{fullName}
         </if>
         <if test="description !=null and description.length() != 0">
             AND description = #{description}
@@ -71,6 +76,9 @@
             <if test="name !=null and name.length() !=0">
                 name,
             </if>
+            <if test="fullName !=null and fullName.length() !=0">
+                full_name,
+            </if>
             <if test="description !=null and description.length() !=0">
                 description,
             </if>
@@ -102,6 +110,9 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="name !=null and name.length() !=0">
                 #{name},
+            </if>
+            <if test="fullName !=null and fullName.length() !=0">
+                #{fullName},
             </if>
             <if test="description !=null and description.length() !=0">
                 #{description},
@@ -143,6 +154,9 @@
             <if test="name !=null and name.length() !=0">
                 name = #{name},
             </if>
+            <if test="fullName !=null and fullName.length() !=0">
+                full_name = #{fullName},
+            </if>
             <if test="description !=null and description.length() !=0">
                 description = #{description},
             </if>
@@ -171,7 +185,7 @@
                 status = #{status},
             </if>
         </set>
-        where .id =#{id} and status=1
+        where .id =#{id} and state=1
     </update>
 
     <select id="select" parameterType="SysOrganization" resultType="SysOrganization">
@@ -181,23 +195,24 @@
         </where>
     </select>
 
-    <select id="selectById" parameterType="long" resultType="SysOrganization">
+    <select id="selectById" parameterType="Long" resultType="SysOrganization">
         SELECT *
         FROM sys_organization
-        WHERE id = #{id} AND status = 1
+        WHERE id = #{id} AND state = 1
     </select>
 
     <select id="selectAll" resultType="SysOrganization">
         SELECT *
         FROM sys_organization
-        WHERE status = 1
+        WHERE state = 1
     </select>
 
-    <select id="selectCounts" resultType="integer">
+    <select id="selectCounts" resultType="Integer">
         SELECT count(*)
         FROM sys_organization
-        WHERE status = 1
+        WHERE state = 1
     </select>
+
     <select id="selectChildren" resultType="com.hunt.model.entity.SysOrganization">
         SELECT *
         FROM sys_organization

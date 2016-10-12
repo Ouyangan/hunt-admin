@@ -13,6 +13,9 @@ public class SysOrganization {
     // name :名称
     private String name;
 
+    // fullName :全称
+    private String fullName;
+
     // description :描述
     private String description;
 
@@ -39,6 +42,24 @@ public class SysOrganization {
 
     // status :数据状态,1:正常,2:删除
     private Integer status;
+
+    @Override
+    public String toString() {
+        return "SysOrganization{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", description='" + description + '\'' +
+                ", isFinal=" + isFinal +
+                ", parentId=" + parentId +
+                ", rank=" + rank +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", createBy=" + createBy +
+                ", updateBy=" + updateBy +
+                ", status=" + status +
+                '}';
+    }
 
     /**
      * get
@@ -74,6 +95,14 @@ public class SysOrganization {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     /**
@@ -238,20 +267,4 @@ public class SysOrganization {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "SysOrganization{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", isFinal='" + isFinal + '\'' +
-                ", parentId='" + parentId + '\'' +
-                ", rank='" + rank + '\'' +
-                ", createTime='" + createTime + '\'' +
-                ", updateTime='" + updateTime + '\'' +
-                ", createBy='" + createBy + '\'' +
-                ", updateBy='" + updateBy + '\'' +
-                ", status=" + status +
-                '}';
-    }
 }

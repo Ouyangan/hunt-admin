@@ -88,7 +88,7 @@ public class OrganizationController extends BaseController {
     @RequestMapping(value = "select", method = RequestMethod.POST)
     public PageInfo select(@RequestParam(value = "page", defaultValue = "1") int page,
                            @RequestParam(value = "row", defaultValue = "15") int row,
-                           @RequestParam(value = "id", defaultValue = "0") long id) {
+                           @RequestParam(value = "id", defaultValue = "1") long id) {
         log.debug("select");
         PageInfo pageInfo = systemOrganizationService.selectPage(page, row, id);
         return pageInfo;

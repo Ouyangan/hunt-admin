@@ -19,5 +19,7 @@ public interface SystemOrganizationService {
 
     PageInfo selectPage(int page, int row, long id);
 
+    public SysOrganizationTree selectSysOrganizationTree(long id);
 
+    public List<SysOrganizationTree> selectChildrenTreeList(long id);
 }
