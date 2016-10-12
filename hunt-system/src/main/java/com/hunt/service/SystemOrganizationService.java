@@ -1,7 +1,10 @@
 package com.hunt.service;
 
 import com.hunt.model.dto.PageInfo;
+import com.hunt.model.dto.SysOrganizationTree;
 import com.hunt.model.entity.SysOrganization;
+
+import java.util.List;
 
 /**
  * @Author: ouyangan
@@ -14,5 +17,7 @@ public interface SystemOrganizationService {
 
     int updateOrganization(SysOrganization organization);
 
-    PageInfo selectPage(int page, int row);
+    PageInfo selectPage(int page, int row, long id);
+
+
 }

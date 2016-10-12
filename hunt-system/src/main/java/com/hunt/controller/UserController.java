@@ -51,7 +51,7 @@ public class UserController extends BaseController {
         if (user == null) {
             return Result.error(ResponseCode.unknown_account.getMsg());
         }
-        if (user.getState() == DataStatus.forbidden.getCode()) {
+        if (user.getStatus()== DataStatus.forbidden.getCode()) {
             return Result.error(ResponseCode.forbidden_account.getMsg());
         }
         SecurityUtils.getSubject().login(new UsernamePasswordToken(username, password));

@@ -1,39 +1,37 @@
 $(function () {
     var data_json = new Array();
-    $.ajax({
-        method: 'post',
-        url: '/organization/select',
-        async: false,
-        dataType: 'json',
-        success: function (result) {
-            data_json = result.data;
-            // for (var i in result.data) {
-            //     var row_data = {
-            //         id: i.id,
-            //         name: i.name,
-            //         description: i.description,
-            //         isFinal: i.isFinal,
-            //         createTime: i.createTime,
-            //         updateTime: i.updateTime,
-            //         createBy: i.createBy,
-            //         updateBy: i.updateBy
-            //     };
-            //     data_json.push(row_data);
-            // }
-        },
-    });
-    $("#organization").datagrid({
+    // $.ajax({
+    //     method: 'post',
+    //     url: '/organization/select',
+    //     async: false,
+    //     dataType: 'json',
+    //     success: function (result) {
+    //         data_json = result.data;
+    //         // for (var i in result.data) {
+    //         //     var row_data = {
+    //         //         id: i.id,
+    //         //         name: i.name,
+    //         //         description: i.description,
+    //         //         isFinal: i.isFinal,
+    //         //         createTime: i.createTime,
+    //         //         updateTime: i.updateTime,
+    //         //         createBy: i.createBy,
+    //         //         updateBy: i.updateBy
+    //         //     };
+    //         //     data_json.push(row_data);
+    //         // }
+    //     },
+    // });
+    $("#organization").treegrid({
         url: "/organization/select",
         method: 'post',
         idFiled: "id",
-        // treeField: "name",
+        treeField: "name",
         fitColumns: true,
-        animate: true,
         toolbar: '#tool-bar',
-        singleSelect: true,
-        collapsible: true,
-        checkOnSelect: true,
         rownumbers: true,
+        animate: true,
+        collapsible: true,
         fit: true,
         border: false,
         pagePosition: "bottom",

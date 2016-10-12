@@ -2,176 +2,165 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hunt.dao.SysDataItemMapper">
     <resultMap id="baseResultMap" type="com.hunt.model.entity.SysDataItem">
-        <result column="id" property="id" jdbcType="BIGINT"/>
-        <result column="sys_data_group_id" property="sysDataGroupId" jdbcType="BIGINT"/>
-        <result column="key_value" property="keyValue" jdbcType="VARCHAR"/>
-        <result column="key_name" property="keyName" jdbcType="VARCHAR"/>
-        <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
-        <result column="rank" property="rank" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
-        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
-        <result column="state" property="state" jdbcType="INTEGER"/>
-    </resultMap>
+                    <result column="id" property="id" jdbcType="BIGINT"/>
+                    <result column="sys_data_group_id" property="sysDataGroupId" jdbcType="BIGINT"/>
+                    <result column="key_value" property="keyValue" jdbcType="VARCHAR"/>
+                    <result column="key_name" property="keyName" jdbcType="VARCHAR"/>
+                    <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
+                    <result column="rank" property="rank" jdbcType="BIGINT"/>
+                    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+                    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+                    <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+                    <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+                    <result column="status" property="status" jdbcType="TINYINT"/>
+            </resultMap>
     <!--  -->
     <sql id="sql_column">
-        id ,
-        sysDataGroupId ,
-        keyValue ,
-        keyName ,
-        isFinal ,
-        rank ,
-        createTime ,
-        updateTime ,
-        createBy ,
-        updateBy ,
-        state
-    </sql>
+                                    id ,
+                                                sysDataGroupId ,
+                                                keyValue ,
+                                                keyName ,
+                                                isFinal ,
+                                                rank ,
+                                                createTime ,
+                                                updateTime ,
+                                                createBy ,
+                                                updateBy ,
+                                                status
+                        </sql>
 
     <sql id="sql_column_where">
-        <if test="id !=null ">
-            AND id = #{id}
-        </if>
-        <if test="sysDataGroupId !=null ">
-            AND sys_data_group_id = #{sysDataGroupId}
-        </if>
-        <if test="keyValue !=null and keyValue.length() != 0">
-            AND key_value = #{keyValue}
-        </if>
-        <if test="keyName !=null and keyName.length() != 0">
-            AND key_name = #{keyName}
-        </if>
-        <if test="isFinal !=null ">
-            AND is_final = #{isFinal}
-        </if>
-        <if test="rank !=null ">
-            AND rank = #{rank}
-        </if>
-        <if test="createTime !=null ">
-            AND create_time = #{createTime}
-        </if>
-        <if test="updateTime !=null ">
-            AND update_time = #{updateTime}
-        </if>
-        <if test="createBy !=null ">
-            AND create_by = #{createBy}
-        </if>
-        <if test="updateBy !=null ">
-            AND update_by = #{updateBy}
-        </if>
-        <if test="state !=null ">
-            AND state = #{state}
-        </if>
-    </sql>
+                                <if test="id !=null ">
+                        AND id = #{id} </if>
+                                <if test="sysDataGroupId !=null ">
+                        AND sys_data_group_id = #{sysDataGroupId} </if>
+                                <if test="keyValue !=null and keyValue.length() != 0">
+                        AND key_value = #{keyValue} </if>
+                                <if test="keyName !=null and keyName.length() != 0">
+                        AND key_name = #{keyName} </if>
+                                <if test="isFinal !=null ">
+                        AND is_final = #{isFinal} </if>
+                                <if test="rank !=null ">
+                        AND rank = #{rank} </if>
+                                <if test="createTime !=null ">
+                        AND create_time = #{createTime} </if>
+                                <if test="updateTime !=null ">
+                        AND update_time = #{updateTime} </if>
+                                <if test="createBy !=null ">
+                        AND create_by = #{createBy} </if>
+                                <if test="updateBy !=null ">
+                        AND update_by = #{updateBy} </if>
+                                <if test="status !=null ">
+                        AND status = #{status} </if>
+            </sql>
 
     <insert id="insert" parameterType="SysDataItem" useGeneratedKeys="true" keyProperty="id">
         insert into sys_data_item
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="sysDataGroupId !=null">
-                sys_data_group_id,
-            </if>
-            <if test="keyValue !=null and keyValue.length() !=0">
-                key_value,
-            </if>
-            <if test="keyName !=null and keyName.length() !=0">
-                key_name,
-            </if>
-            <if test="isFinal !=null">
-                is_final,
-            </if>
-            <if test="rank !=null">
-                rank,
-            </if>
-            <if test="createTime !=null">
-                create_time,
-            </if>
-            <if test="updateTime !=null">
-                update_time,
-            </if>
-            <if test="createBy !=null">
-                create_by,
-            </if>
-            <if test="updateBy !=null">
-                update_by,
-            </if>
-            <if test="state !=null">
-                state,
-            </if>
-        </trim>
+                                                                                                    <if test="sysDataGroupId !=null">
+                            sys_data_group_id,
+                        </if>
+                                                                                                            <if test="keyValue !=null and keyValue.length() !=0">
+                            key_value,
+                        </if>
+                                                                                                            <if test="keyName !=null and keyName.length() !=0">
+                            key_name,
+                        </if>
+                                                                                                            <if test="isFinal !=null">
+                            is_final,
+                        </if>
+                                                                                                            <if test="rank !=null">
+                            rank,
+                        </if>
+                                                                                                            <if test="createTime !=null">
+                            create_time,
+                        </if>
+                                                                                                            <if test="updateTime !=null">
+                            update_time,
+                        </if>
+                                                                                                            <if test="createBy !=null">
+                            create_by,
+                        </if>
+                                                                                                            <if test="updateBy !=null">
+                            update_by,
+                        </if>
+                                                                                                            <if test="status !=null">
+                            status,
+                        </if>
+                                                        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="sysDataGroupId !=null">
-                #{sysDataGroupId},
-            </if>
-            <if test="keyValue !=null and keyValue.length() !=0">
-                #{keyValue},
-            </if>
-            <if test="keyName !=null and keyName.length() !=0">
-                #{keyName},
-            </if>
-            <if test="isFinal !=null">
-                #{isFinal},
-            </if>
-            <if test="rank !=null">
-                #{rank},
-            </if>
-            <if test="createTime !=null">
-                #{createTime},
-            </if>
-            <if test="updateTime !=null">
-                #{updateTime},
-            </if>
-            <if test="createBy !=null">
-                #{createBy},
-            </if>
-            <if test="updateBy !=null">
-                #{updateBy},
-            </if>
-            <if test="state !=null">
-                #{state},
-            </if>
-        </trim>
+                                                                                                    <if test="sysDataGroupId !=null">
+                            #{sysDataGroupId},
+                        </if>
+                                                                                                            <if test="keyValue !=null and keyValue.length() !=0">
+                            #{keyValue},
+                        </if>
+                                                                                                            <if test="keyName !=null and keyName.length() !=0">
+                            #{keyName},
+                        </if>
+                                                                                                            <if test="isFinal !=null">
+                            #{isFinal},
+                        </if>
+                                                                                                            <if test="rank !=null">
+                            #{rank},
+                        </if>
+                                                                                                            <if test="createTime !=null">
+                            #{createTime},
+                        </if>
+                                                                                                            <if test="updateTime !=null">
+                            #{updateTime},
+                        </if>
+                                                                                                            <if test="createBy !=null">
+                            #{createBy},
+                        </if>
+                                                                                                            <if test="updateBy !=null">
+                            #{updateBy},
+                        </if>
+                                                                                                            <if test="status !=null">
+                            #{status},
+                        </if>
+                                                        </trim>
     </insert>
 
 
     <update id="update" parameterType="SysDataItem">
         update sys_data_item
         <set>
-            <if test="id !=null">
-                id = #{id},
-            </if>
-            <if test="sysDataGroupId !=null">
-                sys_data_group_id = #{sysDataGroupId},
-            </if>
-            <if test="keyValue !=null and keyValue.length() !=0">
-                key_value = #{keyValue},
-            </if>
-            <if test="keyName !=null and keyName.length() !=0">
-                key_name = #{keyName},
-            </if>
-            <if test="isFinal !=null">
-                is_final = #{isFinal},
-            </if>
-            <if test="rank !=null">
-                rank = #{rank},
-            </if>
-            <if test="createTime !=null">
-                create_time = #{createTime},
-            </if>
-            <if test="updateTime !=null">
-                update_time = #{updateTime},
-            </if>
-            <if test="createBy !=null">
-                create_by = #{createBy},
-            </if>
-            <if test="updateBy !=null">
-                update_by = #{updateBy},
-            </if>
-            <if test="state !=null">
-                state = #{state},
-            </if>
-        </set>
-        where .id =#{id} and state=1
+                                                <if test="id !=null">
+                        id = #{id},
+                    </if>
+                                                                <if test="sysDataGroupId !=null">
+                        sys_data_group_id = #{sysDataGroupId},
+                    </if>
+                                                                <if test="keyValue !=null and keyValue.length() !=0">
+                        key_value = #{keyValue},
+                    </if>
+                                                                <if test="keyName !=null and keyName.length() !=0">
+                        key_name = #{keyName},
+                    </if>
+                                                                <if test="isFinal !=null">
+                        is_final = #{isFinal},
+                    </if>
+                                                                <if test="rank !=null">
+                        rank = #{rank},
+                    </if>
+                                                                <if test="createTime !=null">
+                        create_time = #{createTime},
+                    </if>
+                                                                <if test="updateTime !=null">
+                        update_time = #{updateTime},
+                    </if>
+                                                                <if test="createBy !=null">
+                        create_by = #{createBy},
+                    </if>
+                                                                <if test="updateBy !=null">
+                        update_by = #{updateBy},
+                    </if>
+                                                                <if test="status !=null">
+                        status = #{status},
+                    </if>
+                                    </set>
+        where .id =#{id} and status=1
     </update>
 
     <select id="select" parameterType="SysDataItem" resultType="SysDataItem">
@@ -181,16 +170,16 @@
         </where>
     </select>
 
-    <select id="selectById" parameterType="Long" resultType="SysDataItem">
-        select * from sys_data_item where id =#{id} and state=1
+    <select id="selectById" parameterType="long" resultType="SysDataItem">
+        select * from sys_data_item where id =#{id} and status=1
     </select>
 
     <select id="selectAll" resultType="SysDataItem">
-        select * from sys_data_item where state=1
+        select * from sys_data_item where status=1
     </select>
 
-    <select id="selectCounts" resultType="Integer">
-        select count(*) from sys_data_item where state=1
+    <select id="selectCounts" resultType="integer">
+        select count(*) from sys_data_item where status=1
     </select>
 
 </mapper>

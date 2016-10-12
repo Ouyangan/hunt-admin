@@ -1,14 +1,16 @@
 package com.hunt.service.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.hunt.dao.SysOrganizationMapper;
 import com.hunt.model.dto.PageInfo;
+import com.hunt.model.dto.SysOrganizationTree;
 import com.hunt.model.entity.SysOrganization;
 import com.hunt.service.SystemOrganizationService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +36,7 @@ public class SystemOrganizationServiceImpl implements SystemOrganizationService 
         if (sysOrganization.getIsFinal() == 2) {
             return 2;
         }
-        sysOrganization.setState(2);
+        sysOrganization.setStatus(2);
         sysOrganizationMapper.update(sysOrganization);
         return 1;
     }
@@ -45,12 +47,19 @@ public class SystemOrganizationServiceImpl implements SystemOrganizationService 
     }
 
     @Override
-    public PageInfo selectPage(int page, int row) {
+    public PageInfo selectPage(int page, int row, long id) {
         int total = sysOrganizationMapper.selectCounts();
-        PageHelper.startPage(page, row);
-        List<SysOrganization> sysOrganizations = sysOrganizationMapper.selectAll();
-        PageInfo page1 = new PageInfo(total, sysOrganizations);
+        SysOrganization sysOrganization = sysOrganizationMapper.selectById(id);
+        List<SysOrganization> sysOrganizationList = sysOrganizationMapper.selectChildren(id);
+        SysOrganizationTree sysOrganizationTree = new SysOrganizationTree();
+        sysOrganizationTree.setChildren(sysOrganizationList);
+        BeanUtils.copyProperties(sysOrganization, sysOrganizationTree);
+        List<SysOrganizationTree> list = new ArrayList<>();
+        list.add(sysOrganizationTree);
+        PageInfo page1 = new PageInfo(total, list);
         return page1;
     }
 
 }
+
+

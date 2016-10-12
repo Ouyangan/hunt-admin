@@ -11,21 +11,21 @@
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
-        <result column="state" property="state" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-        id ,
-        sysUserId ,
-        sysOrganizationId ,
-        sysRoleId ,
-        rank ,
-        createTime ,
-        updateTime ,
-        createBy ,
-        updateBy ,
-        state
-    </sql>
+                                    id ,
+                                                sysUserId ,
+                                                sysOrganizationId ,
+                                                sysRoleId ,
+                                                rank ,
+                                                createTime ,
+                                                updateTime ,
+                                                createBy ,
+                                                updateBy ,
+                                                status
+                        </sql>
 
     <sql id="sql_column_where">
         <if test="id !=null ">
@@ -55,8 +55,8 @@
         <if test="updateBy !=null ">
             AND update_by = #{updateBy}
         </if>
-        <if test="state !=null ">
-            AND state = #{state}
+        <if test="status !=null ">
+            AND status = #{status}
         </if>
     </sql>
 
@@ -87,8 +87,8 @@
             <if test="updateBy !=null">
                 update_by,
             </if>
-            <if test="state !=null">
-                state,
+            <if test="status !=null">
+                status,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -116,8 +116,8 @@
             <if test="updateBy !=null">
                 #{updateBy},
             </if>
-            <if test="state !=null">
-                #{state},
+            <if test="status !=null">
+                #{status},
             </if>
         </trim>
     </insert>
@@ -153,11 +153,11 @@
             <if test="updateBy !=null">
                 update_by = #{updateBy},
             </if>
-            <if test="state !=null">
-                state = #{state},
+            <if test="status !=null">
+                status = #{status},
             </if>
         </set>
-        where .id =#{id} and state=1
+        where .id =#{id} and status=1
     </update>
 
     <select id="select" parameterType="SysUserRoleOrganization" resultType="SysUserRoleOrganization">
@@ -167,16 +167,27 @@
         </where>
     </select>
 
-    <select id="selectById" parameterType="Long" resultType="SysUserRoleOrganization">
-        select * from sys_user_role_organization where id =#{id} and state=1
+    <select id="selectById" parameterType="long" resultType="SysUserRoleOrganization">
+        SELECT *
+        FROM sys_user_role_organization
+        WHERE id = #{id} AND status = 1
     </select>
 
     <select id="selectAll" resultType="SysUserRoleOrganization">
-        select * from sys_user_role_organization where state=1
+        SELECT *
+        FROM sys_user_role_organization
+        WHERE status = 1
     </select>
 
-    <select id="selectCounts" resultType="Integer">
-        select count(*) from sys_user_role_organization where state=1
+    <select id="selectCounts" resultType="integer">
+        SELECT count(*)
+        FROM sys_user_role_organization
+        WHERE status = 1
+    </select>
+    <select id="selectByUserId" resultType="com.hunt.model.entity.SysUserRoleOrganization">
+        SELECT *
+        FROM sys_user_role_organization
+        WHERE status = 1 AND sys_user_id = #{id}
     </select>
 
 </mapper>

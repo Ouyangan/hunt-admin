@@ -4,7 +4,7 @@
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width:70px">新增</a>
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="width:70px">修改</a>
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" style="width:70px">删除</a>
-    <div style="padding: 10px">
+
         Date From: <input class="easyui-datebox" style="width:80px">
         To: <input class="easyui-datebox" style="width:80px">
         Language:
@@ -16,7 +16,6 @@
             <option value="python">Python</option>
         </select>
         <a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
-    </div>
 </div>
 <div id="organization" style="padding: 10px">
 

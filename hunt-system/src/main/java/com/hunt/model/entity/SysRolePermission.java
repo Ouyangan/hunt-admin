@@ -2,7 +2,7 @@ package com.hunt.model.entity;
 
 /**
  * @Author: ouyangan
- * @Date: 2016-10-11 22:54
+ * @Date: 2016-10-12 14:21
  * @Description:
  */
 public class SysRolePermission {
@@ -31,8 +31,8 @@ public class SysRolePermission {
     // update_by :更新人id
     private Long updateBy;
 
-    // state :数据状态,1:正常,2:删除
-    private Integer state;
+    // status :数据状态,1:正常,2:删除
+    private Integer status;
 
     /**
      * get
@@ -183,17 +183,17 @@ public class SysRolePermission {
      *
      * @return Integer
      */
-    public Integer getState() {
-        return state;
+    public Integer getStatus() {
+        return status;
     }
 
     /**
      * set 数据状态,1:正常,2:删除
      *
-     * @param state
+     * @param status
      */
-    public void setState(Integer state) {
-        this.state = state;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Override
@@ -207,7 +207,7 @@ public class SysRolePermission {
                 ", updateTime='" + updateTime + '\'' +
                 ", createBy='" + createBy + '\'' +
                 ", updateBy='" + updateBy + '\'' +
-                ", state=" + state +
+                ", status=" + status +
                 '}';
     }
 }
