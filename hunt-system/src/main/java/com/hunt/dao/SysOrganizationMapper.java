@@ -25,5 +25,5 @@ public interface SysOrganizationMapper {
     //查询数量
     public int selectCounts();
 
-    List<SysOrganization> selectChildren(@Param("id") long id);
+    List<SysOrganization> selectChildren(@Param("parentId") long parentId);
 }

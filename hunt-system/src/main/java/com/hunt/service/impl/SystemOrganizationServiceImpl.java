@@ -48,17 +48,21 @@ public class SystemOrganizationServiceImpl implements SystemOrganizationService 
 
     @Override
     public PageInfo selectPage(int page, int row, long id) {
-        int total = sysOrganizationMapper.selectCounts();
-        SysOrganization sysOrganization = sysOrganizationMapper.selectById(id);
-        List<SysOrganization> sysOrganizationList = sysOrganizationMapper.selectChildren(id);
-        SysOrganizationTree sysOrganizationTree = new SysOrganizationTree();
-        sysOrganizationTree.setChildren(sysOrganizationList);
-        BeanUtils.copyProperties(sysOrganization, sysOrganizationTree);
-        List<SysOrganizationTree> list = new ArrayList<>();
-        list.add(sysOrganizationTree);
-        PageInfo page1 = new PageInfo(total, list);
+        List<SysOrganization> list = sysOrganizationMapper.selectChildren(id);
+
+//        int total = sysOrganizationMapper.selectCounts();
+//        SysOrganization sysOrganization = sysOrganizationMapper.selectById(id);
+//        List<SysOrganization> sysOrganizationList = sysOrganizationMapper.selectChildren(id);
+//        SysOrganizationTree sysOrganizationTree = new SysOrganizationTree();
+//        sysOrganizationTree.setChildren(sysOrganizationList);
+//        BeanUtils.copyProperties(sysOrganization, sysOrganizationTree);
+//        List<SysOrganizationTree> list = new ArrayList<>();
+//        list.add(sysOrganizationTree);
+        PageInfo page1 = new PageInfo(1, null);
         return page1;
     }
+
+
 
 }
 

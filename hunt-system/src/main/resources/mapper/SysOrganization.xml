@@ -201,7 +201,7 @@
     <select id="selectChildren" resultType="com.hunt.model.entity.SysOrganization">
         SELECT *
         FROM sys_organization
-        WHERE status = 1 AND parent_id = #{id}
+        WHERE status = 1 AND parent_id = #{parentId}
     </select>
 
 </mapper>

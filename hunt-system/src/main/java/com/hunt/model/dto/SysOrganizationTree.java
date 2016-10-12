@@ -2,6 +2,7 @@ package com.hunt.model.dto;
 
 import com.hunt.model.entity.SysOrganization;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class SysOrganizationTree {
     // state :数据状态,1:正常,2:删除
     private Integer status;
 
-    private List<SysOrganization> children;
+    private List<SysOrganizationTree> children=new ArrayList<>();
 
     @Override
     public String toString() {
@@ -63,6 +64,8 @@ public class SysOrganizationTree {
                 ", children=" + children +
                 '}';
     }
+
+
 
     public Long getId() {
         return id;
@@ -152,11 +155,11 @@ public class SysOrganizationTree {
         this.status = status;
     }
 
-    public List<SysOrganization> getChildren() {
+    public List<SysOrganizationTree> getChildren() {
         return children;
     }
 
-    public void setChildren(List<SysOrganization> children) {
+    public void setChildren(List<SysOrganizationTree> children) {
         this.children = children;
     }
 }
