@@ -185,7 +185,7 @@
                 status = #{status},
             </if>
         </set>
-        where .id =#{id} and state=1
+        where .id =#{id} and status=1
     </update>
 
     <select id="select" parameterType="SysOrganization" resultType="SysOrganization">
@@ -198,19 +198,19 @@
     <select id="selectById" parameterType="Long" resultType="SysOrganization">
         SELECT *
         FROM sys_organization
-        WHERE id = #{id} AND state = 1
+        WHERE id = #{id} AND status = 1
     </select>
 
     <select id="selectAll" resultType="SysOrganization">
         SELECT *
         FROM sys_organization
-        WHERE state = 1
+        WHERE status = 1
     </select>
 
     <select id="selectCounts" resultType="Integer">
         SELECT count(*)
         FROM sys_organization
-        WHERE state = 1
+        WHERE status = 1
     </select>
 
     <select id="selectChildren" resultType="com.hunt.model.entity.SysOrganization">

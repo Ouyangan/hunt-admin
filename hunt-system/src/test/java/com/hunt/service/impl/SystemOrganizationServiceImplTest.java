@@ -26,7 +26,7 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/spring.xml")
-@Transactional
+//@Transactional
 public class SystemOrganizationServiceImplTest {
     private static Logger log = LoggerFactory.getLogger(SystemOrganizationServiceImplTest.class);
     int count = 0;
@@ -51,21 +51,13 @@ public class SystemOrganizationServiceImplTest {
 //        sysOrganization.setParentId(0L);
 //        sysOrganizationMapper.insert(sysOrganization);
 //        System.out.println(sysOrganization);
-        for (int i = 1; i < 20; i++) {
+        for (int i = 1; i < 2; i++) {
             SysOrganization sysOrganization1 = new SysOrganization();
-            sysOrganization1.setName("湖南分公司研发部基础架构组-" + i);
-            sysOrganization1.setDescription("湖南分公司研发部基础架构组-" + i);
+            sysOrganization1.setName("应用开发组" + i);
+            sysOrganization1.setFullName("XXXX信息技术有限公司湖南分公司研发部应用开发组" + i);
+            sysOrganization1.setDescription("XXXX信息技术有限公司湖南分公司研发部应用开发组" + i);
             sysOrganization1.setIsFinal(1);
-            sysOrganization1.setParentId(59L);
-            sysOrganizationMapper.insert(sysOrganization1);
-            System.out.println(sysOrganization1);
-        }
-        for (int i = 1; i < 20; i++) {
-            SysOrganization sysOrganization1 = new SysOrganization();
-            sysOrganization1.setName("江西分公司研发部基础架构组-" + i);
-            sysOrganization1.setDescription("江西分公司研发部基础架构组-" + i);
-            sysOrganization1.setIsFinal(1);
-            sysOrganization1.setParentId(78L);
+            sysOrganization1.setParentId(187L);
             sysOrganizationMapper.insert(sysOrganization1);
             System.out.println(sysOrganization1);
         }
