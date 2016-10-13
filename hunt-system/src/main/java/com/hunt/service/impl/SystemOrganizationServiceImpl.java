@@ -33,9 +33,6 @@ public class SystemOrganizationServiceImpl implements SystemOrganizationService 
     @Override
     public int deleteOrganization(long id) {
         SysOrganization sysOrganization = sysOrganizationMapper.selectById(id);
-        if (sysOrganization.getIsFinal() == 2) {
-            return 2;
-        }
         sysOrganization.setStatus(2);
         sysOrganizationMapper.update(sysOrganization);
         return 1;

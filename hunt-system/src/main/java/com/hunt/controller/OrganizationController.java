@@ -85,14 +85,18 @@ public class OrganizationController extends BaseController {
                          @RequestParam String fullName,
                          @RequestParam String description,
                          @RequestParam long parentId) {
+        System.out.println("id = [" + id + "], name = [" + name + "], fullName = [" + fullName + "], description = [" + description + "], parentId = [" + parentId + "]");
         SysOrganization sysOrganization = systemOrganizationService.selectOrganization(id);
         if (sysOrganization == null) {
             return Result.error("组织机构不存在!");
         }
         if (sysOrganization.getIsFinal() == 2) {
-            return Result.error("该数据不可删除!");
+            return Result.error("该数据不可编辑!");
         }
-        boolean isExistFullNameExcludeId = systemOrganizationService.isExistFullNameExcludeId(id,fullName);
+        if (sysOrganization.getId() == parentId) {
+            return Result.error("上级机构不能选择自己,请选择其他组织机构!");
+        }
+        boolean isExistFullNameExcludeId = systemOrganizationService.isExistFullNameExcludeId(id, fullName);
         if (isExistFullNameExcludeId) {
             return Result.error("全称重复,请重新填写!");
         }

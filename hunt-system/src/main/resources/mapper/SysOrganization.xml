@@ -185,7 +185,7 @@
                 status = #{status},
             </if>
         </set>
-        where .id =#{id} and status=1
+        where id =#{id} and status=1
     </update>
 
     <select id="select" parameterType="SysOrganization" resultType="SysOrganization">
@@ -229,7 +229,7 @@
         SELECT exists(
                 SELECT *
                 FROM sys_organization
-                WHERE status = 1 AND id != #{id} AND fullName = #{fullName}
+                WHERE status = 1 AND id != #{id} AND full_name = #{fullName}
         )
     </select>
 </mapper>

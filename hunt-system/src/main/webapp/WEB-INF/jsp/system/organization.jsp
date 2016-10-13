@@ -11,25 +11,27 @@
 
 </div>
 
-<div id="organization_save" >
+<div id="organization_save">
     <div>
-        <div id="organization_save_left" style="float: left;height: 300px;">
-            <p style="padding: 10px;">&nbsp;&nbsp;简称:<input name="name" id="name" style="width: 300px;height: 35px"
-                                                            data-options="required:true"
-                                                            class="easyui-textbox easyui-validatebox"></p>
-            <p style="padding: 10px ;">&nbsp;&nbsp;全称:<input name="fullName" id="fullName"
-                                                             style="width: 300px;height: 35px"
-                                                             data-options="required:true"
-                                                             class="easyui-textbox easyui-validatebox"></p>
-            <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="description" id="description"
-                                                             style="width: 300px;height: 130px"
-                                                             data-options="required:true,multiline:true"
-                                                             class="easyui-textbox easyui-validatebox">
-            </p>
-        </div>
-        <div style="float: right;width:50%;height: 400px;">
-            <table id="organization_save_right" class="easyui-treegrid easyui-validatebox"
-                   data-options="
+        <form id="organization_form">
+            <input type="hidden" name="id" id="id">
+            <div id="organization_save_left" style="float: left;height: 300px;">
+                <p style="padding: 10px;">&nbsp;&nbsp;简称:<input name="name" id="name" style="width: 300px;height: 35px"
+                                                                data-options="required:true"
+                                                                class="easyui-textbox easyui-validatebox"></p>
+                <p style="padding: 10px ;">&nbsp;&nbsp;全称:<input name="fullName" id="fullName"
+                                                                 style="width: 300px;height: 35px"
+                                                                 data-options="required:true"
+                                                                 class="easyui-textbox easyui-validatebox"></p>
+                <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="description" id="description"
+                                                                 style="width: 300px;height: 130px"
+                                                                 data-options="required:true,multiline:true"
+                                                                 class="easyui-textbox easyui-validatebox">
+                </p>
+            </div>
+            <div style="float: right;width:50%;height: 300px; padding: 10px;">
+                <table id="organization_save_right" class="easyui-treegrid easyui-validatebox"
+                       data-options="
                 idField: 'id',
                 treeField: 'name',
                 border: false,
@@ -39,17 +41,18 @@
                 checkOnSelect:true,
                 required:true,
             ">
-                <thead frozen="true">
-                <tr>
-                    <th data-options="field:'ck', checkbox: true">选择</th>
-                </tr>
-                </thead>
-                <thead>
-                <tr>
-                    <th data-options="field:'name'">组织名称</th>
-                </tr>
-                </thead>
-            </table>
-        </div>
+                    <thead frozen="true">
+                    <tr>
+                        <th data-options="field:'ck', checkbox: true">选择</th>
+                    </tr>
+                    </thead>
+                    <thead>
+                    <tr>
+                        <th data-options="field:'name',width:260">组织名称</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </form>
     </div>
 </div>
