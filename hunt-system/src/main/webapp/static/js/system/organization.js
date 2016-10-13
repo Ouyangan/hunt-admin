@@ -165,15 +165,6 @@ function deleteOrganization() {
 }
 //保存组织机构
 function saveOrganization() {
-    // if (!$('#name').validatebox('isValid')) {
-    //     messager_show('请输入名称');
-    // } else if (!$('#fullName').validatebox('isValid')) {
-    //     messager_show('请输入全称');
-    // } else if (!$('#description').validatebox('isValid')) {
-    //     messager_show('请输入描述');
-    // } else if ($("#organization_save_right").treegrid("getChecked").length == 0) {
-    //     messager_show('请选择上级组织机构');
-    // } else {
     if (!checkValidatebox()) {
         return false;
     }
@@ -204,7 +195,6 @@ function saveOrganization() {
             }
         },
     });
-    // }
 }
 
 function checkValidatebox() {
