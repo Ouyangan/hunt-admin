@@ -195,7 +195,7 @@
         </where>
     </select>
 
-    <select id="selectById" parameterType="Long" resultType="SysOrganization">
+    <select id="selectById" parameterType="long" resultType="SysOrganization">
         SELECT *
         FROM sys_organization
         WHERE id = #{id} AND status = 1
@@ -207,7 +207,7 @@
         WHERE status = 1
     </select>
 
-    <select id="selectCounts" resultType="Integer">
+    <select id="selectCounts" resultType="integer">
         SELECT count(*)
         FROM sys_organization
         WHERE status = 1
@@ -218,5 +218,18 @@
         FROM sys_organization
         WHERE status = 1 AND parent_id = #{parentId}
     </select>
-
+    <select id="isExistFullName" resultType="java.lang.Boolean">
+        SELECT exists(
+                SELECT *
+                FROM sys_organization
+                WHERE status = 1 AND full_name = #{fullName}
+        )
+    </select>
+    <select id="isExistFullNameExcludeId" resultType="java.lang.Boolean">
+        SELECT exists(
+                SELECT *
+                FROM sys_organization
+                WHERE status = 1 AND id != #{id} AND fullName = #{fullName}
+        )
+    </select>
 </mapper>

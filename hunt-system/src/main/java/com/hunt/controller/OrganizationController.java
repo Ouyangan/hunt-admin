@@ -37,9 +37,15 @@ public class OrganizationController extends BaseController {
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String name,
                          @RequestParam String description,
+                         @RequestParam String fullName,
                          @RequestParam long parentId,
-                         @RequestParam int isFinal) {
+                         @RequestParam(defaultValue = "1") int isFinal) {
+        boolean isExistFullName = systemOrganizationService.isExistFullName(fullName);
+        if (isExistFullName) {
+            return Result.error("全称重复,请重新填写!");
+        }
         SysOrganization organization = new SysOrganization();
+        organization.setFullName(fullName);
         organization.setName(name);
         organization.setDescription(description);
         organization.setParentId(parentId);
@@ -53,8 +59,15 @@ public class OrganizationController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "delelte", method = RequestMethod.GET)
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
     public Result delete(@RequestParam long id) {
+        SysOrganization sysOrganization = systemOrganizationService.selectOrganization(id);
+        if (sysOrganization == null) {
+            return Result.error("组织机构不存在!");
+        }
+        if (sysOrganization.getIsFinal() == 2) {
+            return Result.error("该数据不可删除!");
+        }
         int i = systemOrganizationService.deleteOrganization(id);
         if (i == 2) {
             return Result.error(ResponseCode.can_not_delete.getMsg());
@@ -69,26 +82,35 @@ public class OrganizationController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
                          @RequestParam String name,
+                         @RequestParam String fullName,
                          @RequestParam String description,
                          @RequestParam long parentId) {
+        SysOrganization sysOrganization = systemOrganizationService.selectOrganization(id);
+        if (sysOrganization == null) {
+            return Result.error("组织机构不存在!");
+        }
+        if (sysOrganization.getIsFinal() == 2) {
+            return Result.error("该数据不可删除!");
+        }
+        boolean isExistFullNameExcludeId = systemOrganizationService.isExistFullNameExcludeId(id,fullName);
+        if (isExistFullNameExcludeId) {
+            return Result.error("全称重复,请重新填写!");
+        }
         SysOrganization organization = new SysOrganization();
         organization.setId(id);
+        organization.setFullName(fullName);
         organization.setName(name);
         organization.setDescription(description);
         organization.setParentId(parentId);
-        int i = systemOrganizationService.updateOrganization(organization);
-        if (i == 1) {
-            return Result.success();
-        } else {
-            return Result.error();
-        }
+        systemOrganizationService.updateOrganization(organization);
+        return Result.success();
     }
 
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.POST)
     public Result select(@RequestParam(value = "page", defaultValue = "1") int page,
-                           @RequestParam(value = "row", defaultValue = "15") int row,
-                           @RequestParam(value = "id", defaultValue = "1") long id) {
+                         @RequestParam(value = "row", defaultValue = "15") int row,
+                         @RequestParam(value = "id", defaultValue = "1") long id) {
         PageInfo pageInfo = systemOrganizationService.selectPage(page, row, id);
         return Result.success(pageInfo);
     }

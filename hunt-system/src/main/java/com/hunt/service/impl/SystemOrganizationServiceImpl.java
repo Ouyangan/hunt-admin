@@ -42,8 +42,8 @@ public class SystemOrganizationServiceImpl implements SystemOrganizationService 
     }
 
     @Override
-    public int updateOrganization(SysOrganization organization) {
-        return 0;
+    public void updateOrganization(SysOrganization organization) {
+        sysOrganizationMapper.update(organization);
     }
 
     @Override
@@ -78,6 +78,23 @@ public class SystemOrganizationServiceImpl implements SystemOrganizationService 
             childrenTreeList.add(sysOrganizationTree);
         }
         return childrenTreeList;
+    }
+
+    @Override
+    public boolean isExistFullName(String fullName) {
+        return sysOrganizationMapper.isExistFullName(fullName);
+    }
+
+    @Override
+    public SysOrganization selectOrganization(long id) {
+        SysOrganization sysOrganization = sysOrganizationMapper.selectById(id);
+        return sysOrganization;
+    }
+
+    @Override
+    public boolean isExistFullNameExcludeId(long id, String fullName) {
+
+        return sysOrganizationMapper.isExistFullNameExcludeId(id,fullName);
     }
 
 }

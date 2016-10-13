@@ -14,7 +14,6 @@ $(function () {
     $('#username').validatebox({
         required: true,
         missingMessage: '请输入账号',
-
     });
     $('#password').validatebox({
         required: true,

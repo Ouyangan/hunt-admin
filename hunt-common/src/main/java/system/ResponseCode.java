@@ -17,7 +17,7 @@ public enum ResponseCode {
     can_not_delete(20005, "该数据无法删除"),
     unauthenticated(20004, "未登录"),
     param_format_error(30001, "参数格式错误"),
-    missing_parameter(30002,"缺少参数");
+    missing_parameter(30002, "缺少参数");
 
     private int code;
     private String msg;

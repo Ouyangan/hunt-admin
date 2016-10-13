@@ -26,4 +26,8 @@ public interface SysOrganizationMapper {
     public int selectCounts();
 
     List<SysOrganization> selectChildren(@Param("parentId") long parentId);
+
+    boolean isExistFullName(@Param("fullName") String fullName);
+
+    boolean isExistFullNameExcludeId(@Param("id") long id, @Param("fullName") String fullName);
 }

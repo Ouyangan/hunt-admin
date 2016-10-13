@@ -15,11 +15,17 @@ public interface SystemOrganizationService {
 
     int deleteOrganization(long id);
 
-    int updateOrganization(SysOrganization organization);
+    void updateOrganization(SysOrganization organization);
 
     PageInfo selectPage(int page, int row, long id);
 
     public SysOrganizationTree selectSysOrganizationTree(long id);
 
     public List<SysOrganizationTree> selectChildrenTreeList(long id);
+
+    boolean isExistFullName(String fullName);
+
+    SysOrganization selectOrganization(long id);
+
+    boolean isExistFullNameExcludeId(long id, String fullName);
 }
