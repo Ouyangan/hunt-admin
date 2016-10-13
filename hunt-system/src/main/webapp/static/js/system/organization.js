@@ -207,6 +207,9 @@ organization_tool = {
         });
     },
     update: function () {
+        if (!organization_tool.checkValidatebox()) {
+            return false;
+        }
         var id = $("#id").val();
         var name = $("#name").val();
         var fullName = $("#fullName").val();
