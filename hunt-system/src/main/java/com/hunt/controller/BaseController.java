@@ -29,7 +29,7 @@ public class BaseController {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result exceptionHandler(HttpServletRequest request, Exception exception) {
-        exception.printStackTrace();
+        log.debug("exception occur : \n {}", StringUtil.exceptionDetail(exception));
         Result result;
         //密码错误
         if (exception instanceof IncorrectCredentialsException) {

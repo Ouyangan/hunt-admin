@@ -10,7 +10,7 @@ import java.util.List;
  * @Author: ouyangan
  * @Date : 2016/10/10
  */
-public interface SystemOrganizationService {
+public interface SysOrganizationService {
     Long insertOrganization(SysOrganization sysOrganization);
 
     int deleteOrganization(long id);

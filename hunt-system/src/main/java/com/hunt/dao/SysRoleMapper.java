@@ -24,4 +24,8 @@ public interface SysRoleMapper {
 
     //查询数量
     public int selectCounts();
+
+    boolean isExsitName(@Param("name") String name);
+
+    boolean isExsitNameExcludeId(@Param("id") long id, @Param("name") String name);
 }

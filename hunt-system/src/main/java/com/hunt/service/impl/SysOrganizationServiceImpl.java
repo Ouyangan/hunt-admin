@@ -4,7 +4,7 @@ import com.hunt.dao.SysOrganizationMapper;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.dto.SysOrganizationTree;
 import com.hunt.model.entity.SysOrganization;
-import com.hunt.service.SystemOrganizationService;
+import com.hunt.service.SysOrganizationService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class SystemOrganizationServiceImpl implements SystemOrganizationService {
+public class SysOrganizationServiceImpl implements SysOrganizationService {
 
     @Autowired
     private SysOrganizationMapper sysOrganizationMapper;

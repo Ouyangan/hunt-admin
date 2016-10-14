@@ -18,15 +18,17 @@
 <div data-options="region:'north',border:false" style="height:45px;"></div>
 <div data-options="region:'west',split:true,title:'系统导航'" style="text-align: center;width:200px;">
     <div class="easyui-accordion">
-        <div title="系统设置" class="" data-options="selected:true,collapsed:true,collapsible:true">
+        <div title="系统管理" class="" data-options="selected:true,collapsed:true,collapsible:true">
             <div>
                 <ul style="list-style: none;padding:0 0 0 20px">
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
                                                                  href="/user/user">用户管理</a></li>
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
-                                                                 href="/organization/toOrganization">组织管理</a></li>
+                                                                 href="/organization/toOrganization">组织机构管理</a></li>
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
-                                                                 href="/role/role">角色管理</a></li>
+                                                                 href="/role/toRole">角色管理</a></li>
+                    <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
+                                                                 href="/role/toRole">职位管理</a></li>
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
                                                                  href="/permission/permission">权限管理</a></li>
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;" href="/user/status">在线状态</a>
