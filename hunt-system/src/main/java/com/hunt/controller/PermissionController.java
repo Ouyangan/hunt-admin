@@ -108,8 +108,8 @@ public class PermissionController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
-    public PageInfo select(@RequestParam int page,
-                           @RequestParam int rows) {
+    public PageInfo select(@RequestParam(defaultValue = "1") int page,
+                           @RequestParam(defaultValue = "30") int rows) {
         PageInfo pageInfo = sysPermissionService.selectPage(page, rows);
         return pageInfo;
     }

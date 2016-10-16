@@ -157,7 +157,7 @@
                 status = #{status},
             </if>
         </set>
-        where .id =#{id} and status=1
+        where id =#{id} and status=1
     </update>
 
     <select id="select" parameterType="SysRole" resultType="SysRole">

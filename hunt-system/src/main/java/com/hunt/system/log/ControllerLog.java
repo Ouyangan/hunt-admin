@@ -53,6 +53,7 @@ public class ControllerLog {
         SysLog log = new SysLog();
 
         long t2 = System.currentTimeMillis();
+
         log.setResult(o.toString());
         log.setDuration((t2 - t1));
         log.setMethod(p.getTarget().getClass().getName() + "." + p.getSignature().getName());

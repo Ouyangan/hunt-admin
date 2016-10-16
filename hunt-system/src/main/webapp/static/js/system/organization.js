@@ -1,7 +1,7 @@
 organization_tool = {
     //重置表单
     form_reset: function () {
-        $("#organization_form").form("reset");
+        $("#organization_form").form("clear");
     },
     //初始化数据
     init_data: function () {
@@ -105,13 +105,11 @@ organization_tool = {
             'onOpen': function () {
                 if (parentId == null) {
                     $("#organization_save_right").treegrid({
-                        title: '上级组织机构',
                         data: organization_tool.init_data(),
                     });
                 }
                 if (parentId != null) {
                     $("#organization_save_right").treegrid({
-                        title: '上级组织机构',
                         data: organization_tool.init_data(),
                     });
                     $("#organization_save_right").treegrid('select', parentId);

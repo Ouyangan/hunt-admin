@@ -1,43 +1,19 @@
 role_tool = {
-    //初始化数据
-    // init_data: function (pageNumber, pageSize) {
-    //     var data_json = '';
-    //     $.ajax({
-    //         data: {
-    //             pageNumber: pageNumber,
-    //             pageSize: pageSize,
-    //         },
-    //         method: 'get',
-    //         url: '/role/select',
-    //         async: false,
-    //         dataType: 'json',
-    //         success: function (result) {
-    //             if (result.code == 10000) {
-    //                 data_json = result.data;
-    //                 console.log(data_json);
-    //             }
-    //             else {
-    //                 common_tool.messager_show(result.msg);
-    //             }
-    //         },
-    //     });
-    //     return data_json;
-    // },
     //初始化页面+加载数据
     init_main_view: function () {
         $("#role_grid").datagrid({
             url: "/role/select",
-            method:'get',
+            method: 'get',
             idField: "id",
             treeField: 'name',
             fitColumns: true,
-            toolbar: '#tool-bar',
+            toolbar: '#role-tool-bar',
             rownumbers: true,
             animate: true,
-            singleSelect:true,
+            singleSelect: true,
             fit: true,
             border: false,
-            pagination: true,
+            pagination: false,
             striped: true,
             pagePosition: "bottom",
             pageNumber: 1,
@@ -73,12 +49,206 @@ role_tool = {
                 },
             ]],
         });
-
     },
+    delete: function () {
+        if ($("#role_grid").datagrid("getChecked").length == 0) {
+            common_tool.messager_show("请选择一条记录");
+        }
+        var roleId = $("#role_grid").datagrid("getChecked")[0].id;
+        $.ajax({
+            data: {
+                id: roleId,
+            },
+            traditional: true,
+            method: 'post',
+            url: '/role/delete',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.code == 10000) {
+                    role_tool.init_main_view();
+                    common_tool.messager_show(result.msg);
+                    return false;
+                }
+                else {
+                    common_tool.messager_show(result.msg);
+                }
+            },
+        });
+    },
+    save: function () {
+        if (!$("#name").validatebox('isValid')) {
+            common_tool.messager_show("请输入角色名称");
+        } else if (!$("#description").validatebox('isValid')) {
+            common_tool.messager_show("请输入角色描述");
+        } else if ($("#permissions").datagrid("getChecked").length == 0) {
+            common_tool.messager_show("请为该角色选择权限");
+        } else {
+            var name = $("#name").val();
+            var description = $("#description").val();
+            var permission_array = $("#permissions").datagrid("getChecked");
+            var permission_ids = new Array();
+            for (var i = 0; i < permission_array.length; i++) {
+                permission_ids[i] = permission_array[i].id;
+            }
+            console.log(permission_ids)
+            $.ajax({
+                data: {
+                    name: name,
+                    description: description,
+                    permissionIds: permission_ids.toString(),
+                },
+                traditional: true,
+                method: 'post',
+                url: '/role/insert',
+                async: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 10000) {
+                        $("#role_edit_dialog").dialog("close");
+                        $("#role_edit_form").form('reset');
+                        role_tool.init_main_view();
+                        common_tool.messager_show(result.msg);
+                        return false;
+                    }
+                    else {
+                        common_tool.messager_show(result.msg);
+                    }
+                },
+            });
+        }
+    },
+    update: function () {
+        if (!$("#name").validatebox('isValid')) {
+            common_tool.messager_show("请输入角色名称");
+        } else if (!$("#description").validatebox('isValid')) {
+            common_tool.messager_show("请输入角色描述");
+        } else if ($("#permissions").datagrid("getChecked").length == 0) {
+            common_tool.messager_show("请为该角色选择权限");
+        } else {
+            var id = $("#id").val();
+            var name = $("#name").val();
+            var description = $("#description").val();
+            var permission_array = $("#permissions").datagrid("getChecked");
+            var permission_ids = new Array();
+            for (var i = 0; i < permission_array.length; i++) {
+                permission_ids[i] = permission_array[i].id;
+            }
+            console.log(permission_ids)
+            $.ajax({
+                data: {
+                    id: id,
+                    name: name,
+                    description: description,
+                    permissionIds: permission_ids.toString(),
+                },
+                traditional: true,
+                method: 'post',
+                url: '/role/update',
+                async: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 10000) {
+                        $("#role_edit_dialog").dialog("close");
+                        $("#role_edit_form").form('clear');
+                        role_tool.init_main_view();
+                        common_tool.messager_show(result.msg);
+                        return false;
+                    }
+                    else {
+                        common_tool.messager_show(result.msg);
+                    }
+                },
+            });
+        }
+    },
+    init_edit_view: function (type) {
+        $("#role_edit_dialog").dialog({
+            title: '新增角色',
+            iconCls: 'icon-save',
+            closable: true,
+            width: 900,
+            height: 400,
+            cache: false,
+            modal: true,
+            resizable: false,
+            'onOpen': function () {
+                console.log('load permissions data')
+                if (type == 2) {
+                    var role = $("#role_grid").datagrid("getChecked")[0];
+                    for (var i = 0; i < role.sysPermissions.length; i++) {
+                        $("#permissions").datagrid("selectRecord", role.sysPermissions[i].id);
+                    }
+                }
+            },
+            buttons: [
+                {
+                    text: '保存',
+                    width: 100,
+                    iconCls: 'icon-save',
+                    handler: function () {
+                        if (type == 1) {
+                            role_tool.save();
+                        }
+                        if (type == 2) {
+                            role_tool.update();
+                        }
+                    }
+                },
+                {
+                    text: '清除',
+                    width: 100,
+                    iconCls: 'icon-reload',
+                    handler: function () {
+                        $("#role_edit_form").form('clear');
+                    }
+                },
+                {
+                    text: '取消',
+                    width: 100,
+                    iconCls: 'icon-add',
+                    handler: function () {
+                        $("#role_edit_dialog").dialog('close');
+                        $("#role_edit_form").form('clear');
+                    }
+                }
+            ],
+        });
+    }
 };
 $(document).ready(function () {
     role_tool.init_main_view();
-    $(".select-btn").click(function () {
+    $("#role-select-btn").click(function () {
+        role_tool.init_main_view();
+    });
+
+    $("#role-save-btn").click(function () {
+        role_tool.init_edit_view(1);
+    });
+
+    $("#role-update-btn").click(function () {
+        if ($("#role_grid").datagrid("getChecked").length == 0) {
+            common_tool.messager_show("请选择一条记录");
+            return false;
+        }
+
+        role_tool.init_edit_view(2);
+        var role = $("#role_grid").datagrid("getChecked")[0];
+        $("#role_edit_form").form('load', {
+            id: role.id,
+            name: role.name,
+            description: role.description,
+        })
+    });
+    $("#role-delete-btn").click(function () {
+        $.messager.confirm('确认对话框', "您确认删除该条记录吗?", function (r) {
+            if (r) {
+                role_tool.delete();
+            }
+        });
+
+    });
+    $("#role-select-btn ").click(function () {
         role_tool.init_main_view();
     });
 })

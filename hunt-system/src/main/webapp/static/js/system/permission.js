@@ -73,7 +73,7 @@ permission_tool = {
                 success: function (result) {
                     if (result.code == 10000) {
                         $("#save-permission-dialog").dialog("close");
-                        $("#save-permission-form").form('reset');
+                        $("#save-permission-form").form('clear');
                         permission_tool.init_main_view();
                         return false;
                     }
@@ -86,7 +86,7 @@ permission_tool = {
     },
     update_permission: function () {
         if (!$("#name").validatebox('isValid')) {
-            common_tool.messager_show("请输入权限名称");
+            common_tool.messager_show("请输入权限名称1");
         } else if (!$("#code").validatebox('isValid')) {
             common_tool.messager_show("请输入权限编码");
         }
@@ -116,7 +116,7 @@ permission_tool = {
                 success: function (result) {
                     if (result.code == 10000) {
                         $("#save-permission-dialog").dialog("close");
-                        $("#save-permission-form").form('reset');
+                        $("#save-permission-form").form('clear');
                         permission_tool.init_main_view();
                         return false;
                     }
@@ -147,7 +147,7 @@ permission_tool = {
                 success: function (result) {
                     if (result.code == 10000) {
                         $("#save-permission-group-dialog").dialog("close");
-                        $("#save-permission-group-form").form('reset');
+                        $("#save-permission-group-form").form('clear');
                         permission_tool.init_main_view();
                         return false;
                     }
@@ -182,7 +182,7 @@ permission_tool = {
                     width: 100,
                     iconCls: 'icon-reload',
                     handler: function () {
-                        $("#save-permission-group-form").form('reset');
+                        $("#save-permission-group-form").form('clear');
                     }
                 },
                 {
@@ -191,7 +191,7 @@ permission_tool = {
                     iconCls: 'icon-add',
                     handler: function () {
                         $("#save-permission-group-dialog").dialog('close');
-                        $("#save-permission-group-form").form('reset');
+                        $("#save-permission-group-form").form('clear');
                     }
                 }
             ],
@@ -232,7 +232,7 @@ permission_tool = {
                     width: 100,
                     iconCls: 'icon-reload',
                     handler: function () {
-                        $("#save-permission-form").form('reset');
+                        $("#save-permission-form").form('clear');
                     }
                 },
                 {
@@ -241,7 +241,7 @@ permission_tool = {
                     iconCls: 'icon-add',
                     handler: function () {
                         $("#save-permission-dialog").dialog('close');
-                        $("#save-permission-form").form('reset');
+                        $("#save-permission-form").form('clear');
                     }
                 }
             ],

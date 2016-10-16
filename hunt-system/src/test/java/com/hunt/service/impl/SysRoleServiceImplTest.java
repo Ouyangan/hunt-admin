@@ -1,5 +1,7 @@
 package com.hunt.service.impl;
 
+import com.google.gson.Gson;
+import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysRole;
 import com.hunt.service.SysRoleService;
 import org.junit.Test;
@@ -7,8 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static org.junit.Assert.*;
+import system.StringUtil;
 
 /**
  * @Author: ouyangan
@@ -30,7 +31,7 @@ public class SysRoleServiceImplTest {
             SysRole role = new SysRole();
             role.setName("角色-"+i);
             role.setDescription("角色描述-"+i);
-            sysRoleService.insertRole(role);
+//            sysRoleService.insertRole(role, permissionIds);
         }
     }
 
@@ -46,7 +47,8 @@ public class SysRoleServiceImplTest {
 
     @Test
     public void selectPage() throws Exception {
-
+        PageInfo pageInfo = sysRoleService.selectPage(1, 30);
+        System.out.println(StringUtil.formatJson(new Gson().toJson(pageInfo)));
     }
 
     @Test

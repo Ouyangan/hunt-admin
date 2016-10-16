@@ -4,8 +4,8 @@ $(document).ready(function () {
         border: true,
     });
     $(".tab-btn").click(function () {
-        var title = $(this).find('a:first').text();
-        var href = $(this).find('a:first').attr("href");
+        var title = $(this).find('div:first').text();
+        var href = $(this).find('div:first').attr("href");
         if ($('#tab').tabs('exists', title)) {
             $('#tab').tabs('select', title);
         } else {

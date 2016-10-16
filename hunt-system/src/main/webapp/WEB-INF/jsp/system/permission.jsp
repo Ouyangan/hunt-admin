@@ -17,45 +17,46 @@
 </div>
 
 <div id="save-permission-dialog">
-    <div>
-        <form action="#" id="save-permission-form" style="padding: 10px;">
-            <input type="hidden" id="id" name="id">
-            <div style="float: left;height: 300px;">
-                <p style="padding: 10px;">&nbsp;&nbsp;名称:<input name="name" id="name" style="width: 300px;height: 35px"
-                                                                data-options="required:true"
-                                                                class="easyui-textbox easyui-validatebox"></p>
-                <p style="padding: 10px ;">&nbsp;&nbsp;编码:<input name="code" id="code"
-                                                                 style="width: 300px;height: 35px"
-                                                                 data-options="required:true"
-                                                                 class="easyui-textbox easyui-validatebox"></p>
-                <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="description" id="description"
-                                                                 style="width: 300px;height: 130px"
-                                                                 data-options="required:true,multiline:true"
-                                                                 class="easyui-textbox easyui-validatebox">
-                </p>
-            </div>
-            <div style="float: right; width: 30%;height:280px;padding: 22px 20px 0 10px;">
-                <table class="easyui-datagrid" id="permission-group" data-options="
+
+    <form action="#" id="save-permission-form">
+        <input type="hidden" id="id" name="id">
+        <div style="float: left;height: 300px;">
+            <p style="padding: 10px;">&nbsp;&nbsp;名称:<input name="name" id="name" style="width: 300px;height: 35px"
+                                                            data-options="required:true"
+                                                            class="easyui-textbox easyui-validatebox"></p>
+            <p style="padding: 10px ;">&nbsp;&nbsp;编码:<input name="code" id="code"
+                                                             style="width: 300px;height: 35px"
+                                                             data-options="required:true"
+                                                             class="easyui-textbox easyui-validatebox"></p>
+            <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="description" id="description"
+                                                             style="width: 300px;height: 130px"
+                                                             data-options="required:true,multiline:true"
+                                                             class="easyui-textbox easyui-validatebox">
+            </p>
+        </div>
+        <div style="float: right; width: 40%; height:326px;">
+            <table class="easyui-datagrid" id="permission-group" data-options="
                    url:'/permission/selectGroup',
                    idField: 'id',
                    method:'get',
                    fitColumns:true,
+                   fit:true,
                    singleSelect:true,
                 ">
-                    <thead frozen="true">
-                    <tr>
-                        <th data-options="field:'ck', checkbox: true">选择</th>
-                    </tr>
-                    </thead>
-                    <thead>
-                    <tr>
-                        <th data-options="field:'name',width:200">权限组名称</th>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
-        </form>
-    </div>
+                <thead frozen="true">
+                <tr>
+                    <th data-options="field:'ck', checkbox: true">选择</th>
+                </tr>
+                </thead>
+                <thead>
+                <tr>
+                    <th data-options="field:'name',width:200">权限组名称</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </form>
+</div>
 </div>
 
 <div id="save-permission-group-dialog">

@@ -3,7 +3,7 @@ package com.hunt.controller;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysRole;
 import com.hunt.service.SysRoleService;
-import com.sun.corba.se.impl.orbutil.RepositoryIdStrings;
+import com.sun.javadoc.SourcePosition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,26 +37,29 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String name,
                          @RequestParam String description,
+                         @RequestParam String permissionIds,
                          @RequestParam(defaultValue = "1") int isFinal) {
         boolean isExsitRoleName = sysRoleService.isExsitRoleName(name);
-        if (!isExsitRoleName) {
+        if (isExsitRoleName) {
             return Result.error("角色名称已存在");
         }
         SysRole sysRole = new SysRole();
         sysRole.setName(name);
         sysRole.setDescription(description);
         sysRole.setIsFinal(isFinal);
-        long id = sysRoleService.insertRole(sysRole);
-        return Result.success();
+        long id = sysRoleService.insertRole(sysRole, permissionIds);
+        return Result.success(id);
     }
 
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
                          @RequestParam String name,
-                         @RequestParam String description) {
+                         @RequestParam String description,
+                         @RequestParam String permissionIds) {
+        System.out.println("id = [" + id + "], name = [" + name + "], description = [" + description + "], permissionIds = [" + permissionIds + "]");
         boolean isExsitRoleNameExcludeId = sysRoleService.isExsitRoleNameExcludeId(id, name);
-        if (!isExsitRoleNameExcludeId) {
+        if (isExsitRoleNameExcludeId) {
             return Result.error("角色名称已存在");
         }
         SysRole sysRole = sysRoleService.selectById(id);
@@ -69,8 +72,8 @@ public class RoleController extends BaseController {
         sysRole.setId(id);
         sysRole.setName(name);
         sysRole.setDescription(description);
-        sysRoleService.updateRole(sysRole);
-        return null;
+        sysRoleService.updateRole(sysRole,permissionIds);
+        return Result.success();
     }
 
     @ResponseBody
@@ -84,7 +87,7 @@ public class RoleController extends BaseController {
             return Result.error("该条记录不能被删除");
         }
         sysRole.setStatus(2);
-        sysRoleService.updateRole(sysRole);
+        sysRoleService.deleteRole(sysRole);
         return Result.success();
     }
 

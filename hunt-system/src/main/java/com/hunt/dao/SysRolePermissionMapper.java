@@ -24,4 +24,8 @@ public interface SysRolePermissionMapper {
 
     //查询数量
     public int selectCounts();
+
+    void deleteByRoleId(@Param("roleId") Long roleId);
+
+    List<SysRolePermission> selectByRoleId(@Param("roleId") Long roleId);
 }

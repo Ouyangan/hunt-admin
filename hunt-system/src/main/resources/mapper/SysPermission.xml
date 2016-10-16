@@ -20,7 +20,7 @@
         id,
         name,
         description,
-        code,
+        `code`,
         sysPermissionGroupId,
         isFinal,
         rank,
@@ -42,7 +42,7 @@
             AND description = #{description}
         </if>
         <if test="code !=null and code.length() != 0">
-            AND code = #{code}
+            AND `code` = #{code}
         </if>
         <if test="sysPermissionGroupId !=null ">
             AND sys_permission_group_id = #{sysPermissionGroupId}
@@ -80,7 +80,7 @@
                 description,
             </if>
             <if test="code !=null and code.length() !=0">
-                code,
+                `code`,
             </if>
             <if test="sysPermissionGroupId !=null">
                 sys_permission_group_id,
@@ -155,7 +155,7 @@
                 description = #{description},
             </if>
             <if test="code !=null and code.length() !=0">
-                code = #{code},
+                `code` = #{code},
             </if>
             <if test="sysPermissionGroupId !=null">
                 sys_permission_group_id = #{sysPermissionGroupId},
