@@ -1,4 +1,4 @@
-$(function () {
+$(document).ready(function () {
     $("#tab").tabs({
         fit: true,
         border: true,
@@ -8,7 +8,6 @@ $(function () {
         var href = $(this).find('a:first').attr("href");
         if ($('#tab').tabs('exists', title)) {
             $('#tab').tabs('select', title);
-            return false;
         } else {
             $('#tab').tabs('add', {
                 fit: true,
@@ -18,7 +17,5 @@ $(function () {
             });
             return false;
         }
-
     })
-
 })

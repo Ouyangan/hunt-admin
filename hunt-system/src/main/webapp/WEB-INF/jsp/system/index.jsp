@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/system/index.css"/>
     <script type="text/javascript" src="/static/js/easyui/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/js/easyui/datagrid-groupview.js"></script>
     <script type="text/javascript" src="/static/js/easyui/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="/static/js/system/index.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -28,13 +29,13 @@
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
                                                                  href="/role/toRole">角色管理</a></li>
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
-                                                                 href="/role/toRole">职位管理</a></li>
+                                                                 href="/job/toJob">职位管理</a></li>
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
-                                                                 href="/permission/permission">权限管理</a></li>
+                                                                 href="/permission/toPermission">权限管理</a></li>
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;" href="/user/status">在线状态</a>
                     </li>
                     <li class="tab-btn" style="padding: 5px;"><a style=" text-decoration: none;"
-                                                                 href="/data/data">字典管理</a></li>
+                                                                 href="/data/toData">字典管理</a></li>
                 </ul>
             </div>
         </div>

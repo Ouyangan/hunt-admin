@@ -1,16 +1,22 @@
 package system;
 
 import org.apache.shiro.crypto.hash.Md5Hash;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.Objects;
 
 /**
  * @Author: ouyangan
  * @Date : 2016/10/7
  */
 public class StringUtil {
+    private static Logger log = LoggerFactory.getLogger(StringUtil.class);
+
+
     /**
      * 生成密码
      *
@@ -29,7 +35,6 @@ public class StringUtil {
         throwable.printStackTrace(printWriter);
         return "\n" + writer.toString();
     }
-
 
     public static String formatJson(String jsonStr) {
         if (null == jsonStr || "".equals(jsonStr)) return "";

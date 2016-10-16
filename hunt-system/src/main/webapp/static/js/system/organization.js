@@ -7,7 +7,7 @@ organization_tool = {
     init_data: function () {
         var data_json = '';
         $.ajax({
-            method: 'post',
+            method: 'get',
             url: '/organization/select',
             async: false,
             dataType: 'json',
@@ -258,8 +258,6 @@ $(document).ready(function () {
             "fullName": organizationArray[0].fullName,
             "description": organizationArray[0].description,
         })
-
-
     });
     $(".delete-btn").click(function () {
         var organizationArray = $("#organization").treegrid('getChecked');

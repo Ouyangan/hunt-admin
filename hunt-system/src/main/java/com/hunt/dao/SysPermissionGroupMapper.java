@@ -24,4 +24,6 @@ public interface SysPermissionGroupMapper {
 
     //查询数量
     public int selectCounts();
+
+    boolean isExistGroupName(@Param("name") String name);
 }

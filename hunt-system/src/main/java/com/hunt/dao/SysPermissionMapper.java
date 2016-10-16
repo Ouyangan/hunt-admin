@@ -24,4 +24,12 @@ public interface SysPermissionMapper {
 
     //查询数量
     public int selectCounts();
+
+    boolean isExistName(@Param("groupId") long groupId, @Param("name") String name);
+
+    boolean isExistCode(@Param("groupId") long groupId, @Param("code") String code);
+
+    boolean isExistNameExcludeId(@Param("id") long id, @Param("groupId") long groupId, @Param("name") String name);
+
+    boolean isExistCodeExcludeId(@Param("id") long id, @Param("groupId") long groupId, @Param("code") String code);
 }

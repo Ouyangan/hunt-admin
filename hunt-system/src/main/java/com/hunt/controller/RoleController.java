@@ -89,10 +89,10 @@ public class RoleController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "select", method = RequestMethod.POST)
-    public Result select(@RequestParam(defaultValue = "1") int page,
-                         @RequestParam(defaultValue = "15") int row) {
-        PageInfo pageInfo = sysRoleService.selectPage(page, row);
-        return Result.success(pageInfo);
+    @RequestMapping(value = "select", method = RequestMethod.GET)
+    public PageInfo select(@RequestParam(defaultValue = "1") int page,
+                           @RequestParam(defaultValue = "15") int rows) {
+        PageInfo pageInfo = sysRoleService.selectPage(page, rows);
+        return pageInfo;
     }
 }

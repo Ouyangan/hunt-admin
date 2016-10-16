@@ -1,12 +1,14 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/10/12 14:04:48                          */
+/* Created on:     2016/10/15 22:15:00                          */
 /*==============================================================*/
 
 
 drop table if exists sys_data_group;
 
 drop table if exists sys_data_item;
+
+drop table if exists sys_log;
 
 drop table if exists sys_organization;
 
@@ -63,6 +65,28 @@ create table sys_data_item
 );
 
 /*==============================================================*/
+/* Table: sys_log                                               */
+/*==============================================================*/
+create table sys_log
+(
+   id                   bigint not null auto_increment comment '主键',
+   rank                 bigint default 0 comment '排序',
+   create_time          datetime default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          datetime default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   create_by            bigint default 0 comment '创建人',
+   update_by            bigint default 0 comment '更热人',
+   status               tinyint default 1 comment '数据状态,1:正常,2:删除',
+   ip                   varchar(256) comment '请求ip',
+   user_id              varchar(256) comment '操作用户id',
+   method               varchar(2048) comment '请求方法',
+   param                text comment '请求参数',
+   result               text comment '请求结果',
+   duration             bigint comment '持续时间',
+   url                  varchar(512) comment '请求url',
+   primary key (id)
+);
+
+/*==============================================================*/
 /* Table: sys_organization                                      */
 /*==============================================================*/
 create table sys_organization
@@ -78,6 +102,7 @@ create table sys_organization
    create_by            bigint default 0 comment '创建人id',
    update_by            bigint default 0 comment '更新人id',
    status               tinyint default 1 comment '数据状态,1:正常,2:删除',
+   full_name            varchar(256) comment '全称',
    primary key (id)
 );
 
