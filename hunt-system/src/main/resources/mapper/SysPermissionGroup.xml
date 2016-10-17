@@ -171,7 +171,7 @@
                 status = #{status},
             </if>
         </set>
-        where .id =#{id} and status=1
+        where id =#{id} and status=1
     </update>
 
     <select id="select" parameterType="SysPermissionGroup" resultType="SysPermissionGroup">
@@ -200,9 +200,9 @@
     </select>
     <select id="isExistGroupName" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_permission_group
-                WHERE status = 1 AND name = #{name}
+        SELECT *
+        FROM sys_permission_group
+        WHERE status = 1 AND name = #{name}
         )
     </select>
 

@@ -22,24 +22,24 @@
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-                                    id ,
-                                                loginName ,
-                                                zhName ,
-                                                enName ,
-                                                sex ,
-                                                birth ,
-                                                email ,
-                                                phone ,
-                                                address ,
-                                                password ,
-                                                passwordSalt ,
-                                                rank ,
-                                                createTime ,
-                                                updateTime ,
-                                                createBy ,
-                                                updateBy ,
-                                                status
-                        </sql>
+        id ,
+        loginName ,
+        zhName ,
+        enName ,
+        sex ,
+        birth ,
+        email ,
+        phone ,
+        address ,
+        password ,
+        passwordSalt ,
+        rank ,
+        createTime ,
+        updateTime ,
+        createBy ,
+        updateBy ,
+        status
+    </sql>
 
     <sql id="sql_column_where">
         <if test="id !=null ">
@@ -255,7 +255,7 @@
                 status = #{status},
             </if>
         </set>
-        where .id =#{id} and status=1
+        where id =#{id} and status=1
     </update>
 
     <select id="select" parameterType="SysUser" resultType="SysUser">

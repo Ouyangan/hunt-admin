@@ -2,7 +2,7 @@ package com.hunt.model.entity;
 
 /**
  * @Author: ouyangan
- * @Date: 2016-10-12 14:21
+ * @Date: 2016-10-17 16:08
  * @Description:
  */
 public class SysUserRoleOrganization {
@@ -10,14 +10,11 @@ public class SysUserRoleOrganization {
     // id :
     private Long id;
 
-    // sys_user_id :用户id
+    // sys_user_id :
     private Long sysUserId;
 
-    // sys_organization_id :组织id
-    private Long sysOrganizationId;
-
-    // sys_role_id :角色id
-    private Long sysRoleId;
+    // sys_role_organization_id :
+    private Long sysRoleOrganizationId;
 
     // rank :排序
     private Long rank;
@@ -56,7 +53,7 @@ public class SysUserRoleOrganization {
     }
 
     /**
-     * get 用户id
+     * get
      *
      * @return Long
      */
@@ -65,7 +62,7 @@ public class SysUserRoleOrganization {
     }
 
     /**
-     * set 用户id
+     * set
      *
      * @param sysUserId
      */
@@ -74,39 +71,21 @@ public class SysUserRoleOrganization {
     }
 
     /**
-     * get 组织id
+     * get
      *
      * @return Long
      */
-    public Long getSysOrganizationId() {
-        return sysOrganizationId;
+    public Long getSysRoleOrganizationId() {
+        return sysRoleOrganizationId;
     }
 
     /**
-     * set 组织id
+     * set
      *
-     * @param sysOrganizationId
+     * @param sysRoleOrganizationId
      */
-    public void setSysOrganizationId(Long sysOrganizationId) {
-        this.sysOrganizationId = sysOrganizationId;
-    }
-
-    /**
-     * get 角色id
-     *
-     * @return Long
-     */
-    public Long getSysRoleId() {
-        return sysRoleId;
-    }
-
-    /**
-     * set 角色id
-     *
-     * @param sysRoleId
-     */
-    public void setSysRoleId(Long sysRoleId) {
-        this.sysRoleId = sysRoleId;
+    public void setSysRoleOrganizationId(Long sysRoleOrganizationId) {
+        this.sysRoleOrganizationId = sysRoleOrganizationId;
     }
 
     /**
@@ -222,8 +201,7 @@ public class SysUserRoleOrganization {
         return "SysUserRoleOrganization{" +
                 "id='" + id + '\'' +
                 ", sysUserId='" + sysUserId + '\'' +
-                ", sysOrganizationId='" + sysOrganizationId + '\'' +
-                ", sysRoleId='" + sysRoleId + '\'' +
+                ", sysRoleOrganizationId='" + sysRoleOrganizationId + '\'' +
                 ", rank='" + rank + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", updateTime='" + updateTime + '\'' +

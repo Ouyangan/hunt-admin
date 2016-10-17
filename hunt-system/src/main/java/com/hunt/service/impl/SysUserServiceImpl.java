@@ -3,11 +3,8 @@ package com.hunt.service.impl;
 import com.hunt.dao.SysOrganizationMapper;
 import com.hunt.dao.SysRoleMapper;
 import com.hunt.dao.SysUserMapper;
-import com.hunt.dao.SysUserRoleOrganizationMapper;
 import com.hunt.model.dto.LoginUserInfo;
 import com.hunt.model.dto.UserRoleOriganization;
-import com.hunt.model.entity.SysOrganization;
-import com.hunt.model.entity.SysRole;
 import com.hunt.model.entity.SysUser;
 import com.hunt.model.entity.SysUserRoleOrganization;
 import com.hunt.service.SysUserService;
@@ -31,8 +28,6 @@ public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private SysUserMapper sysUserMapper;
     @Autowired
-    private SysUserRoleOrganizationMapper sysUserRoleOrganizationMapper;
-    @Autowired
     private SysRoleMapper sysRoleMapper;
     @Autowired
     private SysOrganizationMapper sysOrganizationMapper;
@@ -43,7 +38,7 @@ public class SysUserServiceImpl implements SysUserService {
         for (int j = 0; j < sysUserRoleOrganizationList.size(); j++) {
             SysUserRoleOrganization sysUserRoleOrganization = sysUserRoleOrganizationList.get(j);
             sysUserRoleOrganization.setSysUserId(i);
-            sysUserRoleOrganizationMapper.insert(sysUserRoleOrganization);
+//            sysUserRoleOrganizationMapper.insert(sysUserRoleOrganization);
         }
         return i;
     }
@@ -60,15 +55,15 @@ public class SysUserServiceImpl implements SysUserService {
         log.debug("begin...");
         SysUser user = sysUserMapper.selectById(id);
         log.debug("end...");
-        List<SysUserRoleOrganization> list = sysUserRoleOrganizationMapper.selectByUserId(id);
+        List<SysUserRoleOrganization> list = new ArrayList<>();
 
         List<UserRoleOriganization> userRoleOriganizationList = new ArrayList<>();
-
+        //// TODO: 2016/10/17  
         for (SysUserRoleOrganization sysUserRoleOrganization : list) {
-            SysRole sysRole = sysRoleMapper.selectById(sysUserRoleOrganization.getSysRoleId());
-            SysOrganization sysOrganization = sysOrganizationMapper.selectById(sysUserRoleOrganization.getSysOrganizationId());
-            UserRoleOriganization userRoleOriganization = new UserRoleOriganization(sysRole, sysOrganization);
-            userRoleOriganizationList.add(userRoleOriganization);
+//            SysRole sysRole = sysRoleMapper.selectById(sysUserRoleOrganization.getSysRoleId());
+//            SysOrganization sysOrganization = sysOrganizationMapper.selectById(sysUserRoleOrganization.getSysOrganizationId());
+//            UserRoleOriganization userRoleOriganization = new UserRoleOriganization(sysRole, sysOrganization);
+//            userRoleOriganizationList.add(userRoleOriganization);
         }
         LoginUserInfo loginUserInfo = new LoginUserInfo();
         loginUserInfo.setUser(user);

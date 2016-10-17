@@ -1,6 +1,5 @@
 package com.hunt.system.log;
 
-import com.google.gson.Gson;
 import com.hunt.model.entity.SysLog;
 import com.hunt.service.SysLogService;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -18,7 +17,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import system.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Objects;
 
 /**
  * @Author: ouyangan

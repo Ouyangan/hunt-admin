@@ -4,8 +4,7 @@
     <resultMap id="baseResultMap" type="com.hunt.model.entity.SysUserRoleOrganization">
         <result column="id" property="id" jdbcType="BIGINT"/>
         <result column="sys_user_id" property="sysUserId" jdbcType="BIGINT"/>
-        <result column="sys_organization_id" property="sysOrganizationId" jdbcType="BIGINT"/>
-        <result column="sys_role_id" property="sysRoleId" jdbcType="BIGINT"/>
+        <result column="sys_role_organization_id" property="sysRoleOrganizationId" jdbcType="BIGINT"/>
         <result column="rank" property="rank" jdbcType="BIGINT"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
@@ -15,17 +14,16 @@
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-                                    id ,
-                                                sysUserId ,
-                                                sysOrganizationId ,
-                                                sysRoleId ,
-                                                rank ,
-                                                createTime ,
-                                                updateTime ,
-                                                createBy ,
-                                                updateBy ,
-                                                status
-                        </sql>
+        id,
+        sysUserId,
+        sysRoleOrganizationId,
+        rank,
+        createTime,
+        updateTime,
+        createBy,
+        updateBy,
+        status
+    </sql>
 
     <sql id="sql_column_where">
         <if test="id !=null ">
@@ -34,11 +32,8 @@
         <if test="sysUserId !=null ">
             AND sys_user_id = #{sysUserId}
         </if>
-        <if test="sysOrganizationId !=null ">
-            AND sys_organization_id = #{sysOrganizationId}
-        </if>
-        <if test="sysRoleId !=null ">
-            AND sys_role_id = #{sysRoleId}
+        <if test="sysRoleOrganizationId !=null ">
+            AND sys_role_organization_id = #{sysRoleOrganizationId}
         </if>
         <if test="rank !=null ">
             AND rank = #{rank}
@@ -66,11 +61,8 @@
             <if test="sysUserId !=null">
                 sys_user_id,
             </if>
-            <if test="sysOrganizationId !=null">
-                sys_organization_id,
-            </if>
-            <if test="sysRoleId !=null">
-                sys_role_id,
+            <if test="sysRoleOrganizationId !=null">
+                sys_role_organization_id,
             </if>
             <if test="rank !=null">
                 rank,
@@ -95,11 +87,8 @@
             <if test="sysUserId !=null">
                 #{sysUserId},
             </if>
-            <if test="sysOrganizationId !=null">
-                #{sysOrganizationId},
-            </if>
-            <if test="sysRoleId !=null">
-                #{sysRoleId},
+            <if test="sysRoleOrganizationId !=null">
+                #{sysRoleOrganizationId},
             </if>
             <if test="rank !=null">
                 #{rank},
@@ -132,11 +121,8 @@
             <if test="sysUserId !=null">
                 sys_user_id = #{sysUserId},
             </if>
-            <if test="sysOrganizationId !=null">
-                sys_organization_id = #{sysOrganizationId},
-            </if>
-            <if test="sysRoleId !=null">
-                sys_role_id = #{sysRoleId},
+            <if test="sysRoleOrganizationId !=null">
+                sys_role_organization_id = #{sysRoleOrganizationId},
             </if>
             <if test="rank !=null">
                 rank = #{rank},
@@ -157,7 +143,7 @@
                 status = #{status},
             </if>
         </set>
-        where .id =#{id} and status=1
+        where id =#{id} and status=1
     </update>
 
     <select id="select" parameterType="SysUserRoleOrganization" resultType="SysUserRoleOrganization">
@@ -183,11 +169,6 @@
         SELECT count(*)
         FROM sys_user_role_organization
         WHERE status = 1
-    </select>
-    <select id="selectByUserId" resultType="com.hunt.model.entity.SysUserRoleOrganization">
-        SELECT *
-        FROM sys_user_role_organization
-        WHERE status = 1 AND sys_user_id = #{id}
     </select>
 
 </mapper>

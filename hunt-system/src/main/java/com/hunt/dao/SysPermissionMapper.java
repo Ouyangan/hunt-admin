@@ -1,10 +1,9 @@
 package com.hunt.dao;
 
+import com.hunt.model.entity.SysPermission;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
-import com.hunt.model.entity.SysPermission;
 
 public interface SysPermissionMapper {
     //新增

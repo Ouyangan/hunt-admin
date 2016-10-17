@@ -1,6 +1,5 @@
 package com.hunt.service.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.hunt.dao.SysPermissionGroupMapper;
 import com.hunt.dao.SysPermissionMapper;
 import com.hunt.model.dto.PageInfo;
@@ -14,7 +13,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import system.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;

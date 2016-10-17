@@ -1,10 +1,9 @@
 package com.hunt.dao;
 
+import com.hunt.model.entity.SysUserRoleOrganization;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
-import com.hunt.model.entity.SysUserRoleOrganization;
 
 public interface SysUserRoleOrganizationMapper {
     //新增
@@ -24,6 +23,4 @@ public interface SysUserRoleOrganizationMapper {
 
     //查询数量
     public int selectCounts();
-
-    List<SysUserRoleOrganization> selectByUserId(@Param("id") Long id);
 }

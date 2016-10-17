@@ -8,7 +8,6 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,7 +50,7 @@ public class UserController extends BaseController {
         if (user == null) {
             return Result.error(ResponseCode.unknown_account.getMsg());
         }
-        if (user.getStatus()== DataStatus.forbidden.getCode()) {
+        if (user.getStatus() == DataStatus.forbidden.getCode()) {
             return Result.error(ResponseCode.forbidden_account.getMsg());
         }
         SecurityUtils.getSubject().login(new UsernamePasswordToken(username, password));

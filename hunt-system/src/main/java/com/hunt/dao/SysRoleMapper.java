@@ -1,10 +1,9 @@
 package com.hunt.dao;
 
+import com.hunt.model.entity.SysRole;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
-import com.hunt.model.entity.SysRole;
 
 public interface SysRoleMapper {
     //新增

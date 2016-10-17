@@ -1,30 +1,26 @@
-package com.hunt.model.dto;
-
-import com.hunt.model.entity.SysPermission;
-
-import java.util.List;
+package com.hunt.model.entity;
 
 /**
  * @Author: ouyangan
- * @Date: 2016-10-12 14:21
+ * @Date: 2016-10-17 16:08
  * @Description:
  */
-public class SysRoleDto {
+public class SysRoleOrganization {
 
     // id :
     private Long id;
 
-    // description :
-    private String description;
+    // sys_organization_id :组织id
+    private Long sysOrganizationId;
 
-    // name :
-    private String name;
+    // sys_role_id :角色id
+    private Long sysRoleId;
+
+    // parent_id :父级id
+    private Long parentId;
 
     // rank :排序
     private Long rank;
-
-    // is_final :是否可删除
-    private Integer isFinal;
 
     // create_time :创建时间
     private java.util.Date createTime;
@@ -40,16 +36,6 @@ public class SysRoleDto {
 
     // status :数据状态,1:正常,2:删除
     private Integer status;
-
-    private List<SysPermission> sysPermissions;
-
-    public List<SysPermission> getSysPermissions() {
-        return sysPermissions;
-    }
-
-    public void setSysPermissions(List<SysPermission> sysPermissions) {
-        this.sysPermissions = sysPermissions;
-    }
 
     /**
      * get
@@ -70,39 +56,57 @@ public class SysRoleDto {
     }
 
     /**
-     * get
+     * get 组织id
      *
-     * @return String
+     * @return Long
      */
-    public String getDescription() {
-        return description;
+    public Long getSysOrganizationId() {
+        return sysOrganizationId;
     }
 
     /**
-     * set
+     * set 组织id
      *
-     * @param description
+     * @param sysOrganizationId
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSysOrganizationId(Long sysOrganizationId) {
+        this.sysOrganizationId = sysOrganizationId;
     }
 
     /**
-     * get
+     * get 角色id
      *
-     * @return String
+     * @return Long
      */
-    public String getName() {
-        return name;
+    public Long getSysRoleId() {
+        return sysRoleId;
     }
 
     /**
-     * set
+     * set 角色id
      *
-     * @param name
+     * @param sysRoleId
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setSysRoleId(Long sysRoleId) {
+        this.sysRoleId = sysRoleId;
+    }
+
+    /**
+     * get 父级id
+     *
+     * @return Long
+     */
+    public Long getParentId() {
+        return parentId;
+    }
+
+    /**
+     * set 父级id
+     *
+     * @param parentId
+     */
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     /**
@@ -121,24 +125,6 @@ public class SysRoleDto {
      */
     public void setRank(Long rank) {
         this.rank = rank;
-    }
-
-    /**
-     * get 是否可删除
-     *
-     * @return Integer
-     */
-    public Integer getIsFinal() {
-        return isFinal;
-    }
-
-    /**
-     * set 是否可删除
-     *
-     * @param isFinal
-     */
-    public void setIsFinal(Integer isFinal) {
-        this.isFinal = isFinal;
     }
 
     /**
@@ -233,12 +219,12 @@ public class SysRoleDto {
 
     @Override
     public String toString() {
-        return "SysRole{" +
+        return "SysRoleOrganization{" +
                 "id='" + id + '\'' +
-                ", description='" + description + '\'' +
-                ", name='" + name + '\'' +
+                ", sysOrganizationId='" + sysOrganizationId + '\'' +
+                ", sysRoleId='" + sysRoleId + '\'' +
+                ", parentId='" + parentId + '\'' +
                 ", rank='" + rank + '\'' +
-                ", isFinal='" + isFinal + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", updateTime='" + updateTime + '\'' +
                 ", createBy='" + createBy + '\'' +

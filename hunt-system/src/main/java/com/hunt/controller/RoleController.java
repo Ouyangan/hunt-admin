@@ -3,7 +3,6 @@ package com.hunt.controller;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysRole;
 import com.hunt.service.SysRoleService;
-import com.sun.javadoc.SourcePosition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +71,7 @@ public class RoleController extends BaseController {
         sysRole.setId(id);
         sysRole.setName(name);
         sysRole.setDescription(description);
-        sysRoleService.updateRole(sysRole,permissionIds);
+        sysRoleService.updateRole(sysRole, permissionIds);
         return Result.success();
     }
 

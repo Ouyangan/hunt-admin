@@ -91,9 +91,8 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
     @Override
     public boolean isExistFullNameExcludeId(long id, String fullName) {
 
-        return sysOrganizationMapper.isExistFullNameExcludeId(id,fullName);
+        return sysOrganizationMapper.isExistFullNameExcludeId(id, fullName);
     }
-
 }
 
 

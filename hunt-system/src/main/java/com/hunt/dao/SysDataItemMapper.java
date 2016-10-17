@@ -1,10 +1,9 @@
 package com.hunt.dao;
 
+import com.hunt.model.entity.SysDataItem;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
-import com.hunt.model.entity.SysDataItem;
 
 public interface SysDataItemMapper {
     //新增

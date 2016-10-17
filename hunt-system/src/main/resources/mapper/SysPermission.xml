@@ -212,30 +212,30 @@
     </select>
     <select id="isExistName" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_permission
-                WHERE status = 1 AND name = #{name} AND sys_permission_group_id = #{groupId}
+        SELECT *
+        FROM sys_permission
+        WHERE status = 1 AND name = #{name} AND sys_permission_group_id = #{groupId}
         )
     </select>
     <select id="isExistCode" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_permission
-                WHERE status = 1 AND code = #{code} AND sys_permission_group_id = #{groupId}
+        SELECT *
+        FROM sys_permission
+        WHERE status = 1 AND code = #{code} AND sys_permission_group_id = #{groupId}
         )
     </select>
     <select id="isExistNameExcludeId" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_permission
-                WHERE status = 1 AND name = #{name} AND sys_permission_group_id = #{groupId} AND id != #{id}
+        SELECT *
+        FROM sys_permission
+        WHERE status = 1 AND name = #{name} AND sys_permission_group_id = #{groupId} AND id != #{id}
         )
     </select>
     <select id="isExistCodeExcludeId" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_permission
-                WHERE status = 1 AND code = #{code} AND sys_permission_group_id = #{groupId} AND id != #{id}
+        SELECT *
+        FROM sys_permission
+        WHERE status = 1 AND code = #{code} AND sys_permission_group_id = #{groupId} AND id != #{id}
         )
     </select>
 
