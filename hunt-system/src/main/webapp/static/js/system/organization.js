@@ -2,6 +2,7 @@ organization_tool = {
     //重置表单
     form_clear: function () {
         $("#organization_form").form("clear");
+        $("#organization_save_right").treegrid("uncheckAll");
     },
     //初始化数据
     init_data: function () {
@@ -43,7 +44,9 @@ organization_tool = {
     //初始化页面+加载数据
     init_mian_view: function () {
         $("#organization").treegrid({
-            data: organization_tool.init_data(),
+            // data: organization_tool.init_data(),
+            url: '/organization/select',
+            method: 'get',
             idField: "id",
             nodeId: 'id',
             treeField: 'name',
@@ -94,7 +97,7 @@ organization_tool = {
     init_edit_view: function (data, parentId) {
         console.log("init add");
         $("#organization_save").dialog({
-            title: '新增组织机构',
+            title: '新增职位',
             iconCls: 'icon-save',
             closable: true,
             width: 900,
@@ -103,15 +106,7 @@ organization_tool = {
             modal: true,
             resizable: false,
             'onOpen': function () {
-                if (parentId == null) {
-                    $("#organization_save_right").treegrid({
-                        data: organization_tool.init_data(),
-                    });
-                }
                 if (parentId != null) {
-                    $("#organization_save_right").treegrid({
-                        data: organization_tool.init_data(),
-                    });
                     $("#organization_save_right").treegrid('select', parentId);
                 }
             },

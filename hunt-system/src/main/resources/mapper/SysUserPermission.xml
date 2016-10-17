@@ -159,6 +159,11 @@
         </set>
         where id =#{id} and status=1
     </update>
+    <update id="deleteByUserId">
+        UPDATE sys_user_permission
+        SET status = 2
+        WHERE sys_user_id = #{userId}
+    </update>
 
     <select id="select" parameterType="SysUserPermission" resultType="SysUserPermission">
         select * from sys_user_permission where
@@ -168,15 +173,24 @@
     </select>
 
     <select id="selectById" parameterType="long" resultType="SysUserPermission">
-        select * from sys_user_permission where id =#{id} and status=1
+        SELECT *
+        FROM sys_user_permission
+        WHERE id = #{id} AND status = 1
     </select>
 
     <select id="selectAll" resultType="SysUserPermission">
-        select * from sys_user_permission where status=1
+        SELECT *
+        FROM sys_user_permission
+        WHERE status = 1
     </select>
 
     <select id="selectCounts" resultType="integer">
-        select count(*) from sys_user_permission where status=1
+        SELECT count(*)
+        FROM sys_user_permission
+        WHERE status = 1
+    </select>
+    <select id="selectByUserId" resultType="com.hunt.model.entity.SysUserPermission">
+        SELECT * FROM sys_user_permission WHERE status=1 AND sys_user_id=#{userId}
     </select>
 
 </mapper>

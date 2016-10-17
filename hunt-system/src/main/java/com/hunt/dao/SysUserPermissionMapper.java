@@ -23,4 +23,8 @@ public interface SysUserPermissionMapper {
 
     //查询数量
     public int selectCounts();
+
+    void deleteByUserId(@Param("userId") long userId);
+
+    List<SysUserPermission> selectByUserId(Long userId);
 }

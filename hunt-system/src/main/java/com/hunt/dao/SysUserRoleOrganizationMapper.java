@@ -23,4 +23,8 @@ public interface SysUserRoleOrganizationMapper {
 
     //查询数量
     public int selectCounts();
+
+    void deleteUserId(@Param("userId") long userId);
+
+    List<SysUserRoleOrganization> selectByUserId(@Param("userId") Long userId);
 }

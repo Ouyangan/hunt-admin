@@ -29,8 +29,8 @@
                                                              class="easyui-textbox easyui-validatebox">
             </p>
         </div>
-        <div style="float: right;width:50%;height: 326px;">
-            <table id="job_dialog_tree" class="easyui-treegrid easyui-validatebox"
+        <div style="float: right;width: 300px;;height: 326px;">
+            <table id="job_dialog_parent_tree" class="easyui-treegrid"
                    data-options="
                 url:'/job/select',
                 method:'get',
@@ -40,7 +40,7 @@
                 border: true,
                 rownumbers: true,
                 fit: true,
-                fitColumns: true,
+                fitColumns: false,
                 checkOnSelect:true,
                 required:true,
             ">
@@ -51,7 +51,62 @@
                 </thead>
                 <thead>
                 <tr>
-                    <th data-options="field:'name',width:260">上级职位名称</th>
+                    <th data-options="field:'name',width:260">上级职位</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div style="float: right;width: 200px;height: 326px">
+            <table id="job_dialog_role" class="easyui-datagrid"
+                   data-options="
+                url:'/role/select',
+                method:'get',
+                idField: 'id',
+                nodeId:'id',
+                treeField: 'name',
+                border: true,
+                rownumbers: true,
+                fit: true,
+                fitColumns: false,
+                checkOnSelect:true,
+                singleSelect:true,
+                required:true,
+            ">
+                <thead frozen="true">
+                <tr>
+                    <th data-options="field:'ck', checkbox: true">选择</th>
+                </tr>
+                </thead>
+                <thead>
+                <tr>
+                    <th data-options="field:'name',width:260">系统角色</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div style="float: right;width: 300px;height: 326px">
+            <table id="job_dialog_organization" class="easyui-treegrid"
+                   data-options="
+                url:'/organization/select',
+                method:'get',
+                idField: 'id',
+                nodeId:'id',
+                treeField: 'name',
+                border: true,
+                rownumbers: true,
+                fit: true,
+                fitColumns: false,
+                checkOnSelect:true,
+                required:true,
+            ">
+                <thead frozen="true">
+                <tr>
+                    <th data-options="field:'ck', checkbox: true">选择</th>
+                </tr>
+                </thead>
+                <thead>
+                <tr>
+                    <th data-options="field:'name',width:260">组织机构</th>
                 </tr>
                 </thead>
             </table>

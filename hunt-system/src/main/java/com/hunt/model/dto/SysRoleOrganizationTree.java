@@ -26,7 +26,7 @@ public class SysRoleOrganizationTree {
     private String name;
 
     // fullName :
-    private String fullname;
+    private String fullName;
 
     // description :
     private String description;
@@ -65,7 +65,7 @@ public class SysRoleOrganizationTree {
                 ", sysRoleId=" + sysRoleId +
                 ", parentId=" + parentId +
                 ", name='" + name + '\'' +
-                ", fullname='" + fullname + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", description='" + description + '\'' +
                 ", rank=" + rank +
                 ", createTime=" + createTime +
@@ -203,22 +203,12 @@ public class SysRoleOrganizationTree {
         this.name = name;
     }
 
-    /**
-     * get
-     *
-     * @return String
-     */
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    /**
-     * set
-     *
-     * @param fullname
-     */
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     /**

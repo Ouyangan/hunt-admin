@@ -24,5 +24,9 @@ public interface SysUserMapper {
     //查询数量
     public int selectCounts();
 
-    SysUser selectByLoginName(@Param("username") String username);
+    boolean selectByLoginName(@Param("loginName") String loginName);
+
+    void deleteById(@Param("id") long id);
+
+    boolean isExistLoginNameExlcudeId(@Param("id") long id, @Param("loginName") String loginName);
 }

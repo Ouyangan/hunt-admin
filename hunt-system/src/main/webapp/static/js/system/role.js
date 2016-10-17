@@ -1,4 +1,9 @@
 role_tool = {
+    form_clear: function () {
+        $("#organization_form").form("clear");
+        $("#permissions").datagrid("uncheckAll");
+        $("#role_grid").datagrid("uncheckAll");
+    },
     //初始化页面+加载数据
     init_main_view: function () {
         $("#role_grid").datagrid({
@@ -106,7 +111,7 @@ role_tool = {
                 success: function (result) {
                     if (result.code == 10000) {
                         $("#role_edit_dialog").dialog("close");
-                        $("#role_edit_form").form('reset');
+                        role_tool.form_clear();
                         role_tool.init_main_view();
                         common_tool.messager_show(result.msg);
                         return false;
@@ -150,7 +155,7 @@ role_tool = {
                 success: function (result) {
                     if (result.code == 10000) {
                         $("#role_edit_dialog").dialog("close");
-                        $("#role_edit_form").form('clear');
+                        role_tool.form_clear();
                         role_tool.init_main_view();
                         common_tool.messager_show(result.msg);
                         return false;
@@ -200,7 +205,7 @@ role_tool = {
                     width: 100,
                     iconCls: 'icon-reload',
                     handler: function () {
-                        $("#role_edit_form").form('clear');
+                        role_tool.form_clear();
                     }
                 },
                 {
@@ -209,7 +214,7 @@ role_tool = {
                     iconCls: 'icon-add',
                     handler: function () {
                         $("#role_edit_dialog").dialog('close');
-                        $("#role_edit_form").form('clear');
+                        role_tool.form_clear();
                     }
                 }
             ],
@@ -252,6 +257,7 @@ $(document).ready(function () {
         });
     });
     $("#role-select-btn ").click(function () {
+        role_tool.form_clear();
         role_tool.init_main_view();
     });
 })

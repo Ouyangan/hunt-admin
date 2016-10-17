@@ -1,15 +1,20 @@
 package com.hunt.service.impl;
 
-import com.hunt.dao.SysOrganizationMapper;
-import com.hunt.dao.SysRoleMapper;
+import com.github.pagehelper.PageHelper;
+import com.hunt.dao.SysPermissionMapper;
 import com.hunt.dao.SysUserMapper;
-import com.hunt.model.dto.LoginUserInfo;
-import com.hunt.model.dto.UserRoleOriganization;
+import com.hunt.dao.SysUserPermissionMapper;
+import com.hunt.dao.SysUserRoleOrganizationMapper;
+import com.hunt.model.dto.PageInfo;
+import com.hunt.model.dto.SysUserDto;
+import com.hunt.model.entity.SysPermission;
 import com.hunt.model.entity.SysUser;
+import com.hunt.model.entity.SysUserPermission;
 import com.hunt.model.entity.SysUserRoleOrganization;
 import com.hunt.service.SysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,46 +33,106 @@ public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private SysUserMapper sysUserMapper;
     @Autowired
-    private SysRoleMapper sysRoleMapper;
+    private SysUserRoleOrganizationMapper sysUserRoleOrganizationMapper;
     @Autowired
-    private SysOrganizationMapper sysOrganizationMapper;
+    private SysUserPermissionMapper sysUserPermissionMapper;
+    @Autowired
+    private SysPermissionMapper sysPermissionMapper;
 
     @Override
-    public long insertUser(SysUser sysUser, List<SysUserRoleOrganization> sysUserRoleOrganizationList) {
-        Long i = sysUserMapper.insert(sysUser);
-        for (int j = 0; j < sysUserRoleOrganizationList.size(); j++) {
-            SysUserRoleOrganization sysUserRoleOrganization = sysUserRoleOrganizationList.get(j);
-            sysUserRoleOrganization.setSysUserId(i);
-//            sysUserRoleOrganizationMapper.insert(sysUserRoleOrganization);
+    public long insertUser(SysUser user, String jobIds, String permissionIds) {
+        sysUserMapper.insert(user);
+        String[] jobIdArray = jobIds.split(",");
+        String[] permissionIdArray = permissionIds.split(",");
+        for (String jobid : jobIdArray) {
+            SysUserRoleOrganization userRoleOrganization = new SysUserRoleOrganization();
+            userRoleOrganization.setSysUserId(user.getId());
+            userRoleOrganization.setSysRoleOrganizationId(Long.valueOf(jobid));
+            userRoleOrganization.setIsFinal(1);
+            sysUserRoleOrganizationMapper.insert(userRoleOrganization);
         }
-        return i;
+        for (String permissionId : permissionIdArray) {
+            SysUserPermission userPermission = new SysUserPermission();
+            userPermission.setSysUserId(user.getId());
+            userPermission.setSysPermissionId(Long.valueOf(permissionId));
+            userPermission.setIsFinal(1);
+            sysUserPermissionMapper.insert(userPermission);
+        }
+        return user.getId();
     }
 
     @Override
-    public SysUser selectUserByLoginName(String username) {
-        log.debug("begin...");
-        SysUser user = sysUserMapper.selectByLoginName(username);
-        return user;
+    public boolean isExistLoginName(String loginName) {
+        return sysUserMapper.selectByLoginName(loginName);
     }
 
     @Override
-    public LoginUserInfo selectUserLoginInfo(Long id) {
-        log.debug("begin...");
-        SysUser user = sysUserMapper.selectById(id);
-        log.debug("end...");
-        List<SysUserRoleOrganization> list = new ArrayList<>();
+    public SysUser selectById(long id) {
+        return sysUserMapper.selectById(id);
+    }
 
-        List<UserRoleOriganization> userRoleOriganizationList = new ArrayList<>();
-        //// TODO: 2016/10/17  
-        for (SysUserRoleOrganization sysUserRoleOrganization : list) {
-//            SysRole sysRole = sysRoleMapper.selectById(sysUserRoleOrganization.getSysRoleId());
-//            SysOrganization sysOrganization = sysOrganizationMapper.selectById(sysUserRoleOrganization.getSysOrganizationId());
-//            UserRoleOriganization userRoleOriganization = new UserRoleOriganization(sysRole, sysOrganization);
-//            userRoleOriganizationList.add(userRoleOriganization);
+    @Override
+    public void updateUser(SysUser user, String jobIds, String permissionIds) {
+        sysUserMapper.update(user);
+        sysUserPermissionMapper.deleteByUserId(user.getId());
+        sysUserRoleOrganizationMapper.deleteUserId(user.getId());
+        String[] jobIdArray = jobIds.split(",");
+        String[] permissionIdArray = permissionIds.split(",");
+
+        for (String jobid : jobIdArray) {
+            SysUserRoleOrganization userRoleOrganization = new SysUserRoleOrganization();
+            userRoleOrganization.setSysUserId(user.getId());
+            userRoleOrganization.setSysRoleOrganizationId(Long.valueOf(jobid));
+            userRoleOrganization.setIsFinal(1);
+            sysUserRoleOrganizationMapper.insert(userRoleOrganization);
         }
-        LoginUserInfo loginUserInfo = new LoginUserInfo();
-        loginUserInfo.setUser(user);
-        loginUserInfo.setUserRoleOriganizationList(userRoleOriganizationList);
-        return loginUserInfo;
+        for (String permissionId : permissionIdArray) {
+            SysUserPermission userPermission = new SysUserPermission();
+            userPermission.setSysUserId(user.getId());
+            userPermission.setSysPermissionId(Long.valueOf(permissionId));
+            userPermission.setIsFinal(1);
+            sysUserPermissionMapper.insert(userPermission);
+        }
+    }
+
+    @Override
+    public PageInfo selectPage(int page, int rows) {
+        int counts = sysUserMapper.selectCounts();
+        PageHelper.startPage(page, rows);
+        List<SysUser> sysUsers = sysUserMapper.selectAll();
+        List<SysUserDto> sysUserDtos = new ArrayList<>();
+        for (SysUser user : sysUsers) {
+            SysUserDto userDto = new SysUserDto();
+            BeanUtils.copyProperties(user, userDto);
+            List<SysUserPermission> userPermissions = sysUserPermissionMapper.selectByUserId(user.getId());
+            List<SysPermission> permissions = new ArrayList<>();
+            for (SysUserPermission userPermission : userPermissions) {
+                SysPermission sysPermission = sysPermissionMapper.selectById(userPermission.getSysPermissionId());
+                permissions.add(sysPermission);
+            }
+            List<SysUserRoleOrganization> userRoleOrganizations = sysUserRoleOrganizationMapper.selectByUserId(user.getId());
+            userDto.setPermissions(permissions);
+            userDto.setUserRoleOrganizations(userRoleOrganizations);
+            sysUserDtos.add(userDto);
+        }
+        PageInfo pageInfo = new PageInfo(counts, sysUserDtos);
+        return pageInfo;
+    }
+
+    @Override
+    public void updateUser(SysUser user) {
+        sysUserMapper.update(user);
+    }
+
+    @Override
+    public boolean isExistLoginNameExlcudeId(long id, String loginName) {
+        return sysUserMapper.isExistLoginNameExlcudeId(id, loginName);
+    }
+
+    @Override
+    public void deleteById(long id) {
+        sysUserMapper.deleteById(id);
+        sysUserPermissionMapper.deleteByUserId(id);
+        sysUserRoleOrganizationMapper.deleteUserId(id);
     }
 }

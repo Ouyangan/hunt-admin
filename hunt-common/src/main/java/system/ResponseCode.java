@@ -12,12 +12,13 @@ public enum ResponseCode {
     forbidden_account(20002, "账户已禁用"),
     password_incorrect(20003, "密码错误"),
     unauthorized(20004, "无操作权限"),
-    can_not_delete(20005, "该记录无法编辑"),
+    can_not_edit(20005, "该条记录无法编辑"),
     unauthenticated(20004, "未登录"),
     param_format_error(30001, "参数格式错误"),
     missing_parameter(30002, "缺少参数"),
     name_already_exist(30003, "该名称已存在"),
-    data_not_exist(30003, "该名称已存在");
+    data_not_exist(30004, "该记录不存在"),
+    login_name_already_exist(30005, "该登录名已存在");
 
     private int code;
     private String msg;

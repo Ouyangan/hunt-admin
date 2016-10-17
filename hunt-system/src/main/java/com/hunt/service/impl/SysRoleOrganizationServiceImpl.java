@@ -5,8 +5,12 @@ import com.hunt.dao.SysRoleMapper;
 import com.hunt.dao.SysRoleOrganizationMapper;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.dto.SysRoleOrganizationTree;
+import com.hunt.model.entity.SysOrganization;
+import com.hunt.model.entity.SysRole;
 import com.hunt.model.entity.SysRoleOrganization;
 import com.hunt.service.SysRoleOrganizationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,9 +27,9 @@ import java.util.List;
 @Service
 @Transactional
 public class SysRoleOrganizationServiceImpl implements SysRoleOrganizationService {
+    private static Logger log = LoggerFactory.getLogger(SysRoleOrganizationServiceImpl.class);
     @Autowired
     private SysRoleOrganizationMapper roleOrganizationMapper;
-
     @Autowired
     private SysRoleMapper sysRoleMapper;
     @Autowired
@@ -61,16 +65,29 @@ public class SysRoleOrganizationServiceImpl implements SysRoleOrganizationServic
     public PageInfo selectPage(int page, int rows, long id) {
         int counts = roleOrganizationMapper.selectCounts();
         SysRoleOrganizationTree tree = selectSysRoleOrganizationTree(id);
-        return new PageInfo(counts, tree);
+        List<SysRoleOrganizationTree> list = new ArrayList<>();
+        list.add(tree);
+        return new PageInfo(counts, list);
     }
 
     //查询职位树形结构
     public SysRoleOrganizationTree selectSysRoleOrganizationTree(long id) {
         SysRoleOrganizationTree tree = new SysRoleOrganizationTree();
         SysRoleOrganization roleOrganization = roleOrganizationMapper.selectById(id);
-        tree.setSysRoleName(sysRoleMapper.selectById(tree.getSysRoleId()).getName());
-        tree.setSysRoleName(sysOrganizationMapper.selectById(tree.getSysOrganizationId()).getName());
+        log.debug("roleOrganization :{}", roleOrganization);
         BeanUtils.copyProperties(roleOrganization, tree);
+        if (roleOrganization == null) {
+            return null;
+        }
+        SysRole role = sysRoleMapper.selectById(roleOrganization.getSysRoleId());
+        log.debug("role :{}", role);
+        if (role != null) {
+            tree.setSysRoleName(role.getName());
+        }
+        SysOrganization organization = sysOrganizationMapper.selectById(roleOrganization.getSysOrganizationId());
+        if (organization != null) {
+            tree.setSysOrganizationName(organization.getName());
+        }
         List<SysRoleOrganizationTree> childrenList = selectSysRoleOrganizationTreeChildrenList(id);
         tree.setChildren(childrenList);
         for (int i = 0; i < childrenList.size(); i++) {

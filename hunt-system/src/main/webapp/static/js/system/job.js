@@ -1,17 +1,125 @@
 job_tool = {
     form_clear: function () {
         $("#job_form").form('clear');
+        $("#job_dialog_parent_tree").treegrid("uncheckAll");
+        $("#job_dialog_organization").treegrid("uncheckAll");
+        $("#job_dialog_role").datagrid("uncheckAll");
+        $("#job_grid").treegrid("uncheckAll");
     },
     save: function () {
-
+        if (!$('#name').validatebox('isValid')) {
+            common_tool.messager_show('请输入名称');
+        } else if (!$('#fullName').validatebox('isValid')) {
+            common_tool.messager_show('请输入全称');
+        } else if (!$('#description').validatebox('isValid')) {
+            common_tool.messager_show('请输入描述');
+        } else if ($("#job_dialog_parent_tree").treegrid("getChecked").length == 0) {
+            common_tool.messager_show('请选择上级职位');
+        } else if ($("#job_dialog_role").datagrid("getChecked").length == 0) {
+            common_tool.messager_show('请选择系统角色');
+        } else if ($("#job_dialog_organization").treegrid("getChecked").length == 0) {
+            common_tool.messager_show('请选择组织机构');
+        } else {
+            var name = $('#name').val();
+            var fullName = $('#fullName').val();
+            var description = $('#description').val();
+            var parent_job = $("#job_dialog_parent_tree").treegrid("getChecked")[0];
+            var role = $("#job_dialog_role").datagrid("getChecked")[0];
+            var organization = $("#job_dialog_organization").treegrid("getChecked")[0];
+            $.ajax({
+                data: {
+                    name: name,
+                    fullName: fullName,
+                    description: description,
+                    parentId: parent_job.id,
+                    roleId: role.id,
+                    organizationId: organization.id,
+                },
+                method: 'post',
+                url: '/job/insert',
+                async: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 10000) {
+                        $("#job_dialog").dialog('close');
+                        job_tool.form_clear();
+                        job_tool.init_main_view();
+                    }
+                    else {
+                        common_tool.messager_show(result.msg);
+                    }
+                },
+            });
+        }
     },
     update: function () {
-
+        if (!$('#name').validatebox('isValid')) {
+            common_tool.messager_show('请输入名称');
+        } else if (!$('#fullName').validatebox('isValid')) {
+            common_tool.messager_show('请输入全称');
+        } else if (!$('#description').validatebox('isValid')) {
+            common_tool.messager_show('请输入描述');
+        } else if ($("#job_dialog_parent_tree").treegrid("getChecked").length == 0) {
+            common_tool.messager_show('请选择上级职位');
+        } else if ($("#job_dialog_role").datagrid("getChecked").length == 0) {
+            common_tool.messager_show('请选择系统角色');
+        } else if ($("#job_dialog_organization").treegrid("getChecked").length == 0) {
+            common_tool.messager_show('请选择组织机构');
+        } else {
+            var id = $('#id').val();
+            var name = $('#name').val();
+            var fullName = $('#fullName').val();
+            var description = $('#description').val();
+            var parent_job = $("#job_dialog_parent_tree").treegrid("getChecked")[0];
+            var role = $("#job_dialog_role").datagrid("getChecked")[0];
+            var organization = $("#job_dialog_organization").treegrid("getChecked")[0];
+            $.ajax({
+                data: {
+                    id:id,
+                    name: name,
+                    fullName: fullName,
+                    description: description,
+                    parentId: parent_job.id,
+                    roleId: role.id,
+                    organizationId: organization.id,
+                },
+                method: 'post',
+                url: '/job/update',
+                async: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 10000) {
+                        $("#job_dialog").dialog('close');
+                        job_tool.form_clear();
+                        job_tool.init_main_view();
+                    }
+                    else {
+                        common_tool.messager_show(result.msg);
+                    }
+                },
+            });
+        }
     },
-    delete: function () {
-
+    delete: function (id) {
+        $.ajax({
+            data: {
+                id:id,
+            },
+            method: 'get',
+            url: '/job/delete',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.code == 10000) {
+                    job_tool.form_clear();
+                    job_tool.init_main_view();
+                }
+                else {
+                    common_tool.messager_show(result.msg);
+                }
+            },
+        });
     },
-
     init_main_view: function () {
         $("#job_grid").treegrid({
             url: '/job/select',
@@ -22,7 +130,7 @@ job_tool = {
             fitColumns: true,
             toolbar: '#job-tool-bar',
             rownumbers: true,
-            animate: true,
+            // animate: true,
             fit: true,
             border: false,
             pagePosition: "bottom",
@@ -35,8 +143,8 @@ job_tool = {
                 {title: "选择", field: "ck", checkbox: true},
                 {title: "简称", field: "name", width: 300},
                 {title: "全称", field: "fullName", width: 300},
-                {title: "组织名称", field: "organizationName", width: 400},
-                {title: "角色名称", field: "roleName", width: 400},
+                {title: "组织名称", field: "sysOrganizationName", width: 400},
+                {title: "角色名称", field: "sysRoleName", width: 400},
                 {title: "说明", field: "description", width: 400},
                 {
                     title: "是否可修改", field: "isFinal", formatter: function (value, row, index) {
@@ -67,16 +175,21 @@ job_tool = {
     },
     init_edit_view: function (type) {
         $("#job_dialog").dialog({
-            title: '新增组织机构',
+            title: '新增职位',
             iconCls: 'icon-save',
             closable: true,
-            width: 900,
+            width: 1200,
             height: 400,
             cache: false,
             modal: true,
             resizable: false,
             'onOpen': function () {
-
+                if (type == 2) {
+                    var job = $("#job_grid").treegrid('getChecked')[0];
+                    $("#job_dialog_parent_tree").treegrid('select', job.parentId);
+                    $("#job_dialog_role").datagrid('selectRecord', job.sysRoleId);
+                    $("#job_dialog_organization").treegrid('select', job.sysOrganizationId);
+                }
             },
             'onClose': function () {
                 job_tool.form_clear();
@@ -87,10 +200,10 @@ job_tool = {
                     width: 100,
                     iconCls: 'icon-save',
                     handler: function () {
-                        if (data == 1) {
+                        if (type == 1) {
                             job_tool.save();
                         }
-                        if (data == 2) {
+                        if (type == 2) {
                             job_tool.update();
                         }
                     }
@@ -115,35 +228,40 @@ job_tool = {
             ],
         })
     }
-}
+};
 $(document).ready(function () {
     job_tool.init_main_view();
     $("#job-save-btn").click(function () {
         job_tool.init_edit_view(1);
     });
     $("#job-update-btn").click(function () {
-        var jobArray = $("#job_grid").treegrid('getChecked');
-        if (jobArray.length == 0) {
+        var job = $("#job_grid").treegrid('getChecked')[0];
+        if (job == null) {
             common_tool.messager_show("请选择一条记录");
             return false;
         }
-        $("#organization_form").form('load', {
-            "id": jobArray[0].id,
-            "name": jobArray[0].name,
-            "fullName": jobArray[0].fullName,
-            "description": jobArray[0].description,
+        $("#job_form").form('load', {
+            "id": job.id,
+            "name": job.name,
+            "fullName": job.fullName,
+            "description": job.description,
         });
         job_tool.init_edit_view(2);
     });
     $("#job-delete-btn").click(function () {
-        var jobArray = $("#job_grid").treegrid('getChecked');
-        if (jobArray.length == 0) {
+        var job = $("#job_grid").treegrid('getChecked');
+        if (job.length == 0) {
             common_tool.messager_show("请选择一条记录");
             return false;
         }
-        job_tool.delete();
+        $.messager.confirm('确认对话框', "您确认删除该条记录吗?", function (r) {
+            if (r) {
+                job_tool.delete(job[0].id);
+            }
+        });
     });
     $("#job-select-btn").click(function () {
+        job_tool.form_clear();
         job_tool.init_main_view();
     });
 

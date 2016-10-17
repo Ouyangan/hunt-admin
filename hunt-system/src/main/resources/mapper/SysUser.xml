@@ -271,6 +271,11 @@
         </set>
         where id =#{id} and status=1
     </update>
+    <update id="deleteById">
+        UPDATE sys_user
+        SET status = 2
+        WHERE id = #{id}
+    </update>
 
     <select id="select" parameterType="SysUser" resultType="SysUser">
         select * from sys_user where
@@ -296,10 +301,19 @@
         FROM sys_user
         WHERE status = 1
     </select>
-    <select id="selectByLoginName" resultType="com.hunt.model.entity.SysUser">
-        SELECT *
-        FROM sys_user
-        WHERE status = 1 AND login_name = #{username};
+    <select id="selectByLoginName" resultType="boolean">
+        SELECT exists(
+                SELECT *
+                FROM sys_user
+                WHERE status = 1 AND login_name = #{loginName}
+        )
+    </select>
+    <select id="isExistLoginNameExlcudeId" resultType="java.lang.Boolean">
+        SELECT exists(
+                SELECT *
+                FROM sys_user
+                WHERE status = 1 AND id != #{id} AND login_name = #{loginName}
+        )
     </select>
 
 </mapper>

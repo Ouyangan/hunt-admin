@@ -31,6 +31,8 @@
         <div style="float: right;width:50%;height: 326px;">
             <table id="organization_save_right" class="easyui-treegrid easyui-validatebox"
                    data-options="
+                url:'/organization/select',
+                method:'get',
                 idField: 'id',
                 treeField: 'name',
                 border: true,

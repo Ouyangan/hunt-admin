@@ -1,22 +1,8 @@
 permission_tool = {
-    init_data: function () {
-        var data_json = '';
-        $.ajax({
-            method: 'get',
-            url: '/permission/permission',
-            async: false,
-            dataType: 'json',
-            success: function (result) {
-                if (result.code == 10000) {
-                    data_json = result.data;
-                    console.log(data_json);
-                }
-                else {
-                    common_tool.messager_show(result.msg);
-                }
-            },
-        });
-        return data_json;
+    form_clear:function () {
+        $("#save-permission-form").form('clear');
+        $("#permission_grid").treegrid("uncheckAll");
+        $("#permission-group").datagrid("uncheckAll");
     },
     delte_permission: function () {
         if ($("#permission_grid").treegrid("getChecked").length == 0) {
@@ -73,7 +59,7 @@ permission_tool = {
                 success: function (result) {
                     if (result.code == 10000) {
                         $("#save-permission-dialog").dialog("close");
-                        $("#save-permission-form").form('clear');
+                        permission_tool.form_clear();
                         permission_tool.init_main_view();
                         return false;
                     }
@@ -116,7 +102,7 @@ permission_tool = {
                 success: function (result) {
                     if (result.code == 10000) {
                         $("#save-permission-dialog").dialog("close");
-                        $("#save-permission-form").form('clear');
+                        permission_tool.form_clear();
                         permission_tool.init_main_view();
                         return false;
                     }
@@ -147,7 +133,7 @@ permission_tool = {
                 success: function (result) {
                     if (result.code == 10000) {
                         $("#save-permission-group-dialog").dialog("close");
-                        $("#save-permission-group-form").form('clear');
+                        permission_tool.form_clear();
                         permission_tool.init_main_view();
                         return false;
                     }
@@ -182,7 +168,7 @@ permission_tool = {
                     width: 100,
                     iconCls: 'icon-reload',
                     handler: function () {
-                        $("#save-permission-group-form").form('clear');
+                        permission_tool.form_clear();
                     }
                 },
                 {
@@ -190,8 +176,8 @@ permission_tool = {
                     width: 100,
                     iconCls: 'icon-add',
                     handler: function () {
+                        permission_tool.form_clear();
                         $("#save-permission-group-dialog").dialog('close');
-                        $("#save-permission-group-form").form('clear');
                     }
                 }
             ],
@@ -232,7 +218,7 @@ permission_tool = {
                     width: 100,
                     iconCls: 'icon-reload',
                     handler: function () {
-                        $("#save-permission-form").form('clear');
+                        permission_tool.form_clear();
                     }
                 },
                 {
@@ -240,8 +226,8 @@ permission_tool = {
                     width: 100,
                     iconCls: 'icon-add',
                     handler: function () {
+                        permission_tool.form_clear();
                         $("#save-permission-dialog").dialog('close');
-                        $("#save-permission-form").form('clear');
                     }
                 }
             ],
@@ -305,9 +291,8 @@ permission_tool = {
 $(document).ready(function () {
     permission_tool.init_main_view();
     $("#flash-permission").click(function () {
-        console.log("刷新")
+        permission_tool.form_clear();
         permission_tool.init_main_view();
-        return false;
     });
     $("#save-permission").click(function () {
         permission_tool.init_edit_view(1);

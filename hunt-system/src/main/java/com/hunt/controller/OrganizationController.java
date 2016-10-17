@@ -101,11 +101,11 @@ public class OrganizationController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
-    public Result select(@RequestParam(value = "page", defaultValue = "1") int page,
+    public PageInfo select(@RequestParam(value = "page", defaultValue = "1") int page,
                          @RequestParam(value = "row", defaultValue = "15") int row,
                          @RequestParam(value = "id", defaultValue = "1") long id) {
         PageInfo pageInfo = sysOrganizationService.selectPage(page, row, id);
-        return Result.success(pageInfo);
+        return pageInfo;
     }
 
 

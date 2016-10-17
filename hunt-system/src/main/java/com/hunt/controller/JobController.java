@@ -67,7 +67,7 @@ public class JobController extends BaseController {
             return Result.error(ResponseCode.data_not_exist.getMsg());
         }
         if (roleOrganization.getIsFinal() == 2) {
-            return Result.error(ResponseCode.can_not_delete.getMsg());
+            return Result.error(ResponseCode.can_not_edit.getMsg());
         }
         boolean isExistNameExcludeId = roleOrganizationService.isExistNameExcludeId(id, name, parentId);
         if (isExistNameExcludeId) {
@@ -91,7 +91,7 @@ public class JobController extends BaseController {
             return Result.error(ResponseCode.data_not_exist.getMsg());
         }
         if (roleOrganization.getIsFinal() == 2) {
-            return Result.error(ResponseCode.can_not_delete.getMsg());
+            return Result.error(ResponseCode.can_not_edit.getMsg());
         }
         roleOrganization.setStatus(2);
         roleOrganizationService.updateRoleOrganization(roleOrganization);
@@ -100,11 +100,11 @@ public class JobController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
-    public Result select(@RequestParam int page,
-                         @RequestParam int rows,
+    public PageInfo select(@RequestParam(defaultValue = "1") int page,
+                         @RequestParam(defaultValue = "15") int rows,
                          @RequestParam(defaultValue = "1") long id) {
         PageInfo pageInfo = roleOrganizationService.selectPage(page, rows, id);
-        return Result.success(pageInfo);
+        return pageInfo;
     }
 
 }
