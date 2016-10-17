@@ -30,9 +30,12 @@
             </p>
         </div>
         <div style="float: right;width:50%;height: 326px;">
-            <table id="job_tree" class="easyui-treegrid easyui-validatebox"
+            <table id="job_dialog_tree" class="easyui-treegrid easyui-validatebox"
                    data-options="
+                url:'/job/select',
+                method:'get',
                 idField: 'id',
+                nodeId:'id',
                 treeField: 'name',
                 border: true,
                 rownumbers: true,

@@ -1,6 +1,6 @@
 organization_tool = {
     //重置表单
-    form_reset: function () {
+    form_clear: function () {
         $("#organization_form").form("clear");
     },
     //初始化数据
@@ -116,7 +116,7 @@ organization_tool = {
                 }
             },
             'onClose': function () {
-                organization_tool.form_reset();
+                organization_tool.form_clear();
             },
             buttons: [
                 {
@@ -137,7 +137,7 @@ organization_tool = {
                     width: 100,
                     iconCls: 'icon-reload',
                     handler: function () {
-                        organization_tool.form_reset();
+                        organization_tool.form_clear();
                     }
                 },
                 {
@@ -146,7 +146,7 @@ organization_tool = {
                     iconCls: 'icon-add',
                     handler: function () {
                         $("#organization_save").dialog('close');
-                        organization_tool.form_reset();
+                        organization_tool.form_clear();
                     }
                 }
             ],
@@ -195,7 +195,7 @@ organization_tool = {
             success: function (result) {
                 if (result.code == 10000) {
                     $("#organization_save").dialog("close");
-                    organization_tool.form_reset();
+                    organization_tool.form_clear();
                     organization_tool.init_mian_view();
                 }
                 else {
@@ -228,7 +228,7 @@ organization_tool = {
             success: function (result) {
                 if (result.code == 10000) {
                     $("#organization_save").dialog("close");
-                    organization_tool.form_reset();
+                    organization_tool.form_clear();
                     organization_tool.init_mian_view();
                 }
                 else {
