@@ -65,8 +65,8 @@ public class SysUserServiceImplTest {
         Long i1 = roleMapper.insert(role);
 
         SysUserRoleOrganization sysUserRoleOrganization = new SysUserRoleOrganization();
-        sysUserRoleOrganization.setSysOrganizationId(i);
-        sysUserRoleOrganization.setSysOrganizationId(i1);
+//        sysUserRoleOrganization.setSysOrganizationId(i);
+//        sysUserRoleOrganization.setSysOrganizationId(i1);
         List<SysUserRoleOrganization> list = new ArrayList<>();
         list.add(sysUserRoleOrganization);
         long l = sysUserService.insertUser(sysUser, list);

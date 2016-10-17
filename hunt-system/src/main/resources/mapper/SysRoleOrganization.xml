@@ -2,161 +2,151 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hunt.dao.SysRoleOrganizationMapper">
     <resultMap id="baseResultMap" type="com.hunt.model.entity.SysRoleOrganization">
-        <result column="id" property="id" jdbcType="BIGINT"/>
-        <result column="sys_organization_id" property="sysOrganizationId" jdbcType="BIGINT"/>
-        <result column="sys_role_id" property="sysRoleId" jdbcType="BIGINT"/>
-        <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
-        <result column="rank" property="rank" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
-        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
-        <result column="status" property="status" jdbcType="TINYINT"/>
-    </resultMap>
+                    <result column="id" property="id" jdbcType="BIGINT"/>
+                    <result column="sys_organization_id" property="sysOrganizationId" jdbcType="BIGINT"/>
+                    <result column="sys_role_id" property="sysRoleId" jdbcType="BIGINT"/>
+                    <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+                    <result column="rank" property="rank" jdbcType="BIGINT"/>
+                    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+                    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+                    <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+                    <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+                    <result column="status" property="status" jdbcType="TINYINT"/>
+            </resultMap>
     <!--  -->
     <sql id="sql_column">
-        id ,
-        sysOrganizationId ,
-        sysRoleId ,
-        parentId ,
-        rank ,
-        createTime ,
-        updateTime ,
-        createBy ,
-        updateBy ,
-        status
-    </sql>
+                                    id ,
+                                                sysOrganizationId ,
+                                                sysRoleId ,
+                                                parentId ,
+                                                rank ,
+                                                createTime ,
+                                                updateTime ,
+                                                createBy ,
+                                                updateBy ,
+                                                status
+                        </sql>
 
     <sql id="sql_column_where">
-        <if test="id !=null ">
-            AND id = #{id}
-        </if>
-        <if test="sysOrganizationId !=null ">
-            AND sys_organization_id = #{sysOrganizationId}
-        </if>
-        <if test="sysRoleId !=null ">
-            AND sys_role_id = #{sysRoleId}
-        </if>
-        <if test="parentId !=null ">
-            AND parent_id = #{parentId}
-        </if>
-        <if test="rank !=null ">
-            AND rank = #{rank}
-        </if>
-        <if test="createTime !=null ">
-            AND create_time = #{createTime}
-        </if>
-        <if test="updateTime !=null ">
-            AND update_time = #{updateTime}
-        </if>
-        <if test="createBy !=null ">
-            AND create_by = #{createBy}
-        </if>
-        <if test="updateBy !=null ">
-            AND update_by = #{updateBy}
-        </if>
-        <if test="status !=null ">
-            AND status = #{status}
-        </if>
-    </sql>
+                                <if test="id !=null ">
+                        AND id = #{id} </if>
+                                <if test="sysOrganizationId !=null ">
+                        AND sys_organization_id = #{sysOrganizationId} </if>
+                                <if test="sysRoleId !=null ">
+                        AND sys_role_id = #{sysRoleId} </if>
+                                <if test="parentId !=null ">
+                        AND parent_id = #{parentId} </if>
+                                <if test="rank !=null ">
+                        AND rank = #{rank} </if>
+                                <if test="createTime !=null ">
+                        AND create_time = #{createTime} </if>
+                                <if test="updateTime !=null ">
+                        AND update_time = #{updateTime} </if>
+                                <if test="createBy !=null ">
+                        AND create_by = #{createBy} </if>
+                                <if test="updateBy !=null ">
+                        AND update_by = #{updateBy} </if>
+                                <if test="status !=null ">
+                        AND status = #{status} </if>
+            </sql>
 
     <insert id="insert" parameterType="SysRoleOrganization" useGeneratedKeys="true" keyProperty="id">
         insert into sys_role_organization
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="sysOrganizationId !=null">
-                sys_organization_id,
-            </if>
-            <if test="sysRoleId !=null">
-                sys_role_id,
-            </if>
-            <if test="parentId !=null">
-                parent_id,
-            </if>
-            <if test="rank !=null">
-                rank,
-            </if>
-            <if test="createTime !=null">
-                create_time,
-            </if>
-            <if test="updateTime !=null">
-                update_time,
-            </if>
-            <if test="createBy !=null">
-                create_by,
-            </if>
-            <if test="updateBy !=null">
-                update_by,
-            </if>
-            <if test="status !=null">
-                status,
-            </if>
-        </trim>
+                                                                                                    <if test="sysOrganizationId !=null">
+                            sys_organization_id,
+                        </if>
+                                                                                                            <if test="sysRoleId !=null">
+                            sys_role_id,
+                        </if>
+                                                                                                            <if test="parentId !=null">
+                            parent_id,
+                        </if>
+                                                                                                            <if test="rank !=null">
+                            rank,
+                        </if>
+                                                                                                            <if test="createTime !=null">
+                            create_time,
+                        </if>
+                                                                                                            <if test="updateTime !=null">
+                            update_time,
+                        </if>
+                                                                                                            <if test="createBy !=null">
+                            create_by,
+                        </if>
+                                                                                                            <if test="updateBy !=null">
+                            update_by,
+                        </if>
+                                                                                                            <if test="status !=null">
+                            status,
+                        </if>
+                                                        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="sysOrganizationId !=null">
-                #{sysOrganizationId},
-            </if>
-            <if test="sysRoleId !=null">
-                #{sysRoleId},
-            </if>
-            <if test="parentId !=null">
-                #{parentId},
-            </if>
-            <if test="rank !=null">
-                #{rank},
-            </if>
-            <if test="createTime !=null">
-                #{createTime},
-            </if>
-            <if test="updateTime !=null">
-                #{updateTime},
-            </if>
-            <if test="createBy !=null">
-                #{createBy},
-            </if>
-            <if test="updateBy !=null">
-                #{updateBy},
-            </if>
-            <if test="status !=null">
-                #{status},
-            </if>
-        </trim>
+                                                                                                    <if test="sysOrganizationId !=null">
+                            #{sysOrganizationId},
+                        </if>
+                                                                                                            <if test="sysRoleId !=null">
+                            #{sysRoleId},
+                        </if>
+                                                                                                            <if test="parentId !=null">
+                            #{parentId},
+                        </if>
+                                                                                                            <if test="rank !=null">
+                            #{rank},
+                        </if>
+                                                                                                            <if test="createTime !=null">
+                            #{createTime},
+                        </if>
+                                                                                                            <if test="updateTime !=null">
+                            #{updateTime},
+                        </if>
+                                                                                                            <if test="createBy !=null">
+                            #{createBy},
+                        </if>
+                                                                                                            <if test="updateBy !=null">
+                            #{updateBy},
+                        </if>
+                                                                                                            <if test="status !=null">
+                            #{status},
+                        </if>
+                                                        </trim>
     </insert>
 
 
     <update id="update" parameterType="SysRoleOrganization">
         update sys_role_organization
         <set>
-            <if test="id !=null">
-                id = #{id},
-            </if>
-            <if test="sysOrganizationId !=null">
-                sys_organization_id = #{sysOrganizationId},
-            </if>
-            <if test="sysRoleId !=null">
-                sys_role_id = #{sysRoleId},
-            </if>
-            <if test="parentId !=null">
-                parent_id = #{parentId},
-            </if>
-            <if test="rank !=null">
-                rank = #{rank},
-            </if>
-            <if test="createTime !=null">
-                create_time = #{createTime},
-            </if>
-            <if test="updateTime !=null">
-                update_time = #{updateTime},
-            </if>
-            <if test="createBy !=null">
-                create_by = #{createBy},
-            </if>
-            <if test="updateBy !=null">
-                update_by = #{updateBy},
-            </if>
-            <if test="status !=null">
-                status = #{status},
-            </if>
-        </set>
+                                                <if test="id !=null">
+                        id = #{id},
+                    </if>
+                                                                <if test="sysOrganizationId !=null">
+                        sys_organization_id = #{sysOrganizationId},
+                    </if>
+                                                                <if test="sysRoleId !=null">
+                        sys_role_id = #{sysRoleId},
+                    </if>
+                                                                <if test="parentId !=null">
+                        parent_id = #{parentId},
+                    </if>
+                                                                <if test="rank !=null">
+                        rank = #{rank},
+                    </if>
+                                                                <if test="createTime !=null">
+                        create_time = #{createTime},
+                    </if>
+                                                                <if test="updateTime !=null">
+                        update_time = #{updateTime},
+                    </if>
+                                                                <if test="createBy !=null">
+                        create_by = #{createBy},
+                    </if>
+                                                                <if test="updateBy !=null">
+                        update_by = #{updateBy},
+                    </if>
+                                                                <if test="status !=null">
+                        status = #{status},
+                    </if>
+                                    </set>
         where id =#{id} and status=1
     </update>
 

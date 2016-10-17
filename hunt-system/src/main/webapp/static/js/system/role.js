@@ -241,12 +241,15 @@ $(document).ready(function () {
         })
     });
     $("#role-delete-btn").click(function () {
+        if ($("#role_grid").datagrid("getChecked").length == 0) {
+            common_tool.messager_show("请选择一条记录");
+            return false;
+        }
         $.messager.confirm('确认对话框', "您确认删除该条记录吗?", function (r) {
             if (r) {
                 role_tool.delete();
             }
         });
-
     });
     $("#role-select-btn ").click(function () {
         role_tool.init_main_view();
