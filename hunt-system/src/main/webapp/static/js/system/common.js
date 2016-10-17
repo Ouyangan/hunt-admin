@@ -9,8 +9,8 @@ common_tool = {
         });
     },
     messager_confirm: function (msg) {
-        $.messager.confirm('确认对话框', msg, function(r){
-            if (r){
+        $.messager.confirm('确认对话框', msg, function (r) {
+            if (r) {
                 return true;
             }
         });

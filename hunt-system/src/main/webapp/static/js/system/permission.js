@@ -127,7 +127,7 @@ permission_tool = {
             });
         }
     },
-    insert_permission_group:function () {
+    insert_permission_group: function () {
         if (!$("#group_name").validatebox('isValid')) {
             common_tool.messager_show("请输入权限名称");
         } else if (!$("#group_description").validatebox('isValid')) {
@@ -158,7 +158,7 @@ permission_tool = {
             });
         }
     },
-    init_edit_group_view:function () {
+    init_edit_group_view: function () {
         $("#save-permission-group-dialog").dialog({
             title: '新增权限组',
             iconCls: 'icon-save',
@@ -313,7 +313,7 @@ $(document).ready(function () {
         permission_tool.init_edit_view(1);
     });
     $("#save-permissionGroup").click(function () {
-       permission_tool.init_edit_group_view()
+        permission_tool.init_edit_group_view()
     });
     $("#delete-permission").click(function () {
         permission_tool.delte_permission();

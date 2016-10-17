@@ -27,7 +27,6 @@ public class SysOrganizationServiceImplTest {
     private SysOrganizationService sysOrganizationService;
 
 
-
     @Test
     public void selectChildren() throws Exception {
 

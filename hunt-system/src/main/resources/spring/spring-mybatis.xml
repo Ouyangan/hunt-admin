@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans" xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--配置mybatis工厂对象-->
     <bean id="mybatisSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -18,12 +18,12 @@
     </bean>
     <!--通用mapper-->
     <!--<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">-->
-        <!--<property name="basePackage" value="com.isea533.mybatis.mapper"/>-->
-        <!--<property name="properties">-->
-            <!--<value>-->
-                <!--mappers=tk.mybatis.mapper.common.Mapper-->
-            <!--</value>-->
-        <!--</property>-->
+    <!--<property name="basePackage" value="com.isea533.mybatis.mapper"/>-->
+    <!--<property name="properties">-->
+    <!--<value>-->
+    <!--mappers=tk.mybatis.mapper.common.Mapper-->
+    <!--</value>-->
+    <!--</property>-->
     <!--</bean>-->
 
 </beans>

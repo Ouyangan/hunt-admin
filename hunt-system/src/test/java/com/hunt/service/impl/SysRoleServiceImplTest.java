@@ -20,6 +20,7 @@ import system.StringUtil;
 public class SysRoleServiceImplTest {
     @Autowired
     private SysRoleService sysRoleService;
+
     @Test
     public void isExsitRoleName() throws Exception {
 
@@ -29,8 +30,8 @@ public class SysRoleServiceImplTest {
     public void insertRole() throws Exception {
         for (int i = 0; i < 35; i++) {
             SysRole role = new SysRole();
-            role.setName("角色-"+i);
-            role.setDescription("角色描述-"+i);
+            role.setName("角色-" + i);
+            role.setDescription("角色描述-" + i);
 //            sysRoleService.insertRole(role, permissionIds);
         }
     }

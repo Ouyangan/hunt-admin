@@ -2,7 +2,7 @@ package com.hunt.model.entity;
 
 /**
  * @Author: ouyangan
- * @Date: 2016-10-12 14:21
+ * @Date: 2016-10-17 16:52
  * @Description:
  */
 public class SysUser {
@@ -57,6 +57,9 @@ public class SysUser {
 
     // status :数据状态,1:正常,2:删除,3:禁用账号
     private Integer status;
+
+    // is_final :是否能修改
+    private Integer isFinal;
 
     /**
      * get
@@ -364,6 +367,24 @@ public class SysUser {
         this.status = status;
     }
 
+    /**
+     * get 是否能修改
+     *
+     * @return Integer
+     */
+    public Integer getIsFinal() {
+        return isFinal;
+    }
+
+    /**
+     * set 是否能修改
+     *
+     * @param isFinal
+     */
+    public void setIsFinal(Integer isFinal) {
+        this.isFinal = isFinal;
+    }
+
     @Override
     public String toString() {
         return "SysUser{" +
@@ -383,7 +404,8 @@ public class SysUser {
                 ", updateTime='" + updateTime + '\'' +
                 ", createBy='" + createBy + '\'' +
                 ", updateBy='" + updateBy + '\'' +
-                ", status=" + status +
+                ", status='" + status + '\'' +
+                ", isFinal=" + isFinal +
                 '}';
     }
 }

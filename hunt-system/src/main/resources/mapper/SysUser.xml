@@ -19,26 +19,28 @@
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="is_final" property="isFinal" jdbcType="TINYINT"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-        id ,
-        loginName ,
-        zhName ,
-        enName ,
-        sex ,
-        birth ,
-        email ,
-        phone ,
-        address ,
-        password ,
-        passwordSalt ,
-        rank ,
-        createTime ,
-        updateTime ,
-        createBy ,
-        updateBy ,
-        status
+        id,
+        loginName,
+        zhName,
+        enName,
+        sex,
+        birth,
+        email,
+        phone,
+        address,
+        password,
+        passwordSalt,
+        rank,
+        createTime,
+        updateTime,
+        createBy,
+        updateBy,
+        status,
+        isFinal
     </sql>
 
     <sql id="sql_column_where">
@@ -93,6 +95,9 @@
         <if test="status !=null ">
             AND status = #{status}
         </if>
+        <if test="isFinal !=null ">
+            AND is_final = #{isFinal}
+        </if>
     </sql>
 
     <insert id="insert" parameterType="SysUser" useGeneratedKeys="true" keyProperty="id">
@@ -146,6 +151,9 @@
             <if test="status !=null">
                 status,
             </if>
+            <if test="isFinal !=null">
+                is_final,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="loginName !=null and loginName.length() !=0">
@@ -195,6 +203,9 @@
             </if>
             <if test="status !=null">
                 #{status},
+            </if>
+            <if test="isFinal !=null">
+                #{isFinal},
             </if>
         </trim>
     </insert>
@@ -253,6 +264,9 @@
             </if>
             <if test="status !=null">
                 status = #{status},
+            </if>
+            <if test="isFinal !=null">
+                is_final = #{isFinal},
             </if>
         </set>
         where id =#{id} and status=1

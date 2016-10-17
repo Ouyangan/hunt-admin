@@ -22,20 +22,39 @@
         <div title="系统管理" class="" data-options="selected:true,collapsed:true,collapsible:true">
             <div>
                 <ul style="list-style: none;padding:0 0 0 20px">
-                    <li class="tab-btn" style="padding: 5px;"><div style=" text-decoration: none;"
-                                                                 href="/user/user">用户管理</div></li>
-                    <li class="tab-btn" style="padding: 5px;"><div style=" text-decoration: none;"
-                                                                 href="/organization/toOrganization">组织机构管理</div></li>
-                    <li class="tab-btn" style="padding: 5px;"><div style=" text-decoration: none;"
-                                                                 href="/role/toRole">角色管理</div></li>
-                    <li class="tab-btn" style="padding: 5px;"><div style=" text-decoration: none;"
-                                                                 href="/job/toJob">职位管理</div></li>
-                    <li class="tab-btn" style="padding: 5px;"><div style=" text-decoration: none;"
-                                                                 href="/permission/toPermission">权限管理</div></li>
-                    <li class="tab-btn" style="padding: 5px;"><div style=" text-decoration: none;" href="/user/status">在线状态</div>
+                    <li class="tab-btn" style="padding: 5px;">
+                        <div style=" text-decoration: none;"
+                             href="/user/user">用户管理
+                        </div>
                     </li>
-                    <li class="tab-btn" style="padding: 5px;"><div style=" text-decoration: none;"
-                                                                 href="/data/toData">字典管理</div></li>
+                    <li class="tab-btn" style="padding: 5px;">
+                        <div style=" text-decoration: none;"
+                             href="/organization/toOrganization">组织机构管理
+                        </div>
+                    </li>
+                    <li class="tab-btn" style="padding: 5px;">
+                        <div style=" text-decoration: none;"
+                             href="/role/toRole">角色管理
+                        </div>
+                    </li>
+                    <li class="tab-btn" style="padding: 5px;">
+                        <div style=" text-decoration: none;"
+                             href="/job/toJob">职位管理
+                        </div>
+                    </li>
+                    <li class="tab-btn" style="padding: 5px;">
+                        <div style=" text-decoration: none;"
+                             href="/permission/toPermission">权限管理
+                        </div>
+                    </li>
+                    <li class="tab-btn" style="padding: 5px;">
+                        <div style=" text-decoration: none;" href="/user/status">在线状态</div>
+                    </li>
+                    <li class="tab-btn" style="padding: 5px;">
+                        <div style=" text-decoration: none;"
+                             href="/data/toData">字典管理
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -11,6 +11,7 @@
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="is_final" property="isFinal" jdbcType="TINYINT"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
@@ -22,7 +23,8 @@
         updateTime,
         createBy,
         updateBy,
-        status
+        status,
+        isFinal
     </sql>
 
     <sql id="sql_column_where">
@@ -53,6 +55,9 @@
         <if test="status !=null ">
             AND status = #{status}
         </if>
+        <if test="isFinal !=null ">
+            AND is_final = #{isFinal}
+        </if>
     </sql>
 
     <insert id="insert" parameterType="SysUserRoleOrganization" useGeneratedKeys="true" keyProperty="id">
@@ -82,6 +87,9 @@
             <if test="status !=null">
                 status,
             </if>
+            <if test="isFinal !=null">
+                is_final,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="sysUserId !=null">
@@ -107,6 +115,9 @@
             </if>
             <if test="status !=null">
                 #{status},
+            </if>
+            <if test="isFinal !=null">
+                #{isFinal},
             </if>
         </trim>
     </insert>
@@ -142,6 +153,9 @@
             <if test="status !=null">
                 status = #{status},
             </if>
+            <if test="isFinal !=null">
+                is_final = #{isFinal},
+            </if>
         </set>
         where id =#{id} and status=1
     </update>
@@ -170,5 +184,6 @@
         FROM sys_user_role_organization
         WHERE status = 1
     </select>
+
 
 </mapper>

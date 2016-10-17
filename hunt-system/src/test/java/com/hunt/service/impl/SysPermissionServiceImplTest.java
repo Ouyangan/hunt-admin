@@ -1,29 +1,23 @@
 package com.hunt.service.impl;
 
-import com.alibaba.druid.filter.AutoLoad;
 import com.google.gson.Gson;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysPermission;
 import com.hunt.model.entity.SysPermissionGroup;
 import com.hunt.service.SysPermissionService;
-import com.hunt.service.SysUserService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import system.StringUtil;
 
 import java.util.List;
-import java.util.zip.GZIPOutputStream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @Author: ouyangan
@@ -144,9 +138,9 @@ public class SysPermissionServiceImplTest {
             for (int j = 1; j < 11; j++) {
                 SysPermission permission = new SysPermission();
                 permission.setIsFinal(1);
-                permission.setCode("group"+i+"code-" + j);
-                permission.setName("group"+i+"-name-" + j);
-                permission.setDescription("group"+i+"description-" + j);
+                permission.setCode("group" + i + "code-" + j);
+                permission.setName("group" + i + "-name-" + j);
+                permission.setDescription("group" + i + "description-" + j);
                 permission.setSysPermissionGroupId(group.getId());
                 service.insertPermission(permission);
             }

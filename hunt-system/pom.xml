@@ -248,16 +248,16 @@
             </plugin>
 
             <!--<plugin>-->
-                <!--<artifactId>maven-clean-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<filesets>-->
-                        <!--<fileset>-->
-                            <!--<directory>src/main/webapp/WEB-INF/classes</directory>-->
-                            <!--<directory>src/main/webapp/WEB-INF/lib</directory>-->
-                            <!--<followSymlinks>false</followSymlinks>-->
-                        <!--</fileset>-->
-                    <!--</filesets>-->
-                <!--</configuration>-->
+            <!--<artifactId>maven-clean-plugin</artifactId>-->
+            <!--<configuration>-->
+            <!--<filesets>-->
+            <!--<fileset>-->
+            <!--<directory>src/main/webapp/WEB-INF/classes</directory>-->
+            <!--<directory>src/main/webapp/WEB-INF/lib</directory>-->
+            <!--<followSymlinks>false</followSymlinks>-->
+            <!--</fileset>-->
+            <!--</filesets>-->
+            <!--</configuration>-->
             <!--</plugin>-->
 
             <!--<plugin>-->
