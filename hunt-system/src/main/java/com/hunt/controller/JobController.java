@@ -1,5 +1,6 @@
 package com.hunt.controller;
 
+import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysRoleOrganization;
 import com.hunt.service.SysRoleOrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +44,11 @@ public class JobController extends BaseController {
         SysRoleOrganization roleOrganization = new SysRoleOrganization();
         roleOrganization.setName(name);
         roleOrganization.setDescription(description);
-        roleOrganization.setFullname(fullName);
+        roleOrganization.setFullName(fullName);
         roleOrganization.setSysRoleId(roleId);
         roleOrganization.setSysOrganizationId(organizationId);
         roleOrganization.setParentId(parentId);
+        roleOrganization.setIsFinal(isFinal);
         long id = roleOrganizationService.insertRoleOrganization(roleOrganization);
         return Result.success(id);
     }
@@ -60,15 +62,20 @@ public class JobController extends BaseController {
                          @RequestParam String name,
                          @RequestParam String description,
                          @RequestParam String fullName) {
+        SysRoleOrganization roleOrganization = roleOrganizationService.selectRoleOrganizationById(id);
+        if (roleOrganization == null) {
+            return Result.error(ResponseCode.data_not_exist.getMsg());
+        }
+        if (roleOrganization.getIsFinal() == 2) {
+            return Result.error(ResponseCode.can_not_delete.getMsg());
+        }
         boolean isExistNameExcludeId = roleOrganizationService.isExistNameExcludeId(id, name, parentId);
         if (isExistNameExcludeId) {
             return Result.error(ResponseCode.name_already_exist.getMsg());
         }
-        SysRoleOrganization roleOrganization = new SysRoleOrganization();
-        roleOrganization.setId(id);
         roleOrganization.setName(name);
         roleOrganization.setDescription(description);
-        roleOrganization.setFullname(fullName);
+        roleOrganization.setFullName(fullName);
         roleOrganization.setSysRoleId(roleId);
         roleOrganization.setSysOrganizationId(organizationId);
         roleOrganization.setParentId(parentId);
@@ -76,5 +83,28 @@ public class JobController extends BaseController {
         return Result.success();
     }
 
+    @ResponseBody
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    public Result delete(@RequestParam long id) {
+        SysRoleOrganization roleOrganization = roleOrganizationService.selectRoleOrganizationById(id);
+        if (roleOrganization == null) {
+            return Result.error(ResponseCode.data_not_exist.getMsg());
+        }
+        if (roleOrganization.getIsFinal() == 2) {
+            return Result.error(ResponseCode.can_not_delete.getMsg());
+        }
+        roleOrganization.setStatus(2);
+        roleOrganizationService.updateRoleOrganization(roleOrganization);
+        return Result.success();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "select", method = RequestMethod.GET)
+    public Result select(@RequestParam int page,
+                         @RequestParam int rows,
+                         @RequestParam(defaultValue = "1") long id) {
+        PageInfo pageInfo = roleOrganizationService.selectPage(page, rows, id);
+        return Result.success(pageInfo);
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.hunt.service;
 
+import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysRoleOrganization;
 
 /**
@@ -15,4 +16,8 @@ public interface SysRoleOrganizationService {
     boolean isExistNameExcludeId(long id, String name, long parentId);
 
     void updateRoleOrganization(SysRoleOrganization roleOrganization);
+
+    SysRoleOrganization selectRoleOrganizationById(long id);
+
+    PageInfo selectPage(int page, int rows, long id);
 }

@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/10/17 16:50:48                          */
+/* Created on:     2016/10/17 17:53:25                          */
 /*==============================================================*/
 
 
@@ -175,7 +175,7 @@ create table sys_role_organization
    sys_role_id          bigint comment '角色id',
    parent_id            bigint comment '父级id',
    name                 varchar(256),
-   fullName             varchar(256),
+   full_name            varchar(256),
    description          varchar(256),
    rank                 bigint default 0 comment '排序',
    create_time          datetime default CURRENT_TIMESTAMP comment '创建时间',

@@ -27,4 +27,6 @@ public interface SysRoleOrganizationMapper {
     boolean isExistName(@Param("name") String name, @Param("parentId") long parentId);
 
     boolean isExistNameExcludeId(@Param("id") long id, @Param("name") String name, @Param("parentId") long parentId);
+
+    List<SysRoleOrganization> selectChildren(@Param("parentId") long parentId);
 }
