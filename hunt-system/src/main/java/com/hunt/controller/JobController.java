@@ -101,8 +101,8 @@ public class JobController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam(defaultValue = "1") int page,
-                         @RequestParam(defaultValue = "15") int rows,
-                         @RequestParam(defaultValue = "1") long id) {
+                           @RequestParam(defaultValue = "15") int rows,
+                           @RequestParam(defaultValue = "1") long id) {
         PageInfo pageInfo = roleOrganizationService.selectPage(page, rows, id);
         return pageInfo;
     }

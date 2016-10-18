@@ -19,51 +19,65 @@
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-        id ,
-        sysOrganizationId ,
-        sysRoleId ,
-        parentId ,
-        name ,
-        fullName ,
-        description ,
-        rank ,
-        createTime ,
-        updateTime ,
-        createBy ,
-        updateBy ,
-        status ,
+        id,
+        sysOrganizationId,
+        sysRoleId,
+        parentId,
+        name,
+        fullName,
+        description,
+        rank,
+        createTime,
+        updateTime,
+        createBy,
+        updateBy,
+        status,
         isFinal
     </sql>
 
     <sql id="sql_column_where">
         <if test="id !=null ">
-            AND id = #{id} </if>
+            AND id = #{id}
+        </if>
         <if test="sysOrganizationId !=null ">
-            AND sys_organization_id = #{sysOrganizationId} </if>
+            AND sys_organization_id = #{sysOrganizationId}
+        </if>
         <if test="sysRoleId !=null ">
-            AND sys_role_id = #{sysRoleId} </if>
+            AND sys_role_id = #{sysRoleId}
+        </if>
         <if test="parentId !=null ">
-            AND parent_id = #{parentId} </if>
+            AND parent_id = #{parentId}
+        </if>
         <if test="name !=null and name.length() != 0">
-            AND name = #{name} </if>
+            AND name = #{name}
+        </if>
         <if test="fullName !=null and fullName.length() != 0">
-            AND full_name = #{fullName} </if>
+            AND full_name = #{fullName}
+        </if>
         <if test="description !=null and description.length() != 0">
-            AND description = #{description} </if>
+            AND description = #{description}
+        </if>
         <if test="rank !=null ">
-            AND rank = #{rank} </if>
+            AND rank = #{rank}
+        </if>
         <if test="createTime !=null ">
-            AND create_time = #{createTime} </if>
+            AND create_time = #{createTime}
+        </if>
         <if test="updateTime !=null ">
-            AND update_time = #{updateTime} </if>
+            AND update_time = #{updateTime}
+        </if>
         <if test="createBy !=null ">
-            AND create_by = #{createBy} </if>
+            AND create_by = #{createBy}
+        </if>
         <if test="updateBy !=null ">
-            AND update_by = #{updateBy} </if>
+            AND update_by = #{updateBy}
+        </if>
         <if test="status !=null ">
-            AND status = #{status} </if>
+            AND status = #{status}
+        </if>
         <if test="isFinal !=null ">
-            AND is_final = #{isFinal} </if>
+            AND is_final = #{isFinal}
+        </if>
     </sql>
 
     <insert id="insert" parameterType="SysRoleOrganization" useGeneratedKeys="true" keyProperty="id">
@@ -223,16 +237,16 @@
 
     <select id="isExistName" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_role_organization
-                WHERE status = 1 AND name = #{name} AND parent_id = #{parentId}
+        SELECT *
+        FROM sys_role_organization
+        WHERE status = 1 AND name = #{name} AND parent_id = #{parentId}
         )
     </select>
     <select id="isExistNameExcludeId" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_role_organization
-                WHERE status = 1 AND name = #{name} AND parent_id = #{parentId} AND id != #{id}
+        SELECT *
+        FROM sys_role_organization
+        WHERE status = 1 AND name = #{name} AND parent_id = #{parentId} AND id != #{id}
         )
     </select>
     <select id="selectChildren" resultType="com.hunt.model.entity.SysRoleOrganization">

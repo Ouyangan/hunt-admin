@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunt.dao.SysLoginStatusMapper">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysLoginStatus">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="sys_user_id" property="sysUserId" jdbcType="BIGINT"/>
+        <result column="session_id" property="sessionId" jdbcType="VARCHAR"/>
+        <result column="session_expires" property="sessionExpires" jdbcType="TIMESTAMP"/>
+        <result column="sys_user_login_name" property="sysUserLoginName" jdbcType="VARCHAR"/>
+        <result column="sys_user_zh_name" property="sysUserZhName" jdbcType="VARCHAR"/>
+        <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP"/>
+        <result column="platform" property="platform" jdbcType="TINYINT"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+    </resultMap>
+    <!--  -->
+    <sql id="sql_column">
+        id,
+        sysUserId,
+        sessionId,
+        sessionExpires,
+        sysUserLoginName,
+        sysUserZhName,
+        lastLoginTime,
+        platform,
+        rank,
+        createTime,
+        updateTime,
+        createBy,
+        updateBy,
+        status
+    </sql>
+
+    <sql id="sql_column_where">
+        <if test="id !=null ">
+            AND id = #{id}
+        </if>
+        <if test="sysUserId !=null ">
+            AND sys_user_id = #{sysUserId}
+        </if>
+        <if test="sessionId !=null and sessionId.length() != 0">
+            AND session_id = #{sessionId}
+        </if>
+        <if test="sessionExpires !=null ">
+            AND session_expires = #{sessionExpires}
+        </if>
+        <if test="sysUserLoginName !=null and sysUserLoginName.length() != 0">
+            AND sys_user_login_name = #{sysUserLoginName}
+        </if>
+        <if test="sysUserZhName !=null and sysUserZhName.length() != 0">
+            AND sys_user_zh_name = #{sysUserZhName}
+        </if>
+        <if test="lastLoginTime !=null ">
+            AND last_login_time = #{lastLoginTime}
+        </if>
+        <if test="platform !=null ">
+            AND platform = #{platform}
+        </if>
+        <if test="rank !=null ">
+            AND rank = #{rank}
+        </if>
+        <if test="createTime !=null ">
+            AND create_time = #{createTime}
+        </if>
+        <if test="updateTime !=null ">
+            AND update_time = #{updateTime}
+        </if>
+        <if test="createBy !=null ">
+            AND create_by = #{createBy}
+        </if>
+        <if test="updateBy !=null ">
+            AND update_by = #{updateBy}
+        </if>
+        <if test="status !=null ">
+            AND status = #{status}
+        </if>
+    </sql>
+
+    <insert id="insert" parameterType="SysLoginStatus" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_login_status
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sysUserId !=null">
+                sys_user_id,
+            </if>
+            <if test="sessionId !=null and sessionId.length() !=0">
+                session_id,
+            </if>
+            <if test="sessionExpires !=null">
+                session_expires,
+            </if>
+            <if test="sysUserLoginName !=null and sysUserLoginName.length() !=0">
+                sys_user_login_name,
+            </if>
+            <if test="sysUserZhName !=null and sysUserZhName.length() !=0">
+                sys_user_zh_name,
+            </if>
+            <if test="lastLoginTime !=null">
+                last_login_time,
+            </if>
+            <if test="platform !=null">
+                platform,
+            </if>
+            <if test="rank !=null">
+                rank,
+            </if>
+            <if test="createTime !=null">
+                create_time,
+            </if>
+            <if test="updateTime !=null">
+                update_time,
+            </if>
+            <if test="createBy !=null">
+                create_by,
+            </if>
+            <if test="updateBy !=null">
+                update_by,
+            </if>
+            <if test="status !=null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sysUserId !=null">
+                #{sysUserId},
+            </if>
+            <if test="sessionId !=null and sessionId.length() !=0">
+                #{sessionId},
+            </if>
+            <if test="sessionExpires !=null">
+                #{sessionExpires},
+            </if>
+            <if test="sysUserLoginName !=null and sysUserLoginName.length() !=0">
+                #{sysUserLoginName},
+            </if>
+            <if test="sysUserZhName !=null and sysUserZhName.length() !=0">
+                #{sysUserZhName},
+            </if>
+            <if test="lastLoginTime !=null">
+                #{lastLoginTime},
+            </if>
+            <if test="platform !=null">
+                #{platform},
+            </if>
+            <if test="rank !=null">
+                #{rank},
+            </if>
+            <if test="createTime !=null">
+                #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime},
+            </if>
+            <if test="createBy !=null">
+                #{createBy},
+            </if>
+            <if test="updateBy !=null">
+                #{updateBy},
+            </if>
+            <if test="status !=null">
+                #{status},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="SysLoginStatus">
+        update sys_login_status
+        <set>
+            <if test="id !=null">
+                id = #{id},
+            </if>
+            <if test="sysUserId !=null">
+                sys_user_id = #{sysUserId},
+            </if>
+            <if test="sessionId !=null and sessionId.length() !=0">
+                session_id = #{sessionId},
+            </if>
+            <if test="sessionExpires !=null">
+                session_expires = #{sessionExpires},
+            </if>
+            <if test="sysUserLoginName !=null and sysUserLoginName.length() !=0">
+                sys_user_login_name = #{sysUserLoginName},
+            </if>
+            <if test="sysUserZhName !=null and sysUserZhName.length() !=0">
+                sys_user_zh_name = #{sysUserZhName},
+            </if>
+            <if test="lastLoginTime !=null">
+                last_login_time = #{lastLoginTime},
+            </if>
+            <if test="platform !=null">
+                platform = #{platform},
+            </if>
+            <if test="rank !=null">
+                rank = #{rank},
+            </if>
+            <if test="createTime !=null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createBy !=null">
+                create_by = #{createBy},
+            </if>
+            <if test="updateBy !=null">
+                update_by = #{updateBy},
+            </if>
+            <if test="status !=null">
+                status = #{status},
+            </if>
+        </set>
+        where id =#{id} and status=1
+    </update>
+
+    <select id="select" parameterType="SysLoginStatus" resultType="SysLoginStatus">
+        select * from sys_login_status where
+        <where>
+            <include refid="sql_column_where"/>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="long" resultType="SysLoginStatus">
+        SELECT *
+        FROM sys_login_status
+        WHERE id = #{id} AND status = 1
+    </select>
+
+    <select id="selectAll" resultType="SysLoginStatus">
+        SELECT *
+        FROM sys_login_status
+        WHERE status = 1
+    </select>
+
+    <select id="selectCounts" resultType="integer">
+        SELECT count(*)
+        FROM sys_login_status
+        WHERE status = 1
+    </select>
+
+</mapper>

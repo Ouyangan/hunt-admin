@@ -16,16 +16,16 @@
     </resultMap>
     <!--  -->
     <sql id="sql_column">
-        id ,
-        description ,
-        parentId ,
-        name ,
-        isFinal ,
-        rank ,
-        createTime ,
-        updateTime ,
-        createBy ,
-        updateBy ,
+        id,
+        description,
+        parentId,
+        name,
+        isFinal,
+        rank,
+        createTime,
+        updateTime,
+        createBy,
+        updateBy,
         status
     </sql>
 
@@ -182,15 +182,21 @@
     </select>
 
     <select id="selectById" parameterType="long" resultType="SysDataGroup">
-        select * from sys_data_group where id =#{id} and status=1
+        SELECT *
+        FROM sys_data_group
+        WHERE id = #{id} AND status = 1
     </select>
 
     <select id="selectAll" resultType="SysDataGroup">
-        select * from sys_data_group where status=1
+        SELECT *
+        FROM sys_data_group
+        WHERE status = 1
     </select>
 
     <select id="selectCounts" resultType="integer">
-        select count(*) from sys_data_group where status=1
+        SELECT count(*)
+        FROM sys_data_group
+        WHERE status = 1
     </select>
 
 </mapper>

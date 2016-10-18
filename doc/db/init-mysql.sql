@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/10/17 17:53:25                          */
+/* Created on:     2016/10/18 15:06:31                          */
 /*==============================================================*/
 
 
@@ -9,6 +9,8 @@ drop table if exists sys_data_group;
 drop table if exists sys_data_item;
 
 drop table if exists sys_log;
+
+drop table if exists sys_login_status;
 
 drop table if exists sys_organization;
 
@@ -85,6 +87,28 @@ create table sys_log
    result               text comment '请求结果',
    duration             bigint comment '持续时间',
    url                  varchar(512) comment '请求url',
+   primary key (id)
+);
+
+/*==============================================================*/
+/* Table: sys_login_status                                      */
+/*==============================================================*/
+create table sys_login_status
+(
+   id                   bigint not null comment '主键',
+   sys_user_id          bigint comment '用户id',
+   session_id           varchar(256) comment 'session id',
+   session_expires      datetime comment 'session过期时间',
+   sys_user_login_name  varchar(256) comment '登录名',
+   sys_user_zh_name     varchar(256) comment '中文名',
+   last_login_time      datetime comment '上一次登录时间',
+   platform             tinyint comment '登录平台 1:web 2:android 3:ios',
+   rank                 bigint default 0 comment '排序',
+   create_time          datetime default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          datetime default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   create_by            bigint default 0 comment '创建人',
+   update_by            bigint default 0 comment '更热人',
+   status               tinyint default 1 comment '数据状态,1:正常,2:删除',
    primary key (id)
 );
 

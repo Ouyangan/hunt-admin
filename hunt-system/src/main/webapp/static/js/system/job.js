@@ -75,7 +75,7 @@ job_tool = {
             var organization = $("#job_dialog_organization").treegrid("getChecked")[0];
             $.ajax({
                 data: {
-                    id:id,
+                    id: id,
                     name: name,
                     fullName: fullName,
                     description: description,
@@ -103,7 +103,7 @@ job_tool = {
     delete: function (id) {
         $.ajax({
             data: {
-                id:id,
+                id: id,
             },
             method: 'get',
             url: '/job/delete',

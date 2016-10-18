@@ -1,5 +1,5 @@
 permission_tool = {
-    form_clear:function () {
+    form_clear: function () {
         $("#save-permission-form").form('clear');
         $("#permission_grid").treegrid("uncheckAll");
         $("#permission-group").datagrid("uncheckAll");

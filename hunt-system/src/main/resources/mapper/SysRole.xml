@@ -186,16 +186,16 @@
     </select>
     <select id="isExsitName" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_role
-                WHERE status = 1 AND name = #{name}
+        SELECT *
+        FROM sys_role
+        WHERE status = 1 AND name = #{name}
         )
     </select>
     <select id="isExsitNameExcludeId" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_role
-                WHERE status = 1 AND id != #{id} AND name = #{name}
+        SELECT *
+        FROM sys_role
+        WHERE status = 1 AND id != #{id} AND name = #{name}
         )
     </select>
 

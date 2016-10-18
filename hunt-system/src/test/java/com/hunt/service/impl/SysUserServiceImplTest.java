@@ -69,8 +69,8 @@ public class SysUserServiceImplTest {
 //        sysUserRoleOrganization.setSysOrganizationId(i1);
         List<SysUserRoleOrganization> list = new ArrayList<>();
         list.add(sysUserRoleOrganization);
-        long l = sysUserService.insertUser(user, sysUser, list);
-        System.out.println(l);
+//        long l = sysUserService.insertUser(user, sysUser, list);
+//        System.out.println(l);
     }
 
     @Test
