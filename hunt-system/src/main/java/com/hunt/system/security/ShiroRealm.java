@@ -38,6 +38,12 @@ public class ShiroRealm extends AuthorizingRealm {
     @Autowired
     private SysRolePermissionMapper sysRolePermissionMapper;
 
+    /**
+     * 鉴权信息
+     *
+     * @param principalCollection
+     * @return
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
