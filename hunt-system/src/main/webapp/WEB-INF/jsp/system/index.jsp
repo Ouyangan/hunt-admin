@@ -24,7 +24,7 @@
                 <ul style="list-style: none;padding:0 0 0 20px">
                     <li class="tab-btn" style="padding: 5px;">
                         <div style=" text-decoration: none;"
-                             href="/user/user">用户管理
+                             href="/user/toUser">用户管理
                         </div>
                     </li>
                     <li class="tab-btn" style="padding: 5px;">

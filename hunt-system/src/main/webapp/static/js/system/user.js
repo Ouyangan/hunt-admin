@@ -1,4 +1,11 @@
 user_tool = {
+    form_clear: function () {
+        $("#user_form").form('reset');
+        $("#user_form").form('clear');
+        $("#permissions").treegrid("uncheckAll");
+        $("#jobs").treegrid("uncheckAll");
+        $("#user_grid").treegrid("uncheckAll");
+    },
     init_main_view: function () {
         $("#user_grid").datagrid({
             url: "/user/select",
@@ -20,11 +27,11 @@ user_tool = {
             pageList: [15, 30, 45, 60],
             columns: [[
                 {title: "选择", field: "ck", checkbox: true},
-                {title: "名称", field: "zhName", width: 300},
-                {title: "名称", field: "loginName", width: 300},
-                {title: "名称", field: "enName", width: 300},
+                {title: "中文名", field: "zhName", width: 200},
+                {title: "登录名", field: "loginName", width: 200},
+                {title: "英文名", field: "enName", width: 200},
                 {
-                    title: "是否可修改", width: 60, field: "sex", formatter: function (value, row, index) {
+                    title: "是否可修改", width: 200, field: "sex", formatter: function (value, row, index) {
                     if (value == 1) {
                         return "男";
                     }
@@ -33,51 +40,251 @@ user_tool = {
                     }
                 }
                 },
-                {title: "名称", field: "birth", width: 300},
-                {title: "说明", field: "email", width: 300},
-                {title: "说明", field: "phone", width: 300},
-                {title: "说明", field: "address", width: 300},
-                {title: "说明", field: "status", width: 300},
+                {title: "状态", field: "status", width: 200},
+                {title: "生日", field: "birth", width: 200},
+                {title: "邮箱", field: "email", width: 200},
+                {title: "电话", field: "phone", width: 200},
+                {title: "地址", field: "address", width: 200},
                 {
-                    title: "是否可修改", width: 60, field: "isFinal", formatter: function (value, row, index) {
+                    title: "是否可修改", field: "isFinal", formatter: function (value, row, index) {
                     if (value == 1) {
                         return "是";
                     }
                     if (value == 2) {
                         return "否";
                     }
-                }
+                }, width: 200
                 },
                 {
-                    title: "创建时间", width: 100, field: "createTime", formatter: function (value, row, index) {
+                    title: "创建时间", field: "createTime", formatter: function (value, row, index) {
                     date = new Date(value);
                     timeStr = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes();
                     return timeStr;
-                }
+                }, width: 200
                 },
                 {
-                    title: "更新时间", width: 100, field: "updateTime", formatter: function (value, row, index) {
+                    title: "更新时间", field: "updateTime", formatter: function (value, row, index) {
                     date = new Date(value);
                     timeStr = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes();
                     return timeStr;
-                },
+                }, width: 200
                 },
             ]],
         });
     },
-    init_edit_view: function () {
+    init_edit_view: function (type) {
+        $("#user_edit_dialog").dialog({
+            title: '新增用户',
+            iconCls: 'icon-save',
+            closable: true,
+            width: 950,
+            height: 700,
+            cache: false,
+            modal: true,
+            resizable: false,
+            'onBeforeOpen': function () {
 
+            },
+            'onOpen': function () {
+                if (type == 2) {
+                    var users = $("#user_grid").datagrid('getChecked')[0];
+                    for (var i = 0; i < users.permissions.length; i++) {
+                        $("#permissions").datagrid("selectRecord", users.permissions[i].id);
+                    }
+                    for (var i = 0; i < users.userRoleOrganizations.length; i++) {
+                        $("#jobs").treegrid("select", users.userRoleOrganizations[i].sysRoleOrganizationId);
+                    }
+                }
+            },
+            'onClose': function () {
+                user_tool.form_clear();
+            },
+            buttons: [
+                {
+                    text: '保存',
+                    width: 100,
+                    iconCls: 'icon-save',
+                    handler: function () {
+                        if (type == 1) {
+                            user_tool.save();
+                        }
+                        if (type == 2) {
+                            user_tool.update();
+                        }
+                    }
+                },
+                {
+                    text: '清除',
+                    width: 100,
+                    iconCls: 'icon-reload',
+                    handler: function () {
+                        user_tool.form_clear();
+                    }
+                },
+                {
+                    text: '取消',
+                    width: 100,
+                    iconCls: 'icon-add',
+                    handler: function () {
+                        user_tool.form_clear();
+                        $("#user_edit_dialog").dialog('close');
+                    }
+                }
+            ],
+        })
     },
-    init_password_view: function () {
 
-    },
     save: function () {
+        var form_isValid = $("#user_form").form('validate');
+        if (!form_isValid) {
+            common_tool.messager_show("请输入必填参数")
+        } else if ($("#jobs").treegrid("getChecked").length == 0) {
+            common_tool.messager_show('请选择职位');
+        } else if ($("#permissions").datagrid("getChecked").length == 0) {
+            common_tool.messager_show('请选择权限');
+        } else {
+            var loginName = $('#loginName').val();
+            var zhName = $('#zhName').val();
+            var enName = $('#enName').val();
+            var sex = $('#sex').val();
+            var birth = $('#birth').datebox('getValue');
+            var email = $('#email').val();
+            var phone = $('#phone').val();
+            var address = $('#address').val();
+            var password = $('#password').val();
+            var permissions = $("#permissions").datagrid("getChecked");
+            var permissionIds = new Array();
+            for (var i = 0; i < permissions.length; i++) {
+                permissionIds[i] = permissions[i].id;
+            }
+            var jobs = $("#jobs").treegrid("getChecked");
+            var jobIds = new Array();
+            for (var i = 0; i < jobs.length; i++) {
+                jobIds[i] = jobs[i].id;
+            }
+            $.ajax({
+                data: {
+                    loginName: loginName,
+                    zhName: zhName,
+                    enName: enName,
+                    sex: sex,
+                    birth: birth,
+                    email: email,
+                    phone: phone,
+                    address: address,
+                    password: password,
+                    permissionIds: permissionIds.toString(),
+                    jobIds: jobIds.toString(),
+                },
+                traditional: true,
+                method: 'post',
+                url: '/user/insert',
+                async: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 10000) {
+                        $("#user_edit_dialog").dialog("close");
+                        user_tool.form_clear();
+                        user_tool.init_main_view();
+                        common_tool.messager_show(result.msg);
+                        return false;
+                    }
+                    else {
+                        common_tool.messager_show(result.msg);
+                    }
+                },
+            });
+
+        }
 
     },
     update: function (data) {
+        var form_isValid = $("#user_form").form('validate');
+        if (!form_isValid) {
+            common_tool.messager_show("请输入必填参数")
+        } else if ($("#jobs").treegrid("getChecked").length == 0) {
+            common_tool.messager_show('请选择职位');
+        } else if ($("#permissions").datagrid("getChecked").length == 0) {
+            common_tool.messager_show('请选择权限');
+        } else {
+            var id = $('#id').val();
+            var loginName = $('#loginName').val();
+            var zhName = $('#zhName').val();
+            var enName = $('#enName').val();
+            var sex = $('#sex ').val();
+            var birth = $('#birth').datebox('getValue');
+            var email = $('#email').val();
+            var phone = $('#phone').val();
+            var address = $('#address').val();
+            var permissions = $("#permissions").datagrid("getChecked");
+            var permissionIds = new Array();
+            for (var i = 0; i < permissions.length; i++) {
+                permissionIds[i] = permissions[i].id;
+            }
+            var jobs = $("#jobs").treegrid("getChecked");
+            var jobIds = new Array();
+            for (var i = 0; i < jobs.length; i++) {
+                jobIds[i] = jobs[i].id;
+            }
+            $.ajax({
+                data: {
+                    id:id,
+                    loginName: loginName,
+                    zhName: zhName,
+                    enName: enName,
+                    sex: sex,
+                    birth: birth,
+                    email: email,
+                    phone: phone,
+                    address: address,
+                    permissionIds: permissionIds.toString(),
+                    jobIds: jobIds.toString(),
+                },
+                traditional: true,
+                method: 'post',
+                url: '/user/update',
+                async: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 10000) {
+                        $("#user_edit_dialog").dialog("close");
+                        user_tool.form_clear();
+                        user_tool.init_main_view();
+                        common_tool.messager_show(result.msg);
+                        return false;
+                    }
+                    else {
+                        common_tool.messager_show(result.msg);
+                    }
+                },
+            });
 
+        }
     },
     delete: function (id) {
+        $.ajax({
+            data: {
+                id: id,
+            },
+            traditional: true,
+            method: 'get',
+            url: '/user/delete',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.code == 10000) {
+                    user_tool.form_clear();
+                    user_tool.init_main_view();
+                    common_tool.messager_show(result.msg);
+                    return false;
+                }
+                else {
+                    common_tool.messager_show(result.msg);
+                }
+            },
+        });
+    },
+    init_password_view: function () {
 
     },
     init_password: function (id, oldPassword, newPassword) {
@@ -87,8 +294,50 @@ user_tool = {
 
     },
 
-
 };
 $(document).ready(function () {
+    user_tool.init_main_view();
+    $("#user-save-btn").click(function () {
+        user_tool.init_edit_view(1);
+    });
+    $("#user-update-btn").click(function () {
+        var users = $("#user_grid").datagrid('getChecked');
+        if (users.length == 0) {
+            common_tool.messager_show("请至少选择一条记录");
+            return false;
+        }
+        $("#user_form").form('load', {
+            id: users[0].id,
+            loginName: users[0].loginName,
+            zhName: users[0].zhName,
+            enName: users[0].enName,
+            sex: users[0].sex,
+            birth: users[0].birth,
+            email: users[0].email,
+            phone: users[0].phone,
+            address: users[0].address,
+            password: '111111111111',
+        });
+        user_tool.init_edit_view(2);
+    });
+    $("#user-delete-btn").click(function () {
+        var users = $("#user_grid").datagrid('getChecked');
+        if (users.length == 0) {
+            common_tool.messager_show("请至少选择一条记录");
+            return false;
+        }
+        $.messager.confirm('确认对话框', "您确认删除该条记录吗?", function (r) {
+            if (r) {
+                user_tool.delete(users[0].id);
+            }
+        });
+    });
+    $("#user-detail-btn").click(function () {
+
+    });
+    $("#user-flash-btn").click(function () {
+        user_tool.form_clear();
+        user_tool.init_main_view();
+    });
 
 });

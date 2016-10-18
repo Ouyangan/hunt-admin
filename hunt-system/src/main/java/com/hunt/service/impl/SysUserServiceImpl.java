@@ -108,6 +108,8 @@ public class SysUserServiceImpl implements SysUserService {
         for (SysUser user : sysUsers) {
             SysUserDto userDto = new SysUserDto();
             BeanUtils.copyProperties(user, userDto);
+            userDto.setPassword("");
+            userDto.setPasswordSalt("");
             List<SysUserPermission> userPermissions = sysUserPermissionMapper.selectByUserId(user.getId());
             List<SysPermission> permissions = new ArrayList<>();
             for (SysUserPermission userPermission : userPermissions) {

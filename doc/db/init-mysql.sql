@@ -117,7 +117,7 @@ create table sys_login_status
 /*==============================================================*/
 create table sys_organization
 (
-   id                   bigint not null,
+   id                   bigint not null AUTO_INCREMENT,
    name                 varchar(256) comment '名称',
    description          varchar(1024) comment '描述',
    is_final             int default 1 comment '是否可删除',

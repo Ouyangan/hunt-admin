@@ -39,14 +39,14 @@ public class UserController extends BaseController {
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String loginName,
                          @RequestParam String zhName,
-                         @RequestParam String enName,
+                         @RequestParam(defaultValue = "") String enName,
                          @RequestParam int sex,
                          @RequestParam(defaultValue = "") String birth,
                          @RequestParam(defaultValue = "") String email,
                          @RequestParam(defaultValue = "") String phone,
                          @RequestParam(defaultValue = "") String address,
                          @RequestParam String password,
-                         @RequestParam int isFinal,
+                         @RequestParam(defaultValue = "1") int isFinal,
                          @RequestParam String jobIds,
                          @RequestParam String permissionIds) {
         boolean isExistLoginName = sysUserService.isExistLoginName(loginName);
@@ -118,7 +118,7 @@ public class UserController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "select", method = RequestMethod.POST)
+    @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam int page,
                            @RequestParam int rows) {
         PageInfo pageInfo = sysUserService.selectPage(page, rows);
