@@ -28,5 +28,7 @@ public interface SysUserMapper {
 
     void deleteById(@Param("id") long id);
 
-    boolean isExistLoginNameExlcudeId(@Param("id") long id, @Param("loginName") String loginName);
+    boolean isExistLoginNameExcludeId(@Param("id") long id, @Param("loginName") String loginName);
+
+    SysUser selectUserByLoginName(@Param("loginName") String loginName);
 }

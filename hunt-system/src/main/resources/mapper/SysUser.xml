@@ -303,17 +303,22 @@
     </select>
     <select id="selectByLoginName" resultType="boolean">
         SELECT exists(
-        SELECT *
-        FROM sys_user
-        WHERE status = 1 AND login_name = #{loginName}
+                SELECT *
+                FROM sys_user
+                WHERE status = 1 AND login_name = #{loginName}
         )
     </select>
     <select id="isExistLoginNameExlcudeId" resultType="java.lang.Boolean">
         SELECT exists(
+                SELECT *
+                FROM sys_user
+                WHERE status = 1 AND id != #{id} AND login_name = #{loginName}
+        )
+    </select>
+    <select id="selectUserByLoginName" resultType="com.hunt.model.entity.SysUser">
         SELECT *
         FROM sys_user
-        WHERE status = 1 AND id != #{id} AND login_name = #{loginName}
-        )
+        WHERE status = 1 AND login_name = #{loginName}
     </select>
 
 </mapper>

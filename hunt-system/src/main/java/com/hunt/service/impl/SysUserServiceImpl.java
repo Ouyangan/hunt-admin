@@ -1,24 +1,23 @@
 package com.hunt.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.hunt.dao.SysPermissionMapper;
-import com.hunt.dao.SysUserMapper;
-import com.hunt.dao.SysUserPermissionMapper;
-import com.hunt.dao.SysUserRoleOrganizationMapper;
+import com.hunt.dao.*;
+import com.hunt.model.dto.LoginInfo;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.dto.SysUserDto;
-import com.hunt.model.entity.SysPermission;
-import com.hunt.model.entity.SysUser;
-import com.hunt.model.entity.SysUserPermission;
-import com.hunt.model.entity.SysUserRoleOrganization;
+import com.hunt.model.entity.*;
 import com.hunt.service.SysUserService;
+import org.apache.shiro.session.Session;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +29,7 @@ import java.util.List;
 @Transactional
 public class SysUserServiceImpl implements SysUserService {
     private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
+    private static final String sessionIdPrefix = "shiro-session-";
     @Autowired
     private SysUserMapper sysUserMapper;
     @Autowired
@@ -38,6 +38,10 @@ public class SysUserServiceImpl implements SysUserService {
     private SysUserPermissionMapper sysUserPermissionMapper;
     @Autowired
     private SysPermissionMapper sysPermissionMapper;
+    @Autowired
+    private SysLoginStatusMapper sysLoginStatusMapper;
+    @Autowired
+    private RedisTemplate<Serializable, Session> redisTemplate;
 
     @Override
     public long insertUser(SysUser user, String jobIds, String permissionIds) {
@@ -125,8 +129,53 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public boolean isExistLoginNameExlcudeId(long id, String loginName) {
-        return sysUserMapper.isExistLoginNameExlcudeId(id, loginName);
+    public SysUser selectByLoginName(String loginName) {
+        return sysUserMapper.selectUserByLoginName(loginName);
+    }
+
+    @Override
+    public LoginInfo login(SysUser user, Serializable id, int platform) {
+        LoginInfo loginInfo = new LoginInfo();
+        BeanUtils.copyProperties(user, loginInfo);
+        List<SysUserPermission> userPermissions = sysUserPermissionMapper.selectByUserId(user.getId());
+        List<SysPermission> permissions = new ArrayList<>();
+        for (SysUserPermission userPermission : userPermissions) {
+            SysPermission sysPermission = sysPermissionMapper.selectById(userPermission.getSysPermissionId());
+            permissions.add(sysPermission);
+        }
+        List<SysUserRoleOrganization> userRoleOrganizations = sysUserRoleOrganizationMapper.selectByUserId(user.getId());
+        loginInfo.setJobs(userRoleOrganizations);
+
+        SysLoginStatus newLoginStatus = new SysLoginStatus();
+        newLoginStatus.setSysUserId(user.getId());
+        newLoginStatus.setSysUserZhName(user.getZhName());
+        newLoginStatus.setSysUserLoginName(user.getLoginName());
+        newLoginStatus.setSessionId(id.toString());
+        newLoginStatus.setSessionExpires(new DateTime().plusDays(30).toDate());
+        newLoginStatus.setPlatform(platform);
+
+        SysLoginStatus oldLoginStatus = sysLoginStatusMapper.selectByUserIdAndPlatform(user.getId(), platform);
+        if (oldLoginStatus != null) {
+            oldLoginStatus.setStatus(2);
+            sysLoginStatusMapper.update(oldLoginStatus);
+            newLoginStatus.setLastLoginTime(oldLoginStatus.getCreateTime());
+        }
+        sysLoginStatusMapper.insert(newLoginStatus);
+        return loginInfo;
+    }
+
+    @Override
+    public void forceLogout(long userId) {
+        List<SysLoginStatus> list = sysLoginStatusMapper.selectByUserId(userId);
+        for (int i = 0; i < list.size(); i++) {
+            String sessionId = list.get(i).getSessionId();
+            redisTemplate.opsForValue().getOperations().delete(sessionId);
+        }
+    }
+
+    @Override
+    public boolean isExistLoginNameExcludeId(long id, String loginName) {
+        return sysUserMapper.isExistLoginNameExcludeId(id, loginName);
     }
 
     @Override

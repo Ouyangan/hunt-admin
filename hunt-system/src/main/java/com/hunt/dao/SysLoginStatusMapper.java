@@ -23,4 +23,8 @@ public interface SysLoginStatusMapper {
 
     //查询数量
     public int selectCounts();
+
+    SysLoginStatus selectByUserIdAndPlatform(@Param("userId") Long userId, @Param("platform") int platform);
+
+    List<SysLoginStatus> selectByUserId(@Param("userId") long userId);
 }

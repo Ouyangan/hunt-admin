@@ -240,5 +240,15 @@
         FROM sys_login_status
         WHERE status = 1
     </select>
+    <select id="selectByUserIdAndPlatform" resultType="com.hunt.model.entity.SysLoginStatus">
+        SELECT *
+        FROM sys_login_status
+        WHERE status = 1 AND sys_user_id = #{userId} AND platform = #{platform}
+    </select>
+    <select id="selectByUserId" resultType="com.hunt.model.entity.SysLoginStatus">
+        SELECT *
+        FROM sys_login_status
+        WHERE status = 1 AND sys_user_id = #{userId}
+    </select>
 
 </mapper>

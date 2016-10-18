@@ -100,7 +100,7 @@ public class UserController extends BaseController {
                          @RequestParam(defaultValue = "") String address,
                          @RequestParam String jobIds,
                          @RequestParam String permissionIds) {
-        boolean isExistLoginNameExlcudeId = sysUserService.isExistLoginNameExlcudeId(id, loginName);
+        boolean isExistLoginNameExlcudeId = sysUserService.isExistLoginNameExcludeId(id, loginName);
         if (isExistLoginNameExlcudeId) {
             return Result.error(ResponseCode.name_already_exist.getMsg());
         }

@@ -8,6 +8,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author ouyangan
@@ -20,11 +21,13 @@ public class RedisSessionDao extends AbstractSessionDAO {
     @Autowired
     private RedisTemplate<Serializable, Session> redisTemplate;
 
+    private static final long timeout = 3600 * 24 * 30 * 1000;
+
     @Override
     protected Serializable doCreate(Session session) {
         Serializable sessionId = sessionIdPrefix + UUID.randomUUID().toString();
         assignSessionId(session, sessionId);
-        redisTemplate.opsForValue().set(sessionId, session);
+        redisTemplate.opsForValue().set(sessionId, session, timeout, TimeUnit.MILLISECONDS);
         return sessionId;
     }
 
