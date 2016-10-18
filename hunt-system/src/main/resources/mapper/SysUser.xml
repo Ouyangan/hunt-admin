@@ -308,7 +308,7 @@
                 WHERE status = 1 AND login_name = #{loginName}
         )
     </select>
-    <select id="isExistLoginNameExlcudeId" resultType="java.lang.Boolean">
+    <select id="isExistLoginNameExcludeId" resultType="java.lang.Boolean">
         SELECT exists(
                 SELECT *
                 FROM sys_user
