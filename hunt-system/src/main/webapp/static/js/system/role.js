@@ -1,6 +1,6 @@
 role_tool = {
     form_clear: function () {
-        $("#organization_form").form("clear");
+        $("#role_edit_form").form("clear");
         $("#permissions").datagrid("uncheckAll");
         $("#role_grid").datagrid("uncheckAll");
     },
