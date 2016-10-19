@@ -26,7 +26,7 @@ import java.io.PrintWriter;
  */
 @Controller
 @RequestMapping("system")
-public class SystemController {
+public class SystemController extends BaseController {
 
     @Autowired
     private SysUserService sysUserService;
@@ -49,8 +49,11 @@ public class SystemController {
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public Result login(@RequestParam String loginName,
                         @RequestParam String password,
-                        @RequestParam int platform) {
-
+                        @RequestParam int platform,
+                        HttpServletRequest request) throws Exception {
+        if (!verifyCaptcha(request)) {
+            return Result.instance(ResponseCode.verify_captcha_error.getCode(), ResponseCode.verify_captcha_error.getMsg());
+        }
         SysUser user = sysUserService.selectByLoginName(loginName);
         if (user == null) {
             return Result.instance(ResponseCode.unknown_account.getCode(), ResponseCode.unknown_account.getMsg());
@@ -93,54 +96,13 @@ public class SystemController {
     @ResponseBody
     @RequestMapping(value = "captcha", method = RequestMethod.GET)
     public String StartCaptcha(HttpServletRequest request) {
-
         GeetestLib gtSdk = new GeetestLib(GeetestConfig.getGeetest_id(), GeetestConfig.getGeetest_key());
-
-        String resStr = "{}";
-
-        //自定义userid
-        String userid = "test";
-
         //进行验证预处理
-        int gtServerStatus = gtSdk.preProcess(userid);
-
+        int gtServerStatus = gtSdk.preProcess();
         //将服务器状态设置到session中
         request.getSession().setAttribute(gtSdk.gtServerStatusSessionKey, gtServerStatus);
-        //将userid设置到session中
-        request.getSession().setAttribute("userid", userid);
-
         return gtSdk.getResponseStr();
     }
 
-    @ResponseBody
-    @RequestMapping(value = "captcha", method = RequestMethod.POST)
-    public Result verifyCaptcha(HttpServletRequest request) {
-        GeetestLib gtSdk = new GeetestLib(GeetestConfig.getGeetest_id(), GeetestConfig.getGeetest_key());
 
-        String challenge = request.getParameter(GeetestLib.fn_geetest_challenge);
-        String validate = request.getParameter(GeetestLib.fn_geetest_validate);
-        String seccode = request.getParameter(GeetestLib.fn_geetest_seccode);
-
-        //从session中获取gt-server状态
-        int gt_server_status_code = (Integer) request.getSession().getAttribute(gtSdk.gtServerStatusSessionKey);
-
-        //从session中获取userid
-        String userid = (String) request.getSession().getAttribute("userid");
-
-        int gtResult = 0;
-
-        if (gt_server_status_code == 1) {
-            //gt-server正常，向gt-server进行二次验证
-
-            gtResult = gtSdk.enhencedValidateRequest(challenge, validate, seccode, userid);
-        } else {
-            // gt-server非正常情况下，进行failback模式验证
-            gtResult = gtSdk.failbackValidateRequest(challenge, validate, seccode);
-        }
-
-        if (gtResult != 1) {
-            return Result.error();
-        }
-        return Result.success();
-    }
 }

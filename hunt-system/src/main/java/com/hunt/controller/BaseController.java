@@ -1,5 +1,7 @@
 package com.hunt.controller;
 
+import com.hunt.system.security.geetest.GeetestConfig;
+import com.hunt.system.security.geetest.GeetestLib;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.UnauthenticatedException;
@@ -22,6 +24,37 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class BaseController {
     private static final Logger log = LoggerFactory.getLogger(BaseController.class);
+
+    /**
+     * 极限验证码
+     *
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    public boolean verifyCaptcha(HttpServletRequest request) throws Exception {
+        log.debug("begin verifyCaptcha");
+        int verifyResult = 0;
+        GeetestLib gtSdk = new GeetestLib(GeetestConfig.getGeetest_id(), GeetestConfig.getGeetest_key());
+        String challenge = request.getParameter(GeetestLib.fn_geetest_challenge);
+        String validate = request.getParameter(GeetestLib.fn_geetest_validate);
+        String seccode = request.getParameter(GeetestLib.fn_geetest_seccode);
+        log.debug("challenge: {} ,validate: {} ,seccode: {}", challenge, validate, seccode);
+        //从session中获取gt-server状态
+        int gt_server_status_code = (Integer) request.getSession().getAttribute(gtSdk.gtServerStatusSessionKey);
+        log.debug("gt_server_status_code : {}", gt_server_status_code);
+        if (gt_server_status_code == 1) {
+            verifyResult = gtSdk.enhencedValidateRequest(challenge, validate, seccode);
+
+        } else {
+            verifyResult = gtSdk.failbackValidateRequest(challenge, validate, seccode);
+        }
+        log.debug("verifyResult : {}", verifyResult);
+        if (verifyResult == 1) {
+            return true;
+        }
+        return false;
+    }
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
