@@ -33,6 +33,14 @@ UNLOCK TABLES;
 
 LOCK TABLES `sys_login_status` WRITE;
 
+INSERT INTO `sys_login_status` (`id`, `sys_user_id`, `session_id`, `session_expires`, `sys_user_login_name`, `sys_user_zh_name`, `last_login_time`, `platform`, `rank`, `create_time`, `update_time`, `create_by`, `update_by`, `status`)
+VALUES (1, 3, 'shiro-session-dc01636f-1792-4798-abe3-2361646e5ee8', '2016-11-18 16:27:17', 'admin', '超级管理员', NULL, 1, 0,
+           '2016-10-19 16:27:17', '2016-10-19 16:27:17', 0, 0, 2),
+  (2, 3, 'shiro-session-dc01636f-1792-4798-abe3-2361646e5ee8', '2016-11-18 16:28:33', 'admin', '超级管理员',
+      '2016-10-19 16:27:17', 1, 0, '2016-10-19 16:28:32', '2016-10-19 16:28:32', 0, 0, 2),
+  (3, 3, 'shiro-session-dc01636f-1792-4798-abe3-2361646e5ee8', '2016-11-18 16:28:41', 'admin', '超级管理员',
+      '2016-10-19 16:28:32', 1, 0, '2016-10-19 16:28:40', '2016-10-19 16:28:40', 0, 0, 1);
+
 UNLOCK TABLES;
 
 /*Data for the table `sys_organization` */
@@ -187,7 +195,7 @@ LOCK TABLES `sys_user` WRITE;
 INSERT INTO `sys_user` (`id`, `login_name`, `zh_name`, `en_name`, `sex`, `birth`, `email`, `phone`, `address`, `password`, `password_salt`, `rank`, `create_time`, `update_time`, `create_by`, `update_by`, `status`, `is_final`)
 VALUES
   (3, 'admin', '超级管理员', 'admin', 1, '2016-10-03', '981017952@qq.com', NULL, '深圳', 'df63ec60a1190c572420494de89e568d',
-      'c9661e088f5745789a10901862cdb4ee', 0, '2016-10-19 14:13:38', '2016-10-19 14:13:38', 0, 0, 1, 1);
+      'c9661e088f5745789a10901862cdb4ee', 0, '2016-10-19 14:13:38', '2016-10-19 16:27:14', 0, 0, 1, 1);
 
 UNLOCK TABLES;
 
