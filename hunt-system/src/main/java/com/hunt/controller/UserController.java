@@ -120,8 +120,10 @@ public class UserController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam int page,
-                           @RequestParam int rows) {
-        PageInfo pageInfo = sysUserService.selectPage(page, rows);
+                           @RequestParam int rows,
+                           @RequestParam(defaultValue = "zhName") String sort,
+                           @RequestParam(defaultValue = "asc") String order) {
+        PageInfo pageInfo = sysUserService.selectPage(page, rows,sort,order);
         return pageInfo;
     }
 
@@ -152,6 +154,18 @@ public class UserController extends BaseController {
             return Result.error(ResponseCode.can_not_edit.getMsg());
         }
         sysUser.setStatus(3);
+        sysUserService.updateUser(sysUser);
+        return Result.success();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "enableUser", method = RequestMethod.GET)
+    public Result enableUser(@RequestParam long id) {
+        SysUser sysUser = sysUserService.selectById(id);
+        if (sysUser.getIsFinal() == 2) {
+            return Result.error(ResponseCode.can_not_edit.getMsg());
+        }
+        sysUser.setStatus(1);
         sysUserService.updateUser(sysUser);
         return Result.success();
     }

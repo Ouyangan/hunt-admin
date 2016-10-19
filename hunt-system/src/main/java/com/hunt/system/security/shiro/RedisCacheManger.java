@@ -1,4 +1,4 @@
-package com.hunt.system.security;
+package com.hunt.system.security.shiro;
 
 import org.apache.shiro.ShiroException;
 import org.apache.shiro.cache.Cache;

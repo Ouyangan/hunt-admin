@@ -106,5 +106,4 @@ public class JobController extends BaseController {
         PageInfo pageInfo = roleOrganizationService.selectPage(page, rows, id);
         return pageInfo;
     }
-
 }

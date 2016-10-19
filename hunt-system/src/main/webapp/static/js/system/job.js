@@ -1,5 +1,6 @@
 job_tool = {
     form_clear: function () {
+        $("#job_form").form('reset');
         $("#job_form").form('clear');
         $("#job_dialog_parent_tree").treegrid("uncheckAll");
         $("#job_dialog_organization").treegrid("uncheckAll");

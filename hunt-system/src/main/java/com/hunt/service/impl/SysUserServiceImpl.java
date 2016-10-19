@@ -100,10 +100,10 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public PageInfo selectPage(int page, int rows) {
+    public PageInfo selectPage(int page, int rows, String sort, String order) {
         int counts = sysUserMapper.selectCounts();
         PageHelper.startPage(page, rows);
-        List<SysUser> sysUsers = sysUserMapper.selectAll();
+        List<SysUser> sysUsers = sysUserMapper.selectAll(sort, order);
         List<SysUserDto> sysUserDtos = new ArrayList<>();
         for (SysUser user : sysUsers) {
             SysUserDto userDto = new SysUserDto();

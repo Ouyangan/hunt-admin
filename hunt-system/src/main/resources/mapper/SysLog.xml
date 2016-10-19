@@ -16,6 +16,7 @@
         <result column="result" property="result" jdbcType="VARCHAR"/>
         <result column="duration" property="duration" jdbcType="BIGINT"/>
         <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="user_agent" property="userAgent" jdbcType="VARCHAR"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
@@ -32,7 +33,8 @@
         param,
         result,
         duration,
-        url
+        url,
+        userAgent
     </sql>
 
     <sql id="sql_column_where">
@@ -78,6 +80,9 @@
         <if test="url !=null and url.length() != 0">
             AND url = #{url}
         </if>
+        <if test="userAgent !=null and userAgent.length() != 0">
+            AND user_agent = #{userAgent}
+        </if>
     </sql>
 
     <insert id="insert" parameterType="SysLog" useGeneratedKeys="true" keyProperty="id">
@@ -122,6 +127,9 @@
             <if test="url !=null and url.length() !=0">
                 url,
             </if>
+            <if test="userAgent !=null and userAgent.length() !=0">
+                user_agent,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="rank !=null">
@@ -162,6 +170,9 @@
             </if>
             <if test="url !=null and url.length() !=0">
                 #{url},
+            </if>
+            <if test="userAgent !=null and userAgent.length() !=0">
+                #{userAgent},
             </if>
         </trim>
     </insert>
@@ -212,6 +223,9 @@
             <if test="url !=null and url.length() !=0">
                 url = #{url},
             </if>
+            <if test="userAgent !=null and userAgent.length() !=0">
+                user_agent = #{userAgent},
+            </if>
         </set>
         where id =#{id} and status=1
     </update>
@@ -240,4 +254,5 @@
         FROM sys_log
         WHERE status = 1
     </select>
+
 </mapper>

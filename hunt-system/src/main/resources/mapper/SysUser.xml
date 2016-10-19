@@ -214,9 +214,6 @@
     <update id="update" parameterType="SysUser">
         update sys_user
         <set>
-            <if test="id !=null">
-                id = #{id},
-            </if>
             <if test="loginName !=null and loginName.length() !=0">
                 login_name = #{loginName},
             </if>
@@ -269,7 +266,7 @@
                 is_final = #{isFinal},
             </if>
         </set>
-        where id =#{id} and status=1
+        where id =#{id} and status !=2
     </update>
     <update id="deleteById">
         UPDATE sys_user
@@ -287,38 +284,43 @@
     <select id="selectById" parameterType="long" resultType="SysUser">
         SELECT *
         FROM sys_user
-        WHERE id = #{id} AND status = 1
+        WHERE id = #{id} AND status != 2
     </select>
 
     <select id="selectAll" resultType="SysUser">
         SELECT *
         FROM sys_user
-        WHERE status = 1
+        WHERE status !=2
+        <if test="sort!=''">
+            ORDER BY #{sort}
+        </if>
+        <if test="order!=''">
+            #{order}
+        </if>
     </select>
 
     <select id="selectCounts" resultType="integer">
         SELECT count(*)
         FROM sys_user
-        WHERE status = 1
+        WHERE status != 2
     </select>
     <select id="selectByLoginName" resultType="boolean">
         SELECT exists(
                 SELECT *
                 FROM sys_user
-                WHERE status = 1 AND login_name = #{loginName}
+                WHERE status != 2 AND login_name = #{loginName}
         )
     </select>
     <select id="isExistLoginNameExcludeId" resultType="java.lang.Boolean">
         SELECT exists(
                 SELECT *
                 FROM sys_user
-                WHERE status = 1 AND id != #{id} AND login_name = #{loginName}
+                WHERE status != 2 AND id != #{id} AND login_name = #{loginName}
         )
     </select>
     <select id="selectUserByLoginName" resultType="com.hunt.model.entity.SysUser">
         SELECT *
         FROM sys_user
-        WHERE status = 1 AND login_name = #{loginName}
+        WHERE status != 2 AND login_name = #{loginName}
     </select>
-
 </mapper>

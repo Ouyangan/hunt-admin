@@ -27,11 +27,11 @@ user_tool = {
             pageList: [15, 30, 45, 60],
             columns: [[
                 {title: "选择", field: "ck", checkbox: true},
-                {title: "中文名", field: "zhName", width: 200},
-                {title: "登录名", field: "loginName", width: 200},
-                {title: "英文名", field: "enName", width: 200},
+                {title: "中文名", field: "zhName", width: 200, sortable: true},
+                {title: "登录名", field: "loginName", width: 200, sortable: true},
+                {title: "英文名", field: "enName", width: 200, sortable: true},
                 {
-                    title: "是否可修改", width: 200, field: "sex", formatter: function (value, row, index) {
+                    title: "性别", width: 200, field: "sex", formatter: function (value, row, index) {
                     if (value == 1) {
                         return "男";
                     }
@@ -40,10 +40,20 @@ user_tool = {
                     }
                 }
                 },
-                {title: "状态", field: "status", width: 200},
+                {
+                    title: "状态", field: "status", align: 'center', width: 120, formatter: function (value, row, index) {
+                    if (value == 1) {
+                        return "<div class='easyui-switchbutton status' checked ></div>";
+                    }
+                    if (value == 3) {
+                        return "<div class='easyui-switchbutton status' unchecked ></div>";
+                    }
+
+                }
+                },
                 {title: "生日", field: "birth", width: 200},
-                {title: "邮箱", field: "email", width: 200},
-                {title: "电话", field: "phone", width: 200},
+                {title: "邮箱", field: "email", width: 200, sortable: true},
+                {title: "电话", field: "phone", width: 200, sortable: true},
                 {title: "地址", field: "address", width: 200},
                 {
                     title: "是否可修改", field: "isFinal", formatter: function (value, row, index) {
@@ -70,6 +80,14 @@ user_tool = {
                 }, width: 200
                 },
             ]],
+            onLoadSuccess: function () {
+                $(".status").switchbutton({
+                    readonly: true,
+                    onText: '已启用',
+                    offText: '已禁用',
+                    width: 80,
+                })
+            },
         });
     },
     init_edit_view: function (type) {
@@ -228,7 +246,7 @@ user_tool = {
             }
             $.ajax({
                 data: {
-                    id:id,
+                    id: id,
                     loginName: loginName,
                     zhName: zhName,
                     enName: enName,
@@ -291,7 +309,50 @@ user_tool = {
 
     },
     forbiddenUser: function (id) {
-
+        $.ajax({
+            data: {
+                id: id,
+            },
+            traditional: true,
+            method: 'get',
+            url: '/user/forbiddenUser',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.code == 10000) {
+                    user_tool.form_clear();
+                    user_tool.init_main_view();
+                    common_tool.messager_show(result.msg);
+                    return false;
+                }
+                else {
+                    common_tool.messager_show(result.msg);
+                }
+            },
+        });
+    },
+    enableUser: function (id) {
+        $.ajax({
+            data: {
+                id: id,
+            },
+            traditional: true,
+            method: 'get',
+            url: '/user/enableUser',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.code == 10000) {
+                    user_tool.form_clear();
+                    user_tool.init_main_view();
+                    common_tool.messager_show(result.msg);
+                    return false;
+                }
+                else {
+                    common_tool.messager_show(result.msg);
+                }
+            },
+        });
     },
 
 };
@@ -334,6 +395,39 @@ $(document).ready(function () {
     });
     $("#user-detail-btn").click(function () {
 
+    });
+    $("#user-enable-btn").click(function () {
+        var users = $("#user_grid").datagrid('getChecked');
+        if (users.length == 0) {
+            common_tool.messager_show("请至少选择一条记录");
+            return false;
+        }
+        if (users[0].status == 1) {
+            console.log('asfasfd')
+            common_tool.messager_show("该账号已经处于启用状态");
+            return false;
+        }
+        $.messager.confirm('确认对话框', "您确认启用 " + users[0].zhName + " 账号吗?", function (r) {
+            if (r) {
+               user_tool.enableUser(users[0].id)
+            }
+        });
+    });
+    $("#user-forbidden-btn").click(function () {
+        var users = $("#user_grid").datagrid('getChecked');
+        if (users.length == 0) {
+            common_tool.messager_show("请至少选择一条记录");
+            return false;
+        }
+        if (users[0].status == 3) {
+            common_tool.messager_show("该账号已经处于禁用状态");
+            return false;
+        }
+        $.messager.confirm('确认对话框', "您确认禁用 " + users[0].zhName + " 账号吗?", function (r) {
+            if (r) {
+                user_tool.forbiddenUser(users[0].id)
+            }
+        });
     });
     $("#user-flash-btn").click(function () {
         user_tool.form_clear();

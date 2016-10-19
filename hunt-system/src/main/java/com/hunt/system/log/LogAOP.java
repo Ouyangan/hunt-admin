@@ -24,8 +24,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Aspect
 @Component
-public class ControllerLog {
-    private static final Logger logger = LoggerFactory.getLogger(ControllerLog.class);
+public class LogAOP {
+    private static final Logger logger = LoggerFactory.getLogger(LogAOP.class);
 
     @Autowired
     private SysLogService sysLogService;
@@ -65,6 +65,7 @@ public class ControllerLog {
         log.setParam(stringBuilder.toString());
         log.setIp(re.getRemoteAddr());
         log.setUrl(re.getRequestURL().toString());
+        log.setUserAgent(re.getHeader("user-agent"));
         sysLogService.insertSysControllerLog(log);
 
         logger.info("request param : {}", log.getParam());

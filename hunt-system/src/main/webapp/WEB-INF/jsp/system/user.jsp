@@ -6,9 +6,15 @@
     <div class="easyui-linkbutton " id="user-update-btn" data-options="iconCls:'icon-edit'" style="width:70px">修改</div>
     <div class="easyui-linkbutton " id="user-detail-btn" data-options="iconCls:'icon-edit'" style="width:90px">查看详情
     </div>
-    <div class="easyui-linkbutton " id="user-delete-btn" data-options="iconCls:'icon-remove'" style="width:70px">删除
+    <div class="easyui-linkbutton " id="user-enable-btn" data-options="iconCls:'icon-remove'" style="width:70px">启用
+    </div>
+    <div class="easyui-linkbutton " id="user-forbidden-btn" data-options="iconCls:'icon-remove'" style="width:70px">禁用
+    </div>
+    <div class="easyui-linkbutton " id="user-init-password-btn" data-options="iconCls:'icon-remove'" style="width:100px">初始化密码
     </div>
     <div class="easyui-linkbutton " id="user-flash-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
+    </div>
+    <div class="easyui-linkbutton " id="user-delete-btn" data-options="iconCls:'icon-remove'" style="width:70px">删除
     </div>
 </div>
 <div id="user_grid" style="padding: 10px">
@@ -112,7 +118,19 @@
 
     </form>
 </div>
-<div id="sex_combo">
-    <input type="radio" name="lang" value="01"><span>Java</span><br/>
-    <input type="radio" name="lang" value="02"><span>C#</span><br/>
+<div id="init_password_edit_dialog">
+    <form id="init_password_form">
+        <p style="padding: 10px ;">&nbsp;&nbsp;密码:<input name="oldPassword" type="password" id="oldPassword"
+                                                         style="width: 300px;height: 35px"
+                                                         data-options="required:true,validType:['length[6,20]']"
+                                                         class="easyui-textbox easyui-validatebox"></p>
+        <p style="padding: 10px ;">&nbsp;&nbsp;密码:<input name="newPassword" type="password" id="newPassword"
+                                                         style="width: 300px;height: 35px"
+                                                         data-options="required:true,validType:['length[6,20]']"
+                                                         class="easyui-textbox easyui-validatebox"></p>
+        <p style="padding: 10px ;">&nbsp;&nbsp;密码:<input name="repeatNewPassword" type="password" id="repeatNewPassword"
+                                                         style="width: 300px;height: 35px"
+                                                         data-options="required:true,validType:['length[6,20]']"
+                                                         class="easyui-textbox easyui-validatebox"></p>
+    </form>
 </div>

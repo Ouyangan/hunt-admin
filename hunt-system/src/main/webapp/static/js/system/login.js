@@ -2,13 +2,43 @@ $(function () {
     $("#login").dialog({
         title: '系统登录',
         closable: false,
-        width: 400,
-        height: 200,
+        width: 500,
+        height: 300,
         cache: false,
         modal: true,
         resizable: false,
         draggable: false,
-        buttons: '#login-btn',
+        buttons: [
+            {
+            text: '登录',
+            width: 100,
+            handler: function () {
+                if (!$("#username").validatebox("isValid")) {
+                    $("#username").focus();
+                } else if (!$("#password").validatebox("isValid")) {
+                    $("#password").focus();
+                } else {
+                    $.ajax({
+                        url: "/system/login",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            loginName: $("#username").val(),
+                            password: $("#password").val(),
+                            platform: 1,
+                        },
+                        success: function (data) {
+                            if (data.code == 10000) {
+                                location.href = "/system/index";
+                            } else {
+                                common_tool.messager_show(data.msg)
+                            }
+                        }
+                    })
+                }
+            }
+        },
+        ],
     });
 
     $('#username').validatebox({
@@ -27,35 +57,4 @@ $(function () {
         $("#password").focus();
     }
 
-    $("#login-btn a").click(function () {
-        if (!$("#username").validatebox("isValid")) {
-            $("#username").focus();
-        } else if (!$("#password").validatebox("isValid")) {
-            $("#password").focus();
-        } else {
-            $.ajax({
-                url: "/user/login",
-                type: "post",
-                dataType: "json",
-                data: {
-                    username: $("#username").val(),
-                    password: $("#password").val(),
-                    platform: 1,
-                },
-                success: function (data) {
-                    if (data.code == 10000) {
-                        alert("loading")
-                    } else {
-                        $.messager.show({
-                            title: '系统提示',
-                            msg: data.msg,
-                            timeout: 2000,
-                            showType: 'slide'
-                        });
-
-                    }
-                }
-            })
-        }
-    })
 });

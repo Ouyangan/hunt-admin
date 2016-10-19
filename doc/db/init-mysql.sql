@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/10/19 9:59:02                           */
+/* Created on:     2016/10/19 14:15:03                          */
 /*==============================================================*/
 
 
@@ -87,6 +87,7 @@ create table sys_log
    result               text comment '请求结果',
    duration             bigint comment '持续时间',
    url                  varchar(512) comment '请求url',
+   user_agent           varchar(512) comment '请求ua标识',
    primary key (id)
 );
 
@@ -95,12 +96,12 @@ create table sys_log
 /*==============================================================*/
 create table sys_login_status
 (
-   id                   bigint not null comment '主键',
+   id                   bigint not null auto_increment comment '主键',
    sys_user_id          bigint comment '用户id',
    session_id           varchar(256) comment 'session id',
    session_expires      datetime comment 'session过期时间',
    sys_user_login_name  varchar(256) comment '登录名',
-   sys_user_zhName      varchar(256) comment '中文名',
+   sys_user_zh_name     varchar(256) comment '中文名',
    last_login_time      datetime comment '上一次登录时间',
    platform             tinyint comment '登录平台 1:web 2:android 3:ios',
    rank                 bigint default 0 comment '排序',
@@ -117,7 +118,7 @@ create table sys_login_status
 /*==============================================================*/
 create table sys_organization
 (
-   id                   bigint not null,
+   id                   bigint not null auto_increment,
    name                 varchar(256) comment '名称',
    description          varchar(1024) comment '描述',
    is_final             int default 1 comment '是否可删除',
@@ -277,7 +278,7 @@ create table sys_user_permission
 /*==============================================================*/
 create table sys_user_role_organization
 (
-   id                   bigint not null,
+   id                   bigint not null auto_increment,
    sys_user_id          bigint,
    sys_role_organization_id bigint,
    rank                 bigint default 0 comment '排序',

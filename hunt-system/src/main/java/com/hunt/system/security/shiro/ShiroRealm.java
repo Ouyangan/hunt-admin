@@ -1,4 +1,4 @@
-package com.hunt.system.security;
+package com.hunt.system.security.shiro;
 
 import com.hunt.dao.*;
 import com.hunt.model.entity.*;

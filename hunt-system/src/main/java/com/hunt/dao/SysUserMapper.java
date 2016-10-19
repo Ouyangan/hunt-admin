@@ -19,7 +19,7 @@ public interface SysUserMapper {
     public SysUser selectById(@Param("id") Long id);
 
     //查询全部
-    public List<SysUser> selectAll();
+    public List<SysUser> selectAll(@Param("sort") String sort, @Param("order") String order);
 
     //查询数量
     public int selectCounts();
