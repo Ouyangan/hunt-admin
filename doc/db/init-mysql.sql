@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/10/18 15:06:31                          */
+/* Created on:     2016/10/19 9:59:02                           */
 /*==============================================================*/
 
 
@@ -100,7 +100,7 @@ create table sys_login_status
    session_id           varchar(256) comment 'session id',
    session_expires      datetime comment 'session过期时间',
    sys_user_login_name  varchar(256) comment '登录名',
-   sys_user_zh_name     varchar(256) comment '中文名',
+   sys_user_zhName      varchar(256) comment '中文名',
    last_login_time      datetime comment '上一次登录时间',
    platform             tinyint comment '登录平台 1:web 2:android 3:ios',
    rank                 bigint default 0 comment '排序',
@@ -117,7 +117,7 @@ create table sys_login_status
 /*==============================================================*/
 create table sys_organization
 (
-   id                   bigint not null AUTO_INCREMENT,
+   id                   bigint not null,
    name                 varchar(256) comment '名称',
    description          varchar(1024) comment '描述',
    is_final             int default 1 comment '是否可删除',
