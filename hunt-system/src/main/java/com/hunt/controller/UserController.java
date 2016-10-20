@@ -36,7 +36,7 @@ public class UserController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "insert", method = RequestMethod.POST)
+        @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String loginName,
                          @RequestParam String zhName,
                          @RequestParam(defaultValue = "") String enName,

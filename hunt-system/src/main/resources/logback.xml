@@ -1,12 +1,7 @@
 <configuration scan="true">
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
-        <!--<level>error</level>-->
-        <!--<onMatch>ACCEPT</onMatch>-->
-        <!--<onMismatch>DENY</onMismatch>-->
-        <!--</filter>-->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80}.%M\(%line\) - %msg%n</pattern>
         </encoder>
         <charset>UTF-8</charset>
     </appender>
@@ -23,7 +18,7 @@
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80}.%M\(%line\) - %msg%n</pattern>
             <charset>UTF-8</charset>
         </encoder>
 
@@ -41,7 +36,7 @@
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80}.%M\(%line\) - %msg%n</pattern>
             <charset>UTF-8</charset>
         </encoder>
     </appender>
@@ -58,13 +53,15 @@
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{80}.%M\(%line\) - %msg%n</pattern>
             <charset>UTF-8</charset>
         </encoder>
     </appender>
 
-    <logger name="org.springframework.data.redis" level="error"/>
-    <logger name="org.mybatis.spring.SqlSessionUtils" level="error"/>
+    <logger name="org.springframework" level="error"/>
+    <logger name="org.apache.ibatis" level="error"/>
+    <logger name="org.mybatis.spring" level="error"/>
+    <logger name="com.alibaba.druid" level="error"/>
 
     <root level="debug">
         <appender-ref ref="STDOUT"/>

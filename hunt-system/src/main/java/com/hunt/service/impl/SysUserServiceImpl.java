@@ -158,6 +158,7 @@ public class SysUserServiceImpl implements SysUserService {
 
         SysLoginStatus oldLoginStatus = sysLoginStatusMapper.selectByUserIdAndPlatform(user.getId(), platform);
         if (oldLoginStatus != null) {
+            redisTemplate.opsForValue().getOperations().delete(oldLoginStatus.getSessionId());
             oldLoginStatus.setStatus(2);
             sysLoginStatusMapper.update(oldLoginStatus);
             newLoginStatus.setLastLoginTime(oldLoginStatus.getCreateTime());
