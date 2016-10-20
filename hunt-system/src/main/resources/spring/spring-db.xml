@@ -40,18 +40,20 @@
         <property name="port" value="${redis.port}"/>
         <!--<property name="password" value="${redis.port}"/>-->
         <property name="usePool" value="true"/>
-        <property name="database" value="1"/>
-
+        <property name="database" value="0"/>
     </bean>
 
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
         <property name="connectionFactory" ref="jedisFactory"/>
+        <!--定义默认的序列化策略-->
         <property name="defaultSerializer">
-            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
         </property>
+        <!--定义key默认序列化策略-->
         <property name="keySerializer">
             <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
         </property>
+        <!--定义value默认策略-->
         <property name="valueSerializer">
             <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
         </property>

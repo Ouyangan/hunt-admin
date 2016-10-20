@@ -80,7 +80,8 @@ user_tool = {
                 }, width: 200
                 },
             ]],
-            onLoadSuccess: function () {
+            onLoadSuccess: function (data) {
+                console.log("onLoadSuccess")
                 $(".status").switchbutton({
                     readonly: true,
                     onText: '已启用',
@@ -88,6 +89,15 @@ user_tool = {
                     width: 80,
                 })
             },
+            onBeforeLoad: function (data) {
+                console.log("onBeforeLoad")
+            },
+            onLoadError: function () {
+                console.log("onLoadError")
+            },
+            onLoad: function () {
+                console.log("onLoad")
+            }
         });
     },
     init_edit_view: function (type) {
@@ -409,7 +419,7 @@ $(document).ready(function () {
         }
         $.messager.confirm('确认对话框', "您确认启用 " + users[0].zhName + " 账号吗?", function (r) {
             if (r) {
-               user_tool.enableUser(users[0].id)
+                user_tool.enableUser(users[0].id)
             }
         });
     });

@@ -137,6 +137,7 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public LoginInfo login(SysUser user, Serializable id, int platform) {
+        log.debug("sessionId is:{}", id.toString());
         LoginInfo loginInfo = new LoginInfo();
         BeanUtils.copyProperties(user, loginInfo);
         List<SysUserPermission> userPermissions = sysUserPermissionMapper.selectByUserId(user.getId());
@@ -158,7 +159,9 @@ public class SysUserServiceImpl implements SysUserService {
 
         SysLoginStatus oldLoginStatus = sysLoginStatusMapper.selectByUserIdAndPlatform(user.getId(), platform);
         if (oldLoginStatus != null) {
-            redisTemplate.opsForValue().getOperations().delete(oldLoginStatus.getSessionId());
+            if (!oldLoginStatus.getSessionId().equals(id.toString())) {
+                redisTemplate.opsForValue().getOperations().delete(oldLoginStatus.getSessionId());
+            }
             oldLoginStatus.setStatus(2);
             sysLoginStatusMapper.update(oldLoginStatus);
             newLoginStatus.setLastLoginTime(oldLoginStatus.getCreateTime());

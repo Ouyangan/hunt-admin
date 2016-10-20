@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class RedisSessionDao extends AbstractSessionDAO {
     private static final String sessionIdPrefix = "shiro-session-";
+    private static final String sessionIdPrefix_keys = "shiro-session-*";
     private static final long timeout = 2592000;
     private static Logger log = LoggerFactory.getLogger(RedisSessionDao.class);
     @Autowired
@@ -56,7 +57,7 @@ public class RedisSessionDao extends AbstractSessionDAO {
 
     @Override
     public Collection<Session> getActiveSessions() {
-        Set<Serializable> keys = redisTemplate.keys(sessionIdPrefix + "*");
+        Set<Serializable> keys = redisTemplate.keys(sessionIdPrefix_keys);
         if (keys.size() == 0) {
             return Collections.emptySet();
         }

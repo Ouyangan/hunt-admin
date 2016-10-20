@@ -3,6 +3,7 @@ package com.hunt.controller;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysUser;
 import com.hunt.service.SysUserService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,6 +118,7 @@ public class UserController extends BaseController {
         return Result.success();
     }
 
+    @RequiresPermissions("user:select")
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam int page,

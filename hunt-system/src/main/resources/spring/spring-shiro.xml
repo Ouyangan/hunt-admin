@@ -8,7 +8,12 @@
         <property name="loginUrl" value="/"/>
         <property name="filterChainDefinitions">
             <value>
-                /**=anon
+                /system/captcha=anon
+                /static/**=anon
+                /system/logout = anon
+                /system/login=anon
+                /=anon
+                /**=authc
             </value>
         </property>
     </bean>
@@ -20,7 +25,7 @@
             </list>
         </property>
         <!-- 注入缓存管理器 -->
-        <!--<property name="cacheManager" ref="cacheManager"/>-->
+        <property name="cacheManager" ref="cacheManager"/>
         <!-- 注入session管理器 -->
         <property name="sessionManager" ref="sessionManager"/>
         <!-- 记住我 -->
@@ -30,13 +35,15 @@
     </bean>
 
     <bean id="redisSessionDAO" class="com.hunt.system.security.shiro.RedisSessionDao"/>
+    <bean id="cacheManager" class="com.hunt.system.security.shiro.RedisCacheManger"/>
 
-    <!-- credentialsMatcher -->
+
     <bean id="credentialsMatcher"
           class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
         <property name="hashAlgorithmName" value="md5"/>
         <property name="hashIterations" value="2"/>
     </bean>
+
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <property name="globalSessionTimeout" value="2592000000"/>
         <property name="sessionValidationSchedulerEnabled" value="true"/>
@@ -49,4 +56,5 @@
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>
+
 </beans>

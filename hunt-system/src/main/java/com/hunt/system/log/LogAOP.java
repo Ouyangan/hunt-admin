@@ -71,7 +71,7 @@ public class LogAOP {
         logger.info("request param : {}", log.getParam());
         logger.info("reuest method : {}", re.getMethod());
         logger.info("request url : {}", log.getUrl());
-        logger.info("request result: {}", StringUtil.formatJson(log.getResult()));
+//        logger.info("request result: {}", StringUtil.formatJson(log.getResult()));
         return o;
     }
 
