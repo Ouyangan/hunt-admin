@@ -224,35 +224,46 @@
     </select>
 
     <select id="selectById" parameterType="long" resultType="SysRoleOrganization">
-        select * from sys_role_organization where id =#{id} and status=1
+        SELECT *
+        FROM sys_role_organization
+        WHERE id = #{id} AND status = 1
     </select>
 
     <select id="selectAll" resultType="SysRoleOrganization">
-        select * from sys_role_organization where status=1
+        SELECT *
+        FROM sys_role_organization
+        WHERE status = 1
     </select>
 
     <select id="selectCounts" resultType="integer">
-        select count(*) from sys_role_organization where status=1
+        SELECT count(*)
+        FROM sys_role_organization
+        WHERE status = 1
     </select>
 
     <select id="isExistName" resultType="java.lang.Boolean">
         SELECT exists(
-        SELECT *
-        FROM sys_role_organization
-        WHERE status = 1 AND name = #{name} AND parent_id = #{parentId}
+                SELECT *
+                FROM sys_role_organization
+                WHERE status = 1 AND name = #{name} AND parent_id = #{parentId}
         )
     </select>
     <select id="isExistNameExcludeId" resultType="java.lang.Boolean">
         SELECT exists(
-        SELECT *
-        FROM sys_role_organization
-        WHERE status = 1 AND name = #{name} AND parent_id = #{parentId} AND id != #{id}
+                SELECT *
+                FROM sys_role_organization
+                WHERE status = 1 AND name = #{name} AND parent_id = #{parentId} AND id != #{id}
         )
     </select>
     <select id="selectChildren" resultType="com.hunt.model.entity.SysRoleOrganization">
         SELECT *
         FROM sys_role_organization
         WHERE status = 1 AND parent_id = #{parentId}
+    </select>
+    <select id="selectByRoleId" resultType="long">
+        SELECT id
+        FROM sys_role_organization
+        WHERE status = 1 AND sys_role_id = #{roleId}
     </select>
 
 </mapper>

@@ -27,4 +27,6 @@ public interface SysUserRoleOrganizationMapper {
     void deleteUserId(@Param("userId") long userId);
 
     List<SysUserRoleOrganization> selectByUserId(@Param("userId") Long userId);
+
+    List<Long> selectByRoleOrganizationId(@Param("roleOrganizationId") long roleOrganizationId);
 }

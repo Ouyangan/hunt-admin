@@ -30,7 +30,13 @@ public interface SysUserService {
 
     SysUser selectByLoginName(String loginName);
 
-    LoginInfo login(SysUser user, Serializable id,int platform);
+    LoginInfo login(SysUser user, Serializable id, int platform);
 
     void forceLogout(long userId);
+
+    void clearAuthorizationInfoCacheByUserId(long userId);
+
+    void clearAuthorizationInfoALL();
+
+    void clearAuthorizationInfoByRoleId(long roleId);
 }

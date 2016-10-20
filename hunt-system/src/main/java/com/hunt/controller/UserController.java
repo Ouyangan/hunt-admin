@@ -115,6 +115,7 @@ public class UserController extends BaseController {
         user.setAddress(address);
         user.setBirth(birth);
         sysUserService.updateUser(user, jobIds, permissionIds);
+        sysUserService.clearAuthorizationInfoCacheByUserId(user.getId());
         return Result.success();
     }
 
@@ -157,6 +158,7 @@ public class UserController extends BaseController {
         }
         sysUser.setStatus(3);
         sysUserService.updateUser(sysUser);
+        sysUserService.clearAuthorizationInfoCacheByUserId(sysUser.getId());
         return Result.success();
     }
 
@@ -169,6 +171,7 @@ public class UserController extends BaseController {
         }
         sysUser.setStatus(1);
         sysUserService.updateUser(sysUser);
+        sysUserService.clearAuthorizationInfoCacheByUserId(sysUser.getId());
         return Result.success();
     }
 

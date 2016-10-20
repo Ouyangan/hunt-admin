@@ -194,6 +194,11 @@
         FROM sys_user_role_organization
         WHERE status = 1 AND sys_user_id = #{userId}
     </select>
+    <select id="selectByRoleOrganizationId" resultType="java.lang.Long">
+        SELECT sys_user_id
+        FROM sys_user_role_organization
+        WHERE status = 1 AND sys_role_organization_id = #{roleOrganizationId}
+    </select>
 
 
 </mapper>

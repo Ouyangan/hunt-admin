@@ -7,6 +7,7 @@ import com.hunt.model.dto.PageInfo;
 import com.hunt.model.dto.SysUserDto;
 import com.hunt.model.entity.*;
 import com.hunt.service.SysUserService;
+import com.hunt.system.security.shiro.RedisCache;
 import org.apache.shiro.session.Session;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -16,10 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import system.SystemConstant;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Author: ouyangan
@@ -41,7 +44,9 @@ public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private SysLoginStatusMapper sysLoginStatusMapper;
     @Autowired
-    private RedisTemplate<Serializable, Session> redisTemplate;
+    private RedisTemplate<Object, Object> redisTemplate;
+    @Autowired
+    private SysRoleOrganizationMapper sysRoleOrganizationMapper;
 
     @Override
     public long insertUser(SysUser user, String jobIds, String permissionIds) {
@@ -189,5 +194,39 @@ public class SysUserServiceImpl implements SysUserService {
         sysUserMapper.deleteById(id);
         sysUserPermissionMapper.deleteByUserId(id);
         sysUserRoleOrganizationMapper.deleteUserId(id);
+    }
+
+    @Override
+    public void clearAuthorizationInfoCacheByUserId(long userId) {
+        SysUser sysUser = sysUserMapper.selectById(userId);
+        if (sysUser != null) {
+            redisTemplate.opsForValue().getOperations().delete(SystemConstant.shiro_cache_prefix + sysUser.getLoginName());
+        }
+    }
+
+    @Override
+    public void clearAuthorizationInfoALL() {
+        Set<Object> keys = redisTemplate.keys(SystemConstant.shiro_cache_prefix_keys);
+        if (keys.size() > 0) {
+            redisTemplate.opsForValue().getOperations().delete(keys);
+        }
+    }
+
+    @Override
+    public void clearAuthorizationInfoByRoleId(long roleId) {
+        List<Long> list = sysRoleOrganizationMapper.selectByRoleId(roleId);
+        if (list.size() > 0) {
+            for (long id : list) {
+                List<Long> userIds = sysUserRoleOrganizationMapper.selectByRoleOrganizationId(id);
+                if (userIds.size() > 0) {
+                    for (Long userId : userIds) {
+                        SysUser sysUser = sysUserMapper.selectById(userId);
+                        if (sysUser != null) {
+                            redisTemplate.opsForValue().getOperations().delete(SystemConstant.shiro_cache_prefix + sysUser.getLoginName());
+                        }
+                    }
+                }
+            }
+        }
     }
 }
