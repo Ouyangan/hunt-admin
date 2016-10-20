@@ -35,8 +35,9 @@
     </bean>
 
     <bean id="redisSessionDAO" class="com.hunt.system.security.shiro.RedisSessionDao"/>
-    <bean id="cacheManager" class="com.hunt.system.security.shiro.RedisCacheManger"/>
-
+    <bean id="cacheManager" class="com.hunt.system.security.shiro.RedisCacheManager">
+        <property name="redisTemplate" ref="redisTemplate"/>
+    </bean>
 
     <bean id="credentialsMatcher"
           class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">

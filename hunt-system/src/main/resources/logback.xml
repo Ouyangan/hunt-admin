@@ -14,7 +14,7 @@
         </filter>
         <file>../logs/smart/hunt-dminDdebug.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>../logs/smart/smartDebug-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>../logs/hunt-admin/hunt-admin-Debug-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -30,9 +30,9 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-        <file>../logs/smart/smartInfo.log</file>
+        <file>../logs/hunt-admin/hunt-admin-Info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>../logs/smart/smartInfo-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>../logs/hunt-admin/hunt-admin-Info-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -47,9 +47,9 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-        <file>../logs/smart/smartError.log</file>
+        <file>../logs/hunt-admin/hunt-admin-Error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>../logs/smart/smartError-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>../logs/hunt-admin/hunt-admin-Error-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -62,6 +62,9 @@
     <logger name="org.apache.ibatis" level="error"/>
     <logger name="org.mybatis.spring" level="error"/>
     <logger name="com.alibaba.druid" level="error"/>
+    <logger name="com.hunt.dao" level="error"/>
+    <logger name="com.hunt.service" level="error"/>
+    <logger name="org.apache.shiro.web.servlet.SimpleCookie" level="error"/>
 
     <root level="debug">
         <appender-ref ref="STDOUT"/>

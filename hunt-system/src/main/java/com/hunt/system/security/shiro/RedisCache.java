@@ -16,39 +16,33 @@ import java.util.*;
  * @Description
  */
 
-public class RedisCache<K, V> implements Cache<K, V>,Serializable {
+public class RedisCache<K, V> implements Cache<K, V>, Serializable {
 
     private static final String shiro_cache_prefix = "shiro-cache-";
-    private static final String shiro_cache_prefix_keys = "shiro-cache-*";
-    private static Logger log = LoggerFactory.getLogger(RedisCache.class);
+    private  static final String shiro_cache_prefix_keys = "shiro-cache-*";
+    private transient static Logger log = LoggerFactory.getLogger(RedisCache.class);
 
-    @Autowired
-    private RedisTemplate<K, V> redisTemplate;
 
-    private String name;
+    private transient RedisTemplate<K, V> redisTemplate;
 
-    private final Map<K, V> map;
+    public RedisCache(RedisTemplate<K, V> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
-    public RedisCache(String name, Map<K, V> backingMap) {
-        if (name == null) {
-            throw new IllegalArgumentException("Cache name cannot be null.");
-        }
-        if (backingMap == null) {
-            throw new IllegalArgumentException("Backing map cannot be null.");
-        }
-        this.name = name;
-        this.map = backingMap;
+
+    public RedisCache() {
     }
 
     @Override
     public V get(K key) throws CacheException {
-        log.debug("redis cache get :{}", key.toString());
+        log.debug("根据key:{}从redis获取对象", key);
+        log.debug("{}", redisTemplate);
         return redisTemplate.opsForValue().get(shiro_cache_prefix + key);
     }
 
     @Override
     public V put(K key, V value) throws CacheException {
-        log.debug("redis cache put :{}", key.toString());
+        log.debug("根据key:{}从redis删除对象", key);
         redisTemplate.opsForValue().set((K) (shiro_cache_prefix + key), value);
         return value;
     }
@@ -63,7 +57,7 @@ public class RedisCache<K, V> implements Cache<K, V>,Serializable {
 
     @Override
     public void clear() throws CacheException {
-        log.debug("redis cache clear");
+        log.debug("清除redis所有缓存对象");
         Set<K> keys = redisTemplate.keys((K) shiro_cache_prefix_keys);
         redisTemplate.delete(keys);
     }
@@ -71,14 +65,14 @@ public class RedisCache<K, V> implements Cache<K, V>,Serializable {
     @Override
     public int size() {
         Set<K> keys = redisTemplate.keys((K) shiro_cache_prefix_keys);
-        log.debug("redis cache size :{}", keys.size());
+        log.debug("获取redis缓存对象数量:{}", keys.size());
         return keys.size();
     }
 
     @Override
     public Set<K> keys() {
         Set<K> keys = redisTemplate.keys((K) shiro_cache_prefix_keys);
-        log.debug("redis cache keys");
+        log.debug("获取所有缓存对象的key");
         if (keys.size() == 0) {
             return Collections.emptySet();
         }
@@ -88,7 +82,7 @@ public class RedisCache<K, V> implements Cache<K, V>,Serializable {
     @Override
     public Collection<V> values() {
         Set<K> keys = redisTemplate.keys((K) shiro_cache_prefix_keys);
-        log.debug("redis cache values");
+        log.debug("获取所有缓存对象的value");
         if (keys.size() == 0) {
             return Collections.emptySet();
         }
@@ -97,5 +91,11 @@ public class RedisCache<K, V> implements Cache<K, V>,Serializable {
         return Collections.unmodifiableCollection(vs);
     }
 
+    public RedisTemplate<K, V> getRedisTemplate() {
+        return redisTemplate;
+    }
 
+    public void setRedisTemplate(RedisTemplate<K, V> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 }

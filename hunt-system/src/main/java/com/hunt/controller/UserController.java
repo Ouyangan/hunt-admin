@@ -37,7 +37,7 @@ public class UserController extends BaseController {
     }
 
     @ResponseBody
-        @RequestMapping(value = "insert", method = RequestMethod.POST)
+    @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String loginName,
                          @RequestParam String zhName,
                          @RequestParam(defaultValue = "") String enName,
@@ -125,7 +125,7 @@ public class UserController extends BaseController {
                            @RequestParam int rows,
                            @RequestParam(defaultValue = "zhName") String sort,
                            @RequestParam(defaultValue = "asc") String order) {
-        PageInfo pageInfo = sysUserService.selectPage(page, rows,sort,order);
+        PageInfo pageInfo = sysUserService.selectPage(page, rows, sort, order);
         return pageInfo;
     }
 

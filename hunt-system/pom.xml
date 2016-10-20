@@ -15,6 +15,11 @@
     <description>web模块</description>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>1.2.2</version>
+        </dependency>
         <!--utils-->
         <dependency>
             <groupId>${project.groupId}</groupId>

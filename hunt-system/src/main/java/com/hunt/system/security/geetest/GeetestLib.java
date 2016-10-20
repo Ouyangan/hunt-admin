@@ -47,7 +47,7 @@ public class GeetestLib {
     /**
      * 调试开关，是否输出调试日志
      */
-    public boolean debugCode = true;
+    public boolean debugCode = false;
     /**
      * 极验验证API服务状态Session Key
      */
