@@ -11,7 +11,6 @@ user_tool = {
             url: "/user/select",
             method: 'get',
             idField: "id",
-            treeField: 'zhName',
             fitColumns: true,
             toolbar: '#user-tool-bar',
             rownumbers: true,

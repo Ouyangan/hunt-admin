@@ -48,7 +48,7 @@
                         </div>
                     </li>
                     <li class="tab-btn" style="padding: 5px;">
-                        <div style=" text-decoration: none;" href="/user/status">在线状态</div>
+                        <div style=" text-decoration: none;" href="/system/toOnline">在线状态</div>
                     </li>
                     <li class="tab-btn" style="padding: 5px;">
                         <div style=" text-decoration: none;"

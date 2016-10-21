@@ -4,7 +4,9 @@ import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 import system.SystemConstant;
 
 import java.io.Serializable;
@@ -18,7 +20,6 @@ import java.util.Set;
  * @Date 2016/10/9/13:55
  * @Description
  */
-
 public class RedisCache<K, V> implements Cache<K, V>, Serializable {
 
     private transient static Logger log = LoggerFactory.getLogger(RedisCache.class);
@@ -36,7 +37,7 @@ public class RedisCache<K, V> implements Cache<K, V>, Serializable {
     @Override
     public V get(K key) throws CacheException {
         log.debug("根据key:{}从redis获取对象", key);
-        log.debug("{}", redisTemplate);
+        log.debug("redisTemplate : {}",redisTemplate);
         return redisTemplate.opsForValue().get(SystemConstant.shiro_cache_prefix + key);
     }
 

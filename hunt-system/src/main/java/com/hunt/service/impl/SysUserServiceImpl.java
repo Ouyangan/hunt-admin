@@ -32,7 +32,6 @@ import java.util.Set;
 @Transactional
 public class SysUserServiceImpl implements SysUserService {
     private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
-    private static final String sessionIdPrefix = "shiro-session-";
     @Autowired
     private SysUserMapper sysUserMapper;
     @Autowired
@@ -175,14 +174,7 @@ public class SysUserServiceImpl implements SysUserService {
         return loginInfo;
     }
 
-    @Override
-    public void forceLogout(long userId) {
-        List<SysLoginStatus> list = sysLoginStatusMapper.selectByUserId(userId);
-        for (int i = 0; i < list.size(); i++) {
-            String sessionId = list.get(i).getSessionId();
-            redisTemplate.opsForValue().getOperations().delete(sessionId);
-        }
-    }
+
 
     @Override
     public boolean isExistLoginNameExcludeId(long id, String loginName) {
@@ -196,37 +188,5 @@ public class SysUserServiceImpl implements SysUserService {
         sysUserRoleOrganizationMapper.deleteUserId(id);
     }
 
-    @Override
-    public void clearAuthorizationInfoCacheByUserId(long userId) {
-        SysUser sysUser = sysUserMapper.selectById(userId);
-        if (sysUser != null) {
-            redisTemplate.opsForValue().getOperations().delete(SystemConstant.shiro_cache_prefix + sysUser.getLoginName());
-        }
-    }
 
-    @Override
-    public void clearAuthorizationInfoALL() {
-        Set<Object> keys = redisTemplate.keys(SystemConstant.shiro_cache_prefix_keys);
-        if (keys.size() > 0) {
-            redisTemplate.opsForValue().getOperations().delete(keys);
-        }
-    }
-
-    @Override
-    public void clearAuthorizationInfoByRoleId(long roleId) {
-        List<Long> list = sysRoleOrganizationMapper.selectByRoleId(roleId);
-        if (list.size() > 0) {
-            for (long id : list) {
-                List<Long> userIds = sysUserRoleOrganizationMapper.selectByRoleOrganizationId(id);
-                if (userIds.size() > 0) {
-                    for (Long userId : userIds) {
-                        SysUser sysUser = sysUserMapper.selectById(userId);
-                        if (sysUser != null) {
-                            redisTemplate.opsForValue().getOperations().delete(SystemConstant.shiro_cache_prefix + sysUser.getLoginName());
-                        }
-                    }
-                }
-            }
-        }
-    }
 }

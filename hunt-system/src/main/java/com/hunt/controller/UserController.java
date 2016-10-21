@@ -3,6 +3,7 @@ package com.hunt.controller;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysUser;
 import com.hunt.service.SysUserService;
+import com.hunt.service.SystemService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import system.ResponseCode;
 import system.Result;
 import system.StringUtil;
 
+import javax.jws.Oneway;
 import java.util.UUID;
 
 /**
@@ -30,6 +32,8 @@ public class UserController extends BaseController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private SysUserService sysUserService;
+    @Autowired
+    private SystemService systemService;
 
     @RequestMapping(value = "toUser", method = RequestMethod.GET)
     public String toUser() {
@@ -115,7 +119,7 @@ public class UserController extends BaseController {
         user.setAddress(address);
         user.setBirth(birth);
         sysUserService.updateUser(user, jobIds, permissionIds);
-        sysUserService.clearAuthorizationInfoCacheByUserId(user.getId());
+        systemService.clearAuthorizationInfoCacheByUserId(user.getId());
         return Result.success();
     }
 
@@ -158,7 +162,7 @@ public class UserController extends BaseController {
         }
         sysUser.setStatus(3);
         sysUserService.updateUser(sysUser);
-        sysUserService.clearAuthorizationInfoCacheByUserId(sysUser.getId());
+        systemService.clearAuthorizationInfoCacheByUserId(sysUser.getId());
         return Result.success();
     }
 
@@ -171,7 +175,7 @@ public class UserController extends BaseController {
         }
         sysUser.setStatus(1);
         sysUserService.updateUser(sysUser);
-        sysUserService.clearAuthorizationInfoCacheByUserId(sysUser.getId());
+        systemService.clearAuthorizationInfoCacheByUserId(sysUser.getId());
         return Result.success();
     }
 

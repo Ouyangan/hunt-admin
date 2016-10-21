@@ -7,6 +7,7 @@ import org.apache.shiro.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import system.SystemConstant;
 
 import java.io.Serializable;
 
@@ -24,7 +25,7 @@ public class RedisCacheManager implements CacheManager, Serializable {
     public RedisCacheManager() {
     }
 
-    public RedisCacheManager(RedisTemplate redisTemplate) {
+    public RedisCacheManager(RedisTemplate<Object, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
@@ -37,13 +38,9 @@ public class RedisCacheManager implements CacheManager, Serializable {
         Cache cache = (Cache) redisTemplate.opsForValue().get(name);
         if (cache == null) {
             cache = new RedisCache<>(redisTemplate);
-            redisTemplate.opsForValue().set(name, cache);
+            redisTemplate.opsForValue().set(SystemConstant.shiro_cache_prefix + name, cache);
         }
         return cache;
-    }
-
-    public RedisTemplate getRedisTemplate() {
-        return redisTemplate;
     }
 
     public void setRedisTemplate(RedisTemplate redisTemplate) {

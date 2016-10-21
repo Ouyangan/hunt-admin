@@ -1,8 +1,10 @@
 package com.hunt.controller;
 
 import com.hunt.model.dto.LoginInfo;
+import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysUser;
 import com.hunt.service.SysUserService;
+import com.hunt.service.SystemService;
 import com.hunt.system.security.geetest.GeetestConfig;
 import com.hunt.system.security.geetest.GeetestLib;
 import org.apache.shiro.SecurityUtils;
@@ -30,6 +32,8 @@ public class SystemController extends BaseController {
 
     @Autowired
     private SysUserService sysUserService;
+    @Autowired
+    private SystemService systemService;
 
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
@@ -89,7 +93,7 @@ public class SystemController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "forceLogout", method = RequestMethod.GET)
     public Result forceLogout(@RequestParam long userId) {
-        sysUserService.forceLogout(userId);
+        systemService.forceLogout(userId);
         return Result.success();
     }
 
@@ -104,5 +108,17 @@ public class SystemController extends BaseController {
         return gtSdk.getResponseStr();
     }
 
+    @RequestMapping(value = "toOnline", method = RequestMethod.GET)
+    public String toOnline() {
+        return "system/online";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "online", method = RequestMethod.GET)
+    public PageInfo online(@RequestParam int page,
+                           @RequestParam int rows) {
+        PageInfo pageInfo = systemService.selectLogStatus(page, rows);
+        return pageInfo;
+    }
 
 }
