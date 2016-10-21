@@ -7,8 +7,6 @@ import com.hunt.model.dto.PageInfo;
 import com.hunt.model.dto.SysUserDto;
 import com.hunt.model.entity.*;
 import com.hunt.service.SysUserService;
-import com.hunt.system.security.shiro.RedisCache;
-import org.apache.shiro.session.Session;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import system.SystemConstant;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @Author: ouyangan
@@ -173,7 +169,6 @@ public class SysUserServiceImpl implements SysUserService {
         sysLoginStatusMapper.insert(newLoginStatus);
         return loginInfo;
     }
-
 
 
     @Override

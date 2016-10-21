@@ -20,7 +20,6 @@ import system.ResponseCode;
 import system.Result;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.PrintWriter;
 
 /**
  * @Author: ouyangan
@@ -84,19 +83,6 @@ public class SystemController extends BaseController {
         return Result.success();
     }
 
-    /**
-     * 强制用户下线
-     *
-     * @param userId
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping(value = "forceLogout", method = RequestMethod.GET)
-    public Result forceLogout(@RequestParam long userId) {
-        systemService.forceLogout(userId);
-        return Result.success();
-    }
-
     @ResponseBody
     @RequestMapping(value = "captcha", method = RequestMethod.GET)
     public String StartCaptcha(HttpServletRequest request) {
@@ -119,6 +105,17 @@ public class SystemController extends BaseController {
                            @RequestParam int rows) {
         PageInfo pageInfo = systemService.selectLogStatus(page, rows);
         return pageInfo;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "forceLogout", method = RequestMethod.GET)
+    public Result forceLogout(@RequestParam String userIds) {
+        System.out.println("userIds = [" + userIds + "]");
+        String[] ids = userIds.split(",");
+        for (String id : ids) {
+            systemService.forceLogout(Long.parseLong(id));
+        }
+        return Result.success();
     }
 
 }

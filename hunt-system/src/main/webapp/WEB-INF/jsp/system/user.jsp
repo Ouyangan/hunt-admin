@@ -10,7 +10,8 @@
     </div>
     <div class="easyui-linkbutton " id="user-forbidden-btn" data-options="iconCls:'icon-remove'" style="width:70px">禁用
     </div>
-    <div class="easyui-linkbutton " id="user-init-password-btn" data-options="iconCls:'icon-remove'" style="width:100px">初始化密码
+    <div class="easyui-linkbutton " id="user-init-password-btn" data-options="iconCls:'icon-remove'"
+         style="width:100px">初始化密码
     </div>
     <div class="easyui-linkbutton " id="user-flash-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
     </div>

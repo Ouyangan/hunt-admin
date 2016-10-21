@@ -3,6 +3,7 @@ package com.hunt.controller;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysRole;
 import com.hunt.service.SysRoleService;
+import com.hunt.service.SystemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,8 @@ public class RoleController extends BaseController {
         return Result.success(id);
     }
 
+    @Autowired
+    private SystemService systemService;
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
@@ -72,6 +75,7 @@ public class RoleController extends BaseController {
         sysRole.setName(name);
         sysRole.setDescription(description);
         sysRoleService.updateRole(sysRole, permissionIds);
+        systemService.clearAuthorizationInfoByRoleId(id);
         return Result.success();
     }
 
@@ -87,6 +91,7 @@ public class RoleController extends BaseController {
         }
         sysRole.setStatus(2);
         sysRoleService.deleteRole(sysRole);
+        systemService.clearAuthorizationInfoByRoleId(id);
         return Result.success();
     }
 

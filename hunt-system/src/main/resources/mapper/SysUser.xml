@@ -306,16 +306,16 @@
     </select>
     <select id="selectByLoginName" resultType="boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_user
-                WHERE status != 2 AND login_name = #{loginName}
+        SELECT *
+        FROM sys_user
+        WHERE status != 2 AND login_name = #{loginName}
         )
     </select>
     <select id="isExistLoginNameExcludeId" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_user
-                WHERE status != 2 AND id != #{id} AND login_name = #{loginName}
+        SELECT *
+        FROM sys_user
+        WHERE status != 2 AND id != #{id} AND login_name = #{loginName}
         )
     </select>
     <select id="selectUserByLoginName" resultType="com.hunt.model.entity.SysUser">

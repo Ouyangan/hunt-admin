@@ -18,7 +18,6 @@ import system.ResponseCode;
 import system.Result;
 import system.StringUtil;
 
-import javax.jws.Oneway;
 import java.util.UUID;
 
 /**
@@ -89,6 +88,7 @@ public class UserController extends BaseController {
             return Result.error(ResponseCode.can_not_edit.getMsg());
         }
         sysUserService.deleteById(id);
+        systemService.forceLogout(id);
         return Result.success();
     }
 
@@ -119,7 +119,7 @@ public class UserController extends BaseController {
         user.setAddress(address);
         user.setBirth(birth);
         sysUserService.updateUser(user, jobIds, permissionIds);
-        systemService.clearAuthorizationInfoCacheByUserId(user.getId());
+        systemService.clearAuthorizationInfoCacheByUserId(id);
         return Result.success();
     }
 
@@ -162,7 +162,7 @@ public class UserController extends BaseController {
         }
         sysUser.setStatus(3);
         sysUserService.updateUser(sysUser);
-        systemService.clearAuthorizationInfoCacheByUserId(sysUser.getId());
+        systemService.forceLogout(sysUser.getId());
         return Result.success();
     }
 

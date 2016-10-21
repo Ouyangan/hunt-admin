@@ -14,6 +14,8 @@ import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import system.SystemConstant;
 
 import java.util.HashSet;
 import java.util.List;
@@ -39,6 +41,9 @@ public class ShiroRealm extends AuthorizingRealm {
     private SysRoleOrganizationMapper sysRoleOrganizationMapper;
     @Autowired
     private SysRolePermissionMapper sysRolePermissionMapper;
+
+    @Autowired
+    private RedisTemplate<Object, Object> redisTemplate;
 
     /**
      * 鉴权信息
@@ -92,4 +97,15 @@ public class ShiroRealm extends AuthorizingRealm {
         AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(loginName, sysUser.getPassword(), ByteSource.Util.bytes(sysUser.getPasswordSalt()), getName());
         return authenticationInfo;
     }
+
+    @Override
+    protected void doClearCache(PrincipalCollection principals) {
+        redisTemplate.delete(SystemConstant.shiro_cache_prefix + principals.getPrimaryPrincipal().toString());
+    }
+
+    @Override
+    protected void clearCachedAuthorizationInfo(PrincipalCollection principals) {
+        log.debug("clearCachedAuthorizationInfo");
+    }
+
 }

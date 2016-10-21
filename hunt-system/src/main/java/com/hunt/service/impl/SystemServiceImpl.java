@@ -1,7 +1,10 @@
 package com.hunt.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.hunt.dao.*;
+import com.hunt.dao.SysLoginStatusMapper;
+import com.hunt.dao.SysRoleOrganizationMapper;
+import com.hunt.dao.SysUserMapper;
+import com.hunt.dao.SysUserRoleOrganizationMapper;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysLoginStatus;
 import com.hunt.model.entity.SysUser;
@@ -41,8 +44,13 @@ public class SystemServiceImpl implements SystemService {
     public void forceLogout(long userId) {
         List<SysLoginStatus> list = sysLoginStatusMapper.selectByUserId(userId);
         for (int i = 0; i < list.size(); i++) {
-            String sessionId = list.get(i).getSessionId();
-            redisTemplate.opsForValue().getOperations().delete(sessionId);
+            SysLoginStatus sysLoginStatus = list.get(i);
+            sysLoginStatus.setStatus(2);
+            sysLoginStatusMapper.update(sysLoginStatus);
+            //delete session
+            redisTemplate.opsForValue().getOperations().delete(sysLoginStatus.getSessionId());
+            //delete authrization cache
+            redisTemplate.opsForValue().getOperations().delete(SystemConstant.shiro_cache_prefix + sysLoginStatus.getSysUserLoginName());
         }
         log.debug("force logout userId : {}", userId);
     }
@@ -67,6 +75,7 @@ public class SystemServiceImpl implements SystemService {
 
     @Override
     public void clearAuthorizationInfoByRoleId(long roleId) {
+        log.debug("clear authorization info cache by roleId: {}",roleId);
         List<Long> list = sysRoleOrganizationMapper.selectByRoleId(roleId);
         if (list.size() > 0) {
             for (long id : list) {

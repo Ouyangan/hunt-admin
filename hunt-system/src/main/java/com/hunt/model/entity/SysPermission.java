@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @Date: 2016-10-12 14:21
  * @Description:
  */
-public class SysPermission  implements Serializable{
+public class SysPermission implements Serializable {
 
     // id :
     private Long id;

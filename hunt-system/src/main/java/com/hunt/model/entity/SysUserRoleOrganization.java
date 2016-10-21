@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @Date: 2016-10-17 16:52
  * @Description:
  */
-public class SysUserRoleOrganization implements Serializable{
+public class SysUserRoleOrganization implements Serializable {
 
     // id :
     private Long id;

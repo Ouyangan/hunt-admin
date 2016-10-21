@@ -17,5 +17,25 @@ $(document).ready(function () {
             });
             return false;
         }
-    })
+    });
+
+    $("#logout-btn").click(function () {
+        $.messager.confirm('确认对话框', "您确认退出系统吗?", function (r) {
+            if (r) {
+                $.ajax({
+                    data: {
+                        // id: id,
+                    },
+                    // traditional: true,
+                    method: 'get',
+                    url: '/system/logout',
+                    async: false,
+                    dataType: 'json',
+                    success: function (result) {
+                       location = "/"
+                    },
+                });
+            }
+        });
+    });
 });

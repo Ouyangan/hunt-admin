@@ -47,7 +47,7 @@
         <property name="connectionFactory" ref="jedisFactory"/>
         <!--定义默认的序列化策略-->
         <!--<property name="defaultSerializer">-->
-            <!--<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>-->
+        <!--<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>-->
         <!--</property>-->
         <!--定义key默认序列化策略-->
         <property name="keySerializer">

@@ -26,7 +26,7 @@ online_tool = {
                 {title: "登录名", field: "sysUserLoginName", width: 100, sortable: true},
                 {title: "中文名", field: "sysUserZhName", width: 100, sortable: true},
                 {
-                    title: "平台", field: "platform",sortable: true, formatter: function (value, row, index) {
+                    title: "平台", field: "platform", sortable: true, formatter: function (value, row, index) {
                     if (value == 1) {
                         return "Web";
                     }
@@ -64,6 +64,29 @@ online_tool = {
             ]],
         });
     },
+    force_logout: function (userIds) {
+        $.ajax({
+            data: {
+                userIds: userIds.toString(),
+            },
+            traditional: true,
+            method: 'get',
+            url: '/system/forceLogout',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.code == 10000) {
+                    online_tool.form_clear();
+                    online_tool.init_main_view();
+                    common_tool.messager_show(result.msg);
+                    return false;
+                }
+                else {
+                    common_tool.messager_show(result.msg);
+                }
+            },
+        });
+    }
 };
 $(document).ready(function () {
     online_tool.init_main_view();
@@ -75,9 +98,17 @@ $(document).ready(function () {
         }
         $.messager.confirm('确认对话框', "您确认删除该条记录吗?", function (r) {
             if (r) {
-
+                var userIds = new Array();
+                for (var i = 0; i < users.length; i++) {
+                    userIds[i] = users[i].sysUserId;
+                }
+                online_tool.force_logout(userIds)
             }
         });
+    });
+    $("#online-flash-btn").click(function () {
+        online_tool.form_clear();
+        online_tool.init_main_view();
     });
     $("#online-flash-btn").click(function () {
         online_tool.form_clear();
