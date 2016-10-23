@@ -16,7 +16,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body class="easyui-layout">
-<div data-options="region:'north',border:false" style="height:40px; background:#0081c2;padding: 0;">
+<div data-options="region:'north',border:false" style="height:40px; background:#198ec2;padding: 0;">
     <div style="height: 40px; float: left; line-height: 40px">
         <span style="font-weight:bolder; font-size: large;padding-left: 10px;color: #ffffff">Hunt-Admin 快速开发平台</span>
     </div>
@@ -25,62 +25,62 @@
                style="height: 40px;background-color: #3383B9;border: 0px;font-weight:bolder;padding: 0 15px;color: #ffffff;">
     </div>
 </div>
-<div data-options="region:'west',split:true,title:'系统导航'" style="text-align: center;width:200px;">
+<div data-options="region:'west',split:true," style="text-align: center;width:200px;">
     <div class="easyui-accordion" data-options="border:false,fit:true,">
         <div title="系统管理">
             <ul style="list-style: none;padding: 0 0 0 0 ;">
                 <div  style="padding: 5px 10px;">
                     <li class="nav-list">
-                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/user/toUser">用户管理
                         </div>
                     </li>
                 </div>
                <div  style="padding: 5px 10px;">
                    <li class="nav-list">
-                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/organization/toOrganization">机构管理
                         </div>
                     </li>
                 </div>
                <div  style="padding: 5px 10px;">
                    <li class="nav-list">
-                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;background: #ffffff; "
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;background: #ffffff; "
                              href="/role/toRole">角色管理
                         </div>
                     </li>
                 </div>
                <div  style="padding: 5px 10px;">
                    <li class="nav-list">
-                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
                              href="/job/toJob">职位管理
                         </div>
                     </li>
                 </div>
                <div  style="padding: 5px 10px;">
                    <li class="nav-list">
-                        <div class="tab-btn easyui-linkbutton"  data-options="iconCls:'icon-reload'"style="border: 0;"
+                        <div class="easyui-linkbutton"  data-options="iconCls:'icon-reload'"style="border: 0;"
                              href="/permission/toPermission">权限管理
                         </div>
                     </li>
                 </div>
                <div  style="padding: 5px 10px;">
                    <li class="nav-list">
-                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/system/toOnline">在线状态
                         </div>
                     </li>
                 </div>
                <div  style="padding: 5px 10px;">
                    <li class="nav-list">
-                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/system/toLog">系统日志
                         </div>
                     </li>
                 </div>
                <div  style="padding: 5px 10px;">
                    <li class="nav-list">
-                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/data/toData">字典管理
                         </div>
                     </li>
