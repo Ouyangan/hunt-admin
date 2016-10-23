@@ -36,7 +36,7 @@ public class LogAOP {
         long t1 = System.currentTimeMillis();
         try {
             o = p.proceed();
-        } catch (Exception e) {//这里建议将异常向上层抛让异常处理器来进行捕捉,方便定义响应消息
+        } catch (Exception e) {//这里建议将异常向上层抛让异常处理器来进行捕捉
             if (e instanceof UnknownAccountException) {
                 throw new UnknownAccountException(e);
             } else if (e instanceof IncorrectCredentialsException) {
