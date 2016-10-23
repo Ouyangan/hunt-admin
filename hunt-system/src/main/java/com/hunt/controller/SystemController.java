@@ -128,7 +128,7 @@ public class SystemController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "log/select", method = RequestMethod.GET)
-    public PageInfo select(@RequestParam int page,
+    public PageInfo log(@RequestParam int page,
                            @RequestParam int rows,
                            @RequestParam(defaultValue = "id") String sort,
                            @RequestParam(defaultValue = "desc") String order,
