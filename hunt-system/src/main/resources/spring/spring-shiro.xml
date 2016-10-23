@@ -13,6 +13,7 @@
                 /system/logout = anon
                 /system/login=anon
                 /=anon
+                /oauth/**=anon
                 /**=authc
             </value>
         </property>

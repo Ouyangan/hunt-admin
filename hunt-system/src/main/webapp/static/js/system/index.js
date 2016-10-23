@@ -3,9 +3,9 @@ $(document).ready(function () {
         fit: true,
         border: true,
     });
-    $(".tab-btn").click(function () {
-        var title = $(this).find('div:first').text();
-        var href = $(this).find('div:first').attr("href");
+    $(".easyui-linkbutton").click(function () {
+        var title = $(this).text();
+        var href = $(this).attr("href");
         if ($('#tab').tabs('exists', title)) {
             $('#tab').tabs('select', title);
         } else {

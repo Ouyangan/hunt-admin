@@ -24,8 +24,13 @@
                                                                     style="width: 300px;height: 35px"
                                                                     type="password" class="textbox"></p>
         <div id="embed-captcha" style="padding-left:35px;width: 290px ;height: 188px;"></div>
+
+
+        <br><br>
+        <hr>
+
+        <div id="github" class="easyui-linkbutton">使用github登录</div>
     </div>
 </div>
-
 </body>
 </html>

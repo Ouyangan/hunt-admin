@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import system.ResponseCode;
 import system.Result;
+import system.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -117,5 +118,28 @@ public class SystemController extends BaseController {
         }
         return Result.success();
     }
+
+
+    @RequestMapping(value = "toLog")
+    public String toLog() {
+        return "system/log";
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "log/select", method = RequestMethod.GET)
+    public PageInfo select(@RequestParam int page,
+                           @RequestParam int rows,
+                           @RequestParam(defaultValue = "id") String sort,
+                           @RequestParam(defaultValue = "desc") String order,
+                           @RequestParam(defaultValue = "") String method,
+                           @RequestParam(defaultValue = "") String url,
+                           @RequestParam(defaultValue = "") String param,
+                           @RequestParam(defaultValue = "") String result) {
+        System.out.println("page = [" + page + "], rows = [" + rows + "], sort = [" + sort + "], order = [" + order + "], method = [" + method + "], url = [" + url + "], param = [" + param + "], result = [" + result + "]");
+        PageInfo pageInfo = systemService.selectLog(page, rows, StringUtil.camelToUnderline(sort), order,method,url,param,result);
+        return pageInfo;
+    }
+
 
 }

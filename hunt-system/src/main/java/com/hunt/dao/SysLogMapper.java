@@ -23,4 +23,7 @@ public interface SysLogMapper {
 
     //查询数量
     public int selectCounts();
+
+    List<SysLog> selectLog(@Param("sort") String sort, @Param("order") String order, @Param("method") String method, @Param("url") String url, @Param("param") String param, @Param("result") String result);
+
 }

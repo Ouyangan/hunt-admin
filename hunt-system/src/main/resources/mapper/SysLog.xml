@@ -254,5 +254,29 @@
         FROM sys_log
         WHERE status = 1
     </select>
+    <select id="selectLog" resultType="com.hunt.model.entity.SysLog">
+        SELECT *
+        FROM sys_log
+        WHERE
+        status =1
+        <if test=" method != null and method.length() != 0">
+            AND method LIKE concat('%', #{method},'%')
+        </if>
+        <if test="param != null and param.length() != 0">
+            AND param LIKE concat('%', #{param},'%')
+        </if>
+        <if test="result != null and result.length() != 0">
+            AND result LIKE concat('%', #{result},'%')
+        </if>
+        <if test="url != null and result.length() != 0 ">
+            AND url LIKE concat('%', #{url},'%')
+        </if>
+        <if test="sort !=''">
+            ORDER BY ${sort}
+        </if>
+        <if test="order != ''">
+            ${order}
+        </if>
 
+    </select>
 </mapper>

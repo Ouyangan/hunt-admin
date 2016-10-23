@@ -51,7 +51,11 @@ public class LogAOP {
 
         long t2 = System.currentTimeMillis();
 
-        log.setResult(o.toString());
+        if (o.toString().length() < 5000) {
+            log.setResult(o.toString());
+        } else {
+            log.setResult("data is too long");
+        }
         log.setDuration((t2 - t1));
         log.setMethod(p.getTarget().getClass().getName() + "." + p.getSignature().getName());
         StringBuilder stringBuilder = new StringBuilder();

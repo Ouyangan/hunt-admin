@@ -16,4 +16,7 @@ public interface SystemService {
     void clearAuthorizationInfoByRoleId(long roleId);
 
     PageInfo selectLogStatus(int page, int rows);
+
+    PageInfo selectLog(int page, int rows, String s, String order, String method, String url, String param, String result);
+
 }

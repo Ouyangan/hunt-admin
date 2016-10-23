@@ -62,9 +62,9 @@
     <logger name="org.apache.ibatis" level="error"/>
     <logger name="org.mybatis.spring" level="error"/>
     <logger name="com.alibaba.druid" level="error"/>
-    <logger name="com.hunt.dao" level="error"/>
-    <logger name="com.hunt.service" level="error"/>
+    <logger name="com.hunt.dao" level="debug"/>
     <logger name="org.apache.shiro.web.servlet.SimpleCookie" level="error"/>
+    <logger name="org.apache.http" level="error"/>
 
     <root level="debug">
         <appender-ref ref="STDOUT"/>

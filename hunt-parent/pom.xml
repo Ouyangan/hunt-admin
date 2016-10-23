@@ -43,6 +43,8 @@
         <java.source.version>1.7</java.source.version>
         <java.target.version>1.7</java.target.version>
         <file.encoding>UTF-8</file.encoding>
+        <httpclient.version>4.5.2</httpclient.version>
+
     </properties>
 
     <dependencyManagement>
@@ -52,6 +54,11 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>hunt-common</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
             </dependency>
             <!--spring-->
             <dependency>

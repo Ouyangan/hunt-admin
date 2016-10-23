@@ -16,7 +16,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body class="easyui-layout">
-<div data-options="region:'north',border:false" style="height:40px; background: #438eb9;padding: 0;">
+<div data-options="region:'north',border:false" style="height:40px; background:#0081c2;padding: 0;">
     <div style="height: 40px; float: left; line-height: 40px">
         <span style="font-weight:bolder; font-size: large;padding-left: 10px;color: #ffffff">Hunt-Admin 快速开发平台</span>
     </div>
@@ -28,46 +28,68 @@
 <div data-options="region:'west',split:true,title:'系统导航'" style="text-align: center;width:200px;">
     <div class="easyui-accordion" data-options="border:false,fit:true,">
         <div title="系统管理">
-            <ul style="list-style: none;padding:0 0 0 20px">
-                <li class="tab-btn" style="padding: 10px;">
-                    <div style=" text-decoration: none;"
-                         href="/user/toUser">用户管理
-                    </div>
-                </li>
-
-                <li class="tab-btn" style="padding: 10px;">
-                    <div style=" text-decoration: none;"
-                         href="/organization/toOrganization">机构管理
-                    </div>
-                </li>
-                <li class="tab-btn" style="padding: 10px;">
-                    <div style=" text-decoration: none;"
-                         href="/role/toRole">角色管理
-                    </div>
-                </li>
-                <li class="tab-btn" style="padding: 10px;">
-                    <div style=" text-decoration: none;"
-                         href="/job/toJob">职位管理
-                    </div>
-                </li>
-                <li class="tab-btn" style="padding: 10px;">
-                    <div style=" text-decoration: none;"
-                         href="/permission/toPermission">权限管理
-                    </div>
-                </li>
-                <li class="tab-btn" style="padding: 10px;">
-                    <div style=" text-decoration: none;" href="/system/toOnline">在线状态</div>
-                </li>
-                <li class="tab-btn" style="padding: 10px;">
-                    <div style=" text-decoration: none;"
-                         href="/data/toData">字典管理
-                    </div>
-                </li>
+            <ul style="list-style: none;padding: 0 0 0 0 ;">
+                <div  style="padding: 5px 10px;">
+                    <li class="nav-list">
+                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                             href="/user/toUser">用户管理
+                        </div>
+                    </li>
+                </div>
+               <div  style="padding: 5px 10px;">
+                   <li class="nav-list">
+                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                             href="/organization/toOrganization">机构管理
+                        </div>
+                    </li>
+                </div>
+               <div  style="padding: 5px 10px;">
+                   <li class="nav-list">
+                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;background: #ffffff; "
+                             href="/role/toRole">角色管理
+                        </div>
+                    </li>
+                </div>
+               <div  style="padding: 5px 10px;">
+                   <li class="nav-list">
+                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
+                             href="/job/toJob">职位管理
+                        </div>
+                    </li>
+                </div>
+               <div  style="padding: 5px 10px;">
+                   <li class="nav-list">
+                        <div class="tab-btn easyui-linkbutton"  data-options="iconCls:'icon-reload'"style="border: 0;"
+                             href="/permission/toPermission">权限管理
+                        </div>
+                    </li>
+                </div>
+               <div  style="padding: 5px 10px;">
+                   <li class="nav-list">
+                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                             href="/system/toOnline">在线状态
+                        </div>
+                    </li>
+                </div>
+               <div  style="padding: 5px 10px;">
+                   <li class="nav-list">
+                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                             href="/system/toLog">系统日志
+                        </div>
+                    </li>
+                </div>
+               <div  style="padding: 5px 10px;">
+                   <li class="nav-list">
+                        <div class="tab-btn easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                             href="/data/toData">字典管理
+                        </div>
+                    </li>
+                </div>
             </ul>
         </div>
     </div>
 </div>
-<div data-options="region:'south',border:false" style="height:25px;">
+<div data-options="region:'south',border:true" style="height:25px;">
     <div style="text-align: center;line-height: 25px;font-size: medium">
         作者:ananan&nbsp;QQ群:981017952
     </div>
@@ -80,6 +102,5 @@
         </div>
     </div>
 </div>
-</body>
 </body>
 </html>

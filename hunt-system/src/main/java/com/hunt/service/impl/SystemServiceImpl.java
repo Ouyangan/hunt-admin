@@ -1,11 +1,9 @@
 package com.hunt.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.hunt.dao.SysLoginStatusMapper;
-import com.hunt.dao.SysRoleOrganizationMapper;
-import com.hunt.dao.SysUserMapper;
-import com.hunt.dao.SysUserRoleOrganizationMapper;
+import com.hunt.dao.*;
 import com.hunt.model.dto.PageInfo;
+import com.hunt.model.entity.SysLog;
 import com.hunt.model.entity.SysLoginStatus;
 import com.hunt.model.entity.SysUser;
 import com.hunt.service.SystemService;
@@ -39,6 +37,8 @@ public class SystemServiceImpl implements SystemService {
     private RedisTemplate<Object, Object> redisTemplate;
     @Autowired
     private SysRoleOrganizationMapper sysRoleOrganizationMapper;
+    @Autowired
+    private SysLogMapper sysLogMapper;
 
     @Override
     public void forceLogout(long userId) {
@@ -75,7 +75,7 @@ public class SystemServiceImpl implements SystemService {
 
     @Override
     public void clearAuthorizationInfoByRoleId(long roleId) {
-        log.debug("clear authorization info cache by roleId: {}",roleId);
+        log.debug("clear authorization info cache by roleId: {}", roleId);
         List<Long> list = sysRoleOrganizationMapper.selectByRoleId(roleId);
         if (list.size() > 0) {
             for (long id : list) {
@@ -98,5 +98,13 @@ public class SystemServiceImpl implements SystemService {
         PageHelper.startPage(page, rows);
         List<SysLoginStatus> sysLoginStatuses = sysLoginStatusMapper.selectAll();
         return new PageInfo(counts, sysLoginStatuses);
+    }
+
+    @Override
+    public PageInfo selectLog(int page, int rows, String sort, String order, String method, String url, String param, String result) {
+        int counts = sysLogMapper.selectCounts();
+        PageHelper.startPage(page, rows);
+        List<SysLog> list = sysLogMapper.selectLog(sort, order,method,url,param,result);
+        return new PageInfo(counts, list);
     }
 }

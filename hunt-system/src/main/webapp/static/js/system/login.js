@@ -23,7 +23,7 @@ $(document).ready(function () {
         title: '系统登录',
         closable: false,
         width: 500,
-        height: 450,
+        height: 500,
         cache: false,
         modal: true,
         resizable: false,
@@ -86,6 +86,7 @@ $(document).ready(function () {
     } else if (!$("#password").validatebox("isValid")) {
         $("#password").focus();
     }
-
-
+    $("#github").click(function () {
+        location = "https://github.com/login/oauth/authorize?client_id=f4b35940357e82596645&state=hunt_admin&redirect_uri=http://127.0.0.1:8080/oauth/github";
+    });
 });
