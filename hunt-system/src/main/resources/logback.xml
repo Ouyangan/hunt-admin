@@ -1,3 +1,4 @@
+<!--本地开发环境配置-->
 <configuration scan="true">
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
