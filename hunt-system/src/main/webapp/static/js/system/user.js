@@ -182,21 +182,21 @@ user_tool = {
         } else if ($("#permissions").datagrid("getChecked").length == 0) {
             common_tool.messager_show('请选择权限');
         } else {
-            var loginName = $('#loginName').val();
-            var zhName = $('#zhName').val();
-            var enName = $('#enName').val();
-            var sex = $('#sex').val();
-            var birth = $('#birth').datebox('getValue');
-            var email = $('#email').val();
-            var phone = $('#phone').val();
-            var address = $('#address').val();
-            var password = $('#password').val();
-            var permissions = $("#permissions").datagrid("getChecked");
+            var loginName = $('#user_edit_dialog div[id="loginName"]').val();
+            var zhName = $('#user_edit_dialog div[id="zhName"]').val();
+            var enName = $('#user_edit_dialog div[id="enName"]').val();
+            var sex = $('#user_edit_dialog div[id="sex"]').val();
+            var birth = $('#user_edit_dialog div[id="birth"]').datebox('getValue');
+            var email = $('#user_edit_dialog div[id="email"]').val();
+            var phone = $('#user_edit_dialog div[id="phone"]').val();
+            var address = $('#user_edit_dialog div[id="address"]').val();
+            var password = $('#user_edit_dialog div[id="password"]').val();
+            var permissions = $('#user_edit_dialog div[id="permissions"]').datagrid("getChecked");
             var permissionIds = new Array();
             for (var i = 0; i < permissions.length; i++) {
                 permissionIds[i] = permissions[i].id;
             }
-            var jobs = $("#jobs").treegrid("getChecked");
+            var jobs = $('#user_edit_dialog div[id="jobs"]').treegrid("getChecked");
             var jobIds = new Array();
             for (var i = 0; i < jobs.length; i++) {
                 jobIds[i] = jobs[i].id;
@@ -246,21 +246,22 @@ user_tool = {
         } else if ($("#permissions").datagrid("getChecked").length == 0) {
             common_tool.messager_show('请选择权限');
         } else {
-            var id = $('#id').val();
-            var loginName = $('#loginName').val();
-            var zhName = $('#zhName').val();
-            var enName = $('#enName').val();
-            var sex = $('#sex ').val();
-            var birth = $('#birth').datebox('getValue');
-            var email = $('#email').val();
-            var phone = $('#phone').val();
-            var address = $('#address').val();
-            var permissions = $("#permissions").datagrid("getChecked");
+            var id = $('#user_edit_dialog div[id="id"]').val();
+            var loginName = $('#user_edit_dialog div[id="loginName"]').val();
+            var zhName = $('#user_edit_dialog div[id="zhName"]').val();
+            var enName = $('#user_edit_dialog div[id="enName"]').val();
+            var sex = $('#user_edit_dialog div[id="sex"]').val();
+            var birth = $('#user_edit_dialog div[id="birth"]').datebox('getValue');
+            var email = $('#user_edit_dialog div[id="email"]').val();
+            var phone = $('#user_edit_dialog div[id="phone"]').val();
+            var address = $('#user_edit_dialog div[id="address"]').val();
+            var password = $('#user_edit_dialog div[id="password"]').val();
+            var permissions = $('#user_edit_dialog div[id="permissions"]').datagrid("getChecked");
             var permissionIds = new Array();
             for (var i = 0; i < permissions.length; i++) {
                 permissionIds[i] = permissions[i].id;
             }
-            var jobs = $("#jobs").treegrid("getChecked");
+            var jobs = $('#user_edit_dialog div[id="jobs"]').treegrid("getChecked");
             var jobIds = new Array();
             for (var i = 0; i < jobs.length; i++) {
                 jobIds[i] = jobs[i].id;
