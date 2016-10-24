@@ -32,7 +32,7 @@ log_tools = {
                 {
                     title: "time", field: "createTime", sortable: true, formatter: function (value, row, index) {
                    return common_tool.timestampToDateTime(value);
-                }, width: 132
+                }, width: 150
                 },
                 {title: "method", field: "method", sortable: true, width: 370},
                 {title: "url", field: "url", sortable: true, width: 309},

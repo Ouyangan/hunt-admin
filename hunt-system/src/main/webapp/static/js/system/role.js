@@ -1,5 +1,6 @@
 role_tool = {
     form_clear: function () {
+        $("#role_edit_form").form("reset");
         $("#role_edit_form").form("clear");
         $("#permissions").datagrid("uncheckAll");
         $("#role_grid").datagrid("uncheckAll");
@@ -40,12 +41,12 @@ role_tool = {
                 },
                 {
                     title: "创建时间", field: "createTime", formatter: function (value, row, index) {
-                   return common_tool.timestampToDateTime(value);
+                    return common_tool.timestampToDateTime(value);
                 }, width: 100
                 },
                 {
                     title: "更新时间", field: "updateTime", formatter: function (value, row, index) {
-                   return common_tool.timestampToDateTime(value);
+                    return common_tool.timestampToDateTime(value);
                 }, width: 100
                 },
             ]],
@@ -232,14 +233,13 @@ $(document).ready(function () {
             common_tool.messager_show("请选择一条记录");
             return false;
         }
-
-        role_tool.init_edit_view(2);
         var role = $("#role_grid").datagrid("getChecked")[0];
         $("#role_edit_form").form('load', {
             id: role.id,
             name: role.name,
             description: role.description,
-        })
+        });
+        role_tool.init_edit_view(2);
     });
     $("#role-delete-btn").click(function () {
         if ($("#role_grid").datagrid("getChecked").length == 0) {

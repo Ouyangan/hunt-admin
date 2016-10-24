@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $("#tab").tabs({
+        width: 200,
         fit: true,
         border: true,
     });
@@ -10,10 +11,13 @@ $(document).ready(function () {
             $('#tab').tabs('select', title);
         } else {
             $('#tab').tabs('add', {
+                tabWidth: 100,
+                tabHeight: 35,
                 fit: true,
                 title: title,
                 closable: true,
                 href: href,
+                border: true,
             });
             return false;
         }
@@ -23,10 +27,7 @@ $(document).ready(function () {
         $.messager.confirm('确认对话框', "您确认退出系统吗?", function (r) {
             if (r) {
                 $.ajax({
-                    data: {
-                        // id: id,
-                    },
-                    // traditional: true,
+                    data: {},
                     method: 'get',
                     url: '/system/logout',
                     async: false,

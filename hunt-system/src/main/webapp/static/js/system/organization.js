@@ -55,7 +55,6 @@ organization_tool = {
             toolbar: '#tool-bar',
             rownumbers: true,
             animate: true,
-
             border: false,
             pagePosition: "bottom",
             pageNumber: 1,
