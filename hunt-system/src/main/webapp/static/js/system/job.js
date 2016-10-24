@@ -132,6 +132,7 @@ job_tool = {
             nodeId: 'id',
             treeField: 'name',
             toolbar: '#job-tool-bar',
+            // lines: true,
             rownumbers: true,
             animate: true,
             fit: true,
