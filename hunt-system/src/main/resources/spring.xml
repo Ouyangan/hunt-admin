@@ -2,7 +2,6 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
     <!-- import -->
     <import resource="spring/spring-base.xml"/>
     <import resource="spring/spring-shiro.xml"/>

@@ -30,27 +30,27 @@ public class RedisSessionDao extends AbstractSessionDAO {
         Serializable sessionId = sessionIdPrefix + UUID.randomUUID().toString();
         assignSessionId(session, sessionId);
         redisTemplate.opsForValue().set(sessionId, session, timeout, TimeUnit.SECONDS);
-//        log.info("create shiro session ,sessionId is :{}", sessionId.toString());
+        log.info("create shiro session ,sessionId is :{}", sessionId.toString());
         return sessionId;
     }
 
 
     @Override
     protected Session doReadSession(Serializable sessionId) {
-//        log.info("read shiro session ,sessionId is :{}", sessionId.toString());
+        log.info("read shiro session ,sessionId is :{}", sessionId.toString());
         return redisTemplate.opsForValue().get(sessionId);
     }
 
 
     @Override
     public void update(Session session) throws UnknownSessionException {
-//        log.info("update shiro session ,sessionId is :{}", session.getId().toString());
+        log.info("update shiro session ,sessionId is :{}", session.getId().toString());
         redisTemplate.opsForValue().set(session.getId(), session, timeout, TimeUnit.SECONDS);
     }
 
     @Override
     public void delete(Session session) {
-//        log.info("delete shiro session ,sessionId is :{}", session.getId().toString());
+        log.info("delete shiro session ,sessionId is :{}", session.getId().toString());
         redisTemplate.opsForValue().getOperations().delete(session.getId());
     }
 

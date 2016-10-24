@@ -245,11 +245,11 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>false</filtering>
+                <filtering>true</filtering>
             </resource>
             <resource>
-                <directory>src/main/${profiles.active}</directory>
-                <filtering>false</filtering>
+                <directory>src/main/profile/${profiles.active}</directory>
+                <filtering>true</filtering>
             </resource>
         </resources>
         <plugins>
