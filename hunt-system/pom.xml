@@ -210,13 +210,19 @@
     </dependencies>
     <profiles>
         <profile>
-            <id>dev</id>
+            <id>local</id>
             <properties>
-                <profiles.active>dev</profiles.active>
+                <profiles.active>local</profiles.active>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profiles.active>dev</profiles.active>
+            </properties>
         </profile>
         <profile>
             <id>prod</id>
@@ -245,10 +251,15 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
+                <filtering>false</filtering>
+                <!--默认打包排除env文件夹-->
+                <excludes>
+                    <exclude>env/**/*</exclude>
+                </excludes>
             </resource>
+            <!--根据参数打包配置文件-->
             <resource>
-                <directory>src/main/profile/${profiles.active}</directory>
+                <directory>src/main/resources/env/${profiles.active}</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>

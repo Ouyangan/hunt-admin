@@ -1,4 +1,4 @@
-<!--线上生产环境配置-->
+<!--dev -->
 <configuration scan="true">
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -59,8 +59,15 @@
         </encoder>
     </appender>
 
+    <logger name="org.springframework" level="error"/>
+    <logger name="org.apache.ibatis" level="error"/>
+    <logger name="org.mybatis.spring" level="error"/>
+    <logger name="com.alibaba.druid" level="error"/>
+    <logger name="com.hunt.dao" level="debug"/>
+    <logger name="org.apache.shiro.web.servlet.SimpleCookie" level="error"/>
+    <logger name="org.apache.http" level="error"/>
 
-    <root level="error">
+    <root level="debug">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILEDEBUG"/>
         <appender-ref ref="FILEINFO"/>
