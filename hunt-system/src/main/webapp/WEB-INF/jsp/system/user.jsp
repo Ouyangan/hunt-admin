@@ -72,7 +72,7 @@
                                                              class="easyui-textbox easyui-validatebox"></p>
             <p style="padding: 10px ;">&nbsp;&nbsp;电话:<input name="phone" id="phone"
                                                              style="width: 300px;height: 35px"
-                                                             data-options="required:false,validType:['length[11]'],invalidMessage:'请输入11位手机号'"
+                                                             data-options="required:false,validType:['length[11,11]'],invalidMessage:'请输入11位手机号'"
                                                              class="easyui-textbox easyui-validatebox"></p>
             <p style="padding: 10px ;">&nbsp;&nbsp;地址:<input name="address" id="address"
                                                              style="width: 300px;height: 35px"

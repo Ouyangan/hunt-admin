@@ -56,10 +56,10 @@ user_tool = {
                 {
                     title: "状态", field: "status", align: 'center', width: 87, formatter: function (value, row, index) {
                     if (value == 1) {
-                        return "<div class='easyui-switchbutton status' checked ></div>";
+                        return "<input class='easyui-switchbutton status' checked ></input>";
                     }
                     if (value == 3) {
-                        return "<div class='easyui-switchbutton status' unchecked ></div>";
+                        return "<input class='easyui-switchbutton status' unchecked ></input>";
                     }
 
                 }
@@ -182,21 +182,21 @@ user_tool = {
         } else if ($("#permissions").datagrid("getChecked").length == 0) {
             common_tool.messager_show('请选择权限');
         } else {
-            var loginName = $('#user_edit_dialog div[id="loginName"]').val();
-            var zhName = $('#user_edit_dialog div[id="zhName"]').val();
-            var enName = $('#user_edit_dialog div[id="enName"]').val();
-            var sex = $('#user_edit_dialog div[id="sex"]').val();
-            var birth = $('#user_edit_dialog div[id="birth"]').datebox('getValue');
-            var email = $('#user_edit_dialog div[id="email"]').val();
-            var phone = $('#user_edit_dialog div[id="phone"]').val();
-            var address = $('#user_edit_dialog div[id="address"]').val();
-            var password = $('#user_edit_dialog div[id="password"]').val();
-            var permissions = $('#user_edit_dialog div[id="permissions"]').datagrid("getChecked");
+            var loginName = $('#user_edit_dialog input[id="loginName"]').val();
+            var zhName = $('#user_edit_dialog input[id="zhName"]').val();
+            var enName = $('#user_edit_dialog input[id="enName"]').val();
+            var sex = $('#user_edit_dialog select[id="sex"]').val();
+            var birth = $('#user_edit_dialog input[id="birth"]').datebox('getValue');
+            var email = $('#user_edit_dialog input[id="email"]').val();
+            var phone = $('#user_edit_dialog input[id="phone"]').val();
+            var address = $('#user_edit_dialog input[id="address"]').val();
+            var password = $('#user_edit_dialog input[id="password"]').val();
+            var permissions = $('#user_edit_dialog table[id="permissions"]').datagrid("getChecked");
             var permissionIds = new Array();
             for (var i = 0; i < permissions.length; i++) {
                 permissionIds[i] = permissions[i].id;
             }
-            var jobs = $('#user_edit_dialog div[id="jobs"]').treegrid("getChecked");
+            var jobs = $('#user_edit_dialog table[id="jobs"]').treegrid("getChecked");
             var jobIds = new Array();
             for (var i = 0; i < jobs.length; i++) {
                 jobIds[i] = jobs[i].id;
@@ -246,22 +246,22 @@ user_tool = {
         } else if ($("#permissions").datagrid("getChecked").length == 0) {
             common_tool.messager_show('请选择权限');
         } else {
-            var id = $('#user_edit_dialog div[id="id"]').val();
-            var loginName = $('#user_edit_dialog div[id="loginName"]').val();
-            var zhName = $('#user_edit_dialog div[id="zhName"]').val();
-            var enName = $('#user_edit_dialog div[id="enName"]').val();
-            var sex = $('#user_edit_dialog div[id="sex"]').val();
-            var birth = $('#user_edit_dialog div[id="birth"]').datebox('getValue');
-            var email = $('#user_edit_dialog div[id="email"]').val();
-            var phone = $('#user_edit_dialog div[id="phone"]').val();
-            var address = $('#user_edit_dialog div[id="address"]').val();
-            var password = $('#user_edit_dialog div[id="password"]').val();
-            var permissions = $('#user_edit_dialog div[id="permissions"]').datagrid("getChecked");
+            var id = $('#user_edit_dialog input[id="id"]').val();
+            var loginName = $('#user_edit_dialog input[id="loginName"]').val();
+            var zhName = $('#user_edit_dialog input[id="zhName"]').val();
+            var enName = $('#user_edit_dialog input[id="enName"]').val();
+            var sex = $('#user_edit_dialog select[id="sex"]').val();
+            var birth = $('#user_edit_dialog input[id="birth"]').datebox('getValue');
+            var email = $('#user_edit_dialog input[id="email"]').val();
+            var phone = $('#user_edit_dialog input[id="phone"]').val();
+            var address = $('#user_edit_dialog input[id="address"]').val();
+            var password = $('#user_edit_dialog input[id="password"]').val();
+            var permissions = $('#user_edit_dialog table[id="permissions"]').datagrid("getChecked");
             var permissionIds = new Array();
             for (var i = 0; i < permissions.length; i++) {
                 permissionIds[i] = permissions[i].id;
             }
-            var jobs = $('#user_edit_dialog div[id="jobs"]').treegrid("getChecked");
+            var jobs = $('#user_edit_dialog table[id="jobs"]').treegrid("getChecked");
             var jobIds = new Array();
             for (var i = 0; i < jobs.length; i++) {
                 jobIds[i] = jobs[i].id;

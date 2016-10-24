@@ -49,7 +49,7 @@
                 </thead>
                 <thead>
                 <tr>
-                    <th data-options="field:'name',width:260">组织名称</th>
+                    <th data-options="field:'name',width:260">上级组织名称</th>
                 </tr>
                 </thead>
             </table>

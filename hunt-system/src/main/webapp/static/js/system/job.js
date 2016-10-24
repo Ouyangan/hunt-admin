@@ -8,22 +8,22 @@ job_tool = {
         $("#job_grid").treegrid("uncheckAll");
     },
     checkValidatebox: function () {
-        if (!$('#job_dialog div[id="name"]').validatebox('isValid')) {
+        if (!$('#job_dialog input[id="name"]').validatebox('isValid')) {
             common_tool.messager_show('请输入名称');
             return false;
-        } else if (!$('#job_dialog div[id="fullName"]').validatebox('isValid')) {
+        } else if (!$('#job_dialog input[id="fullName"]').validatebox('isValid')) {
             common_tool.messager_show('请输入全称');
             return false;
-        } else if (!$('#job_dialog div[id="description"]').validatebox('isValid')) {
+        } else if (!$('#job_dialog input[id="description"]').validatebox('isValid')) {
             common_tool.messager_show('请输入描述');
             return false;
-        } else if ($('#job_dialog div[id="job_dialog_parent_tree"]').treegrid("getChecked").length == 0) {
+        } else if ($('#job_dialog table[id="job_dialog_parent_tree"]').treegrid("getChecked").length == 0) {
             common_tool.messager_show('请选择上级职位');
             return false;
-        } else if ($('#job_dialog div[id="job_dialog_role"]').datagrid("getChecked").length == 0) {
+        } else if ($('#job_dialog table[id="job_dialog_role"]').datagrid("getChecked").length == 0) {
             common_tool.messager_show('请选择系统角色');
             return false;
-        } else if ($('#job_dialog div[id="job_dialog_organization"]').treegrid("getChecked").length == 0) {
+        } else if ($('#job_dialog table[id="job_dialog_organization"]').treegrid("getChecked").length == 0) {
             common_tool.messager_show('请选择组织机构');
             return false;
         }
@@ -33,12 +33,12 @@ job_tool = {
         if (!job_tool.checkValidatebox()) {
             return false;
         }
-        var name = $('#job_dialog div[id="name"]').val();
-        var fullName = $('#job_dialog div[id="fullName"]').val();
-        var description = $('#job_dialog div[id="description"]').val();
-        var parent_job = $('#job_dialog div[id="job_dialog_parent_tree"]').treegrid("getChecked")[0];
-        var role = $('#job_dialog div[id="job_dialog_role"]').datagrid("getChecked")[0];
-        var organization = $('#job_dialog div[id="job_dialog_organization"]').treegrid("getChecked")[0];
+        var name = $('#job_dialog input[id="name"]').val();
+        var fullName = $('#job_dialog input[id="fullName"]').val();
+        var description = $('#job_dialog input[id="description"]').val();
+        var parent_job = $('#job_dialog table[id="job_dialog_parent_tree"]').treegrid("getChecked")[0];
+        var role = $('#job_dialog table[id="job_dialog_role"]').datagrid("getChecked")[0];
+        var organization = $('#job_dialog table[id="job_dialog_organization"]').treegrid("getChecked")[0];
         $.ajax({
             data: {
                 name: name,
@@ -70,13 +70,13 @@ job_tool = {
         if (!job_tool.checkValidatebox()) {
             return false;
         }
-        var id = $('#job_dialog div[id="id"]').val();
-        var name = $('#job_dialog div[id="name"]').val();
-        var fullName = $('#job_dialog div[id="fullName"]').val();
-        var description = $('#job_dialog div[id="description"]').val();
-        var parent_job = $('#job_dialog div[id="job_dialog_parent_tree"]').treegrid("getChecked")[0];
-        var role = $('#job_dialog div[id="job_dialog_role"]').datagrid("getChecked")[0];
-        var organization = $('#job_dialog div[id="job_dialog_organization"]').treegrid("getChecked")[0];
+        var id = $('#job_dialog input[id="id"]').val();
+        var name = $('#job_dialog input[id="name"]').val();
+        var fullName = $('#job_dialog input[id="fullName"]').val();
+        var description = $('#job_dialog input[id="description"]').val();
+        var parent_job = $('#job_dialog table[id="job_dialog_parent_tree"]').treegrid("getChecked")[0];
+        var role = $('#job_dialog table[id="job_dialog_role"]').datagrid("getChecked")[0];
+        var organization = $('#job_dialog table[id="job_dialog_organization"]').treegrid("getChecked")[0];
         $.ajax({
             data: {
                 id: id,
