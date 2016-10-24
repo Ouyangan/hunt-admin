@@ -40,16 +40,12 @@ role_tool = {
                 },
                 {
                     title: "创建时间", field: "createTime", formatter: function (value, row, index) {
-                    date = new Date(value);
-                    timeStr = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes();
-                    return timeStr;
+                   return common_tool.timestampToDateTime(value);
                 }, width: 100
                 },
                 {
                     title: "更新时间", field: "updateTime", formatter: function (value, row, index) {
-                    date = new Date(value);
-                    timeStr = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes();
-                    return timeStr;
+                   return common_tool.timestampToDateTime(value);
                 }, width: 100
                 },
             ]],

@@ -290,7 +290,7 @@
 }
 .dialog-button {
   padding: 5px;
-  text-align: right;
+  text-align: center;
 }
 .dialog-button .l-btn {
   margin-left: 5px;
@@ -1329,7 +1329,7 @@
 }
 .datagrid-header-row,
 .datagrid-row {
-  height: 25px;
+  height: 32px;
 }
 .datagrid-header td,
 .datagrid-body td,
@@ -1350,7 +1350,7 @@
   overflow: hidden;
   height: 18px;
   line-height: 18px;
-  font-size: 12px;
+  font-size: 13px;
 }
 .datagrid-header .datagrid-cell {
   height: auto;

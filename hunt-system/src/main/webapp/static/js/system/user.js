@@ -2,16 +2,23 @@ user_tool = {
     form_clear: function () {
         $("#user_form").form('reset');
         $("#user_form").form('clear');
+        $("#user-search-form").form('reset');
+        $("#user-search-form").form('clear');
         $("#permissions").treegrid("uncheckAll");
         $("#jobs").treegrid("uncheckAll");
         $("#user_grid").treegrid("uncheckAll");
     },
     init_main_view: function () {
+        var loginName = $("input[name='search-loginName']").val();
+        var zhName = $("input[name='search-zhName']").val();
+        var email = $("input[name='search-email']").val();
+        var phone = $("input[name='search-phone']").val();
+        var address = $("input[name='search-address']").val();
         $("#user_grid").datagrid({
             url: "/user/select",
             method: 'get',
             idField: "id",
-            fitColumns: true,
+            // fitColumns: true,
             toolbar: '#user-tool-bar',
             rownumbers: true,
             animate: true,
@@ -24,13 +31,20 @@ user_tool = {
             pageNumber: 1,
             pageSize: 15,
             pageList: [15, 30, 45, 60],
+            queryParams: {
+                loginName: loginName,
+                zhName: zhName,
+                email: email,
+                phone: phone,
+                address: address,
+            },
             columns: [[
                 {title: "选择", field: "ck", checkbox: true},
-                {title: "中文名", field: "zhName", width: 200, sortable: true},
-                {title: "登录名", field: "loginName", width: 200, sortable: true},
-                {title: "英文名", field: "enName", width: 200, sortable: true},
+                {title: "中文名", field: "zhName", width: 124, sortable: true},
+                {title: "登录名", field: "loginName", width: 124, sortable: true},
+                {title: "英文名", field: "enName", width: 124, sortable: true},
                 {
-                    title: "性别", width: 200, field: "sex", formatter: function (value, row, index) {
+                    title: "性别", width: 35, field: "sex", formatter: function (value, row, index) {
                     if (value == 1) {
                         return "男";
                     }
@@ -40,7 +54,7 @@ user_tool = {
                 }
                 },
                 {
-                    title: "状态", field: "status", align: 'center', width: 120, formatter: function (value, row, index) {
+                    title: "状态", field: "status", align: 'center', width: 87, formatter: function (value, row, index) {
                     if (value == 1) {
                         return "<div class='easyui-switchbutton status' checked ></div>";
                     }
@@ -50,32 +64,30 @@ user_tool = {
 
                 }
                 },
-                {title: "生日", field: "birth", width: 200},
-                {title: "邮箱", field: "email", width: 200, sortable: true},
-                {title: "电话", field: "phone", width: 200, sortable: true},
-                {title: "地址", field: "address", width: 200},
+                {title: "生日", field: "birth", width: 90},
+                {title: "邮箱", field: "email", width: 130, sortable: true},
+                {title: "电话", field: "phone", width: 130, sortable: true},
+                {title: "地址", field: "address", width: 400},
                 {
-                    title: "是否可修改", field: "isFinal", formatter: function (value, row, index) {
+                    title: "可修改", field: "isFinal", formatter: function (value, row, index) {
                     if (value == 1) {
                         return "是";
                     }
                     if (value == 2) {
                         return "否";
                     }
-                }, width: 200
+                }, width: 50
                 },
                 {
                     title: "创建时间", field: "createTime", formatter: function (value, row, index) {
                     date = new Date(value);
-                    timeStr = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes();
+                    timeStr = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
                     return timeStr;
                 }, width: 200
                 },
                 {
                     title: "更新时间", field: "updateTime", formatter: function (value, row, index) {
-                    date = new Date(value);
-                    timeStr = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes();
-                    return timeStr;
+                    return common_tool.timestampToDateTime(value);
                 }, width: 200
                 },
             ]],
@@ -442,5 +454,7 @@ $(document).ready(function () {
         user_tool.form_clear();
         user_tool.init_main_view();
     });
-
+    $("#log-select-btn").click(function () {
+        user_tool.init_main_view();
+    });
 });

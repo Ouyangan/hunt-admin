@@ -291,6 +291,21 @@
         SELECT *
         FROM sys_user
         WHERE status !=2
+        <if test="loginName != null and loginName.length() != 0">
+            AND login_name LIKE concat('%', #{loginName},'%')
+        </if>
+        <if test="zhName != null and zhName.length() != 0">
+            AND zh_name LIKE concat('%', #{zhName},'%')
+        </if>
+        <if test="email != null and email.length() != 0">
+            AND email LIKE concat('%', #{email},'%')
+        </if>
+        <if test="phone != null and phone.length() != 0">
+            AND phone LIKE concat('%', #{phone},'%')
+        </if>
+        <if test="address != null and address.length() != 0">
+            AND address LIKE concat('%', #{address},'%')
+        </if>
         <if test="sort!=''">
             ORDER BY #{sort}
         </if>
@@ -306,16 +321,16 @@
     </select>
     <select id="selectByLoginName" resultType="boolean">
         SELECT exists(
-        SELECT *
-        FROM sys_user
-        WHERE status != 2 AND login_name = #{loginName}
+                SELECT *
+                FROM sys_user
+                WHERE status != 2 AND login_name = #{loginName}
         )
     </select>
     <select id="isExistLoginNameExcludeId" resultType="java.lang.Boolean">
         SELECT exists(
-        SELECT *
-        FROM sys_user
-        WHERE status != 2 AND id != #{id} AND login_name = #{loginName}
+                SELECT *
+                FROM sys_user
+                WHERE status != 2 AND id != #{id} AND login_name = #{loginName}
         )
     </select>
     <select id="selectUserByLoginName" resultType="com.hunt.model.entity.SysUser">

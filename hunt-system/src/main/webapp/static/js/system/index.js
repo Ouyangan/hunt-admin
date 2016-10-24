@@ -32,7 +32,7 @@ $(document).ready(function () {
                     async: false,
                     dataType: 'json',
                     success: function (result) {
-                       location = "/"
+                        location = "/"
                     },
                 });
             }

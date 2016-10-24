@@ -24,7 +24,7 @@ public interface SysUserService {
 
     void updateUser(SysUser user, String jobIds, String permissionIds);
 
-    PageInfo selectPage(int page, int rows, String sort, String order);
+    PageInfo selectPage(int page, int rows, String sort, String order, String loginName, String zhName, String email, String phone, String address);
 
     void updateUser(SysUser user);
 

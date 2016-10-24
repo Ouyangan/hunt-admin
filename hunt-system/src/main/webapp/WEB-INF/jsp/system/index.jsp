@@ -5,6 +5,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>hun-admin</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/static/image/favicon.ico">
+    <link type="image/x-icon" rel="bookmark" href="/static/image/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/static/css/easyui.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/icon.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/system/index.css"/>

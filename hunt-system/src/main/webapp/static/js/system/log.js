@@ -31,10 +31,8 @@ log_tools = {
                 {title: "选择", field: "ck", checkbox: true},
                 {
                     title: "time", field: "createTime", sortable: true, formatter: function (value, row, index) {
-                    date = new Date(value);
-                    timeStr = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes();
-                    return timeStr;
-                }, width: 114
+                   return common_tool.timestampToDateTime(value);
+                }, width: 132
                 },
                 {title: "method", field: "method", sortable: true, width: 370},
                 {title: "url", field: "url", sortable: true, width: 309},

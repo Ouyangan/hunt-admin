@@ -110,6 +110,9 @@ public class UserController extends BaseController {
             return Result.error(ResponseCode.name_already_exist.getMsg());
         }
         SysUser user = sysUserService.selectById(id);
+        if (user.getIsFinal() == 2) {
+            return Result.error(ResponseCode.can_not_edit.getMsg());
+        }
         user.setLoginName(loginName);
         user.setZhName(zhName);
         user.setEnName(enName);
@@ -129,8 +132,13 @@ public class UserController extends BaseController {
     public PageInfo select(@RequestParam int page,
                            @RequestParam int rows,
                            @RequestParam(defaultValue = "zhName") String sort,
-                           @RequestParam(defaultValue = "asc") String order) {
-        PageInfo pageInfo = sysUserService.selectPage(page, rows, sort, order);
+                           @RequestParam(defaultValue = "asc") String order,
+                           @RequestParam(defaultValue = "") String loginName,
+                           @RequestParam(defaultValue = "") String zhName,
+                           @RequestParam(defaultValue = "") String email,
+                           @RequestParam(defaultValue = "") String phone,
+                           @RequestParam(defaultValue = "") String address) {
+        PageInfo pageInfo = sysUserService.selectPage(page, rows, StringUtil.camelToUnderline(sort), order,loginName,zhName,email,phone,address);
         return pageInfo;
     }
 

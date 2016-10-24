@@ -242,11 +242,12 @@ permission_tool = {
             groupFormatter: function (value, rows) {
                 return rows[0].sysPermissionGroupName;
             },
-            fitColumns: true,
+
             toolbar: '#permission-tool-bar',
             rownumbers: true,
             singleSelect: true,
             animate: true,
+            fitColumns: true,
             fit: true,
             border: false,
             pagePosition: "bottom",
@@ -257,9 +258,9 @@ permission_tool = {
             striped: true,
             columns: [[
                 {title: "选择", field: "ck", checkbox: true},
-                {title: "名称", field: "name", width: 300},
-                {title: "code", field: "code", width: 300},
-                {title: "说明", field: "description", width: 400},
+                {title: "名称", field: "name", width: 200},
+                {title: "code", field: "code", width: 200},
+                {title: "说明", field: "description", width: 200},
                 {
                     title: "是否可修改", field: "isFinal", formatter: function (value, row, index) {
                     if (value == 1) {
@@ -272,16 +273,12 @@ permission_tool = {
                 },
                 {
                     title: "创建时间", field: "createTime", formatter: function (value, row, index) {
-                    date = new Date(value);
-                    timeStr = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes();
-                    return timeStr;
+                   return common_tool.timestampToDateTime(value);
                 }, width: 100
                 },
                 {
                     title: "更新时间", field: "updateTime", formatter: function (value, row, index) {
-                    date = new Date(value);
-                    timeStr = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes();
-                    return timeStr;
+                   return common_tool.timestampToDateTime(value);
                 }, width: 100
                 },
             ]],

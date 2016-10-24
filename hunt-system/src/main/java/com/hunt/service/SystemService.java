@@ -1,6 +1,7 @@
 package com.hunt.service;
 
 import com.hunt.model.dto.PageInfo;
+import com.hunt.model.entity.SysLog;
 
 /**
  * @Author: ouyangan
@@ -19,4 +20,5 @@ public interface SystemService {
 
     PageInfo selectLog(int page, int rows, String s, String order, String method, String url, String param, String result);
 
+    void insertSysControllerLog(SysLog runningLog);
 }

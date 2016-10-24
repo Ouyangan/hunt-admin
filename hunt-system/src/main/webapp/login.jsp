@@ -5,15 +5,17 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>hun-admin</title>
-    <link rel="stylesheet" type="text/css" href="static/css/easyui.css"/>
-    <link rel="stylesheet" type="text/css" href="static/css/icon.css"/>
-    <script type="text/javascript" src="static/js/easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="static/js/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="static/js/easyui/easyui-lang-zh_CN.js"></script>
+    <link type="image/x-icon" rel="shortcut icon" href="/static/image/favicon.ico">
+    <link type="image/x-icon" rel="bookmark" href="/static/image/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/static/css/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/icon.css"/>
+    <script type="text/javascript" src="/static/js/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/static/js/easyui/easyui-lang-zh_CN.js"></script>
     <%--<link rel="stylesheet" type="text/css" href="static/css/system/login.css"/>--%>
-    <script type="text/javascript" src="static/js/system/login.js"></script>
-    <script type="text/javascript" src="static/js/system/common.js"></script>
-    <script type="text/javascript" src="static/js/system/http_static.geetest.com_static_tools_gt.js"></script>
+    <script type="text/javascript" src="/static/js/system/login.js"></script>
+    <script type="text/javascript" src="/static/js/system/common.js"></script>
+    <script type="text/javascript" src="/static/js/system/http_static.geetest.com_static_tools_gt.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>

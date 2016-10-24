@@ -1,5 +1,6 @@
 package com.hunt.controller;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,9 +56,10 @@ public class SystemControllerTest {
                 .param("password", "111111")
                 .param("platform", "1")
         )
-                .andDo(print())
+//                .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
+
     }
 
     @Test

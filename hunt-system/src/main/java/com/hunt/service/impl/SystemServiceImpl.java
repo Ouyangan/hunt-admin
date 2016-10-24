@@ -104,7 +104,13 @@ public class SystemServiceImpl implements SystemService {
     public PageInfo selectLog(int page, int rows, String sort, String order, String method, String url, String param, String result) {
         int counts = sysLogMapper.selectCounts();
         PageHelper.startPage(page, rows);
-        List<SysLog> list = sysLogMapper.selectLog(sort, order,method,url,param,result);
+        List<SysLog> list = sysLogMapper.selectLog(sort, order, method, url, param, result);
+        log.debug(list.toString());
         return new PageInfo(counts, list);
+    }
+
+    @Override
+    public void insertSysControllerLog(SysLog runningLog) {
+        sysLogMapper.insert(runningLog);
     }
 }

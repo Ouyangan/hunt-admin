@@ -1,7 +1,7 @@
 package com.hunt.system.log;
 
 import com.hunt.model.entity.SysLog;
-import com.hunt.service.SysLogService;
+import com.hunt.service.SystemService;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -27,7 +27,7 @@ public class LogAOP {
     private static final Logger logger = LoggerFactory.getLogger(LogAOP.class);
 
     @Autowired
-    private SysLogService sysLogService;
+    private SystemService systemService;
 
     @Around("@within(org.springframework.web.bind.annotation.RequestMapping)")
     public Object recordLog(ProceedingJoinPoint p) throws Throwable {
@@ -69,7 +69,7 @@ public class LogAOP {
         log.setIp(re.getRemoteAddr());
         log.setUrl(re.getRequestURL().toString());
         log.setUserAgent(re.getHeader("user-agent"));
-        sysLogService.insertSysControllerLog(log);
+        systemService.insertSysControllerLog(log);
 
         logger.info("request param : {}", log.getParam());
         logger.info("reuest method : {}", re.getMethod());
