@@ -11,3 +11,16 @@
 #logout-btn:hover {
     background: #c27c4e;
 }
+
+.easyui-linkbutton :hover {
+    color: #5a60c2;
+}
+.easyui-linkbutton{
+    background: #ffffff;
+}
+
+.nav-list {
+    width: 100px;
+}
+
+

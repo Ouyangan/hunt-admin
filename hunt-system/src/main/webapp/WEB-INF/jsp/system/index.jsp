@@ -22,7 +22,7 @@
     <div style="height: 40px; float: left; line-height: 40px">
         <span style="font-weight:bolder; font-size: large;padding-left: 10px;color: #ffffff">Hunt-Admin 快速开发平台</span>
     </div>
-    <div style="float:right;height: 40px">
+    <div style="float:right;height: 40px;padding: 0 5px;">
         <input id="logout-btn" class="easyui-linkbutton logout" value="安全退出">
     </div>
 </div>
