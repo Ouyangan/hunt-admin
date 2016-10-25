@@ -31,59 +31,67 @@
     <div class="easyui-accordion" data-options="border:false,fit:true,">
         <div title="系统管理">
             <ul style="list-style: none;padding: 0 0 0 0 ;">
-                <div  style="padding: 5px 10px;">
+                <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/user/toUser">用户管理
                         </div>
                     </li>
                 </div>
-               <div  style="padding: 5px 10px;">
-                   <li class="nav-list">
+                <div style="padding: 5px 10px;">
+                    <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/organization/toOrganization">机构管理
                         </div>
                     </li>
                 </div>
-               <div  style="padding: 5px 10px;">
-                   <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;background: #ffffff; "
+                <div style="padding: 5px 10px;">
+                    <li class="nav-list">
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
+                             style="border: 0;background: #ffffff; "
                              href="/role/toRole">角色管理
                         </div>
                     </li>
                 </div>
-               <div  style="padding: 5px 10px;">
-                   <li class="nav-list">
+                <div style="padding: 5px 10px;">
+                    <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
                              href="/job/toJob">职位管理
                         </div>
                     </li>
                 </div>
-               <div  style="padding: 5px 10px;">
-                   <li class="nav-list">
-                        <div class="easyui-linkbutton"  data-options="iconCls:'icon-reload'"style="border: 0;"
+                <div style="padding: 5px 10px;">
+                    <li class="nav-list">
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/permission/toPermission">权限管理
                         </div>
                     </li>
                 </div>
-               <div  style="padding: 5px 10px;">
-                   <li class="nav-list">
+                <div style="padding: 5px 10px;">
+                    <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/system/toOnline">在线状态
                         </div>
                     </li>
                 </div>
-               <div  style="padding: 5px 10px;">
-                   <li class="nav-list">
+                <div style="padding: 5px 10px;">
+                    <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/system/toLog">系统日志
                         </div>
                     </li>
                 </div>
-               <div  style="padding: 5px 10px;">
-                   <li class="nav-list">
+                <div style="padding: 5px 10px;">
+                    <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/data/toData">字典管理
+                        </div>
+                    </li>
+                </div>
+                <div style="padding: 5px 10px;">
+                    <li class="nav-list">
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                             href="/druid/index.html">数据库监控
                         </div>
                     </li>
                 </div>

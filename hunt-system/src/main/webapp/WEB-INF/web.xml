@@ -95,7 +95,7 @@
         <init-param>
             <!-- 允许清空统计数据 -->
             <param-name>resetEnable</param-name>
-            <param-value>true</param-value>
+            <param-value>false</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

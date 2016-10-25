@@ -10,15 +10,28 @@ $(document).ready(function () {
         if ($('#tab').tabs('exists', title)) {
             $('#tab').tabs('select', title);
         } else {
-            $('#tab').tabs('add', {
-                tabWidth: 100,
-                tabHeight: 35,
-                fit: true,
-                title: title,
-                closable: true,
-                href: href,
-                border: true,
-            });
+            if (href = '/druid/index.html') {
+                var content = '<iframe scrolling="true" frameborder="0"  src="' + href + '" style="width:100%;height:100%;"></iframe>';
+                $('#tab').tabs('add', {
+                    tabWidth: 100,
+                    tabHeight: 35,
+                    fit: true,
+                    title: title,
+                    closable: true,
+                    content: content,
+                    border: true,
+                });
+            } else {
+                $('#tab').tabs('add', {
+                    tabWidth: 100,
+                    tabHeight: 35,
+                    fit: true,
+                    title: title,
+                    closable: true,
+                    href: href,
+                    border: true,
+                });
+            }
             return false;
         }
     });
