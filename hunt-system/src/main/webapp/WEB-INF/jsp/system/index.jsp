@@ -27,7 +27,7 @@
                style="height:40px;width:40px;font-weight:bolder;padding: 0 15px;">
     </div>
 </div>
-<div data-options="region:'west',split:true," style="text-align: center;width:200px;">
+<div data-options="region:'west',border:true,split:true" style="text-align: center;width:200px;">
     <div class="easyui-accordion" data-options="border:false,fit:true,">
         <div title="系统管理">
             <ul style="list-style: none;padding: 0 0 0 0 ;">
@@ -91,7 +91,7 @@
         </div>
     </div>
 </div>
-<div data-options="region:'south',border:true" style="height:25px;">
+<div data-options="region:'south',boder:true" style="height:25px;">
     <div style="text-align: center;line-height: 25px;font-size: medium">
         作者:ananan&nbsp;QQ群:981017952
     </div>

@@ -2,6 +2,7 @@ organization_tool = {
     //重置表单
     form_clear: function () {
         $("#organization_form").form("clear");
+        $("#organization").treegrid("uncheckAll");
         $("#organization_save_right").treegrid("uncheckAll");
     },
     //初始化数据
@@ -26,16 +27,16 @@ organization_tool = {
     },
     //校验参数
     checkValidatebox: function () {
-        if (!$('#name').validatebox('isValid')) {
+        if (!$('#organization_form input[id="name"]').validatebox('isValid')) {
             common_tool.messager_show('请输入名称');
             return false;
-        } else if (!$('#fullName').validatebox('isValid')) {
+        } else if (!$('#organization_form input[id="fullName"]').validatebox('isValid')) {
             common_tool.messager_show('请输入全称');
             return false;
-        } else if (!$('#description').validatebox('isValid')) {
+        } else if (!$('#organization_form input[id="description"]').validatebox('isValid')) {
             common_tool.messager_show('请输入描述');
             return false;
-        } else if ($("#organization_save_right").treegrid("getChecked").length == 0) {
+        } else if ($('#organization_form table[id="organization_save_right"]').treegrid("getChecked").length == 0) {
             common_tool.messager_show('请选择上级组织机构');
             return false;
         }
@@ -166,11 +167,11 @@ organization_tool = {
         if (!organization_tool.checkValidatebox()) {
             return false;
         }
-        var name = $("#name").val();
-        var fullName = $("#fullName").val();
-        var description = $("#description").val();
+        var name = $('#organization_form input[id="name"]').val();
+        var fullName = $('#organization_form input[id="fullName"]').val();
+        var description = $('#organization_form input[id="description"]').val();
         var isFinal = 1;
-        var parentId = $("#organization_save_right").treegrid("getChecked")[0].id;
+        var parentId = $('#organization_form table[id="organization_save_right"]').treegrid("getChecked")[0].id;
         $.ajax({
             data: {
                 name: name,
@@ -200,10 +201,10 @@ organization_tool = {
             return false;
         }
         var id = $("#id").val();
-        var name = $("#name").val();
-        var fullName = $("#fullName").val();
-        var description = $("#description").val();
-        var parentId = $("#organization_save_right").treegrid("getChecked")[0].id;
+        var name = $('#organization_form input[id="name"]').val();
+        var fullName = $('#organization_form input[id="fullName"]').val();
+        var description = $('#organization_form input[id="description"]').val();
+        var parentId = $('#organization_form table[id="organization_save_right"]').treegrid("getChecked")[0].id;
         $.ajax({
             data: {
                 id: id,
@@ -261,6 +262,7 @@ $(document).ready(function () {
         });
     });
     $(".select-btn").click(function () {
+        organization_tool.form_clear();
         organization_tool.init_mian_view();
     });
 });

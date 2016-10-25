@@ -1,6 +1,5 @@
 role_tool = {
     form_clear: function () {
-        $("#role_edit_form").form("reset");
         $("#role_edit_form").form("clear");
         $("#permissions").datagrid("uncheckAll");
         $("#role_grid").datagrid("uncheckAll");
@@ -79,16 +78,16 @@ role_tool = {
         });
     },
     save: function () {
-        if (!$("#name").validatebox('isValid')) {
+        if (!$("#role_edit_form input[id='name']").validatebox('isValid')) {
             common_tool.messager_show("请输入角色名称");
-        } else if (!$("#description").validatebox('isValid')) {
+        } else if (!$("#role_edit_form input[id='description']").validatebox('isValid')) {
             common_tool.messager_show("请输入角色描述");
-        } else if ($("#permissions").datagrid("getChecked").length == 0) {
+        } else if ($("#role_edit_form table[id='permissions']").datagrid("getChecked").length == 0) {
             common_tool.messager_show("请为该角色选择权限");
         } else {
-            var name = $("#name").val();
-            var description = $("#description").val();
-            var permission_array = $("#permissions").datagrid("getChecked");
+            var name = $("#role_edit_form input[id='name']").val();
+            var description = $("#role_edit_form input[id='description']").val();
+            var permission_array = $("#role_edit_form table[id='permissions']").datagrid("getChecked");
             var permission_ids = new Array();
             for (var i = 0; i < permission_array.length; i++) {
                 permission_ids[i] = permission_array[i].id;
@@ -121,17 +120,17 @@ role_tool = {
         }
     },
     update: function () {
-        if (!$("#name").validatebox('isValid')) {
+        if (!$("#role_edit_form input[id='name']").validatebox('isValid')) {
             common_tool.messager_show("请输入角色名称");
-        } else if (!$("#description").validatebox('isValid')) {
+        } else if (!$("#role_edit_form input[id='description']").validatebox('isValid')) {
             common_tool.messager_show("请输入角色描述");
-        } else if ($("#permissions").datagrid("getChecked").length == 0) {
+        } else if ($("#role_edit_form table[id='permissions']").datagrid("getChecked").length == 0) {
             common_tool.messager_show("请为该角色选择权限");
         } else {
-            var id = $("#id").val();
-            var name = $("#name").val();
-            var description = $("#description").val();
-            var permission_array = $("#permissions").datagrid("getChecked");
+            var id = $("#role_edit_form input[id='id']").val();
+            var name = $("#role_edit_form input[id='name']").val();
+            var description = $("#role_edit_form input[id='description']").val();
+            var permission_array = $("#role_edit_form table[id='permissions']").datagrid("getChecked");
             var permission_ids = new Array();
             for (var i = 0; i < permission_array.length; i++) {
                 permission_ids[i] = permission_array[i].id;
@@ -233,13 +232,13 @@ $(document).ready(function () {
             common_tool.messager_show("请选择一条记录");
             return false;
         }
+        role_tool.init_edit_view(2);
         var role = $("#role_grid").datagrid("getChecked")[0];
         $("#role_edit_form").form('load', {
             id: role.id,
             name: role.name,
             description: role.description,
-        });
-        role_tool.init_edit_view(2);
+        })
     });
     $("#role-delete-btn").click(function () {
         if ($("#role_grid").datagrid("getChecked").length == 0) {
