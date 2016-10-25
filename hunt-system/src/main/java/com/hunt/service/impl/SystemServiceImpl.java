@@ -3,16 +3,19 @@ package com.hunt.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.hunt.dao.*;
 import com.hunt.model.dto.PageInfo;
+import com.hunt.model.dto.SysDataItemDto;
 import com.hunt.model.entity.*;
 import com.hunt.service.SystemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import system.SystemConstant;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -150,8 +153,28 @@ public class SystemServiceImpl implements SystemService {
 
     @Override
     public boolean isExistDataItemNameExcludeId(Long id, String key, long groupId) {
-
         return sysDataItemMapper.isExistDataItemNameExcludeId(id, key, groupId);
+    }
+
+    @Override
+    public PageInfo selectDataItemPage(int page, int rows) {
+        int counts = sysDataItemMapper.selectCounts();
+        PageHelper.startPage(page, rows);
+        List<SysDataItem> sysDataItems = sysDataItemMapper.selectAll();
+        List<SysDataItemDto> resultList = new ArrayList<>();
+        for (SysDataItem sysDataItem : sysDataItems) {
+            SysDataItemDto sysDataItemDto = new SysDataItemDto();
+            BeanUtils.copyProperties(sysDataItem, sysDataItemDto);
+            SysDataGroup sysDataGroup = sysDataGroupMapper.selectById(sysDataItem.getSysDataGroupId());
+            sysDataItemDto.setSysDataGroupName(sysDataGroup.getName());
+            resultList.add(sysDataItemDto);
+        }
+        return new PageInfo(counts, resultList);
+    }
+
+    @Override
+    public SysDataItem selectDataItemById(Long id) {
+        return sysDataItemMapper.selectById(id);
     }
 
     @Override

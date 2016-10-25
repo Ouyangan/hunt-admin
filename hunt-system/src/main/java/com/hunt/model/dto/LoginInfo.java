@@ -41,6 +41,7 @@ public class LoginInfo implements Serializable {
     private String address;
 
     private List<SysUserRoleOrganization> jobs = new ArrayList<>();
+
     private List<SysPermission> permissions = new ArrayList<>();
 
     @Override

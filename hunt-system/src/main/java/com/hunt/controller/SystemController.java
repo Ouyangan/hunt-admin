@@ -58,9 +58,9 @@ public class SystemController extends BaseController {
                         @RequestParam String password,
                         @RequestParam int platform,
                         HttpServletRequest request) throws Exception {
-//        if (!verifyCaptcha(request)) {
-//            return Result.instance(ResponseCode.verify_captcha_error.getCode(), ResponseCode.verify_captcha_error.getMsg());
-//        }
+        if (!verifyCaptcha(request)) {
+            return Result.instance(ResponseCode.verify_captcha_error.getCode(), ResponseCode.verify_captcha_error.getMsg());
+        }
         SysUser user = sysUserService.selectByLoginName(loginName);
         if (user == null) {
             return Result.instance(ResponseCode.unknown_account.getCode(), ResponseCode.unknown_account.getMsg());
@@ -168,13 +168,14 @@ public class SystemController extends BaseController {
 
     @RequestMapping(value = "toData", method = RequestMethod.GET)
     public String toData() {
-        return "system/toData";
+        return "system/data";
     }
 
     @ResponseBody
     @RequestMapping(value = "data/insert", method = RequestMethod.POST)
     public Result dataInsert(@RequestParam String key,
                              @RequestParam String value,
+                             @RequestParam String description,
                              @RequestParam long groupId) {
         boolean isExistName = systemService.isExistDataItemKeyName(key, groupId);
         if (isExistName) {
@@ -184,6 +185,7 @@ public class SystemController extends BaseController {
         sysDataItem.setKeyName(key);
         sysDataItem.setKeyValue(value);
         sysDataItem.setSysDataGroupId(groupId);
+        sysDataItem.setDescription(description);
         long id = systemService.insertSysDataItem(sysDataItem);
         return Result.success(id);
     }
@@ -200,16 +202,23 @@ public class SystemController extends BaseController {
     public Result dataUpdate(@RequestParam Long id,
                              @RequestParam String key,
                              @RequestParam String value,
+                             @RequestParam String description,
                              @RequestParam long groupId) {
+        SysDataItem sysDataItem = systemService.selectDataItemById(id);
+        if (sysDataItem == null) {
+            return Result.error(ResponseCode.data_not_exist.getMsg());
+        }
+        if (sysDataItem.getIsFinal() == 2) {
+            return Result.error(ResponseCode.can_not_edit.getMsg());
+        }
         boolean isExistDataItemNameExcludeId = systemService.isExistDataItemNameExcludeId(id, key, groupId);
         if (isExistDataItemNameExcludeId) {
             return Result.error(ResponseCode.name_already_exist.getMsg());
         }
-        SysDataItem sysDataItem = new SysDataItem();
-        sysDataItem.setId(id);
         sysDataItem.setKeyName(key);
         sysDataItem.setKeyValue(value);
         sysDataItem.setSysDataGroupId(groupId);
+        sysDataItem.setDescription(description);
         systemService.updateDateItem(sysDataItem);
         return Result.success();
     }
@@ -217,14 +226,15 @@ public class SystemController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "data/select", method = RequestMethod.GET)
     public Result dataSelect() {
-
         return Result.success();
     }
 
     @ResponseBody
     @RequestMapping(value = "data/list", method = RequestMethod.GET)
-    public Result dataList() {
-        return Result.success();
+    public PageInfo dataList(@RequestParam int page,
+                             @RequestParam int rows) {
+        PageInfo pageInfo = systemService.selectDataItemPage(page, rows);
+        return pageInfo;
     }
 
 }

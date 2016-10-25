@@ -84,7 +84,7 @@
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/data/toData">字典管理
+                             href="/system/toData">字典管理
                         </div>
                     </li>
                 </div>

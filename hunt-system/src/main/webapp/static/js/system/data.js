@@ -1,25 +1,26 @@
-permission_tool = {
+data_tool = {
     form_clear: function () {
-        $("#save-permission-form").form('clear');
-        $("#permission_grid").treegrid("uncheckAll");
-        $("#permission-group").datagrid("uncheckAll");
+        $("#save-data-form").form('clear');
+        $("#save-data-group-form").form('clear');
+        $("#data_grid").treegrid("uncheckAll");
+        $("#data-group").datagrid("uncheckAll");
     },
-    delte_permission: function () {
-        if ($("#permission_grid").treegrid("getChecked").length == 0) {
+    delete_data: function () {
+        if ($("#data_grid").treegrid("getChecked").length == 0) {
             common_tool.messager_show("请选择一条记录");
         } else {
-            var id = $("#permission_grid").treegrid("getChecked")[0].id;
+            var id = $("#data_grid").treegrid("getChecked")[0].id;
             $.ajax({
                 data: {
                     id: id,
                 },
                 method: 'get',
-                url: '/permission/delete',
+                url: '/system/data/delete',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
                     if (result.code == 10000) {
-                        permission_tool.init_main_view();
+                        data_tool.init_main_view();
                         return false;
                     }
                     else {
@@ -30,47 +31,47 @@ permission_tool = {
         }
     },
     validatebox: function () {
-        if (!$("#save-permission-dialog input[id='name']").validatebox('isValid')) {
+        if (!$("#save-data-dialog input[id='keyName']").validatebox('isValid')) {
             common_tool.messager_show("请输入权限名称");
             return false;
-        } else if (!$("#save-permission-dialog input[id='code']").validatebox('isValid')) {
+        } else if (!$("#save-data-dialog input[id='keyValue']").validatebox('isValid')) {
             common_tool.messager_show("请输入权限编码");
             return false;
         }
-        else if (!$("#save-permission-dialog input[id='description']").validatebox('isValid')) {
+        else if (!$("#save-data-dialog input[id='description']").validatebox('isValid')) {
             common_tool.messager_show("请输入权限描述");
             return false;
         }
-        else if ($("#save-permission-dialog table[id='permission-group']").treegrid("getChecked").length == 0) {
+        else if ($("#save-data-dialog table[id='data-group']").treegrid("getChecked").length == 0) {
             common_tool.messager_show("请选择权限组");
             return false;
         }
         return true;
     },
-    save_permission: function () {
-        if (!permission_tool.validatebox()) {
+    save_data: function () {
+        if (!data_tool.validatebox()) {
             return false;
         }
-        var name = $("#save-permission-dialog input[id='name']").val();
-        var code = $("#save-permission-dialog input[id='code']").val();
-        var description = $("#save-permission-dialog input[id='description']").val();
-        var groupId = $("#save-permission-dialog table[id='permission-group']").treegrid("getChecked")[0].id;
+        var name = $("#save-data-dialog input[id='keyName']").val();
+        var code = $("#save-data-dialog input[id='keyValue']").val();
+        var description = $("#save-data-dialog input[id='description']").val();
+        var groupId = $("#save-data-dialog table[id='data-group']").treegrid("getChecked")[0].id;
         $.ajax({
             data: {
-                name: name,
-                code: code,
+                key: name,
+                value: code,
                 description: description,
                 groupId: groupId,
             },
             method: 'post',
-            url: '/permission/insert',
+            url: '/system/data/insert',
             async: false,
             dataType: 'json',
             success: function (result) {
                 if (result.code == 10000) {
-                    $("#save-permission-dialog").dialog("close");
-                    permission_tool.form_clear();
-                    permission_tool.init_main_view();
+                    $("#save-data-dialog").dialog("close");
+                    data_tool.form_clear();
+                    data_tool.init_main_view();
                     return false;
                 }
                 else {
@@ -79,32 +80,32 @@ permission_tool = {
             },
         });
     },
-    update_permission: function () {
-        if (!permission_tool.validatebox()) {
+    update_data: function () {
+        if (!data_tool.validatebox()) {
             return false;
         }
-        var id = $("#save-permission-dialog input[id='id']").val();
-        var name = $("#save-permission-dialog input[id='name']").val();
-        var code = $("#save-permission-dialog input[id='code']").val();
-        var description = $("#save-permission-dialog input[id='description']").val();
-        var groupId = $("#save-permission-dialog table[id='permission-group']").treegrid("getChecked")[0].id;
+        var id = $("#save-data-dialog input[id='id']").val();
+        var key = $("#save-data-dialog input[id='keyName']").val();
+        var value = $("#save-data-dialog input[id='keyValue']").val();
+        var description = $("#save-data-dialog input[id='description']").val();
+        var groupId = $("#save-data-dialog table[id='data-group']").treegrid("getChecked")[0].id;
         $.ajax({
             data: {
                 id: id,
-                name: name,
-                code: code,
+                key: key,
+                value: value,
                 description: description,
                 groupId: groupId,
             },
             method: 'post',
-            url: '/permission/update',
+            url: '/system/data/update',
             async: false,
             dataType: 'json',
             success: function (result) {
                 if (result.code == 10000) {
-                    $("#save-permission-dialog").dialog("close");
-                    permission_tool.form_clear();
-                    permission_tool.init_main_view();
+                    $("#save-data-dialog").dialog("close");
+                    data_tool.form_clear();
+                    data_tool.init_main_view();
                     return false;
                 }
                 else {
@@ -113,28 +114,28 @@ permission_tool = {
             },
         });
     },
-    insert_permission_group: function () {
-        if (!$("#save-permission-group-dialog input[name='name']").validatebox('isValid')) {
-            common_tool.messager_show("请输入权限名称");
-        } else if (!$("#save-permission-group-dialog input[name='group_description']").validatebox('isValid')) {
-            common_tool.messager_show("请输入权限编码");
+    insert_data_group: function () {
+        if (!$("#save-data-group-dialog input[id='group_name']").validatebox('isValid')) {
+            common_tool.messager_show("请输入名称");
+        } else if (!$("#save-data-group-dialog input[id='group_description']").validatebox('isValid')) {
+            common_tool.messager_show("请输入描述");
         } else {
-            var group_name = $("#save-permission-group-dialog input[name='name']").val();
-            var group_description = $("#save-permission-group-dialog input[name='group_description']").val();
+            var group_name = $("#save-data-group-dialog  input[id='group_name']").val();
+            var group_description = $("#save-data-group-dialog input[id='group_description']").val();
             $.ajax({
                 data: {
                     name: group_name,
                     description: group_description,
                 },
                 method: 'post',
-                url: '/permission/insertGroup',
+                url: '/system/dataGroup/insert',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
                     if (result.code == 10000) {
-                        $("#save-permission-group-dialog").dialog("close");
-                        permission_tool.form_clear();
-                        permission_tool.init_main_view();
+                        $("#save-data-group-dialog").dialog("close");
+                        data_tool.form_clear();
+                        data_tool.init_main_view();
                         return false;
                     }
                     else {
@@ -145,8 +146,8 @@ permission_tool = {
         }
     },
     init_edit_group_view: function () {
-        $("#save-permission-group-dialog").dialog({
-            title: '新增权限组',
+        $("#save-data-group-dialog").dialog({
+            title: '新增字典组',
             iconCls: 'icon-save',
             closable: true,
             width: 450,
@@ -160,7 +161,7 @@ permission_tool = {
                     width: 100,
                     iconCls: 'icon-save',
                     handler: function () {
-                        permission_tool.insert_permission_group();
+                        data_tool.insert_data_group();
                     }
                 },
                 {
@@ -168,7 +169,7 @@ permission_tool = {
                     width: 100,
                     iconCls: 'icon-reload',
                     handler: function () {
-                        permission_tool.form_clear();
+                        data_tool.form_clear();
                     }
                 },
                 {
@@ -176,16 +177,16 @@ permission_tool = {
                     width: 100,
                     iconCls: 'icon-add',
                     handler: function () {
-                        permission_tool.form_clear();
-                        $("#save-permission-group-dialog").dialog('close');
+                        data_tool.form_clear();
+                        $("#save-data-group-dialog").dialog('close');
                     }
                 }
             ],
         });
     },
     init_edit_view: function (type, groupId) {
-        $("#save-permission-dialog").dialog({
-            title: '新增权限',
+        $("#save-data-dialog").dialog({
+            title: '新增字典',
             iconCls: 'icon-save',
             closable: true,
             width: 700,
@@ -196,7 +197,7 @@ permission_tool = {
             'onOpen': function () {
                 if (groupId != null) {
                     console.log(groupId);
-                    $("#permission-group").datagrid('selectRecord', groupId);
+                    $("#data-group").datagrid('selectRecord', groupId);
                 }
             },
             buttons: [
@@ -206,10 +207,10 @@ permission_tool = {
                     iconCls: 'icon-save',
                     handler: function () {
                         if (type == 1) {
-                            permission_tool.save_permission();
+                            data_tool.save_data();
                         }
                         if (type == 2) {
-                            permission_tool.update_permission();
+                            data_tool.update_data();
                         }
                     }
                 },
@@ -218,7 +219,7 @@ permission_tool = {
                     width: 100,
                     iconCls: 'icon-reload',
                     handler: function () {
-                        permission_tool.form_clear();
+                        data_tool.form_clear();
                     }
                 },
                 {
@@ -226,24 +227,24 @@ permission_tool = {
                     width: 100,
                     iconCls: 'icon-add',
                     handler: function () {
-                        permission_tool.form_clear();
-                        $("#save-permission-dialog").dialog('close');
+                        data_tool.form_clear();
+                        $("#save-data-dialog").dialog('close');
                     }
                 }
             ],
         });
     },
     init_main_view: function () {
-        $("#permission_grid").datagrid({
-            url: "/permission/select",
+        $("#data_grid").datagrid({
+            url: "/system/data/list",
             method: 'get',
             view: groupview,
-            groupField: 'sysPermissionGroupId',
+            groupField: 'sysDataGroupId',
             groupFormatter: function (value, rows) {
-                return rows[0].sysPermissionGroupName;
+                return rows[0].sysDataGroupName;
             },
 
-            toolbar: '#permission-tool-bar',
+            toolbar: '#data-tool-bar',
             rownumbers: true,
             singleSelect: true,
             animate: true,
@@ -258,8 +259,8 @@ permission_tool = {
             striped: true,
             columns: [[
                 {title: "选择", field: "ck", checkbox: true},
-                {title: "名称", field: "name", width: 200},
-                {title: "code", field: "code", width: 200},
+                {title: "key", field: "keyName", width: 200},
+                {title: "value", field: "keyValue", width: 200},
                 {title: "说明", field: "description", width: 200},
                 {
                     title: "是否可修改", field: "isFinal", formatter: function (value, row, index) {
@@ -286,33 +287,33 @@ permission_tool = {
     },
 };
 $(document).ready(function () {
-    permission_tool.init_main_view();
-    $("#flash-permission").click(function () {
-        permission_tool.form_clear();
-        permission_tool.init_main_view();
+    data_tool.init_main_view();
+    $("#flash-data").click(function () {
+        data_tool.form_clear();
+        data_tool.init_main_view();
     });
-    $("#save-permission").click(function () {
-        permission_tool.init_edit_view(1);
+    $("#save-data").click(function () {
+        data_tool.init_edit_view(1);
     });
-    $("#save-permissionGroup").click(function () {
-        permission_tool.init_edit_group_view()
+    $("#save-dataGroup").click(function () {
+        data_tool.init_edit_group_view()
     });
-    $("#delete-permission").click(function () {
-        permission_tool.delte_permission();
+    $("#delete-data").click(function () {
+        data_tool.delete_data();
     });
-    $("#update-permission").click(function () {
-        if ($("#permission_grid").treegrid("getChecked").length == 0) {
+    $("#update-data").click(function () {
+        if ($("#data_grid").treegrid("getChecked").length == 0) {
             common_tool.messager_show("请选择一条记录");
             return false;
         }
-        var permission = $("#permission_grid").datagrid('getChecked')[0];
-        $("#save-permission-form").form('load', {
-            'id': permission.id,
-            'name': permission.name,
-            'code': permission.code,
-            'description': permission.description,
+        var data = $("#data_grid").datagrid('getChecked')[0];
+        $("#save-data-form").form('load', {
+            'id': data.id,
+            'keyName': data.keyName,
+            'keyValue': data.keyValue,
+            'description': data.description,
         });
-        permission_tool.init_edit_view(2, permission.sysPermissionGroupId);
+        data_tool.init_edit_view(2, data.sysDataGroupId);
     });
 
 });

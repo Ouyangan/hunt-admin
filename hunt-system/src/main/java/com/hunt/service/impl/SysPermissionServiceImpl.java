@@ -1,5 +1,6 @@
 package com.hunt.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.hunt.dao.SysPermissionGroupMapper;
 import com.hunt.dao.SysPermissionMapper;
 import com.hunt.model.dto.PageInfo;
@@ -69,7 +70,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     @Override
     public PageInfo selectPage(int page, int rows) {
         int count = sysPermissionMapper.selectCounts();
-//        PageHelper.startPage(page, rows);
+        PageHelper.startPage(page, rows);
         List<SysPermission> list = sysPermissionMapper.selectAll();
         List<SysPermissionDto> listResult = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {

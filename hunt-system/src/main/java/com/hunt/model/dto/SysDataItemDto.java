@@ -1,17 +1,22 @@
-package com.hunt.model.entity;
+package com.hunt.model.dto;
 
 /**
  * @Author: ouyangan
- * @Date: 2016-10-25 16:08
+ * @Date: 2016-10-12 14:21
  * @Description:
  */
-public class SysDataItem {
+public class SysDataItemDto {
 
     // id :
     private Long id;
 
+    // description :描述
+    private String description;
+
     // sys_data_group_id :组id
     private Long sysDataGroupId;
+
+    private String sysDataGroupName;
 
     // key_value :值
     private String keyValue;
@@ -40,8 +45,40 @@ public class SysDataItem {
     // status :数据状态,1:正常,2:删除,3:禁用账号
     private Integer status;
 
-    // description :描述
-    private String description;
+    @Override
+    public String toString() {
+        return "SysDataItemDto{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", sysDataGroupId=" + sysDataGroupId +
+                ", sysDataGroupName='" + sysDataGroupName + '\'' +
+                ", keyValue='" + keyValue + '\'' +
+                ", keyName='" + keyName + '\'' +
+                ", isFinal=" + isFinal +
+                ", rank=" + rank +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", createBy=" + createBy +
+                ", updateBy=" + updateBy +
+                ", status=" + status +
+                '}';
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getSysDataGroupName() {
+        return sysDataGroupName;
+    }
+
+    public void setSysDataGroupName(String sysDataGroupName) {
+        this.sysDataGroupName = sysDataGroupName;
+    }
 
     /**
      * get
@@ -241,39 +278,4 @@ public class SysDataItem {
         this.status = status;
     }
 
-    /**
-     * get 描述
-     *
-     * @return String
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * set 描述
-     *
-     * @param description
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "SysDataItem{" +
-                "id='" + id + '\'' +
-                ", sysDataGroupId='" + sysDataGroupId + '\'' +
-                ", keyValue='" + keyValue + '\'' +
-                ", keyName='" + keyName + '\'' +
-                ", isFinal='" + isFinal + '\'' +
-                ", rank='" + rank + '\'' +
-                ", createTime='" + createTime + '\'' +
-                ", updateTime='" + updateTime + '\'' +
-                ", createBy='" + createBy + '\'' +
-                ", updateBy='" + updateBy + '\'' +
-                ", status='" + status + '\'' +
-                ", description=" + description +
-                '}';
-    }
 }

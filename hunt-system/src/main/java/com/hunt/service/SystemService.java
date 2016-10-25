@@ -41,4 +41,9 @@ public interface SystemService {
     void updateDateItem(SysDataItem sysDataItem);
 
     boolean isExistDataItemNameExcludeId(Long id, String key, long groupId);
+
+    PageInfo selectDataItemPage(int page, int rows);
+
+    SysDataItem selectDataItemById(Long id);
+
 }

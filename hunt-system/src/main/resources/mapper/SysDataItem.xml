@@ -13,6 +13,7 @@
         <result column="create_by" property="createBy" jdbcType="BIGINT"/>
         <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
         <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
@@ -26,7 +27,8 @@
         updateTime,
         createBy,
         updateBy,
-        status
+        status,
+        description
     </sql>
 
     <sql id="sql_column_where">
@@ -63,6 +65,9 @@
         <if test="status !=null ">
             AND status = #{status}
         </if>
+        <if test="description !=null and description.length() != 0">
+            AND description = #{description}
+        </if>
     </sql>
 
     <insert id="insert" parameterType="SysDataItem" useGeneratedKeys="true" keyProperty="id">
@@ -98,6 +103,9 @@
             <if test="status !=null">
                 status,
             </if>
+            <if test="description !=null and description.length() !=0">
+                description,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="sysDataGroupId !=null">
@@ -129,6 +137,9 @@
             </if>
             <if test="status !=null">
                 #{status},
+            </if>
+            <if test="description !=null and description.length() !=0">
+                #{description},
             </if>
         </trim>
     </insert>
@@ -170,11 +181,14 @@
             <if test="status !=null">
                 status = #{status},
             </if>
+            <if test="description !=null and description.length() !=0">
+                description = #{description},
+            </if>
         </set>
         where id =#{id} and status=1
     </update>
     <update id="deleteById">
-        UPDATE sys_data_item SET status=2 WHERE id=#{id}
+        UPDATE sys_data_item SET  status=2 WHERE  id=#{id}
     </update>
 
     <select id="select" parameterType="SysDataItem" resultType="SysDataItem">
