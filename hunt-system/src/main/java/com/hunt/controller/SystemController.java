@@ -2,6 +2,8 @@ package com.hunt.controller;
 
 import com.hunt.model.dto.LoginInfo;
 import com.hunt.model.dto.PageInfo;
+import com.hunt.model.entity.SysDataGroup;
+import com.hunt.model.entity.SysDataItem;
 import com.hunt.model.entity.SysUser;
 import com.hunt.service.SysUserService;
 import com.hunt.service.SystemService;
@@ -21,6 +23,7 @@ import system.Result;
 import system.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @Author: ouyangan
@@ -88,9 +91,7 @@ public class SystemController extends BaseController {
     @RequestMapping(value = "captcha", method = RequestMethod.GET)
     public String StartCaptcha(HttpServletRequest request) {
         GeetestLib gtSdk = new GeetestLib(GeetestConfig.getGeetest_id(), GeetestConfig.getGeetest_key());
-        //进行验证预处理
         int gtServerStatus = gtSdk.preProcess();
-        //将服务器状态设置到session中
         request.getSession().setAttribute(gtSdk.gtServerStatusSessionKey, gtServerStatus);
         return gtSdk.getResponseStr();
     }
@@ -129,17 +130,101 @@ public class SystemController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "log/select", method = RequestMethod.GET)
     public PageInfo log(@RequestParam int page,
-                           @RequestParam int rows,
-                           @RequestParam(defaultValue = "id") String sort,
-                           @RequestParam(defaultValue = "desc") String order,
-                           @RequestParam(defaultValue = "") String method,
-                           @RequestParam(defaultValue = "") String url,
-                           @RequestParam(defaultValue = "") String param,
-                           @RequestParam(defaultValue = "") String result) {
+                        @RequestParam int rows,
+                        @RequestParam(defaultValue = "id") String sort,
+                        @RequestParam(defaultValue = "desc") String order,
+                        @RequestParam(defaultValue = "") String method,
+                        @RequestParam(defaultValue = "") String url,
+                        @RequestParam(defaultValue = "") String param,
+                        @RequestParam(defaultValue = "") String result) {
         System.out.println("page = [" + page + "], rows = [" + rows + "], sort = [" + sort + "], order = [" + order + "], method = [" + method + "], url = [" + url + "], param = [" + param + "], result = [" + result + "]");
-        PageInfo pageInfo = systemService.selectLog(page, rows, StringUtil.camelToUnderline(sort), order,method,url,param,result);
+        PageInfo pageInfo = systemService.selectLog(page, rows, StringUtil.camelToUnderline(sort), order, method, url, param, result);
         return pageInfo;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "dataGroup/insert", method = RequestMethod.POST)
+    public Result dataGroupInsert(@RequestParam String name,
+                                  @RequestParam String description) {
+        boolean isExistName = systemService.isExistDataGroupName(name);
+        if (isExistName) {
+            return Result.error(ResponseCode.name_already_exist.getMsg());
+        }
+        SysDataGroup sysDataGroup = new SysDataGroup();
+        sysDataGroup.setName(name);
+        sysDataGroup.setDescription(description);
+        sysDataGroup.setParentId(0L);
+        sysDataGroup.setIsFinal(2);
+        Long id = systemService.insertSysDataGroup(sysDataGroup);
+        return Result.success(id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "dataGroup/list", method = RequestMethod.GET)
+    public List<SysDataGroup> dataGroupList() {
+        List<SysDataGroup> list = systemService.selectDataGroupList();
+        return list;
+    }
+
+    @RequestMapping(value = "toData", method = RequestMethod.GET)
+    public String toData() {
+        return "system/toData";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "data/insert", method = RequestMethod.POST)
+    public Result dataInsert(@RequestParam String key,
+                             @RequestParam String value,
+                             @RequestParam long groupId) {
+        boolean isExistName = systemService.isExistDataItemKeyName(key, groupId);
+        if (isExistName) {
+            return Result.error(ResponseCode.name_already_exist.getMsg());
+        }
+        SysDataItem sysDataItem = new SysDataItem();
+        sysDataItem.setKeyName(key);
+        sysDataItem.setKeyValue(value);
+        sysDataItem.setSysDataGroupId(groupId);
+        long id = systemService.insertSysDataItem(sysDataItem);
+        return Result.success(id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "data/delete", method = RequestMethod.GET)
+    public Result dataDelete(@RequestParam Long id) {
+        systemService.deleteDataItemById(id);
+        return Result.success();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "data/update", method = RequestMethod.POST)
+    public Result dataUpdate(@RequestParam Long id,
+                             @RequestParam String key,
+                             @RequestParam String value,
+                             @RequestParam long groupId) {
+        boolean isExistDataItemNameExcludeId = systemService.isExistDataItemNameExcludeId(id, key, groupId);
+        if (isExistDataItemNameExcludeId) {
+            return Result.error(ResponseCode.name_already_exist.getMsg());
+        }
+        SysDataItem sysDataItem = new SysDataItem();
+        sysDataItem.setId(id);
+        sysDataItem.setKeyName(key);
+        sysDataItem.setKeyValue(value);
+        sysDataItem.setSysDataGroupId(groupId);
+        systemService.updateDateItem(sysDataItem);
+        return Result.success();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "data/select", method = RequestMethod.GET)
+    public Result dataSelect() {
+
+        return Result.success();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "data/list", method = RequestMethod.GET)
+    public Result dataList() {
+        return Result.success();
+    }
 
 }

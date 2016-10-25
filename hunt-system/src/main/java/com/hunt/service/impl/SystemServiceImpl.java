@@ -3,9 +3,7 @@ package com.hunt.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.hunt.dao.*;
 import com.hunt.model.dto.PageInfo;
-import com.hunt.model.entity.SysLog;
-import com.hunt.model.entity.SysLoginStatus;
-import com.hunt.model.entity.SysUser;
+import com.hunt.model.entity.*;
 import com.hunt.service.SystemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +37,10 @@ public class SystemServiceImpl implements SystemService {
     private SysRoleOrganizationMapper sysRoleOrganizationMapper;
     @Autowired
     private SysLogMapper sysLogMapper;
+    @Autowired
+    private SysDataGroupMapper sysDataGroupMapper;
+    @Autowired
+    private SysDataItemMapper sysDataItemMapper;
 
     @Override
     public void forceLogout(long userId) {
@@ -113,4 +115,48 @@ public class SystemServiceImpl implements SystemService {
     public void insertSysControllerLog(SysLog runningLog) {
         sysLogMapper.insert(runningLog);
     }
+
+    @Override
+    public Long insertSysDataGroup(SysDataGroup sysDataGroup) {
+        sysDataGroupMapper.insert(sysDataGroup);
+        return sysDataGroup.getId();
+    }
+
+    @Override
+    public boolean isExistDataGroupName(String name) {
+        return sysDataGroupMapper.isExistName(name);
+    }
+
+    @Override
+    public List<SysDataGroup> selectDataGroupList() {
+        return sysDataGroupMapper.selectAll();
+    }
+
+    @Override
+    public long insertSysDataItem(SysDataItem sysDataItem) {
+        sysDataItemMapper.insert(sysDataItem);
+        return sysDataItem.getId();
+    }
+
+    @Override
+    public boolean isExistDataItemKeyName(String key, long groupId) {
+        return sysDataItemMapper.isExistName(key, groupId);
+    }
+
+    @Override
+    public void deleteDataItemById(Long id) {
+        sysDataItemMapper.deleteById(id);
+    }
+
+    @Override
+    public boolean isExistDataItemNameExcludeId(Long id, String key, long groupId) {
+
+        return sysDataItemMapper.isExistDataItemNameExcludeId(id, key, groupId);
+    }
+
+    @Override
+    public void updateDateItem(SysDataItem sysDataItem) {
+        sysDataItemMapper.update(sysDataItem);
+    }
+
 }

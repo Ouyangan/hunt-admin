@@ -23,4 +23,10 @@ public interface SysDataItemMapper {
 
     //查询数量
     public int selectCounts();
+
+    boolean isExistName(@Param("key") String key, @Param("groupId") long groupId);
+
+    void deleteById(@Param("id") Long id);
+
+    boolean isExistDataItemNameExcludeId(@Param("id") Long id, @Param("key") String key, @Param("groupId") long groupId);
 }

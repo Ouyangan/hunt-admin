@@ -23,4 +23,6 @@ public interface SysDataGroupMapper {
 
     //查询数量
     public int selectCounts();
+
+    boolean isExistName(@Param("name") String name);
 }

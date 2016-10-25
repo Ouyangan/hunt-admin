@@ -1,7 +1,11 @@
 package com.hunt.service;
 
 import com.hunt.model.dto.PageInfo;
+import com.hunt.model.entity.SysDataGroup;
+import com.hunt.model.entity.SysDataItem;
 import com.hunt.model.entity.SysLog;
+
+import java.util.List;
 
 /**
  * @Author: ouyangan
@@ -21,4 +25,20 @@ public interface SystemService {
     PageInfo selectLog(int page, int rows, String s, String order, String method, String url, String param, String result);
 
     void insertSysControllerLog(SysLog runningLog);
+
+    Long insertSysDataGroup(SysDataGroup sysDataGroup);
+
+    boolean isExistDataGroupName(String name);
+
+    List<SysDataGroup> selectDataGroupList();
+
+    long insertSysDataItem(SysDataItem sysDataItem);
+
+    boolean isExistDataItemKeyName(String key, long groupId);
+
+    void deleteDataItemById(Long id);
+
+    void updateDateItem(SysDataItem sysDataItem);
+
+    boolean isExistDataItemNameExcludeId(Long id, String key, long groupId);
 }

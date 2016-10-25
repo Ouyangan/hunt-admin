@@ -1,0 +1,318 @@
+permission_tool = {
+    form_clear: function () {
+        $("#save-permission-form").form('clear');
+        $("#permission_grid").treegrid("uncheckAll");
+        $("#permission-group").datagrid("uncheckAll");
+    },
+    delte_permission: function () {
+        if ($("#permission_grid").treegrid("getChecked").length == 0) {
+            common_tool.messager_show("请选择一条记录");
+        } else {
+            var id = $("#permission_grid").treegrid("getChecked")[0].id;
+            $.ajax({
+                data: {
+                    id: id,
+                },
+                method: 'get',
+                url: '/permission/delete',
+                async: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 10000) {
+                        permission_tool.init_main_view();
+                        return false;
+                    }
+                    else {
+                        common_tool.messager_show(result.msg);
+                    }
+                },
+            });
+        }
+    },
+    validatebox: function () {
+        if (!$("#save-permission-dialog input[id='name']").validatebox('isValid')) {
+            common_tool.messager_show("请输入权限名称");
+            return false;
+        } else if (!$("#save-permission-dialog input[id='code']").validatebox('isValid')) {
+            common_tool.messager_show("请输入权限编码");
+            return false;
+        }
+        else if (!$("#save-permission-dialog input[id='description']").validatebox('isValid')) {
+            common_tool.messager_show("请输入权限描述");
+            return false;
+        }
+        else if ($("#save-permission-dialog table[id='permission-group']").treegrid("getChecked").length == 0) {
+            common_tool.messager_show("请选择权限组");
+            return false;
+        }
+        return true;
+    },
+    save_permission: function () {
+        if (!permission_tool.validatebox()) {
+            return false;
+        }
+        var name = $("#save-permission-dialog input[id='name']").val();
+        var code = $("#save-permission-dialog input[id='code']").val();
+        var description = $("#save-permission-dialog input[id='description']").val();
+        var groupId = $("#save-permission-dialog table[id='permission-group']").treegrid("getChecked")[0].id;
+        $.ajax({
+            data: {
+                name: name,
+                code: code,
+                description: description,
+                groupId: groupId,
+            },
+            method: 'post',
+            url: '/permission/insert',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.code == 10000) {
+                    $("#save-permission-dialog").dialog("close");
+                    permission_tool.form_clear();
+                    permission_tool.init_main_view();
+                    return false;
+                }
+                else {
+                    common_tool.messager_show(result.msg);
+                }
+            },
+        });
+    },
+    update_permission: function () {
+        if (!permission_tool.validatebox()) {
+            return false;
+        }
+        var id = $("#save-permission-dialog input[id='id']").val();
+        var name = $("#save-permission-dialog input[id='name']").val();
+        var code = $("#save-permission-dialog input[id='code']").val();
+        var description = $("#save-permission-dialog input[id='description']").val();
+        var groupId = $("#save-permission-dialog table[id='permission-group']").treegrid("getChecked")[0].id;
+        $.ajax({
+            data: {
+                id: id,
+                name: name,
+                code: code,
+                description: description,
+                groupId: groupId,
+            },
+            method: 'post',
+            url: '/permission/update',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.code == 10000) {
+                    $("#save-permission-dialog").dialog("close");
+                    permission_tool.form_clear();
+                    permission_tool.init_main_view();
+                    return false;
+                }
+                else {
+                    common_tool.messager_show(result.msg);
+                }
+            },
+        });
+    },
+    insert_permission_group: function () {
+        if (!$("#save-permission-group-dialog input[name='name']").validatebox('isValid')) {
+            common_tool.messager_show("请输入权限名称");
+        } else if (!$("#save-permission-group-dialog input[name='group_description']").validatebox('isValid')) {
+            common_tool.messager_show("请输入权限编码");
+        } else {
+            var group_name = $("#save-permission-group-dialog input[name='name']").val();
+            var group_description = $("#save-permission-group-dialog input[name='group_description']").val();
+            $.ajax({
+                data: {
+                    name: group_name,
+                    description: group_description,
+                },
+                method: 'post',
+                url: '/permission/insertGroup',
+                async: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 10000) {
+                        $("#save-permission-group-dialog").dialog("close");
+                        permission_tool.form_clear();
+                        permission_tool.init_main_view();
+                        return false;
+                    }
+                    else {
+                        common_tool.messager_show(result.msg);
+                    }
+                },
+            });
+        }
+    },
+    init_edit_group_view: function () {
+        $("#save-permission-group-dialog").dialog({
+            title: '新增权限组',
+            iconCls: 'icon-save',
+            closable: true,
+            width: 450,
+            height: 350,
+            cache: false,
+            modal: true,
+            resizable: false,
+            buttons: [
+                {
+                    text: '保存',
+                    width: 100,
+                    iconCls: 'icon-save',
+                    handler: function () {
+                        permission_tool.insert_permission_group();
+                    }
+                },
+                {
+                    text: '清除',
+                    width: 100,
+                    iconCls: 'icon-reload',
+                    handler: function () {
+                        permission_tool.form_clear();
+                    }
+                },
+                {
+                    text: '取消',
+                    width: 100,
+                    iconCls: 'icon-add',
+                    handler: function () {
+                        permission_tool.form_clear();
+                        $("#save-permission-group-dialog").dialog('close');
+                    }
+                }
+            ],
+        });
+    },
+    init_edit_view: function (type, groupId) {
+        $("#save-permission-dialog").dialog({
+            title: '新增权限',
+            iconCls: 'icon-save',
+            closable: true,
+            width: 700,
+            height: 400,
+            cache: false,
+            modal: true,
+            resizable: false,
+            'onOpen': function () {
+                if (groupId != null) {
+                    console.log(groupId);
+                    $("#permission-group").datagrid('selectRecord', groupId);
+                }
+            },
+            buttons: [
+                {
+                    text: '保存',
+                    width: 100,
+                    iconCls: 'icon-save',
+                    handler: function () {
+                        if (type == 1) {
+                            permission_tool.save_permission();
+                        }
+                        if (type == 2) {
+                            permission_tool.update_permission();
+                        }
+                    }
+                },
+                {
+                    text: '清除',
+                    width: 100,
+                    iconCls: 'icon-reload',
+                    handler: function () {
+                        permission_tool.form_clear();
+                    }
+                },
+                {
+                    text: '取消',
+                    width: 100,
+                    iconCls: 'icon-add',
+                    handler: function () {
+                        permission_tool.form_clear();
+                        $("#save-permission-dialog").dialog('close');
+                    }
+                }
+            ],
+        });
+    },
+    init_main_view: function () {
+        $("#permission_grid").datagrid({
+            url: "/permission/select",
+            method: 'get',
+            view: groupview,
+            groupField: 'sysPermissionGroupId',
+            groupFormatter: function (value, rows) {
+                return rows[0].sysPermissionGroupName;
+            },
+
+            toolbar: '#permission-tool-bar',
+            rownumbers: true,
+            singleSelect: true,
+            animate: true,
+            fitColumns: true,
+            fit: true,
+            border: false,
+            pagePosition: "bottom",
+            pageNumber: 1,
+            pageSize: 25,
+            pageList: [25, 50, 75, 100],
+            pagination: true,
+            striped: true,
+            columns: [[
+                {title: "选择", field: "ck", checkbox: true},
+                {title: "名称", field: "name", width: 200},
+                {title: "code", field: "code", width: 200},
+                {title: "说明", field: "description", width: 200},
+                {
+                    title: "是否可修改", field: "isFinal", formatter: function (value, row, index) {
+                    if (value == 1) {
+                        return "是";
+                    }
+                    if (value == 2) {
+                        return "否";
+                    }
+                }, width: 60
+                },
+                {
+                    title: "创建时间", field: "createTime", formatter: function (value, row, index) {
+                    return common_tool.timestampToDateTime(value);
+                }, width: 100
+                },
+                {
+                    title: "更新时间", field: "updateTime", formatter: function (value, row, index) {
+                    return common_tool.timestampToDateTime(value);
+                }, width: 100
+                },
+            ]],
+        });
+    },
+};
+$(document).ready(function () {
+    permission_tool.init_main_view();
+    $("#flash-permission").click(function () {
+        permission_tool.form_clear();
+        permission_tool.init_main_view();
+    });
+    $("#save-permission").click(function () {
+        permission_tool.init_edit_view(1);
+    });
+    $("#save-permissionGroup").click(function () {
+        permission_tool.init_edit_group_view()
+    });
+    $("#delete-permission").click(function () {
+        permission_tool.delte_permission();
+    });
+    $("#update-permission").click(function () {
+        if ($("#permission_grid").treegrid("getChecked").length == 0) {
+            common_tool.messager_show("请选择一条记录");
+            return false;
+        }
+        var permission = $("#permission_grid").datagrid('getChecked')[0];
+        $("#save-permission-form").form('load', {
+            'id': permission.id,
+            'name': permission.name,
+            'code': permission.code,
+            'description': permission.description,
+        });
+        permission_tool.init_edit_view(2, permission.sysPermissionGroupId);
+    });
+
+});

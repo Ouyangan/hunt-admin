@@ -90,10 +90,10 @@ public class PermissionController extends BaseController {
             return Result.error("该数据不可修改");
         }
         boolean isExistName = sysPermissionService.isExistNameExcludeId(id, groupId, name);
-        boolean isExistCode = sysPermissionService.isExistCodeExcludeId(id, groupId, code);
         if (isExistName) {
             return Result.error("该分组下名称已存在");
         }
+        boolean isExistCode = sysPermissionService.isExistCodeExcludeId(id, groupId, code);
         if (isExistCode) {
             return Result.error("该权限分组下编码已存在已存在");
         }
