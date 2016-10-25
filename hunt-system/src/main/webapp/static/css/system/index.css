@@ -1,7 +1,13 @@
+#logout-btn {
+    height: 40px;
+    width: 60px;
+    background: #1489c2;
+    border: 0px;
+    color: #ffffff;
+    font-weight: bolder;
 
-.easyui-linkbutton :hover {
-    background-color: #0081c2;
 }
-.easyui-linkbutton{
-    background: #ffffff;
+
+#logout-btn:hover {
+    background: #c27c4e;
 }

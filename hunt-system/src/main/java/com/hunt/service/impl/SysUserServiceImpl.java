@@ -101,6 +101,7 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public PageInfo selectPage(int page, int rows, String sort, String order, String loginName, String zhName, String email, String phone, String address) {
+        System.out.println("page = [" + page + "], rows = [" + rows + "], sort = [" + sort + "], order = [" + order + "], loginName = [" + loginName + "], zhName = [" + zhName + "], email = [" + email + "], phone = [" + phone + "], address = [" + address + "]");
         int counts = sysUserMapper.selectCounts();
         PageHelper.startPage(page, rows);
         List<SysUser> sysUsers = sysUserMapper.selectAll(sort, order,loginName,zhName,email,phone,address);

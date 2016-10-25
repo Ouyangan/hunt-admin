@@ -315,5 +315,4 @@ $(document).ready(function () {
         });
         data_tool.init_edit_view(2, data.sysDataGroupId);
     });
-
 });

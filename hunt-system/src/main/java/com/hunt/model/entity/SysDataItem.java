@@ -233,7 +233,7 @@ public class SysDataItem {
     }
 
     /**
-     * set 数据状态,1:正常,2:删除,3:禁用账号
+     * set 数据状态,1:正常,2:删除
      *
      * @param status
      */

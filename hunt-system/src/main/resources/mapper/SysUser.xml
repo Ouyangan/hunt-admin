@@ -290,7 +290,7 @@
     <select id="selectAll" resultType="SysUser">
         SELECT *
         FROM sys_user
-        WHERE status !=2
+        WHERE status != 2
         <if test="loginName != null and loginName.length() != 0">
             AND login_name LIKE concat('%', #{loginName},'%')
         </if>

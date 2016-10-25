@@ -22,9 +22,8 @@
     <div style="height: 40px; float: left; line-height: 40px">
         <span style="font-weight:bolder; font-size: large;padding-left: 10px;color: #ffffff">Hunt-Admin 快速开发平台</span>
     </div>
-    <div style="height: 40px; float: right;line-height: 40px">
-        <input id="logout-btn" class="easyui-linkbutton" value="安全退出"
-               style="height:40px;width:40px;font-weight:bolder;padding: 0 15px;">
+    <div style="float:right;height: 40px">
+        <input id="logout-btn" class="easyui-linkbutton logout" value="安全退出">
     </div>
 </div>
 <div data-options="region:'west',border:true,split:true" style="text-align: center;width:200px;">
