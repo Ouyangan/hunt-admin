@@ -10,7 +10,7 @@ $(document).ready(function () {
         if ($('#tab').tabs('exists', title)) {
             $('#tab').tabs('select', title);
         } else {
-            if (href = '/druid/index.html') {
+            if (href == '/druid/index.html') {
                 var content = '<iframe scrolling="true" frameborder="0"  src="' + href + '" style="width:100%;height:100%;"></iframe>';
                 $('#tab').tabs('add', {
                     tabWidth: 100,
