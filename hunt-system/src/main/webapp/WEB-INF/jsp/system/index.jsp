@@ -33,14 +33,14 @@
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/user/toUser">用户管理
+                             href="/user/user">用户管理
                         </div>
                     </li>
                 </div>
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/organization/toOrganization">机构管理
+                             href="/organization/organization">机构管理
                         </div>
                     </li>
                 </div>
@@ -48,42 +48,42 @@
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
                              style="border: 0;background: #ffffff; "
-                             href="/role/toRole">角色管理
+                             href="/role/role">角色管理
                         </div>
                     </li>
                 </div>
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
-                             href="/job/toJob">职位管理
+                             href="/job/job">职位管理
                         </div>
                     </li>
                 </div>
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/permission/toPermission">权限管理
+                             href="/permission/permission">权限管理
                         </div>
                     </li>
                 </div>
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/system/toOnline">在线状态
+                             href="/system/online">在线状态
                         </div>
                     </li>
                 </div>
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/system/toLog">系统日志
+                             href="/system/log">系统日志
                         </div>
                     </li>
                 </div>
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/system/toData">字典管理
+                             href="/system/data">字典管理
                         </div>
                     </li>
                 </div>

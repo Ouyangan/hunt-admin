@@ -188,7 +188,7 @@
         where id =#{id} and status=1
     </update>
     <update id="deleteById">
-        UPDATE sys_data_item SET  status=2 WHERE  id=#{id}
+        UPDATE sys_data_item SET status=2 WHERE id=#{id}
     </update>
 
     <select id="select" parameterType="SysDataItem" resultType="SysDataItem">
@@ -217,16 +217,16 @@
     </select>
     <select id="isExistName" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_data_item
-                WHERE status = 1 AND sys_data_group_id = #{groupId} AND key_name = #{key}
+        SELECT *
+        FROM sys_data_item
+        WHERE status = 1 AND sys_data_group_id = #{groupId} AND key_name = #{key}
         )
     </select>
     <select id="isExistDataItemNameExcludeId" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_data_item
-                WHERE status = 1 AND id != #{id} AND key_name = #{key} AND sys_data_group_id = #{groupId}
+        SELECT *
+        FROM sys_data_item
+        WHERE status = 1 AND id != #{id} AND key_name = #{key} AND sys_data_group_id = #{groupId}
         )
     </select>
 

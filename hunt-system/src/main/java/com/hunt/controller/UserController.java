@@ -34,11 +34,28 @@ public class UserController extends BaseController {
     @Autowired
     private SystemService systemService;
 
-    @RequestMapping(value = "toUser", method = RequestMethod.GET)
-    public String toUser() {
+    @RequestMapping(value = "user", method = RequestMethod.GET)
+    public String user() {
         return "system/user";
     }
 
+    /**
+     * 新增用户
+     *
+     * @param loginName     登录名
+     * @param zhName        中文名
+     * @param enName        英文名
+     * @param sex           性别
+     * @param birth         生日
+     * @param email         邮箱
+     * @param phone         电话
+     * @param address       地址
+     * @param password      密码
+     * @param isFinal       是否可修改
+     * @param jobIds        职位ids
+     * @param permissionIds 权限ids
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String loginName,
@@ -92,6 +109,23 @@ public class UserController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 更新用户
+     *
+     * @param id
+     * @param loginName     登录名
+     * @param zhName        中文名
+     * @param enName        英文名
+     * @param sex           性别
+     * @param birth         生日
+     * @param email         邮箱
+     * @param phone         电话
+     * @param address       地址
+     * @param password      密码
+     * @param jobIds        职位ids
+     * @param permissionIds 权限ids
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
@@ -126,6 +160,20 @@ public class UserController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 查询用户列表
+     *
+     * @param page      起始页码
+     * @param rows      分页大小
+     * @param sort      排序字段
+     * @param order     排序规则
+     * @param loginName 登录名
+     * @param zhName    中文名
+     * @param email     邮箱
+     * @param phone     电话
+     * @param address   地址
+     * @return
+     */
     @RequiresPermissions("user:select")
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
@@ -138,10 +186,18 @@ public class UserController extends BaseController {
                            @RequestParam(defaultValue = "") String email,
                            @RequestParam(defaultValue = "") String phone,
                            @RequestParam(defaultValue = "") String address) {
-        PageInfo pageInfo = sysUserService.selectPage(page, rows, StringUtil.camelToUnderline(sort), order,loginName,zhName,email,phone,address);
+        PageInfo pageInfo = sysUserService.selectPage(page, rows, StringUtil.camelToUnderline(sort), order, loginName, zhName, email, phone, address);
         return pageInfo;
     }
 
+    /**
+     * 更新密码
+     *
+     * @param id          id
+     * @param oldPassword 旧密码
+     * @param newPassword 新密码
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "updatePassword", method = RequestMethod.POST)
     public Result updatePassword(@RequestParam long id,
@@ -161,6 +217,12 @@ public class UserController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 禁用账户
+     *
+     * @param id id
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "forbiddenUser", method = RequestMethod.GET)
     public Result forbiddenUser(@RequestParam long id) {
@@ -174,6 +236,12 @@ public class UserController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 启用账户
+     *
+     * @param id
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "enableUser", method = RequestMethod.GET)
     public Result enableUser(@RequestParam long id) {

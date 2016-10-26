@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import system.SystemConstant;
 
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -44,8 +43,8 @@ public class OauthControllerTest {
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
                 .get("https://github.com/login/oauth/authorize")
                 .param("client_id", SystemConstant.github_client_id)
-                .param("state","test github oauth")
-                .param("redirect_uri",SystemConstant.github_oauth_url)
+                .param("state", "test github oauth")
+                .param("redirect_uri", SystemConstant.github_oauth_url)
         )
                 .andDo(print())
                 .andExpect(status().isOk())

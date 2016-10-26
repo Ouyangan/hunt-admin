@@ -17,8 +17,7 @@ import system.Result;
 import java.util.List;
 
 /**
- * @Author: ouyangan
- * @Date : 2016/10/15
+ * 权限模块
  */
 @Controller
 @RequestMapping("permission")
@@ -28,11 +27,21 @@ public class PermissionController extends BaseController {
     @Autowired
     private SysPermissionService sysPermissionService;
 
-    @RequestMapping(value = "toPermission", method = RequestMethod.GET)
-    public String toPermission() {
+    @RequestMapping(value = "permission", method = RequestMethod.GET)
+    public String permission() {
         return "system/permission";
     }
 
+    /**
+     * 新增权限
+     *
+     * @param groupId     权限组id
+     * @param name        名称
+     * @param code        编码
+     * @param description 描述
+     * @param isFinal     是否可修改
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam long groupId,
@@ -60,6 +69,12 @@ public class PermissionController extends BaseController {
         return Result.success(id);
     }
 
+    /**
+     * 删除权限
+     *
+     * @param id id
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     public Result delete(@RequestParam long id) {
@@ -71,10 +86,21 @@ public class PermissionController extends BaseController {
             return Result.error("该数据不可修改");
         }
         sysPermission.setStatus(2);
+        // TODO: 2016/10/26  级联删除关联表 ,角色权限,用户权限
         sysPermissionService.update(sysPermission);
         return Result.success();
     }
 
+    /**
+     * 更新权限
+     *
+     * @param id          id
+     * @param groupId     权限组id
+     * @param name        名称
+     * @param code        编码
+     * @param description 描述
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
@@ -105,6 +131,13 @@ public class PermissionController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 查询权限列表
+     *
+     * @param page 起始页码
+     * @param rows 分页大小
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam(defaultValue = "1") int page,
@@ -113,8 +146,15 @@ public class PermissionController extends BaseController {
         return pageInfo;
     }
 
+    /**
+     * 新增权限组
+     *
+     * @param name        名称
+     * @param description 描述
+     * @return
+     */
     @ResponseBody
-    @RequestMapping(value = "insertGroup", method = RequestMethod.POST)
+    @RequestMapping(value = "group/insert", method = RequestMethod.POST)
     public Result insertGroup(@RequestParam String name,
                               @RequestParam String description) {
         boolean isExistGroupName = sysPermissionService.isExistGroupName(name);
@@ -129,8 +169,13 @@ public class PermissionController extends BaseController {
         return Result.success(id);
     }
 
+    /**
+     * 查询权限组
+     *
+     * @return
+     */
     @ResponseBody
-    @RequestMapping(value = "selectGroup", method = RequestMethod.GET)
+    @RequestMapping(value = "group/list", method = RequestMethod.GET)
     public List<SysPermissionGroup> selectGroup() {
         List<SysPermissionGroup> list = sysPermissionService.selectGroup();
         return list;

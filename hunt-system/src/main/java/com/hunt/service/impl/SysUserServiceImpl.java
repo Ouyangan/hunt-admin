@@ -104,7 +104,7 @@ public class SysUserServiceImpl implements SysUserService {
         System.out.println("page = [" + page + "], rows = [" + rows + "], sort = [" + sort + "], order = [" + order + "], loginName = [" + loginName + "], zhName = [" + zhName + "], email = [" + email + "], phone = [" + phone + "], address = [" + address + "]");
         int counts = sysUserMapper.selectCounts();
         PageHelper.startPage(page, rows);
-        List<SysUser> sysUsers = sysUserMapper.selectAll(sort, order,loginName,zhName,email,phone,address);
+        List<SysUser> sysUsers = sysUserMapper.selectAll(sort, order, loginName, zhName, email, phone, address);
         List<SysUserDto> sysUserDtos = new ArrayList<>();
         for (SysUser user : sysUsers) {
             SysUserDto userDto = new SysUserDto();

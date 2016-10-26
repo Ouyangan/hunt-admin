@@ -9,8 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.*;
-
 /**
  * @Author ouyangan
  * @Date 2016/10/24/19:21
@@ -22,6 +20,7 @@ import static org.junit.Assert.*;
 public class SystemServiceImplTest {
     @Autowired
     private SystemService systemService;
+
     @Test
     public void forceLogout() throws Exception {
 

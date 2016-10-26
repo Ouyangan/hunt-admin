@@ -2,7 +2,7 @@
 <script type="text/javascript" src="/static/js/system/log.js"></script>
 <script type="text/javascript" src="/static/js/system/common.js"></script>
 <div id="log-tool-bar" style="padding: 10px 10px 0 10px">
-    <form id="select_form" >
+    <form id="select_form">
         <div class="easyui-linkbutton " id="log-flash-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
         </div>
         <span style="line-height: 26px; ">method:<input name="method" class="easyui-textbox"

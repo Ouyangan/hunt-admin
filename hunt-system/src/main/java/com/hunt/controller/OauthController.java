@@ -46,15 +46,15 @@ public class OauthController extends BaseController {
             getAccessToken.setConfig(config);
             String access_token_info = EntityUtils.toString(client.execute(getAccessToken).getEntity());
             log.debug("access_token_response:{}", access_token_info);
-            String access_token = access_token_info.subSequence(access_token_info.indexOf("=")+1, access_token_info.indexOf("&")).toString();
-            log.debug("acccess_token:{}",access_token);
+            String access_token = access_token_info.subSequence(access_token_info.indexOf("=") + 1, access_token_info.indexOf("&")).toString();
+            log.debug("acccess_token:{}", access_token);
             String user_info_url = "https://api.github.com/user?access_token=" + access_token;
             HttpGet getUserInfo = new HttpGet(user_info_url);
             getUserInfo.setConfig(config);
-            String user_info= EntityUtils.toString(client.execute(getUserInfo).getEntity());
-            log.debug("user_info:{}",user_info);
+            String user_info = EntityUtils.toString(client.execute(getUserInfo).getEntity());
+            log.debug("user_info:{}", user_info);
             client.close();
-            SecurityUtils.getSubject().login(new UsernamePasswordToken("admin","111111"));
+            SecurityUtils.getSubject().login(new UsernamePasswordToken("admin", "111111"));
         }
         return Result.success();
     }

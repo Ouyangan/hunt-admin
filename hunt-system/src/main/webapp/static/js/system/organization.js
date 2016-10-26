@@ -64,10 +64,10 @@ organization_tool = {
             pagination: false,
             striped: true,
             columns: [[
-                {title: "选择", field: "ck", checkbox: true,width:20},
-                {title: "简称", field: "name",width:300 },
-                {title: "全称", field: "fullName", width:300},
-                {title: "说明", field: "description",width:300},
+                {title: "选择", field: "ck", checkbox: true, width: 20},
+                {title: "简称", field: "name", width: 300},
+                {title: "全称", field: "fullName", width: 300},
+                {title: "说明", field: "description", width: 300},
                 {
                     title: "是否可修改", field: "isFinal", formatter: function (value, row, index) {
                     if (value == 1) {
@@ -76,17 +76,17 @@ organization_tool = {
                     if (value == 2) {
                         return "否";
                     }
-                }, width:70
+                }, width: 70
                 },
                 {
                     title: "创建时间", field: "createTime", formatter: function (value, row, index) {
-                   return common_tool.timestampToDateTime(value);
-                },width:150
+                    return common_tool.timestampToDateTime(value);
+                }, width: 150
                 },
                 {
                     title: "更新时间", field: "updateTime", formatter: function (value, row, index) {
-                   return common_tool.timestampToDateTime(value);
-                },width:150
+                    return common_tool.timestampToDateTime(value);
+                }, width: 150
                 },
             ]],
         });

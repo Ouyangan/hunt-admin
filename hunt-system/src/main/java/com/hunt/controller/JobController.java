@@ -13,9 +13,7 @@ import system.ResponseCode;
 import system.Result;
 
 /**
- * @Author ouyangan
- * @Date 2016/10/17/16:21
- * @Description
+ * 职位模块
  */
 @Controller
 @RequestMapping("job")
@@ -23,11 +21,28 @@ public class JobController extends BaseController {
     @Autowired
     private SysRoleOrganizationService roleOrganizationService;
 
-    @RequestMapping(value = "toJob", method = RequestMethod.GET)
-    public String toJob() {
+    /**
+     * 跳转至职位页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "job", method = RequestMethod.GET)
+    public String job() {
         return "system/job";
     }
 
+    /**
+     * 新增职位
+     *
+     * @param roleId         角色id
+     * @param organizationId 组织id
+     * @param parentId       父级职位
+     * @param name           名称
+     * @param description    描述
+     * @param fullName       全称
+     * @param isFinal        是否可修改
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam long roleId,
@@ -53,6 +68,18 @@ public class JobController extends BaseController {
         return Result.success(id);
     }
 
+    /**
+     * 更新职位
+     *
+     * @param id             id
+     * @param roleId         角色id
+     * @param organizationId 组织id
+     * @param parentId       父级职位
+     * @param name           名称
+     * @param description    描述
+     * @param fullName       全称
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
@@ -83,6 +110,12 @@ public class JobController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 删除职位
+     *
+     * @param id id
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     public Result delete(@RequestParam long id) {
@@ -98,6 +131,14 @@ public class JobController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 查询职位
+     *
+     * @param page 起始页码
+     * @param rows 分页大小
+     * @param id   定级id
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam(defaultValue = "1") int page,

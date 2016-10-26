@@ -5,7 +5,7 @@ log_tools = {
         var param = $("input[name='param']").val();
         var result = $("input[name='result']").val();
         $("#log_grid").datagrid({
-            url: "/system/log/select",
+            url: "/system/log/list",
             method: 'get',
             idField: "id",
             fitColumns: true,
@@ -31,7 +31,7 @@ log_tools = {
                 {title: "选择", field: "ck", checkbox: true},
                 {
                     title: "time", field: "createTime", sortable: true, formatter: function (value, row, index) {
-                   return common_tool.timestampToDateTime(value);
+                    return common_tool.timestampToDateTime(value);
                 }, width: 150
                 },
                 {title: "method", field: "method", sortable: true, width: 370},

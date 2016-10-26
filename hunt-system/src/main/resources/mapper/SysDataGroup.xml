@@ -200,9 +200,9 @@
     </select>
     <select id="isExistName" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_data_group
-                WHERE status = 1 AND name = #{name}
+        SELECT *
+        FROM sys_data_group
+        WHERE status = 1 AND name = #{name}
         )
     </select>
 

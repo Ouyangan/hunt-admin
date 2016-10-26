@@ -4,7 +4,7 @@ online_tool = {
     },
     init_main_view: function () {
         $("#online_grid").datagrid({
-            url: "/system/online",
+            url: "/system/online/list",
             method: 'get',
             idField: "id",
             fitColumns: true,
@@ -41,18 +41,18 @@ online_tool = {
                 {title: "sessionId", field: "sessionId", width: 250},
                 {
                     title: "登录时间", field: "createTime", formatter: function (value, row, index) {
-                   return common_tool.timestampToDateTime(value);
+                    return common_tool.timestampToDateTime(value);
                 }, width: 200
                 },
 
                 {
                     title: "上次登陆时间", field: "lastLoginTime", formatter: function (value, row, index) {
-                   return common_tool.timestampToDateTime(value);
+                    return common_tool.timestampToDateTime(value);
                 }, width: 200
                 },
                 {
                     title: "过期时间", field: "sessionExpires", formatter: function (value, row, index) {
-                   return common_tool.timestampToDateTime(value);
+                    return common_tool.timestampToDateTime(value);
                 }, width: 200
                 },
             ]],

@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import system.Result;
 
 /**
- * @Author ouyangan
- * @Date 2016/10/10/8:46
- * @Description
+ * 组织机构模块
  */
 @Controller
 @RequestMapping("organization")
@@ -26,12 +24,22 @@ public class OrganizationController extends BaseController {
     @Autowired
     private SysOrganizationService sysOrganizationService;
 
-    @RequestMapping(value = "toOrganization", method = RequestMethod.GET)
-    public String toOrganization() {
+    @RequestMapping(value = "organization", method = RequestMethod.GET)
+    public String organization() {
 
         return "system/organization";
     }
 
+    /**
+     * 新增机构
+     *
+     * @param name        名称
+     * @param description 描述
+     * @param fullName    全称
+     * @param parentId    父级id
+     * @param isFinal     是否可修改
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String name,
@@ -53,6 +61,12 @@ public class OrganizationController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 删除机构
+     *
+     * @param id
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     public Result delete(@RequestParam long id) {
@@ -67,6 +81,16 @@ public class OrganizationController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 更新机构
+     *
+     * @param id          id
+     * @param name        名称
+     * @param description 描述
+     * @param fullName    全称
+     * @param parentId    父级id
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
@@ -99,6 +123,14 @@ public class OrganizationController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 查询机构列表
+     *
+     * @param page 起始页码
+     * @param row  分页大小
+     * @param id   顶级id
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam(value = "page", defaultValue = "1") int page,
@@ -107,6 +139,5 @@ public class OrganizationController extends BaseController {
         PageInfo pageInfo = sysOrganizationService.selectPage(page, row, id);
         return pageInfo;
     }
-
 
 }

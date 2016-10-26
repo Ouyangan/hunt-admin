@@ -26,9 +26,9 @@
                                                             data-options="required:true"
                                                             class="easyui-textbox easyui-validatebox"></p>
             <p style="padding: 10px ;">&nbsp;&nbsp;&nbsp;值:<input name="keyValue" id="keyValue"
-                                                            style="width: 300px;height: 35px"
-                                                            data-options="required:true"
-                                                            class="easyui-textbox easyui-validatebox"></p>
+                                                                  style="width: 300px;height: 35px"
+                                                                  data-options="required:true"
+                                                                  class="easyui-textbox easyui-validatebox"></p>
             <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="description" id="description"
                                                              style="width: 300px;height: 130px"
                                                              data-options="required:true,multiline:true"

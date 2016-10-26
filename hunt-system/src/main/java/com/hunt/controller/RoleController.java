@@ -27,12 +27,23 @@ public class RoleController extends BaseController {
 
     @Autowired
     private SysRoleService sysRoleService;
+    @Autowired
+    private SystemService systemService;
 
-    @RequestMapping(value = "toRole", method = RequestMethod.GET)
-    public String toRole() {
+    @RequestMapping(value = "role", method = RequestMethod.GET)
+    public String role() {
         return "system/role";
     }
 
+    /**
+     * 新增角色
+     *
+     * @param name          名称
+     * @param description   描述
+     * @param permissionIds 权限ids
+     * @param isFinal       是否可修改
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String name,
@@ -51,8 +62,15 @@ public class RoleController extends BaseController {
         return Result.success(id);
     }
 
-    @Autowired
-    private SystemService systemService;
+    /**
+     * 更新权限
+     *
+     * @param id            id
+     * @param name          名称
+     * @param description   描述
+     * @param permissionIds 权限ids
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
@@ -79,6 +97,12 @@ public class RoleController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 删除权限
+     *
+     * @param id
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     public Result delete(@RequestParam long id) {
@@ -95,6 +119,13 @@ public class RoleController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 权限列表
+     *
+     * @param page 起始页码
+     * @param rows 分页大小
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam(defaultValue = "1") int page,

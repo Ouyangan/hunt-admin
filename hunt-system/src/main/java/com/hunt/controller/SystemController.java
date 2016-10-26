@@ -26,8 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @Author: ouyangan
- * @Date : 2016/10/17
+ * 系统功能模块
  */
 @Controller
 @RequestMapping("system")
@@ -38,18 +37,22 @@ public class SystemController extends BaseController {
     @Autowired
     private SystemService systemService;
 
-
+    /**
+     * 引导页
+     *
+     * @return
+     */
     @RequestMapping(value = "index", method = RequestMethod.GET)
-    public String toIndex() {
+    public String index() {
         return "system/index";
     }
 
     /**
      * 登录
      *
-     * @param loginName
-     * @param password
-     * @param platform
+     * @param loginName 登录名
+     * @param password  密码
+     * @param platform  终端类型
      * @return
      */
     @ResponseBody
@@ -87,6 +90,12 @@ public class SystemController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 极限验证
+     *
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "captcha", method = RequestMethod.GET)
     public String StartCaptcha(HttpServletRequest request) {
@@ -96,19 +105,37 @@ public class SystemController extends BaseController {
         return gtSdk.getResponseStr();
     }
 
-    @RequestMapping(value = "toOnline", method = RequestMethod.GET)
-    public String toOnline() {
+    /**
+     * 用户状态
+     *
+     * @return
+     */
+    @RequestMapping(value = "online", method = RequestMethod.GET)
+    public String online() {
         return "system/online";
     }
 
+    /**
+     * 在线用户列表
+     *
+     * @param page 起始页码
+     * @param rows 分页大小
+     * @return
+     */
     @ResponseBody
-    @RequestMapping(value = "online", method = RequestMethod.GET)
-    public PageInfo online(@RequestParam int page,
-                           @RequestParam int rows) {
+    @RequestMapping(value = "online/list", method = RequestMethod.GET)
+    public PageInfo onlineList(@RequestParam int page,
+                               @RequestParam int rows) {
         PageInfo pageInfo = systemService.selectLogStatus(page, rows);
         return pageInfo;
     }
 
+    /**
+     * 强制用户下线
+     *
+     * @param userIds 用户ids
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "forceLogout", method = RequestMethod.GET)
     public Result forceLogout(@RequestParam String userIds) {
@@ -120,28 +147,51 @@ public class SystemController extends BaseController {
         return Result.success();
     }
 
-
-    @RequestMapping(value = "toLog")
-    public String toLog() {
+    /**
+     * 日志页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "log")
+    public String log() {
         return "system/log";
     }
 
-
+    /**
+     * 查询日志列表
+     *
+     * @param page   起始页码
+     * @param rows   分页大小
+     * @param sort   排序字段
+     * @param order  排序规则
+     * @param method 请求执行方法
+     * @param url    请求url
+     * @param param  请求参数
+     * @param result 请求响应内容
+     * @return
+     */
     @ResponseBody
-    @RequestMapping(value = "log/select", method = RequestMethod.GET)
-    public PageInfo log(@RequestParam int page,
-                        @RequestParam int rows,
-                        @RequestParam(defaultValue = "id") String sort,
-                        @RequestParam(defaultValue = "desc") String order,
-                        @RequestParam(defaultValue = "") String method,
-                        @RequestParam(defaultValue = "") String url,
-                        @RequestParam(defaultValue = "") String param,
-                        @RequestParam(defaultValue = "") String result) {
+    @RequestMapping(value = "log/list", method = RequestMethod.GET)
+    public PageInfo logList(@RequestParam int page,
+                            @RequestParam int rows,
+                            @RequestParam(defaultValue = "id") String sort,
+                            @RequestParam(defaultValue = "desc") String order,
+                            @RequestParam(defaultValue = "") String method,
+                            @RequestParam(defaultValue = "") String url,
+                            @RequestParam(defaultValue = "") String param,
+                            @RequestParam(defaultValue = "") String result) {
         System.out.println("page = [" + page + "], rows = [" + rows + "], sort = [" + sort + "], order = [" + order + "], method = [" + method + "], url = [" + url + "], param = [" + param + "], result = [" + result + "]");
         PageInfo pageInfo = systemService.selectLog(page, rows, StringUtil.camelToUnderline(sort), order, method, url, param, result);
         return pageInfo;
     }
 
+    /**
+     * 新增字典组
+     *
+     * @param name        名称
+     * @param description 描述
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "dataGroup/insert", method = RequestMethod.POST)
     public Result dataGroupInsert(@RequestParam String name,
@@ -159,6 +209,11 @@ public class SystemController extends BaseController {
         return Result.success(id);
     }
 
+    /**
+     * 字典列表
+     *
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "dataGroup/list", method = RequestMethod.GET)
     public List<SysDataGroup> dataGroupList() {
@@ -166,11 +221,20 @@ public class SystemController extends BaseController {
         return list;
     }
 
-    @RequestMapping(value = "toData", method = RequestMethod.GET)
-    public String toData() {
+    @RequestMapping(value = "data", method = RequestMethod.GET)
+    public String data() {
         return "system/data";
     }
 
+    /**
+     * 新增数据字典
+     *
+     * @param key         key
+     * @param value       value
+     * @param description 描述
+     * @param groupId     字典组
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "data/insert", method = RequestMethod.POST)
     public Result dataInsert(@RequestParam String key,
@@ -190,6 +254,12 @@ public class SystemController extends BaseController {
         return Result.success(id);
     }
 
+    /**
+     * 删除字典
+     *
+     * @param id
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "data/delete", method = RequestMethod.GET)
     public Result dataDelete(@RequestParam Long id) {
@@ -197,6 +267,16 @@ public class SystemController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 更新字典
+     *
+     * @param id          id
+     * @param key         key
+     * @param value       value
+     * @param description 描述
+     * @param groupId     字典组
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "data/update", method = RequestMethod.POST)
     public Result dataUpdate(@RequestParam Long id,
@@ -223,12 +303,24 @@ public class SystemController extends BaseController {
         return Result.success();
     }
 
+    /**
+     * 查询字典详情
+     *
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "data/select", method = RequestMethod.GET)
     public Result dataSelect() {
         return Result.success();
     }
 
+    /**
+     * 字典列表
+     *
+     * @param page 起始页码
+     * @param rows 分页大小
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "data/list", method = RequestMethod.GET)
     public PageInfo dataList(@RequestParam int page,

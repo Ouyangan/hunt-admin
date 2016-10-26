@@ -127,7 +127,7 @@ permission_tool = {
                     description: group_description,
                 },
                 method: 'post',
-                url: '/permission/insertGroup',
+                url: '/permission/group/insert',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -273,12 +273,12 @@ permission_tool = {
                 },
                 {
                     title: "创建时间", field: "createTime", formatter: function (value, row, index) {
-                   return common_tool.timestampToDateTime(value);
+                    return common_tool.timestampToDateTime(value);
                 }, width: 100
                 },
                 {
                     title: "更新时间", field: "updateTime", formatter: function (value, row, index) {
-                   return common_tool.timestampToDateTime(value);
+                    return common_tool.timestampToDateTime(value);
                 }, width: 100
                 },
             ]],

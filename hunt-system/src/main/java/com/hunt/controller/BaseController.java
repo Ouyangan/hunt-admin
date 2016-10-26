@@ -19,6 +19,8 @@ import system.StringUtil;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * 基础controller,方便统一异常处理
+ *
  * @Author: ouyangan
  * @Date : 2016/10/8
  */
@@ -26,7 +28,7 @@ public class BaseController {
     private static final Logger log = LoggerFactory.getLogger(BaseController.class);
 
     /**
-     * 极限验证码
+     * 极限验证码二次验证
      *
      * @param request
      * @return
@@ -40,20 +42,15 @@ public class BaseController {
         String validate = request.getParameter(GeetestLib.fn_geetest_validate);
         String seccode = request.getParameter(GeetestLib.fn_geetest_seccode);
         log.debug("challenge: {} ,validate: {} ,seccode: {}", challenge, validate, seccode);
-        //从session中获取gt-server状态
         int gt_server_status_code = (Integer) request.getSession().getAttribute(gtSdk.gtServerStatusSessionKey);
         log.debug("gt_server_status_code : {}", gt_server_status_code);
         if (gt_server_status_code == 1) {
             verifyResult = gtSdk.enhencedValidateRequest(challenge, validate, seccode);
-
         } else {
             verifyResult = gtSdk.failbackValidateRequest(challenge, validate, seccode);
         }
         log.debug("verifyResult : {}", verifyResult);
-        if (verifyResult == 1) {
-            return true;
-        }
-        return false;
+        return verifyResult == 1;
     }
 
     @ExceptionHandler(value = Exception.class)

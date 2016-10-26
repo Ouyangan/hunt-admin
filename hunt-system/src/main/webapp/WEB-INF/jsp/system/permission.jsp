@@ -36,7 +36,7 @@
         </div>
         <div style="float: right; width: 40%; height:326px;">
             <table class="easyui-datagrid" id="permission-group" data-options="
-                   url:'/permission/selectGroup',
+                   url:'/permission/group/list',
                    idField: 'id',
                    method:'get',
                    fitColumns:true,
