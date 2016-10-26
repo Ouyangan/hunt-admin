@@ -40,8 +40,6 @@ public class SysUserServiceImpl implements SysUserService {
     private SysLoginStatusMapper sysLoginStatusMapper;
     @Autowired
     private RedisTemplate<Object, Object> redisTemplate;
-    @Autowired
-    private SysRoleOrganizationMapper sysRoleOrganizationMapper;
 
     @Override
     public long insertUser(SysUser user, String jobIds, String permissionIds) {

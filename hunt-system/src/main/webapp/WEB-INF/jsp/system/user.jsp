@@ -61,8 +61,8 @@
                                                               style="width: 300px;height: 35px"
                                                               data-options="required:true,"
                                                               class="easyui-combobox easyui-validatebox">
-                <option value="1">男</option>
-                <option value="2">女</option>
+                <option value="1" >男</option>
+                <option value="2" >女</option>
             </select>
             </p>
             <p style="padding: 10px ;">&nbsp;&nbsp;生日:<input name="birth" class="easyui-datebox" id="birth"

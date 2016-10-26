@@ -92,7 +92,6 @@ user_tool = {
                 },
             ]],
             onLoadSuccess: function (data) {
-                console.log("onLoadSuccess")
                 $(".status").switchbutton({
                     readonly: true,
                     onText: '已启用',
@@ -100,15 +99,6 @@ user_tool = {
                     width: 80,
                 })
             },
-            onBeforeLoad: function (data) {
-                console.log("onBeforeLoad")
-            },
-            onLoadError: function () {
-                console.log("onLoadError")
-            },
-            onLoad: function () {
-                console.log("onLoad")
-            }
         });
     },
     init_edit_view: function (type) {
@@ -185,7 +175,7 @@ user_tool = {
             var loginName = $('#user_edit_dialog input[id="loginName"]').val();
             var zhName = $('#user_edit_dialog input[id="zhName"]').val();
             var enName = $('#user_edit_dialog input[id="enName"]').val();
-            var sex = $('#user_edit_dialog select[id="sex"]').val();
+            var sex = $('#user_edit_dialog select[id="sex"]').combobox('getValue');
             var birth = $('#user_edit_dialog input[id="birth"]').datebox('getValue');
             var email = $('#user_edit_dialog input[id="email"]').val();
             var phone = $('#user_edit_dialog input[id="phone"]').val();
@@ -250,7 +240,7 @@ user_tool = {
             var loginName = $('#user_edit_dialog input[id="loginName"]').val();
             var zhName = $('#user_edit_dialog input[id="zhName"]').val();
             var enName = $('#user_edit_dialog input[id="enName"]').val();
-            var sex = $('#user_edit_dialog select[id="sex"]').val();
+            var sex = $('#user_edit_dialog select[id="sex"]').combobox('getValue');
             var birth = $('#user_edit_dialog input[id="birth"]').datebox('getValue');
             var email = $('#user_edit_dialog input[id="email"]').val();
             var phone = $('#user_edit_dialog input[id="phone"]').val();

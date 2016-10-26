@@ -28,4 +28,6 @@ public interface SysOrganizationService {
     SysOrganization selectOrganization(long id);
 
     boolean isExistFullNameExcludeId(long id, String fullName);
+
+
 }
