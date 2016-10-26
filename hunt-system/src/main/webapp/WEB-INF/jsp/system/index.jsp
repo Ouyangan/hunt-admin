@@ -37,6 +37,14 @@
                         </div>
                     </li>
                 </div>
+
+                <div style="padding: 5px 10px;">
+                    <li class="nav-list">
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
+                             href="/job/job">职位管理
+                        </div>
+                    </li>
+                </div>
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
@@ -52,17 +60,18 @@
                         </div>
                     </li>
                 </div>
+
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
-                             href="/job/job">职位管理
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                             href="/permission/permission">权限管理
                         </div>
                     </li>
                 </div>
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/permission/permission">权限管理
+                             href="/system/data">字典管理
                         </div>
                     </li>
                 </div>
@@ -77,13 +86,6 @@
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/system/log">系统日志
-                        </div>
-                    </li>
-                </div>
-                <div style="padding: 5px 10px;">
-                    <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/system/data">字典管理
                         </div>
                     </li>
                 </div>
