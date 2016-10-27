@@ -26,9 +26,9 @@
         <input id="logout-btn" class="easyui-linkbutton logout" value="安全退出">
     </div>
 </div>
-<div data-options="region:'west',border:true,split:true" style="text-align: center;width:200px;">
+<div data-options="region:'west',border:true,split:true" style="text-align: center;width:160px;">
     <div class="easyui-accordion" data-options="border:false,fit:true,">
-        <div title="系统管理">
+        <div title="系统管理" style="padding: 0 0 0 15px;">
             <ul style="list-style: none;padding: 0 0 0 0 ;">
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
