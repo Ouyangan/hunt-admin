@@ -193,27 +193,34 @@ public class UserController extends BaseController {
     /**
      * 更新密码
      *
-     * @param id          id
-     * @param oldPassword 旧密码
-     * @param newPassword 新密码
+     * @param id                id
+     * @param repeatNewPassword
+     * @param newPassword       新密码
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "updatePassword", method = RequestMethod.POST)
     public Result updatePassword(@RequestParam long id,
-                                 @RequestParam String oldPassword,
-                                 @RequestParam String newPassword) {
-        SysUser user = sysUserService.selectById(id);
-        if (!oldPassword.equals(StringUtil.createPassword(oldPassword, user.getPasswordSalt(), 2))) {
-            return Result.error("原密码错误");
-        }
+                                 @RequestParam String newPassword,
+                                 @RequestParam String repeatNewPassword) {
         if ((!StringUtils.hasText(newPassword)) && newPassword.length() < 6) {
             return Result.error("请设置密码长度大于等于6");
         }
+        if (!newPassword.equals(repeatNewPassword)) {
+            return Result.error("两次输入的密码不一致!");
+        }
+        SysUser user = sysUserService.selectById(id);
+        if (user.getIsFinal() == 2) {
+            return Result.error(ResponseCode.can_not_edit.getMsg());
+        }
+//        if (!oldPassword.equals(StringUtil.createPassword(oldPassword, user.getPasswordSalt(), 2))) {
+//            return Result.error("原密码错误");
+//        }
         String salt = UUID.randomUUID().toString().replaceAll("-", "");
         user.setPasswordSalt(salt);
         user.setPassword(StringUtil.createPassword(newPassword, salt, 2));
         sysUserService.updateUser(user);
+        systemService.forceLogout(id);
         return Result.success();
     }
 

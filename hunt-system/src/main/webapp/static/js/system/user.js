@@ -2,6 +2,8 @@ user_tool = {
     form_clear: function () {
         $("#user_form").form('reset');
         $("#user_form").form('clear');
+        $("#init_password_form").form('reset');
+        $("#init_password_form").form('clear');
         $("#user-search-form").form('reset');
         $("#user-search-form").form('clear');
         $("#permissions").treegrid("uncheckAll");
@@ -358,11 +360,75 @@ user_tool = {
             },
         });
     },
-    init_password_view: function () {
-
+    password_view: function (user) {
+        $("#password_edit_dialog").dialog({
+            title: '重置 ' + user.zhName + ' 密码',
+            iconCls: 'icon-save',
+            closable: true,
+            width: 450,
+            height: 250,
+            cache: false,
+            modal: true,
+            resizable: false,
+            'onClose': function () {
+                user_tool.form_clear();
+            },
+            buttons: [
+                {
+                    text: '保存',
+                    width: 100,
+                    iconCls: 'icon-save',
+                    handler: function () {
+                        user_tool.update_password(user.id);
+                    }
+                },
+                {
+                    text: '清除',
+                    width: 100,
+                    iconCls: 'icon-reload',
+                    handler: function () {
+                        user_tool.form_clear();
+                    }
+                },
+                {
+                    text: '取消',
+                    width: 100,
+                    iconCls: 'icon-add',
+                    handler: function () {
+                        user_tool.form_clear();
+                        $("#password_edit_dialog").dialog('close');
+                    }
+                }
+            ],
+        })
     },
-    init_password: function (id, oldPassword, newPassword) {
-
+    update_password: function (id) {
+        var newPassword = $("#newPassword").val();
+        var repeatNewPassword = $("#repeatNewPassword").val();
+        $.ajax({
+            data: {
+                id: id,
+                newPassword: newPassword,
+                repeatNewPassword: repeatNewPassword,
+            },
+            traditional: true,
+            method: 'post',
+            url: '/user/updatePassword',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (result.code == 10000) {
+                    $("#password_edit_dialog").dialog("close");
+                    user_tool.form_clear();
+                    user_tool.init_main_view();
+                    common_tool.messager_show(result.msg);
+                    return false;
+                }
+                else {
+                    common_tool.messager_show(result.msg);
+                }
+            },
+        });
     },
     forbiddenUser: function (id) {
         $.ajax({
@@ -491,5 +557,13 @@ $(document).ready(function () {
     });
     $("#log-select-btn").click(function () {
         user_tool.init_main_view();
+    });
+    $("#user-password-btn").click(function () {
+        var users = $("#user_grid").datagrid('getChecked');
+        if (users.length == 0) {
+            common_tool.messager_show("请至少选择一条记录");
+            return false;
+        }
+        user_tool.password_view(users[0]);
     });
 });

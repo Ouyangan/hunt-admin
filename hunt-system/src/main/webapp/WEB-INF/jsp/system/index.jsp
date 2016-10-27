@@ -23,7 +23,7 @@
         <span style="font-weight:bolder; font-size: large;padding-left: 10px;color: #ffffff">Hunt-Admin 快速开发平台</span>
     </div>
     <div style="float:right;height: 40px;padding: 0;">
-        <input id="logout-btn" class="easyui-linkbutton logout" value="安全退出">
+        <input id="logout-btn" class="easyui-menubutton logout" value="安全退出">
     </div>
 </div>
 <div data-options="region:'west',border:true,split:true" style="text-align: center;width:160px;">

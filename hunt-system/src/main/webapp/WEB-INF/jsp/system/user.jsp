@@ -17,19 +17,19 @@
         <div class="easyui-linkbutton " id="user-forbidden-btn" data-options="iconCls:'icon-remove'" style="width:70px">
             禁用
         </div>
-        <%--<div class="easyui-linkbutton " id="user-init-password-btn" data-options="iconCls:'icon-remove'"--%>
-        <%--style="width:100px">初始化密码--%>
-        <%--</div>--%>
-        <span style="line-height: 26px; ">&nbsp;登录名:<input name="search-loginName" class="easyui-textbox"
-                                                           style="line-height: 26px; "></span>
-        <span style="line-height: 26px; ">&nbsp;中文名:<input name="search-zhName" class="easyui-textbox"
-                                                           style="line-height: 26px; "></span>
-        <span style="line-height: 26px; ">&nbsp;邮箱:<input name="search-email" class="easyui-textbox"
-                                                          style="line-height: 26px; "></span>
-        <span style="line-height: 26px; ">&nbsp;电话:<input name="search-phone" class="easyui-textbox"
-                                                          style="line-height: 26px; "></span>&nbsp;
-        <span style="line-height: 26px; ">&nbsp;地址:<input name="search-address" class="easyui-textbox"
-                                                          style="line-height: 26px; "></span>&nbsp;
+        <div class="easyui-linkbutton " id="user-password-btn" data-options="iconCls:'icon-remove'"
+             style="width:100px">重置密码
+        </div>
+        <span style="line-height: 26px; ">登录名:<input name="search-loginName" class="easyui-textbox"
+                                                     style="line-height: 26px; "></span>
+        <span style="line-height: 26px; ">中文名:<input name="search-zhName" class="easyui-textbox"
+                                                     style="line-height: 26px; "></span>
+        <span style="line-height: 26px; ">邮箱:<input name="search-email" class="easyui-textbox"
+                                                    style="line-height: 26px; "></span>
+        <span style="line-height: 26px; ">电话:<input name="search-phone" class="easyui-textbox"
+                                                    style="line-height: 26px; "></span>&nbsp;
+        <span style="line-height: 26px; ">地址:<input name="search-address" class="easyui-textbox"
+                                                    style="line-height: 26px; "></span>&nbsp;
         <div class="easyui-linkbutton " id="log-select-btn" data-options="iconCls:'icon-search'" style="width:70px">搜索
         </div>
     </form>
@@ -60,8 +60,8 @@
                                                               style="width: 300px;height: 35px"
                                                               data-options="required:true,"
                                                               class="easyui-combobox easyui-validatebox">
-                <option value="1" >男</option>
-                <option value="2" >女</option>
+                <option value="1">男</option>
+                <option value="2">女</option>
             </select>
             </p>
             <p style="padding: 10px ;">&nbsp;&nbsp;生日:<input name="birth" class="easyui-datebox" id="birth"
@@ -137,19 +137,15 @@
 </div>
 
 
-<div id="init_password_edit_dialog">
-    <form id="init_password_form">
-        <p style="padding: 10px ;">&nbsp;&nbsp;密码:<input name="oldPassword" type="password" id="oldPassword"
-                                                         style="width: 300px;height: 35px"
-                                                         data-options="required:true,validType:['length[6,20]']"
-                                                         class="easyui-textbox easyui-validatebox"></p>
-        <p style="padding: 10px ;">&nbsp;&nbsp;密码:<input name="newPassword" type="password" id="newPassword"
-                                                         style="width: 300px;height: 35px"
-                                                         data-options="required:true,validType:['length[6,20]']"
-                                                         class="easyui-textbox easyui-validatebox"></p>
-        <p style="padding: 10px ;">&nbsp;&nbsp;密码:<input name="repeatNewPassword" type="password" id="repeatNewPassword"
-                                                         style="width: 300px;height: 35px"
-                                                         data-options="required:true,validType:['length[6,20]']"
-                                                         class="easyui-textbox easyui-validatebox"></p>
+<div id="password_edit_dialog">
+    <form id="init_password_form" style="padding: 20px 0 0 0;">
+        <p style="padding: 10px 0 10px 23px ;">&nbsp;&nbsp;密码:<input name="newPassword" type="password" id="newPassword"
+                                                        style="width: 300px;height: 35px"
+                                                        data-options="required:true,validType:['length[6,20]']"
+                                                        class="easyui-textbox easyui-validatebox"></p>
+        <p style="padding: 10px 0 10px 23px ;">重复密码:<input name="repeatNewPassword" type="password" id="repeatNewPassword"
+                                                        style="width: 300px;height: 35px"
+                                                        data-options="required:true,validType:['length[6,20]']"
+                                                        class="easyui-textbox easyui-validatebox"></p>
     </form>
 </div>
