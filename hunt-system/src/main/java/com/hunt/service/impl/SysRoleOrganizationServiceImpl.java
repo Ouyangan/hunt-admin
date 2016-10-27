@@ -71,6 +71,7 @@ public class SysRoleOrganizationServiceImpl implements SysRoleOrganizationServic
     }
 
     //查询职位树形结构
+    @Override
     public SysRoleOrganizationTree selectSysRoleOrganizationTree(long id) {
         SysRoleOrganizationTree tree = new SysRoleOrganizationTree();
         SysRoleOrganization roleOrganization = roleOrganizationMapper.selectById(id);
@@ -97,6 +98,7 @@ public class SysRoleOrganizationServiceImpl implements SysRoleOrganizationServic
     }
 
     //查询子目录
+    @Override
     public List<SysRoleOrganizationTree> selectSysRoleOrganizationTreeChildrenList(long id) {
         List<SysRoleOrganization> childrenList = roleOrganizationMapper.selectChildren(id);
         List<SysRoleOrganizationTree> childrenTreeList = new ArrayList<>();

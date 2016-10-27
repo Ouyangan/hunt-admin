@@ -37,7 +37,6 @@ public class SysPermissionServiceImplTest {
         service.insertPermission(p);
         assertTrue(service.isExistName(pg.getId(),"test"));
         assertTrue(!service.isExistName(pg.getId(),"test1"));
-
     }
 
     @Test
