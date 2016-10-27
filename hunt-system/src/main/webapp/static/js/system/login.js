@@ -56,8 +56,10 @@ $(document).ready(function () {
                                 if (data.code == 10000) {
                                     location.href = "/system/index";
                                 } else if (data.code == 20001) {
+                                    common_tool.messager_show(data.msg)
                                     $("#username").focus();
                                 } else if (data.code == 20003) {
+                                    common_tool.messager_show(data.msg)
                                     $("#password").focus();
                                 }
                                 else {

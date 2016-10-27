@@ -220,7 +220,7 @@ public class UserController extends BaseController {
         user.setPasswordSalt(salt);
         user.setPassword(StringUtil.createPassword(newPassword, salt, 2));
         sysUserService.updateUser(user);
-        systemService.forceLogout(id);
+//        systemService.forceLogout(id);
         return Result.success();
     }
 
