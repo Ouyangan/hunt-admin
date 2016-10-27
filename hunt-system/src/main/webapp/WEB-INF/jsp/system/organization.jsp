@@ -14,7 +14,7 @@
 <div id="organization_save">
     <form id="organization_form">
         <input type="hidden" name="id" id="id">
-        <div id="organization_save_left" style="float: left;height: 290px;">
+        <div id="organization_save_left" style="float: left;height: 100%;">
             <p style="padding: 10px;">&nbsp;&nbsp;简称:<input name="name" id="name" style="width: 300px;height: 35px"
                                                             data-options="required:true"
                                                             class="easyui-textbox easyui-validatebox"></p>
@@ -28,7 +28,7 @@
                                                              class="easyui-textbox easyui-validatebox">
             </p>
         </div>
-        <div style="float: right;width:50%;height: 326px;">
+        <div style="float: right;width:50%;height: 100%;">
             <table id="organization_save_right" class="easyui-treegrid easyui-validatebox"
                    data-options="
                 url:'/organization/select',

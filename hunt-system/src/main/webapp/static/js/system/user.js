@@ -56,10 +56,10 @@ user_tool = {
                 {
                     title: "状态", field: "status", align: 'center', width: 87, formatter: function (value, row, index) {
                     if (value == 1) {
-                        return "<input class='easyui-switchbutton status' checked ></input>";
+                        return "<input class='easyui-switchbutton status' checked />";
                     }
                     if (value == 3) {
-                        return "<input class='easyui-switchbutton status' unchecked ></input>";
+                        return "<input class='easyui-switchbutton status' unchecked />";
                     }
 
                 }
@@ -99,6 +99,50 @@ user_tool = {
                     width: 80,
                 })
             },
+            onDblClickRow: function (index, row) {
+                var users = $("#user_grid").datagrid('getChecked');
+                if (users.length == 0) {
+                    common_tool.messager_show("请至少选择一条记录");
+                    return false;
+                }
+                $("#user_form").form('load', {
+                    id: users[0].id,
+                    loginName: users[0].loginName,
+                    zhName: users[0].zhName,
+                    enName: users[0].enName,
+                    sex: users[0].sex,
+                    birth: users[0].birth,
+                    email: users[0].email,
+                    phone: users[0].phone,
+                    address: users[0].address,
+                    password: '111111111111',
+                });
+                $("#user_edit_dialog").dialog({
+                    title: '查看用户详情',
+                    iconCls: 'icon-save',
+                    closable: true,
+                    width: 950,
+                    height: 700,
+                    cache: false,
+                    modal: true,
+                    resizable: false,
+                    'onBeforeOpen': function () {
+
+                    },
+                    'onOpen': function () {
+                        var users = $("#user_grid").datagrid('getChecked')[0];
+                        for (var i = 0; i < users.permissions.length; i++) {
+                            $("#user-permissions").datagrid("selectRecord", users.permissions[i].id);
+                        }
+                        for (var i = 0; i < users.userRoleOrganizations.length; i++) {
+                            $("#jobs").treegrid("select", users.userRoleOrganizations[i].sysRoleOrganizationId);
+                        }
+                    },
+                    'onClose': function () {
+                        user_tool.form_clear();
+                    },
+                })
+            }
         });
     },
     init_edit_view: function (type) {
@@ -118,7 +162,7 @@ user_tool = {
                 if (type == 2) {
                     var users = $("#user_grid").datagrid('getChecked')[0];
                     for (var i = 0; i < users.permissions.length; i++) {
-                        $("#permissions").datagrid("selectRecord", users.permissions[i].id);
+                        $("#user-permissions").datagrid("selectRecord", users.permissions[i].id);
                     }
                     for (var i = 0; i < users.userRoleOrganizations.length; i++) {
                         $("#jobs").treegrid("select", users.userRoleOrganizations[i].sysRoleOrganizationId);
@@ -181,7 +225,7 @@ user_tool = {
             var phone = $('#user_edit_dialog input[id="phone"]').val();
             var address = $('#user_edit_dialog input[id="address"]').val();
             var password = $('#user_edit_dialog input[id="password"]').val();
-            var permissions = $('#user_edit_dialog table[id="permissions"]').datagrid("getChecked");
+            var permissions = $('#user_edit_dialog table[id="user-permissions"]').datagrid("getChecked");
             var permissionIds = new Array();
             for (var i = 0; i < permissions.length; i++) {
                 permissionIds[i] = permissions[i].id;
@@ -233,7 +277,7 @@ user_tool = {
             common_tool.messager_show("请输入必填参数")
         } else if ($("#jobs").treegrid("getChecked").length == 0) {
             common_tool.messager_show('请选择职位');
-        } else if ($("#permissions").datagrid("getChecked").length == 0) {
+        } else if ($("#user-permissions").datagrid("getChecked").length == 0) {
             common_tool.messager_show('请选择权限');
         } else {
             var id = $('#user_edit_dialog input[id="id"]').val();
@@ -246,7 +290,7 @@ user_tool = {
             var phone = $('#user_edit_dialog input[id="phone"]').val();
             var address = $('#user_edit_dialog input[id="address"]').val();
             var password = $('#user_edit_dialog input[id="password"]').val();
-            var permissions = $('#user_edit_dialog table[id="permissions"]').datagrid("getChecked");
+            var permissions = $('#user_edit_dialog table[id="user-permissions"]').datagrid("getChecked");
             var permissionIds = new Array();
             for (var i = 0; i < permissions.length; i++) {
                 permissionIds[i] = permissions[i].id;

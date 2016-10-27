@@ -83,7 +83,7 @@
                                                              class="easyui-textbox easyui-validatebox"></p>
         </div>
         <div style="float: right;width: 200px;height: 100%">
-            <table id="permissions" class="easyui-datagrid" data-options="
+            <table id="user-permissions" class="easyui-datagrid" data-options="
                 url:'/permission/select',
                 method:'get',
                 idField:'id',
@@ -136,6 +136,8 @@
 
     </form>
 </div>
+
+
 <div id="init_password_edit_dialog">
     <form id="init_password_form">
         <p style="padding: 10px ;">&nbsp;&nbsp;密码:<input name="oldPassword" type="password" id="oldPassword"

@@ -49,6 +49,30 @@ role_tool = {
                 }, width: 100
                 },
             ]],
+            onDblClickRow: function (index, row) {
+                var role = $("#role_grid").datagrid("getChecked")[0];
+                $("#role_edit_form").form('load', {
+                    id: role.id,
+                    name: role.name,
+                    description: role.description,
+                })
+                $("#role_edit_dialog").dialog({
+                    title: '新增角色',
+                    iconCls: 'icon-save',
+                    closable: true,
+                    width: 900,
+                    height: 400,
+                    cache: false,
+                    modal: true,
+                    resizable: false,
+                    'onOpen': function () {
+                            var role = $("#role_grid").datagrid("getChecked")[0];
+                            for (var i = 0; i < role.sysPermissions.length; i++) {
+                                $("#role-permissions").datagrid("selectRecord", role.sysPermissions[i].id);
+                            }
+                    },
+                });
+            },
         });
     },
     delete: function () {
@@ -82,12 +106,12 @@ role_tool = {
             common_tool.messager_show("请输入角色名称");
         } else if (!$("#role_edit_form input[id='description']").validatebox('isValid')) {
             common_tool.messager_show("请输入角色描述");
-        } else if ($("#role_edit_form table[id='permissions']").datagrid("getChecked").length == 0) {
+        } else if ($("#role_edit_form table[id='role-permissions']").datagrid("getChecked").length == 0) {
             common_tool.messager_show("请为该角色选择权限");
         } else {
             var name = $("#role_edit_form input[id='name']").val();
             var description = $("#role_edit_form input[id='description']").val();
-            var permission_array = $("#role_edit_form table[id='permissions']").datagrid("getChecked");
+            var permission_array = $("#role_edit_form table[id='role-permissions']").datagrid("getChecked");
             var permission_ids = new Array();
             for (var i = 0; i < permission_array.length; i++) {
                 permission_ids[i] = permission_array[i].id;
@@ -124,13 +148,13 @@ role_tool = {
             common_tool.messager_show("请输入角色名称");
         } else if (!$("#role_edit_form input[id='description']").validatebox('isValid')) {
             common_tool.messager_show("请输入角色描述");
-        } else if ($("#role_edit_form table[id='permissions']").datagrid("getChecked").length == 0) {
+        } else if ($("#role_edit_form table[id='role-permissions']").datagrid("getChecked").length == 0) {
             common_tool.messager_show("请为该角色选择权限");
         } else {
             var id = $("#role_edit_form input[id='id']").val();
             var name = $("#role_edit_form input[id='name']").val();
             var description = $("#role_edit_form input[id='description']").val();
-            var permission_array = $("#role_edit_form table[id='permissions']").datagrid("getChecked");
+            var permission_array = $("#role_edit_form table[id='role-permissions']").datagrid("getChecked");
             var permission_ids = new Array();
             for (var i = 0; i < permission_array.length; i++) {
                 permission_ids[i] = permission_array[i].id;
@@ -178,7 +202,7 @@ role_tool = {
                 if (type == 2) {
                     var role = $("#role_grid").datagrid("getChecked")[0];
                     for (var i = 0; i < role.sysPermissions.length; i++) {
-                        $("#permissions").datagrid("selectRecord", role.sysPermissions[i].id);
+                        $("#role-permissions").datagrid("selectRecord", role.sysPermissions[i].id);
                     }
                 }
             },
@@ -232,13 +256,14 @@ $(document).ready(function () {
             common_tool.messager_show("请选择一条记录");
             return false;
         }
-        role_tool.init_edit_view(2);
         var role = $("#role_grid").datagrid("getChecked")[0];
         $("#role_edit_form").form('load', {
             id: role.id,
             name: role.name,
             description: role.description,
         })
+        role_tool.init_edit_view(2);
+
     });
     $("#role-delete-btn").click(function () {
         if ($("#role_grid").datagrid("getChecked").length == 0) {

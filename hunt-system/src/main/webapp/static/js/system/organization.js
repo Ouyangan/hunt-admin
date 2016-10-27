@@ -89,10 +89,34 @@ organization_tool = {
                 }, width: 150
                 },
             ]],
+            onDblClickRow: function (index, row) {
+                var organizationArray = $("#organization").treegrid('getChecked');
+                $("#organization_form").form('load', {
+                    "id": organizationArray[0].id,
+                    "name": organizationArray[0].name,
+                    "fullName": organizationArray[0].fullName,
+                    "description": organizationArray[0].description,
+                })
+                $("#organization_save").dialog({
+                    title: '新增职位',
+                    iconCls: 'icon-save',
+                    closable: true,
+                    width: 900,
+                    height: 400,
+                    cache: false,
+                    modal: true,
+                    resizable: false,
+                    'onOpen': function () {
+                            $("#organization_save_right").treegrid('select', organizationArray[0].parentId);
+                    },
+                    'onClose': function () {
+                        organization_tool.form_clear();
+                    },
+                });
+            },
         });
     },
     init_edit_view: function (data, parentId) {
-        console.log("init add");
         $("#organization_save").dialog({
             title: '新增职位',
             iconCls: 'icon-save',
@@ -241,13 +265,13 @@ $(document).ready(function () {
             common_tool.messager_show("请选择一条记录");
             return false;
         }
-        organization_tool.init_edit_view(2, organizationArray[0].parentId);
         $("#organization_form").form('load', {
             "id": organizationArray[0].id,
             "name": organizationArray[0].name,
             "fullName": organizationArray[0].fullName,
             "description": organizationArray[0].description,
         })
+        organization_tool.init_edit_view(2, organizationArray[0].parentId);
     });
     $(".delete-btn").click(function () {
         var organizationArray = $("#organization").treegrid('getChecked');

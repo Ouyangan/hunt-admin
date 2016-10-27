@@ -19,6 +19,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration({"classpath:spring.xml"})
 @Transactional
 public class SysRoleServiceImplTest {
+
     @Autowired
     private SysRoleService service;
     @Test

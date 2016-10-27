@@ -100,8 +100,8 @@
         </div>
     </div>
 </div>
-<div data-options="region:'south',boder:true" style="height:25px;">
-    <div style="text-align: center;line-height: 25px;font-size: medium">
+<div data-options="region:'south',boder:true" style="height:26px;">
+    <div style="text-align: center;line-height: 24px;font-size: inherit">
         作者:ananan&nbsp;QQ群:981017952
     </div>
 

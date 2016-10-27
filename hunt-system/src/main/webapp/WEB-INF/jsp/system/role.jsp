@@ -26,8 +26,8 @@
                                                             data-options="required:true,multiline:true"
                                                             class="easyui-textbox easyui-validatebox">
         </div>
-        <div style="float: right; width: 50%;height: 325px;">
-            <table id="permissions" class="easyui-datagrid" data-options="
+        <div style="float: right; width: 50%;height: 100%;">
+            <table id="role-permissions" class="easyui-datagrid" data-options="
                 url:'/permission/select',
                 method:'get',
                 idField:'id',

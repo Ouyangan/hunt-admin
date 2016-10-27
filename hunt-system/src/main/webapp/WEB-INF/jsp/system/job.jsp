@@ -29,7 +29,7 @@
                                                              class="easyui-textbox easyui-validatebox">
             </p>
         </div>
-        <div style="float: right;width: 300px;;height: 326px;">
+        <div style="float: right;width: 300px;;height: 100%;">
             <table id="job_dialog_parent_tree" class="easyui-treegrid"
                    data-options="
                 url:'/job/select',
@@ -56,7 +56,7 @@
                 </thead>
             </table>
         </div>
-        <div style="float: right;width: 200px;height: 326px">
+        <div style="float: right;width: 200px;height: 100%">
             <table id="job_dialog_role" class="easyui-datagrid"
                    data-options="
                 url:'/role/select',
@@ -84,7 +84,7 @@
                 </thead>
             </table>
         </div>
-        <div style="float: right;width: 300px;height: 326px">
+        <div style="float: right;width: 300px;height: 100%">
             <table id="job_dialog_organization" class="easyui-treegrid"
                    data-options="
                 url:'/organization/select',

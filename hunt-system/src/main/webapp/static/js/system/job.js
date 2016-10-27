@@ -172,6 +172,38 @@ job_tool = {
                 }, width: 160
                 },
             ]],
+            onDblClickRow: function (index, row) {
+                var job = $("#job_grid").treegrid('getChecked')[0];
+                if (job == null) {
+                    common_tool.messager_show("请选择一条记录");
+                    return false;
+                }
+                $("#job_form").form('load', {
+                    "id": job.id,
+                    "name": job.name,
+                    "fullName": job.fullName,
+                    "description": job.description,
+                });
+                $("#job_dialog").dialog({
+                    title: '新增职位',
+                    iconCls: 'icon-save',
+                    closable: true,
+                    width: 1200,
+                    height: 400,
+                    cache: false,
+                    modal: true,
+                    resizable: false,
+                    'onOpen': function () {
+                            var job = $("#job_grid").treegrid('getChecked')[0];
+                            $("#job_dialog_parent_tree").treegrid('select', job.parentId);
+                            $("#job_dialog_role").datagrid('selectRecord', job.sysRoleId);
+                            $("#job_dialog_organization").treegrid('select', job.sysOrganizationId);
+                    },
+                    'onClose': function () {
+                        job_tool.form_clear();
+                    },
+                })
+            },
         });
     }
     ,
