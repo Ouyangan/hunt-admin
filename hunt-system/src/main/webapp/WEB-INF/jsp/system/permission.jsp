@@ -2,11 +2,11 @@
 <script type="text/javascript" src="/static/js/system/permission.js"></script>
 <script type="text/javascript" src="/static/js/system/common.js"></script>
 <div id="permission-tool-bar" style="padding: 10px">
-    <a href="#" class="easyui-menubutton" menu="#save" data-options="iconCls:'icon-add'" style="width:70px">新增</a>
-    <a href="#" class="easyui-linkbutton" id="update-permission" data-options="iconCls:'icon-edit'" style="width:70px">修改</a>
-    <a href="#" class="easyui-linkbutton" id="delete-permission" data-options="iconCls:'icon-remove'"
-       style="width:70px">删除</a>
-    <a href="#" class="easyui-linkbutton" id="flash-permission" data-options="iconCls:'icon-reload'" style="width:70px">刷新</a>
+    <div href="#" class="easyui-menubutton" menu="#save" data-options="iconCls:'icon-add'" style="width:70px">新增</div>
+    <div href="#" class="easyui-linkbutton" id="flash-permission" data-options="iconCls:'icon-reload'" style="width:70px">刷新</div>
+    <div href="#" class="easyui-linkbutton" id="update-permission" data-options="iconCls:'icon-edit'" style="width:70px">修改</div>
+    <div href="#" class="easyui-linkbutton" id="delete-permission" data-options="iconCls:'icon-remove'"
+       style="width:70px">删除</div>
 </div>
 <div id="permission_grid" style="padding: 10px">
 

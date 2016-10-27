@@ -22,7 +22,7 @@
     <div style="height: 40px; float: left; line-height: 40px">
         <span style="font-weight:bolder; font-size: large;padding-left: 10px;color: #ffffff">Hunt-Admin 快速开发平台</span>
     </div>
-    <div style="float:right;height: 40px;padding: 0 5px;">
+    <div style="float:right;height: 40px;padding: 0;">
         <input id="logout-btn" class="easyui-linkbutton logout" value="安全退出">
     </div>
 </div>
@@ -55,7 +55,7 @@
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
-                             style="border: 0;background: #ffffff; "
+                             style="border: 0;"
                              href="/role/role">角色管理
                         </div>
                     </li>
@@ -107,7 +107,7 @@
 
 </div>
 <div data-options="region:'center',border:false">
-    <div id="tab" class="easyui-tabs">
+    <div id="tab" class="easyui-tabs" data-options="fit:true">
         <div title="首页">
             欢迎来到后台管理系统
         </div>

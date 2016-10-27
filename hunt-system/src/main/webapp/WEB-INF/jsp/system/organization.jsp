@@ -2,10 +2,10 @@
 <script type="text/javascript" src="/static/js/system/organization.js"></script>
 <script type="text/javascript" src="/static/js/system/common.js"></script>
 <div id="tool-bar" style="padding: 10px">
+    <div class="easyui-linkbutton select-btn " data-options="iconCls:'icon-reload'" style="width:70px">刷新</div>
     <div class="easyui-linkbutton save-btn" data-options="iconCls:'icon-add'" style="width:70px">新增</div>
     <div class="easyui-linkbutton update-btn" data-options="iconCls:'icon-edit'" style="width:70px">修改</div>
     <div class="easyui-linkbutton delete-btn" data-options="iconCls:'icon-remove'" style="width:70px">删除</div>
-    <div class="easyui-linkbutton select-btn " data-options="iconCls:'icon-reload'" style="width:70px">刷新</div>
 </div>
 <div id="organization" style="padding: 10px">
 

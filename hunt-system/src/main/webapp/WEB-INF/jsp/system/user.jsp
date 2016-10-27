@@ -3,8 +3,12 @@
 <script type="text/javascript" src="/static/js/system/common.js"></script>
 <div id="user-tool-bar" style="padding: 10px 10px 0 10px">
     <form id="user-search-form">
+        <div class="easyui-linkbutton " id="user-flash-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
+        </div>
         <div class="easyui-linkbutton " id="user-save-btn" data-options="iconCls:'icon-add'" style="width:70px">新增</div>
         <div class="easyui-linkbutton " id="user-update-btn" data-options="iconCls:'icon-edit'" style="width:70px">修改
+        </div>
+        <div class="easyui-linkbutton " id="user-delete-btn" data-options="iconCls:'icon-remove'" style="width:70px">删除
         </div>
         <%--<div class="easyui-linkbutton " id="user-detail-btn" data-options="iconCls:'icon-edit'" style="width:90px">查看详情--%>
         <%--</div>--%>
@@ -16,11 +20,6 @@
         <%--<div class="easyui-linkbutton " id="user-init-password-btn" data-options="iconCls:'icon-remove'"--%>
         <%--style="width:100px">初始化密码--%>
         <%--</div>--%>
-        <div class="easyui-linkbutton " id="user-flash-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
-        </div>
-        <div class="easyui-linkbutton " id="user-delete-btn" data-options="iconCls:'icon-remove'" style="width:70px">删除
-        </div>
-
         <span style="line-height: 26px; ">&nbsp;登录名:<input name="search-loginName" class="easyui-textbox"
                                                            style="line-height: 26px; "></span>
         <span style="line-height: 26px; ">&nbsp;中文名:<input name="search-zhName" class="easyui-textbox"

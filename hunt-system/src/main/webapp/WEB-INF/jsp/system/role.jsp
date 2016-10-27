@@ -2,12 +2,13 @@
 <script type="text/javascript" src="/static/js/system/role.js"></script>
 <script type="text/javascript" src="/static/js/system/common.js"></script>
 <div id="role-tool-bar" style="padding: 10px">
+    <div class="easyui-linkbutton " id="role-select-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
+    </div>
     <div class="easyui-linkbutton " id="role-save-btn" data-options="iconCls:'icon-add'" style="width:70px">新增</div>
     <div class="easyui-linkbutton " id="role-update-btn" data-options="iconCls:'icon-edit'" style="width:70px">修改</div>
     <div class="easyui-linkbutton " id="role-delete-btn" data-options="iconCls:'icon-remove'" style="width:70px">删除
     </div>
-    <div class="easyui-linkbutton " id="role-select-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
-    </div>
+
 </div>
 <div id="role_grid" style="padding: 10px">
 
