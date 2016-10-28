@@ -6,7 +6,7 @@ user_tool = {
         $("#init_password_form").form('clear');
         $("#user-search-form").form('reset');
         $("#user-search-form").form('clear');
-        $("#permissions").treegrid("uncheckAll");
+        $("#user-permissions").treegrid("uncheckAll");
         $("#jobs").treegrid("uncheckAll");
         $("#user_grid").treegrid("uncheckAll");
     },
@@ -215,7 +215,7 @@ user_tool = {
             common_tool.messager_show("请输入必填参数")
         } else if ($("#jobs").treegrid("getChecked").length == 0) {
             common_tool.messager_show('请选择职位');
-        } else if ($("#permissions").datagrid("getChecked").length == 0) {
+        } else if ($("#user-permissions").datagrid("getChecked").length == 0) {
             common_tool.messager_show('请选择权限');
         } else {
             var loginName = $('#user_edit_dialog input[id="loginName"]').val();
