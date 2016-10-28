@@ -12,6 +12,7 @@
         <result column="status" property="status" jdbcType="TINYINT"/>
         <result column="expire_time" property="expireTime" jdbcType="TIMESTAMP"/>
         <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
     </resultMap>
     <!--  -->
     <sql id="sql_column">
@@ -24,100 +25,110 @@
         updateBy,
         status,
         expireTime,
-        description
+        description,
+        ip
     </sql>
 
     <sql id="sql_column_where">
-        <if test="id != null  ">
+        <if test="id !=null ">
             AND id = #{id}
         </if>
-        <if test="isFinal != null  ">
+        <if test="isFinal !=null ">
             AND is_final = #{isFinal}
         </if>
-        <if test="rank != null  ">
+        <if test="rank !=null ">
             AND rank = #{rank}
         </if>
-        <if test="createTime != null  ">
+        <if test="createTime !=null ">
             AND create_time = #{createTime}
         </if>
-        <if test="updateTime != null  ">
+        <if test="updateTime !=null ">
             AND update_time = #{updateTime}
         </if>
-        <if test="createBy != null  ">
+        <if test="createBy !=null ">
             AND create_by = #{createBy}
         </if>
-        <if test="updateBy != null  ">
+        <if test="updateBy !=null ">
             AND update_by = #{updateBy}
         </if>
-        <if test="status != null  ">
+        <if test="status !=null ">
             AND status = #{status}
         </if>
-        <if test="expireTime != null  ">
+        <if test="expireTime !=null ">
             AND expire_time = #{expireTime}
         </if>
-        <if test="description != null  and description.length() != 0">
+        <if test="description !=null and description.length() != 0">
             AND description = #{description}
+        </if>
+        <if test="ip !=null and ip.length() != 0">
+            AND ip = #{ip}
         </if>
     </sql>
 
     <insert id="insert" parameterType="SysIpForbidden" useGeneratedKeys="true" keyProperty="id">
         insert into sys_ip_forbidden
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="isFinal != null ">
+            <if test="isFinal !=null">
                 is_final,
             </if>
-            <if test="rank != null ">
+            <if test="rank !=null">
                 rank,
             </if>
-            <if test="createTime != null ">
+            <if test="createTime !=null">
                 create_time,
             </if>
-            <if test="updateTime != null ">
+            <if test="updateTime !=null">
                 update_time,
             </if>
-            <if test="createBy != null ">
+            <if test="createBy !=null">
                 create_by,
             </if>
-            <if test="updateBy != null ">
+            <if test="updateBy !=null">
                 update_by,
             </if>
-            <if test="status != null ">
+            <if test="status !=null">
                 status,
             </if>
-            <if test="expireTime != null ">
+            <if test="expireTime !=null">
                 expire_time,
             </if>
-            <if test="description != null  and description.length() !=0">
+            <if test="description !=null and description.length() !=0">
                 description,
+            </if>
+            <if test="ip !=null and ip.length() !=0">
+                ip,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="isFinal != null ">
+            <if test="isFinal !=null">
                 #{isFinal},
             </if>
-            <if test="rank != null ">
+            <if test="rank !=null">
                 #{rank},
             </if>
-            <if test="createTime != null ">
+            <if test="createTime !=null">
                 #{createTime},
             </if>
-            <if test="updateTime != null ">
+            <if test="updateTime !=null">
                 #{updateTime},
             </if>
-            <if test="createBy != null ">
+            <if test="createBy !=null">
                 #{createBy},
             </if>
-            <if test="updateBy != null ">
+            <if test="updateBy !=null">
                 #{updateBy},
             </if>
-            <if test="status != null ">
+            <if test="status !=null">
                 #{status},
             </if>
-            <if test="expireTime != null ">
+            <if test="expireTime !=null">
                 #{expireTime},
             </if>
-            <if test="description != null  and description.length() !=0">
+            <if test="description !=null and description.length() !=0">
                 #{description},
+            </if>
+            <if test="ip !=null and ip.length() !=0">
+                #{ip},
             </if>
         </trim>
     </insert>
@@ -126,38 +137,46 @@
     <update id="update" parameterType="SysIpForbidden">
         update sys_ip_forbidden
         <set>
-            <if test="id != null">
+            <if test="id !=null">
                 id = #{id},
             </if>
-            <if test="isFinal != null">
+            <if test="isFinal !=null">
                 is_final = #{isFinal},
             </if>
-            <if test="rank != null">
+            <if test="rank !=null">
                 rank = #{rank},
             </if>
-            <if test="createTime != null">
+            <if test="createTime !=null">
                 create_time = #{createTime},
             </if>
-            <if test="updateTime != null">
+            <if test="updateTime !=null">
                 update_time = #{updateTime},
             </if>
-            <if test="createBy != null">
+            <if test="createBy !=null">
                 create_by = #{createBy},
             </if>
-            <if test="updateBy != null">
+            <if test="updateBy !=null">
                 update_by = #{updateBy},
             </if>
-            <if test="status != null">
+            <if test="status !=null">
                 status = #{status},
             </if>
-            <if test="expireTime != null">
+            <if test="expireTime !=null">
                 expire_time = #{expireTime},
             </if>
-            <if test="description != null and description.length() !=0">
+            <if test="description !=null and description.length() !=0">
                 description = #{description},
+            </if>
+            <if test="ip !=null and ip.length() !=0">
+                ip = #{ip},
             </if>
         </set>
         where id =#{id} and status=1
+    </update>
+    <update id="deleteById">
+        UPDATE sys_ip_forbidden
+        SET status = 1
+        WHERE id = #{id}
     </update>
 
     <select id="select" parameterType="SysIpForbidden" resultType="SysIpForbidden">
@@ -184,4 +203,20 @@
         FROM sys_ip_forbidden
         WHERE status = 1
     </select>
+    <select id="isExistIp" resultType="java.lang.Boolean">
+        SELECT exists(
+                SELECT *
+                FROM sys_ip_forbidden
+                WHERE status = 1 AND ip = #{ip}
+        )
+    </select>
+    <select id="isExistIpExcludeId" resultType="java.lang.Boolean">
+        SELECT exists(
+                SELECT *
+                FROM sys_ip_forbidden
+                WHERE status = 1 AND ip = #{ip} AND id != #{id}
+        )
+    </select>
+
+
 </mapper>

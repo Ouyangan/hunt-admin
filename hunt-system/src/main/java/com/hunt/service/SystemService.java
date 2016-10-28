@@ -3,6 +3,7 @@ package com.hunt.service;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysDataGroup;
 import com.hunt.model.entity.SysDataItem;
+import com.hunt.model.entity.SysIpForbidden;
 import com.hunt.model.entity.SysLog;
 
 import java.util.List;
@@ -48,4 +49,15 @@ public interface SystemService {
 
     String selectDataItemByKey(String key,Long groupId);
 
+    Long insertIp(SysIpForbidden sysIpForbidden);
+
+    void deleteIp(long id);
+
+    void updateIp(SysIpForbidden sysIpForbidden);
+
+    PageInfo selectIp(int page, int rows);
+
+    boolean isExistIp(String ip);
+
+    boolean isExistIpExcludeId(String ip);
 }

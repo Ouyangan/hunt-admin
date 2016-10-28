@@ -26,6 +26,8 @@ import system.StringUtil;
 
 import javax.jws.Oneway;
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -356,8 +358,17 @@ public class SystemController extends BaseController {
     @RequestMapping(value = "ip/insert", method = RequestMethod.POST)
     public Result ipInsert(@RequestParam String ip,
                            @RequestParam String expireTime,
-                           @RequestParam String description) {
-        return Result.success();
+                           @RequestParam String description) throws ParseException {
+        boolean isExistIp = systemService.isExistIp(ip);
+        if (isExistIp) {
+            return Result.error(ResponseCode.name_already_exist.getMsg());
+        }
+        SysIpForbidden sysIpForbidden = new SysIpForbidden();
+        sysIpForbidden.setIp(ip);
+        sysIpForbidden.setExpireTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(expireTime));
+        sysIpForbidden.setDescription(description);
+        Long id = systemService.insertIp(sysIpForbidden);
+        return Result.success(id);
     }
 
     /**
@@ -369,6 +380,7 @@ public class SystemController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "ip/delete", method = RequestMethod.GET)
     public Result ipDelete(@RequestParam long id) {
+        systemService.deleteIp(id);
         return Result.success();
     }
 
@@ -386,23 +398,33 @@ public class SystemController extends BaseController {
     public Result ipUpdate(@RequestParam long id,
                            @RequestParam String ip,
                            @RequestParam String expireTime,
-                           @RequestParam String description) {
-        SysIpForbidden ipForbidden= new SysIpForbidden();
+                           @RequestParam String description) throws ParseException {
+        boolean isExistIpExcludeId = systemService.isExistIpExcludeId(ip);
+        if (isExistIpExcludeId) {
+            return Result.error(ResponseCode.name_already_exist.getMsg());
+        }
+        SysIpForbidden sysIpForbidden = new SysIpForbidden();
+        sysIpForbidden.setId(id);
+        sysIpForbidden.setIp(ip);
+        sysIpForbidden.setExpireTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(expireTime));
+        sysIpForbidden.setDescription(description);
+        systemService.updateIp(sysIpForbidden);
         return Result.success();
     }
 
     /**
      * 查询ip列表
+     *
      * @param page
      * @param rows
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "ip/select", method = RequestMethod.GET)
+    @RequestMapping(value = "ip/list", method = RequestMethod.GET)
     public PageInfo ipSelect(@RequestParam int page,
                              @RequestParam int rows) {
-
-        return null;
+        PageInfo pageInfo = systemService.selectIp(page, rows);
+        return pageInfo;
     }
 
 }

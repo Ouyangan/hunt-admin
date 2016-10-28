@@ -44,6 +44,8 @@ public class SystemServiceImpl implements SystemService {
     private SysDataGroupMapper sysDataGroupMapper;
     @Autowired
     private SysDataItemMapper sysDataItemMapper;
+    @Autowired
+    private SysIpForbiddenMapper sysIpForbiddenMapper;
 
     @Override
     public void forceLogout(long userId) {
@@ -188,6 +190,40 @@ public class SystemServiceImpl implements SystemService {
             redisTemplate.opsForValue().set(groupId + "-" + key, value);
         }
         return value;
+    }
+
+    @Override
+    public Long insertIp(SysIpForbidden sysIpForbidden) {
+        sysIpForbiddenMapper.insert(sysIpForbidden);
+        return sysIpForbidden.getId();
+    }
+
+    @Override
+    public void deleteIp(long id) {
+        sysIpForbiddenMapper.deleteById(id);
+    }
+
+    @Override
+    public void updateIp(SysIpForbidden sysIpForbidden) {
+        sysIpForbiddenMapper.update(sysIpForbidden);
+    }
+
+    @Override
+    public PageInfo selectIp(int page, int rows) {
+        int counts = sysIpForbiddenMapper.selectCounts();
+        PageHelper.startPage(page, rows);
+        List<SysIpForbidden> sysIpForbiddens = sysIpForbiddenMapper.selectAll();
+        return new PageInfo(counts, sysIpForbiddens);
+    }
+
+    @Override
+    public boolean isExistIp(String ip) {
+        return sysIpForbiddenMapper.isExistIp(ip);
+    }
+
+    @Override
+    public boolean isExistIpExcludeId(String ip) {
+        return sysIpForbiddenMapper.isExistIpExcludeId(ip);
     }
 
     @Override
