@@ -19,10 +19,10 @@ public class ForbiddenIpAOP {
 
     private static Logger log = LoggerFactory.getLogger(ForbiddenIpAOP.class);
 
-
     @Before("@within(org.springframework.web.bind.annotation.RequestMapping)")
     public void forbiddenIp() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        String remoteAddr = request.getRemoteAddr();
 
     }
 }
