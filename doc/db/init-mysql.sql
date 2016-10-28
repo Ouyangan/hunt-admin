@@ -1,12 +1,14 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/10/26 17:55:54                          */
+/* Created on:     2016/10/28 22:13:58                          */
 /*==============================================================*/
 
 
 drop table if exists sys_data_group;
 
 drop table if exists sys_data_item;
+
+drop table if exists sys_ip_forbidden;
 
 drop table if exists sys_log;
 
@@ -70,6 +72,25 @@ create table sys_data_item
 );
 
 /*==============================================================*/
+/* Table: sys_ip_forbidden                                      */
+/*==============================================================*/
+create table sys_ip_forbidden
+(
+  id                   bigint not null auto_increment,
+  is_final             int default 1 comment '是否可删除',
+  rank                 bigint default 0 comment '排序',
+  create_time          datetime default CURRENT_TIMESTAMP comment '创建时间',
+  update_time          datetime default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+  create_by            bigint default 0 comment '创建人',
+  update_by            bigint default 0 comment '更热人',
+  status               tinyint default 1 comment '数据状态,1:正常,2:删除',
+  expire_time          datetime comment '到期时间',
+  description          varchar(256) comment '说明',
+  ip                   varchar(256) comment 'IP地址',
+  primary key (id)
+);
+
+/*==============================================================*/
 /* Table: sys_log                                               */
 /*==============================================================*/
 create table sys_log
@@ -97,7 +118,7 @@ create table sys_log
 /*==============================================================*/
 create table sys_login_status
 (
-  id                   bigint not null comment '主键',
+  id                   bigint not null auto_increment comment '主键',
   sys_user_id          bigint comment '用户id',
   session_id           varchar(256) comment 'session id',
   session_expires      datetime comment 'session过期时间',
@@ -119,7 +140,7 @@ create table sys_login_status
 /*==============================================================*/
 create table sys_organization
 (
-  id                   bigint not null,
+  id                   bigint not null auto_increment,
   name                 varchar(256) comment '名称',
   description          varchar(1024) comment '描述',
   is_final             int default 1 comment '是否可删除',
@@ -279,7 +300,7 @@ create table sys_user_permission
 /*==============================================================*/
 create table sys_user_role_organization
 (
-  id                   bigint not null,
+  id                   bigint not null auto_increment,
   sys_user_id          bigint,
   sys_role_organization_id bigint,
   rank                 bigint default 0 comment '排序',

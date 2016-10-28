@@ -4,6 +4,7 @@ import com.hunt.model.dto.LoginInfo;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysDataGroup;
 import com.hunt.model.entity.SysDataItem;
+import com.hunt.model.entity.SysIpForbidden;
 import com.hunt.model.entity.SysUser;
 import com.hunt.service.SysUserService;
 import com.hunt.service.SystemService;
@@ -331,6 +332,77 @@ public class SystemController extends BaseController {
                              @RequestParam int rows) {
         PageInfo pageInfo = systemService.selectDataItemPage(page, rows);
         return pageInfo;
+    }
+
+    /**
+     * ip页面跳转
+     *
+     * @return
+     */
+    @RequestMapping(value = "ip", method = RequestMethod.GET)
+    public String ip() {
+        return "system/ip";
+    }
+
+    /**
+     * 插入ip
+     *
+     * @param ip          ip地址
+     * @param expireTime  过期时间
+     * @param description 说明
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "ip/insert", method = RequestMethod.POST)
+    public Result ipInsert(@RequestParam String ip,
+                           @RequestParam String expireTime,
+                           @RequestParam String description) {
+        return Result.success();
+    }
+
+    /**
+     * 删除ip
+     *
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "ip/delete", method = RequestMethod.GET)
+    public Result ipDelete(@RequestParam long id) {
+        return Result.success();
+    }
+
+    /**
+     * 更新ip
+     *
+     * @param id,         id,
+     * @param ip          ip地址
+     * @param expireTime  过期时间
+     * @param description 说明
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "ip/update", method = RequestMethod.POST)
+    public Result ipUpdate(@RequestParam long id,
+                           @RequestParam String ip,
+                           @RequestParam String expireTime,
+                           @RequestParam String description) {
+        SysIpForbidden ipForbidden= new SysIpForbidden();
+        return Result.success();
+    }
+
+    /**
+     * 查询ip列表
+     * @param page
+     * @param rows
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "ip/select", method = RequestMethod.GET)
+    public PageInfo ipSelect(@RequestParam int page,
+                             @RequestParam int rows) {
+
+        return null;
     }
 
 }

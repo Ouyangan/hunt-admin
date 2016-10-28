@@ -92,6 +92,13 @@
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                             href="/system/ip">IP访问限制
+                        </div>
+                    </li>
+                </div>
+                <div style="padding: 5px 10px;">
+                    <li class="nav-list">
+                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
                              href="/druid/index.html">数据库监控
                         </div>
                     </li>
