@@ -13,6 +13,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ import system.ResponseCode;
 import system.Result;
 import system.StringUtil;
 
+import javax.jws.Oneway;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -254,6 +256,7 @@ public class SystemController extends BaseController {
         return Result.success(id);
     }
 
+
     /**
      * 删除字典
      *
@@ -300,6 +303,7 @@ public class SystemController extends BaseController {
         sysDataItem.setSysDataGroupId(groupId);
         sysDataItem.setDescription(description);
         systemService.updateDateItem(sysDataItem);
+
         return Result.success();
     }
 

@@ -1,5 +1,6 @@
 package com.hunt.controller;
 
+import com.hunt.service.SystemService;
 import com.hunt.system.security.geetest.GeetestConfig;
 import com.hunt.system.security.geetest.GeetestLib;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -8,6 +9,7 @@ import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,7 +28,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class BaseController {
     private static final Logger log = LoggerFactory.getLogger(BaseController.class);
-
+    @Autowired
+    private SystemService systemService;
     /**
      * 极限验证码二次验证
      *

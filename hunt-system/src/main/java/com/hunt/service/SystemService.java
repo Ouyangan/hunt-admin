@@ -46,4 +46,6 @@ public interface SystemService {
 
     SysDataItem selectDataItemById(Long id);
 
+    String selectDataItemByKey(String key,Long groupId);
+
 }

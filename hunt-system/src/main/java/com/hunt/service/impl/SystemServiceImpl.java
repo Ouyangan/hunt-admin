@@ -148,6 +148,8 @@ public class SystemServiceImpl implements SystemService {
 
     @Override
     public void deleteDataItemById(Long id) {
+        SysDataItem sysDataItem = sysDataItemMapper.selectById(id);
+        redisTemplate.opsForValue().getOperations().delete(sysDataItem.getSysDataGroupId() + "-" + sysDataItem.getKeyName());
         sysDataItemMapper.deleteById(id);
     }
 
@@ -178,7 +180,19 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    public String selectDataItemByKey(String key, Long groupId) {
+        String value = (String) redisTemplate.opsForValue().get(groupId + "-" + key);
+        if (value == null) {
+            log.debug("get groupId:{} key:{} value from DB", groupId, key);
+            value = sysDataItemMapper.selectByKey(key, groupId);
+            redisTemplate.opsForValue().set(groupId + "-" + key, value);
+        }
+        return value;
+    }
+
+    @Override
     public void updateDateItem(SysDataItem sysDataItem) {
+        redisTemplate.opsForValue().getOperations().delete(sysDataItem.getSysDataGroupId() + "-" + sysDataItem.getKeyName());
         sysDataItemMapper.update(sysDataItem);
     }
 

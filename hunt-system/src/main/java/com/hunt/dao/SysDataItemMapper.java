@@ -29,4 +29,6 @@ public interface SysDataItemMapper {
     void deleteById(@Param("id") Long id);
 
     boolean isExistDataItemNameExcludeId(@Param("id") Long id, @Param("key") String key, @Param("groupId") long groupId);
+
+    String selectByKey(@Param("key") String key, @Param("groupId") Long groupId);
 }
