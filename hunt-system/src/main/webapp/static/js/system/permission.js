@@ -259,7 +259,7 @@ permission_tool = {
             columns: [[
                 {title: "选择", field: "ck", checkbox: true},
                 {title: "名称", field: "name", width: 200},
-                {title: "code", field: "code", width: 200},
+                {title: "编码", field: "code", width: 200},
                 {title: "说明", field: "description", width: 400},
                 {
                     title: "是否可修改", field: "isFinal", formatter: function (value, row, index) {
