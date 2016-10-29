@@ -71,6 +71,9 @@ role_tool = {
                                 $("#role-permissions").datagrid("selectRecord", role.sysPermissions[i].id);
                             }
                     },
+                    'onClose':function () {
+                        role_tool.form_clear();
+                    }
                 });
             },
         });
