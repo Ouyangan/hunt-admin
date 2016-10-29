@@ -11,15 +11,18 @@ import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import system.ResponseCode;
 import system.Result;
 import system.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 基础controller,方便统一异常处理
@@ -58,9 +61,18 @@ public class BaseController {
         return verifyResult == 1;
     }
 
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+
+
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public Result exceptionHandler(HttpServletRequest request, Exception exception) {
+    public Result exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception exception) {
+        if (request.getHeader("Accept").contains("application/json")) {
+
+        } else {
+
+        }
         log.error("exception occur : \n {}", StringUtil.exceptionDetail(exception));
         Result result = Result.error();
         //密码错误

@@ -31,6 +31,17 @@ $(document).ready(function () {
                     closable: true,
                     content: content,
                     border: true,
+                    onLoadError: function () {
+                        $('#tab').tabs('add', {
+                            tabWidth: 100,
+                            tabHeight: 35,
+                            fit: true,
+                            title: '系统错误',
+                            closable: true,
+                            href: "/404.jsp",
+                            border: true,
+                        });
+                    },
                 });
             } else {
                 $('#tab').tabs('add', {
@@ -41,6 +52,17 @@ $(document).ready(function () {
                     closable: true,
                     href: href,
                     border: true,
+                    onLoadError: function () {
+                        $('#tab').tabs('add', {
+                            tabWidth: 100,
+                            tabHeight: 35,
+                            fit: true,
+                            title: '系统错误',
+                            closable: true,
+                            href: "/404.jsp",
+                            border: true,
+                        });
+                    },
                 });
             }
             return false;
