@@ -222,8 +222,13 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
-    public boolean isExistIpExcludeId(String ip) {
-        return sysIpForbiddenMapper.isExistIpExcludeId(ip);
+    public boolean isExistIpExcludeId(String ip, long id) {
+        return sysIpForbiddenMapper.isExistIpExcludeId(ip,id);
+    }
+
+    @Override
+    public boolean isForbiddenIp(String remoteAddr) {
+        return false;
     }
 
     @Override

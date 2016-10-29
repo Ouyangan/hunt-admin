@@ -1,7 +1,7 @@
 role_tool = {
     form_clear: function () {
         $("#role_edit_form").form("clear");
-        $("#permissions").datagrid("uncheckAll");
+        $("#role-permissions").datagrid("uncheckAll");
         $("#role_grid").datagrid("uncheckAll");
     },
     //初始化页面+加载数据

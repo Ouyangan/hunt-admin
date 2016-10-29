@@ -59,5 +59,7 @@ public interface SystemService {
 
     boolean isExistIp(String ip);
 
-    boolean isExistIpExcludeId(String ip);
+    boolean isExistIpExcludeId(String ip, long id);
+
+    boolean isForbiddenIp(String remoteAddr);
 }

@@ -254,7 +254,7 @@ permission_tool = {
             pageNumber: 1,
             pageSize: 25,
             pageList: [25, 50, 75, 100],
-            pagination: true,
+            pagination: false,
             striped: true,
             columns: [[
                 {title: "选择", field: "ck", checkbox: true},

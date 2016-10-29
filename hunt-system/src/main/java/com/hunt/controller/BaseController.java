@@ -1,6 +1,7 @@
 package com.hunt.controller;
 
 import com.hunt.service.SystemService;
+import com.hunt.system.exception.ForbiddenIpException;
 import com.hunt.system.security.geetest.GeetestConfig;
 import com.hunt.system.security.geetest.GeetestLib;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -30,6 +31,7 @@ public class BaseController {
     private static final Logger log = LoggerFactory.getLogger(BaseController.class);
     @Autowired
     private SystemService systemService;
+
     /**
      * 极限验证码二次验证
      *
@@ -60,7 +62,7 @@ public class BaseController {
     @ResponseBody
     public Result exceptionHandler(HttpServletRequest request, Exception exception) {
         log.debug("exception occur : \n {}", StringUtil.exceptionDetail(exception));
-        Result result;
+        Result result = Result.error();
         //密码错误
         if (exception instanceof IncorrectCredentialsException) {
             result = Result.instance(ResponseCode.password_incorrect.getCode(), ResponseCode.password_incorrect.getMsg());
@@ -79,6 +81,9 @@ public class BaseController {
             //参数格式错误
         } else if ((exception instanceof MethodArgumentTypeMismatchException)) {
             result = Result.instance(ResponseCode.param_format_error.getCode(), ResponseCode.param_format_error.getMsg());
+            //ip限制
+        } else if (exception instanceof ForbiddenIpException) {
+            result = Result.instance(ResponseCode.forbidden_ip.getCode(), ResponseCode.forbidden_ip.getMsg());
             //其他错误
         } else {
             result = Result.instance(ResponseCode.error.getCode(), ResponseCode.error.getMsg());

@@ -22,9 +22,10 @@ drop table if exists sys_permission_group;
 
 drop table if exists sys_role;
 
+drop table if exists sys_role_permission;
+
 drop table if exists sys_role_organization;
 
-drop table if exists sys_role_permission;
 
 drop table if exists sys_user;
 

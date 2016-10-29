@@ -175,7 +175,7 @@
     </update>
     <update id="deleteById">
         UPDATE sys_ip_forbidden
-        SET status = 1
+        SET status = 2
         WHERE id = #{id}
     </update>
 
@@ -217,6 +217,5 @@
                 WHERE status = 1 AND ip = #{ip} AND id != #{id}
         )
     </select>
-
 
 </mapper>

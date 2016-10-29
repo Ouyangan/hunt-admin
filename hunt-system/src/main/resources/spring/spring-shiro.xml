@@ -14,7 +14,7 @@
                 /system/login=anon
                 /=anon
                 /oauth/**=anon
-                /**=authc
+                /**=anon
             </value>
         </property>
     </bean>

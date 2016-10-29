@@ -70,7 +70,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     @Override
     public PageInfo selectPage(int page, int rows) {
         int count = sysPermissionMapper.selectCounts();
-        PageHelper.startPage(page, rows);
+//        PageHelper.startPage(page, rows);
         List<SysPermission> list = sysPermissionMapper.selectAll();
         List<SysPermissionDto> listResult = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {

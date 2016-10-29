@@ -118,7 +118,7 @@ organization_tool = {
     },
     init_edit_view: function (data, parentId) {
         $("#organization_save").dialog({
-            title: '新增职位',
+            title: '新增组织机构',
             iconCls: 'icon-save',
             closable: true,
             width: 900,

@@ -23,5 +23,5 @@ public interface SysIpForbiddenMapper  {
 
     boolean isExistIp(String ip);
 
-    boolean isExistIpExcludeId(String ip);
+    boolean isExistIpExcludeId(@Param("ip") String ip, @Param("id") long id);
 }

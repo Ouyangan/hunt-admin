@@ -14,7 +14,6 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +23,6 @@ import system.ResponseCode;
 import system.Result;
 import system.StringUtil;
 
-import javax.jws.Oneway;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -399,7 +397,7 @@ public class SystemController extends BaseController {
                            @RequestParam String ip,
                            @RequestParam String expireTime,
                            @RequestParam String description) throws ParseException {
-        boolean isExistIpExcludeId = systemService.isExistIpExcludeId(ip);
+        boolean isExistIpExcludeId = systemService.isExistIpExcludeId(ip,id);
         if (isExistIpExcludeId) {
             return Result.error(ResponseCode.name_already_exist.getMsg());
         }
@@ -421,8 +419,8 @@ public class SystemController extends BaseController {
      */
     @ResponseBody
     @RequestMapping(value = "ip/list", method = RequestMethod.GET)
-    public PageInfo ipSelect(@RequestParam int page,
-                             @RequestParam int rows) {
+    public PageInfo ipSelect(@RequestParam(defaultValue = "1") int page,
+                             @RequestParam(defaultValue = "30") int rows) {
         PageInfo pageInfo = systemService.selectIp(page, rows);
         return pageInfo;
     }
