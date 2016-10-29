@@ -61,7 +61,7 @@ public class BaseController {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result exceptionHandler(HttpServletRequest request, Exception exception) {
-        log.debug("exception occur : \n {}", StringUtil.exceptionDetail(exception));
+        log.error("exception occur : \n {}", StringUtil.exceptionDetail(exception));
         Result result = Result.error();
         //密码错误
         if (exception instanceof IncorrectCredentialsException) {
@@ -82,7 +82,7 @@ public class BaseController {
         } else if ((exception instanceof MethodArgumentTypeMismatchException)) {
             result = Result.instance(ResponseCode.param_format_error.getCode(), ResponseCode.param_format_error.getMsg());
             //ip限制
-        } else if (exception instanceof ForbiddenIpException) {
+        } else if (exception.getCause().getMessage().contains("com.hunt.system.exception.ForbiddenIpException")) {
             result = Result.instance(ResponseCode.forbidden_ip.getCode(), ResponseCode.forbidden_ip.getMsg());
             //其他错误
         } else {
