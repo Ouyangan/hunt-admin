@@ -174,7 +174,7 @@ public class UserController extends BaseController {
      * @param address   地址
      * @return
      */
-    @RequiresPermissions("user:select")
+//    @RequiresPermissions("user:select")
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam int page,

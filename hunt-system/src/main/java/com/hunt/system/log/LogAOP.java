@@ -31,7 +31,7 @@ public class LogAOP {
 
     @Around("@within(org.springframework.web.bind.annotation.RequestMapping)")
     public Object recordLog(ProceedingJoinPoint p) throws Throwable {
-        HttpServletRequest re = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         Object o = null;
         long t1 = System.currentTimeMillis();
         try {
@@ -59,20 +59,21 @@ public class LogAOP {
         log.setDuration((t2 - t1));
         log.setMethod(p.getTarget().getClass().getName() + "." + p.getSignature().getName());
         StringBuilder stringBuilder = new StringBuilder();
-        for (String s : re.getParameterMap().keySet()) {
+        for (String s : request.getParameterMap().keySet()) {
             stringBuilder.append(s);
             stringBuilder.append(" = ");
-            stringBuilder.append(re.getParameterMap().get(s)[0]);
+            stringBuilder.append(request.getParameterMap().get(s)[0]);
             stringBuilder.append(" | ");
         }
         log.setParam(stringBuilder.toString());
-        log.setIp(re.getRemoteAddr());
-        log.setUrl(re.getRequestURL().toString());
-        log.setUserAgent(re.getHeader("user-agent"));
+        log.setIp(request.getRemoteAddr());
+        log.setUrl(request.getRequestURL().toString());
+        log.setUserAgent(request.getHeader("user-agent"));
         systemService.insertSysControllerLog(log);
 
+        logger.info("request contentType:{}",request.getHeader("Accept"));
         logger.info("request param : {}", log.getParam());
-        logger.info("reuest method : {}", re.getMethod());
+        logger.info("reuest method : {}", request.getMethod());
         logger.info("request url : {}", log.getUrl());
         return o;
     }
