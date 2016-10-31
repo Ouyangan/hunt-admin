@@ -292,10 +292,10 @@ $(document).ready(function () {
         data_tool.form_clear();
         data_tool.init_main_view();
     });
-    $("#save-data").click(function () {
+    $("#save-data-data").click(function () {
         data_tool.init_edit_view(1);
     });
-    $("#save-dataGroup").click(function () {
+    $("#save-data-group").click(function () {
         data_tool.init_edit_group_view()
     });
     $("#delete-data").click(function () {

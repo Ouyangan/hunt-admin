@@ -2,7 +2,7 @@
 <script type="text/javascript" src="/static/js/system/data.js"></script>
 <script type="text/javascript" src="/static/js/system/common.js"></script>
 <div id="data-tool-bar" style="padding: 10px">
-    <a href="#" class="easyui-menubutton" menu="#save" data-options="iconCls:'icon-add'" style="width:70px">新增</a>
+    <a href="#" class="easyui-menubutton" menu="#save-data-btn" data-options="iconCls:'icon-add'" style="width:70px">新增</a>
     <a href="#" class="easyui-linkbutton" id="update-data" data-options="iconCls:'icon-edit'" style="width:70px">修改</a>
     <a href="#" class="easyui-linkbutton" id="delete-data" data-options="iconCls:'icon-remove'"
        style="width:70px">删除</a>
@@ -11,9 +11,9 @@
 <div id="data_grid" style="padding: 10px">
 
 </div>
-<div id="save">
-    <div data-options="iconCls:'icon-add' " id="save-data" style="width:70px">字典</div>
-    <div data-options="iconCls:'icon-add'" id="save-dataGroup" style="width:70px">字典组</div>
+<div id="save-data-btn">
+    <div data-options="iconCls:'icon-add' " id="save-data-data" style="width:70px">字典</div>
+    <div data-options="iconCls:'icon-add'" id="save-data-group" style="width:70px">字典组</div>
 </div>
 
 <div id="save-data-dialog">

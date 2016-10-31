@@ -2,7 +2,7 @@
 <script type="text/javascript" src="/static/js/system/permission.js"></script>
 <script type="text/javascript" src="/static/js/system/common.js"></script>
 <div id="permission-tool-bar" style="padding: 10px">
-    <div href="#" class="easyui-menubutton" menu="#save" data-options="iconCls:'icon-add'" style="width:70px">新增</div>
+    <div href="#" class="easyui-menubutton" menu="#save-permission-btn" data-options="iconCls:'icon-add'" style="width:70px">新增</div>
     <div href="#" class="easyui-linkbutton" id="flash-permission" data-options="iconCls:'icon-reload'" style="width:70px">刷新</div>
     <div href="#" class="easyui-linkbutton" id="update-permission" data-options="iconCls:'icon-edit'" style="width:70px">修改</div>
     <div href="#" class="easyui-linkbutton" id="delete-permission" data-options="iconCls:'icon-remove'"
@@ -11,9 +11,9 @@
 <div id="permission_grid" style="padding: 10px">
 
 </div>
-<div id="save">
-    <div data-options="iconCls:'icon-add' " id="save-permission" style="width:70px">权限</div>
-    <div data-options="iconCls:'icon-add'" id="save-permissionGroup" style="width:70px">权限组</div>
+<div id="save-permission-btn">
+    <div data-options="iconCls:'icon-add' " id="save-permission-permission" style="width:70px">权限</div>
+    <div data-options="iconCls:'icon-add'" id="save-permission-group" style="width:70px">权限组</div>
 </div>
 
 <div id="save-permission-dialog">

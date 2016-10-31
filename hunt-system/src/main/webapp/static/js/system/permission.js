@@ -291,10 +291,10 @@ $(document).ready(function () {
         permission_tool.form_clear();
         permission_tool.init_main_view();
     });
-    $("#save-permission").click(function () {
+    $("#save-permission-permission").click(function () {
         permission_tool.init_edit_view(1);
     });
-    $("#save-permissionGroup").click(function () {
+    $("#save-permission-group").click(function () {
         permission_tool.init_edit_group_view()
     });
     $("#delete-permission").click(function () {
