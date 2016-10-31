@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <html>
 <head>
@@ -30,79 +31,97 @@
     <div class="easyui-accordion" data-options="border:false,fit:true,">
         <div title="系统管理" style="padding: 0 0 0 15px;">
             <ul style="list-style: none;padding: 0 0 0 0 ;">
-                <div style="padding: 5px 10px;">
-                    <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/user/user">用户管理
-                        </div>
-                    </li>
-                </div>
-
-                <div style="padding: 5px 10px;">
-                    <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
-                             href="/job/job">职位管理
-                        </div>
-                    </li>
-                </div>
-                <div style="padding: 5px 10px;">
-                    <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/organization/organization">机构管理
-                        </div>
-                    </li>
-                </div>
-                <div style="padding: 5px 10px;">
-                    <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
-                             style="border: 0;"
-                             href="/role/role">角色管理
-                        </div>
-                    </li>
-                </div>
-
-                <div style="padding: 5px 10px;">
-                    <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/permission/permission">权限管理
-                        </div>
-                    </li>
-                </div>
-                <div style="padding: 5px 10px;">
-                    <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/system/data">字典管理
-                        </div>
-                    </li>
-                </div>
-                <div style="padding: 5px 10px;">
-                    <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/system/online">在线状态
-                        </div>
-                    </li>
-                </div>
-                <div style="padding: 5px 10px;">
-                    <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/system/log">系统日志
-                        </div>
-                    </li>
-                </div>
-                <div style="padding: 5px 10px;">
-                    <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/system/ip">IP访问限制
-                        </div>
-                    </li>
-                </div>
-                <div style="padding: 5px 10px;">
-                    <li class="nav-list">
-                        <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/druid/index.html">数据库监控
-                        </div>
-                    </li>
-                </div>
+                <shiro:hasPermission name="user:list">
+                    <div style="padding: 5px 10px;">
+                        <li class="nav-list">
+                            <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                                 href="/user/user">用户管理
+                            </div>
+                        </li>
+                    </div>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="job:list">
+                    <div style="padding: 5px 10px;">
+                        <li class="nav-list">
+                            <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
+                                 href="/job/job">职位管理
+                            </div>
+                        </li>
+                    </div>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="organization:list">
+                    <div style="padding: 5px 10px;">
+                        <li class="nav-list">
+                            <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                                 href="/organization/organization">机构管理
+                            </div>
+                        </li>
+                    </div>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="role:list">
+                    <div style="padding: 5px 10px;">
+                        <li class="nav-list">
+                            <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
+                                 style="border: 0;"
+                                 href="/role/role">角色管理
+                            </div>
+                        </li>
+                    </div>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="permission:list">
+                    <div style="padding: 5px 10px;">
+                        <li class="nav-list">
+                            <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                                 href="/permission/permission">权限管理
+                            </div>
+                        </li>
+                    </div>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="data:list">
+                    <div style="padding: 5px 10px;">
+                        <li class="nav-list">
+                            <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                                 href="/system/data">字典管理
+                            </div>
+                        </li>
+                    </div>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="user:loginStatu:list">
+                    <div style="padding: 5px 10px;">
+                        <li class="nav-list">
+                            <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                                 href="/system/online">在线状态
+                            </div>
+                        </li>
+                    </div>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="log:list">
+                    <div style="padding: 5px 10px;">
+                        <li class="nav-list">
+                            <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                                 href="/system/log">系统日志
+                            </div>
+                        </li>
+                    </div>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="ip:list">
+                    <div style="padding: 5px 10px;">
+                        <li class="nav-list">
+                            <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                                 href="/system/ip">IP访问限制
+                            </div>
+                        </li>
+                    </div>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="db:select">
+                    <div style="padding: 5px 10px;">
+                        <li class="nav-list">
+                            <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
+                                 href="/druid/index.html">数据库监控
+                            </div>
+                        </li>
+                    </div>
+                </shiro:hasPermission>
             </ul>
         </div>
     </div>

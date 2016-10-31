@@ -159,7 +159,7 @@ public class SystemController extends BaseController {
      *
      * @return
      */
-    //// TODO: 2016/10/31
+    @RequiresPermissions("log:list")
     @RequestMapping(value = "log")
     public String log() {
         return "system/log";
@@ -178,6 +178,7 @@ public class SystemController extends BaseController {
      * @param result 请求响应内容
      * @return
      */
+    @RequiresPermissions("log:list")
     @ResponseBody
     @RequestMapping(value = "log/list", method = RequestMethod.GET)
     public PageInfo logList(@RequestParam int page,
