@@ -183,7 +183,6 @@ public class SystemController extends BaseController {
                             @RequestParam(defaultValue = "") String url,
                             @RequestParam(defaultValue = "") String param,
                             @RequestParam(defaultValue = "") String result) {
-        System.out.println("page = [" + page + "], rows = [" + rows + "], sort = [" + sort + "], order = [" + order + "], method = [" + method + "], url = [" + url + "], param = [" + param + "], result = [" + result + "]");
         PageInfo pageInfo = systemService.selectLog(page, rows, StringUtil.camelToUnderline(sort), order, method, url, param, result);
         return pageInfo;
     }
