@@ -1,8 +1,6 @@
 package com.hunt.controller;
 
 import com.hunt.service.SystemService;
-import com.hunt.system.exception.ForbiddenIpException;
-import com.hunt.system.security.geetest.GeetestConfig;
 import com.hunt.system.security.geetest.GeetestLib;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -11,11 +9,9 @@ import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import system.ResponseCode;
 import system.Result;
@@ -45,7 +41,7 @@ public class BaseController {
     public boolean verifyCaptcha(HttpServletRequest request) throws Exception {
         log.debug("begin verifyCaptcha");
         int verifyResult = 0;
-        GeetestLib gtSdk = new GeetestLib(GeetestConfig.getGeetest_id(), GeetestConfig.getGeetest_key());
+        GeetestLib gtSdk = new GeetestLib(systemService.selectDataItemByKey("geetest_id", 1L), systemService.selectDataItemByKey("geetest_key", 1L));
         log.debug(gtSdk.getCaptchaId());
         log.debug(gtSdk.getPrivateKey());
         String challenge = request.getParameter(GeetestLib.fn_geetest_challenge);
@@ -53,13 +49,13 @@ public class BaseController {
         String seccode = request.getParameter(GeetestLib.fn_geetest_seccode);
         log.debug("challenge: {} ,validate: {} ,seccode: {}", challenge, validate, seccode);
         int gt_server_status_code = (Integer) request.getSession().getAttribute(gtSdk.gtServerStatusSessionKey);
-        log.debug("gt_server_status_code : {}", gt_server_status_code);
+        log.debug("极限验证服务器状态 : {}", gt_server_status_code);
         if (gt_server_status_code == 1) {
             verifyResult = gtSdk.enhencedValidateRequest(challenge, validate, seccode);
         } else {
             verifyResult = gtSdk.failbackValidateRequest(challenge, validate, seccode);
         }
-        log.debug("verifyResult : {}", verifyResult);
+        log.debug("极限验证结果 : {}", verifyResult);
         return verifyResult == 1;
     }
 

@@ -88,7 +88,7 @@ data_tool = {
         var key = $("#save-data-dialog input[id='data_keyName']").val();
         var value = $("#save-data-dialog input[id='data_keyValue']").val();
         var description = $("#save-data-dialog input[id='data_description']").val();
-        var groupId = $("#save-data-dialog table[id='data_data-group']").treegrid("getChecked")[0].id;
+        var groupId = $("#save-data-dialog table[id='data-group']").treegrid("getChecked")[0].id;
         $.ajax({
             data: {
                 id: id,

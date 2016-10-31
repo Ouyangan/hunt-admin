@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -45,7 +46,6 @@ public class SysUserServiceImpl implements SysUserService {
     public long insertUser(SysUser user, String jobIds, String permissionIds) {
         sysUserMapper.insert(user);
         String[] jobIdArray = jobIds.split(",");
-        String[] permissionIdArray = permissionIds.split(",");
         for (String jobid : jobIdArray) {
             SysUserRoleOrganization userRoleOrganization = new SysUserRoleOrganization();
             userRoleOrganization.setSysUserId(user.getId());
@@ -53,12 +53,15 @@ public class SysUserServiceImpl implements SysUserService {
             userRoleOrganization.setIsFinal(1);
             sysUserRoleOrganizationMapper.insert(userRoleOrganization);
         }
-        for (String permissionId : permissionIdArray) {
-            SysUserPermission userPermission = new SysUserPermission();
-            userPermission.setSysUserId(user.getId());
-            userPermission.setSysPermissionId(Long.valueOf(permissionId));
-            userPermission.setIsFinal(1);
-            sysUserPermissionMapper.insert(userPermission);
+        if (StringUtils.hasText(permissionIds)) {
+            String[] permissionIdArray = permissionIds.split(",");
+            for (String permissionId : permissionIdArray) {
+                SysUserPermission userPermission = new SysUserPermission();
+                userPermission.setSysUserId(user.getId());
+                userPermission.setSysPermissionId(Long.valueOf(permissionId));
+                userPermission.setIsFinal(1);
+                sysUserPermissionMapper.insert(userPermission);
+            }
         }
         return user.getId();
     }
@@ -78,9 +81,8 @@ public class SysUserServiceImpl implements SysUserService {
         sysUserMapper.update(user);
         sysUserPermissionMapper.deleteByUserId(user.getId());
         sysUserRoleOrganizationMapper.deleteUserId(user.getId());
-        String[] jobIdArray = jobIds.split(",");
-        String[] permissionIdArray = permissionIds.split(",");
 
+        String[] jobIdArray = jobIds.split(",");
         for (String jobid : jobIdArray) {
             SysUserRoleOrganization userRoleOrganization = new SysUserRoleOrganization();
             userRoleOrganization.setSysUserId(user.getId());
@@ -88,13 +90,17 @@ public class SysUserServiceImpl implements SysUserService {
             userRoleOrganization.setIsFinal(1);
             sysUserRoleOrganizationMapper.insert(userRoleOrganization);
         }
-        for (String permissionId : permissionIdArray) {
-            SysUserPermission userPermission = new SysUserPermission();
-            userPermission.setSysUserId(user.getId());
-            userPermission.setSysPermissionId(Long.valueOf(permissionId));
-            userPermission.setIsFinal(1);
-            sysUserPermissionMapper.insert(userPermission);
+        if (StringUtils.hasText(permissionIds)) {
+            String[] permissionIdArray = permissionIds.split(",");
+            for (String permissionId : permissionIdArray) {
+                SysUserPermission userPermission = new SysUserPermission();
+                userPermission.setSysUserId(user.getId());
+                userPermission.setSysPermissionId(Long.valueOf(permissionId));
+                userPermission.setIsFinal(1);
+                sysUserPermissionMapper.insert(userPermission);
+            }
         }
+
     }
 
     @Override

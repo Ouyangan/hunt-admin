@@ -3,6 +3,7 @@ package com.hunt.controller;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysRoleOrganization;
 import com.hunt.service.SysRoleOrganizationService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class JobController extends BaseController {
      *
      * @return
      */
+    @RequiresPermissions("job:list")
     @RequestMapping(value = "job", method = RequestMethod.GET)
     public String job() {
         return "system/job";
@@ -44,6 +46,7 @@ public class JobController extends BaseController {
      * @return
      */
     @ResponseBody
+    @RequiresPermissions("job:insert")
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam long roleId,
                          @RequestParam long organizationId,
@@ -81,6 +84,7 @@ public class JobController extends BaseController {
      * @return
      */
     @ResponseBody
+    @RequiresPermissions("job:update")
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
                          @RequestParam long roleId,
@@ -117,6 +121,7 @@ public class JobController extends BaseController {
      * @return
      */
     @ResponseBody
+    @RequiresPermissions("job:delete")
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     public Result delete(@RequestParam long id) {
         SysRoleOrganization roleOrganization = roleOrganizationService.selectRoleOrganizationById(id);
@@ -140,6 +145,7 @@ public class JobController extends BaseController {
      * @return
      */
     @ResponseBody
+    @RequiresPermissions("job:list")
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam(defaultValue = "1") int page,
                            @RequestParam(defaultValue = "15") int rows,

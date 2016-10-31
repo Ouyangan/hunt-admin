@@ -3,6 +3,7 @@ package com.hunt.controller;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysOrganization;
 import com.hunt.service.SysOrganizationService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class OrganizationController extends BaseController {
     @Autowired
     private SysOrganizationService sysOrganizationService;
 
+    @RequiresPermissions("organization:list")
     @RequestMapping(value = "organization", method = RequestMethod.GET)
     public String organization() {
 
@@ -40,6 +42,7 @@ public class OrganizationController extends BaseController {
      * @param isFinal     是否可修改
      * @return
      */
+    @RequiresPermissions("organization:insert")
     @ResponseBody
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String name,
@@ -67,6 +70,7 @@ public class OrganizationController extends BaseController {
      * @param id
      * @return
      */
+    @RequiresPermissions("organization:delete")
     @ResponseBody
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     public Result delete(@RequestParam long id) {
@@ -91,6 +95,7 @@ public class OrganizationController extends BaseController {
      * @param parentId    父级id
      * @return
      */
+    @RequiresPermissions("organization:update")
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
@@ -131,6 +136,7 @@ public class OrganizationController extends BaseController {
      * @param id   顶级id
      * @return
      */
+    @RequiresPermissions("organization:list")
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam(value = "page", defaultValue = "1") int page,

@@ -34,6 +34,7 @@ public class UserController extends BaseController {
     @Autowired
     private SystemService systemService;
 
+    @RequiresPermissions("user:list")
     @RequestMapping(value = "user", method = RequestMethod.GET)
     public String user() {
         return "system/user";
@@ -56,6 +57,7 @@ public class UserController extends BaseController {
      * @param permissionIds 权限ids
      * @return
      */
+    @RequiresPermissions("user:insert")
     @ResponseBody
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String loginName,
@@ -94,6 +96,7 @@ public class UserController extends BaseController {
         return Result.success(id);
     }
 
+    @RequiresPermissions("user:delete")
     @ResponseBody
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     public Result delete(@RequestParam long id) {
@@ -126,6 +129,7 @@ public class UserController extends BaseController {
      * @param permissionIds 权限ids
      * @return
      */
+    @RequiresPermissions("user:update")
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
@@ -174,7 +178,7 @@ public class UserController extends BaseController {
      * @param address   地址
      * @return
      */
-//    @RequiresPermissions("user:select")
+    @RequiresPermissions("user:list")
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam int page,
@@ -198,6 +202,7 @@ public class UserController extends BaseController {
      * @param newPassword       新密码
      * @return
      */
+    @RequiresPermissions("user:updatePassword")
     @ResponseBody
     @RequestMapping(value = "updatePassword", method = RequestMethod.POST)
     public Result updatePassword(@RequestParam long id,
@@ -230,6 +235,7 @@ public class UserController extends BaseController {
      * @param id id
      * @return
      */
+    @RequiresPermissions("user:forbidden")
     @ResponseBody
     @RequestMapping(value = "forbiddenUser", method = RequestMethod.GET)
     public Result forbiddenUser(@RequestParam long id) {
@@ -249,6 +255,7 @@ public class UserController extends BaseController {
      * @param id
      * @return
      */
+    @RequiresPermissions("user:enable")
     @ResponseBody
     @RequestMapping(value = "enableUser", method = RequestMethod.GET)
     public Result enableUser(@RequestParam long id) {

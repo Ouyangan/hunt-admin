@@ -4,6 +4,7 @@ import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysPermission;
 import com.hunt.model.entity.SysPermissionGroup;
 import com.hunt.service.SysPermissionService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class PermissionController extends BaseController {
     @Autowired
     private SysPermissionService sysPermissionService;
 
+    @RequiresPermissions("permission:list")
     @RequestMapping(value = "permission", method = RequestMethod.GET)
     public String permission() {
         return "system/permission";
@@ -43,6 +45,7 @@ public class PermissionController extends BaseController {
      * @return
      */
     @ResponseBody
+    @RequiresPermissions("permission:insert")
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam long groupId,
                          @RequestParam String name,
@@ -76,6 +79,7 @@ public class PermissionController extends BaseController {
      * @return
      */
     @ResponseBody
+    @RequiresPermissions("permission:delete")
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     public Result delete(@RequestParam long id) {
         SysPermission sysPermission = sysPermissionService.selectById(id);
@@ -102,6 +106,7 @@ public class PermissionController extends BaseController {
      * @return
      */
     @ResponseBody
+    @RequiresPermissions("permission:update")
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
                          @RequestParam long groupId,
@@ -139,6 +144,7 @@ public class PermissionController extends BaseController {
      * @return
      */
     @ResponseBody
+    @RequiresPermissions("permission:list")
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam(defaultValue = "1") int page,
                            @RequestParam(defaultValue = "30") int rows) {
@@ -154,6 +160,7 @@ public class PermissionController extends BaseController {
      * @return
      */
     @ResponseBody
+    @RequiresPermissions("permission:group:insert")
     @RequestMapping(value = "group/insert", method = RequestMethod.POST)
     public Result insertGroup(@RequestParam String name,
                               @RequestParam String description) {
@@ -175,6 +182,7 @@ public class PermissionController extends BaseController {
      * @return
      */
     @ResponseBody
+    @RequiresPermissions("permission:group:list")
     @RequestMapping(value = "group/list", method = RequestMethod.GET)
     public List<SysPermissionGroup> selectGroup() {
         List<SysPermissionGroup> list = sysPermissionService.selectGroup();

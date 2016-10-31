@@ -4,6 +4,7 @@ import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysRole;
 import com.hunt.service.SysRoleService;
 import com.hunt.service.SystemService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class RoleController extends BaseController {
     @Autowired
     private SystemService systemService;
 
+    @RequiresPermissions("role:list")
     @RequestMapping(value = "role", method = RequestMethod.GET)
     public String role() {
         return "system/role";
@@ -44,6 +46,7 @@ public class RoleController extends BaseController {
      * @param isFinal       是否可修改
      * @return
      */
+    @RequiresPermissions("role:insert")
     @ResponseBody
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String name,
@@ -71,6 +74,7 @@ public class RoleController extends BaseController {
      * @param permissionIds 权限ids
      * @return
      */
+    @RequiresPermissions("role:update")
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(@RequestParam long id,
@@ -103,6 +107,7 @@ public class RoleController extends BaseController {
      * @param id
      * @return
      */
+    @RequiresPermissions("role:delete")
     @ResponseBody
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     public Result delete(@RequestParam long id) {
@@ -126,6 +131,7 @@ public class RoleController extends BaseController {
      * @param rows 分页大小
      * @return
      */
+    @RequiresPermissions("role:list")
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
     public PageInfo select(@RequestParam(defaultValue = "1") int page,

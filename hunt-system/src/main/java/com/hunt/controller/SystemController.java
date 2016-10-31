@@ -12,6 +12,7 @@ import com.hunt.system.security.geetest.GeetestConfig;
 import com.hunt.system.security.geetest.GeetestLib;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,9 +65,9 @@ public class SystemController extends BaseController {
                         @RequestParam String password,
                         @RequestParam int platform,
                         HttpServletRequest request) throws Exception {
-        if (!verifyCaptcha(request)) {
-            return Result.instance(ResponseCode.verify_captcha_error.getCode(), ResponseCode.verify_captcha_error.getMsg());
-        }
+//        if (!verifyCaptcha(request)) {
+//            return Result.instance(ResponseCode.verify_captcha_error.getCode(), ResponseCode.verify_captcha_error.getMsg());
+//        }
         SysUser user = sysUserService.selectByLoginName(loginName);
         if (user == null) {
             return Result.instance(ResponseCode.unknown_account.getCode(), ResponseCode.unknown_account.getMsg());
@@ -113,6 +114,7 @@ public class SystemController extends BaseController {
      *
      * @return
      */
+    @RequiresPermissions("user:loginStatu:list")
     @RequestMapping(value = "online", method = RequestMethod.GET)
     public String online() {
         return "system/online";
@@ -125,6 +127,7 @@ public class SystemController extends BaseController {
      * @param rows 分页大小
      * @return
      */
+    @RequiresPermissions("user:loginStatu:list")
     @ResponseBody
     @RequestMapping(value = "online/list", method = RequestMethod.GET)
     public PageInfo onlineList(@RequestParam int page,
@@ -139,6 +142,7 @@ public class SystemController extends BaseController {
      * @param userIds 用户ids
      * @return
      */
+    @RequiresPermissions("user:loginout")
     @ResponseBody
     @RequestMapping(value = "forceLogout", method = RequestMethod.GET)
     public Result forceLogout(@RequestParam String userIds) {
@@ -155,6 +159,7 @@ public class SystemController extends BaseController {
      *
      * @return
      */
+    //// TODO: 2016/10/31
     @RequestMapping(value = "log")
     public String log() {
         return "system/log";
@@ -194,6 +199,7 @@ public class SystemController extends BaseController {
      * @param description 描述
      * @return
      */
+    @RequiresPermissions("data:group:insert")
     @ResponseBody
     @RequestMapping(value = "dataGroup/insert", method = RequestMethod.POST)
     public Result dataGroupInsert(@RequestParam String name,
@@ -212,10 +218,11 @@ public class SystemController extends BaseController {
     }
 
     /**
-     * 字典列表
+     * 字典组列表
      *
      * @return
      */
+    @RequiresPermissions("data:group:list")
     @ResponseBody
     @RequestMapping(value = "dataGroup/list", method = RequestMethod.GET)
     public List<SysDataGroup> dataGroupList() {
@@ -237,6 +244,7 @@ public class SystemController extends BaseController {
      * @param groupId     字典组
      * @return
      */
+    @RequiresPermissions("data:insert")
     @ResponseBody
     @RequestMapping(value = "data/insert", method = RequestMethod.POST)
     public Result dataInsert(@RequestParam String key,
@@ -263,6 +271,7 @@ public class SystemController extends BaseController {
      * @param id
      * @return
      */
+    @RequiresPermissions("data:delete")
     @ResponseBody
     @RequestMapping(value = "data/delete", method = RequestMethod.GET)
     public Result dataDelete(@RequestParam Long id) {
@@ -280,6 +289,7 @@ public class SystemController extends BaseController {
      * @param groupId     字典组
      * @return
      */
+    @RequiresPermissions("data:update")
     @ResponseBody
     @RequestMapping(value = "data/update", method = RequestMethod.POST)
     public Result dataUpdate(@RequestParam Long id,
@@ -312,6 +322,7 @@ public class SystemController extends BaseController {
      *
      * @return
      */
+    @RequiresPermissions("data:select")
     @ResponseBody
     @RequestMapping(value = "data/select", method = RequestMethod.GET)
     public Result dataSelect() {
@@ -325,6 +336,7 @@ public class SystemController extends BaseController {
      * @param rows 分页大小
      * @return
      */
+    @RequiresPermissions("data:list")
     @ResponseBody
     @RequestMapping(value = "data/list", method = RequestMethod.GET)
     public PageInfo dataList(@RequestParam int page,
@@ -338,6 +350,7 @@ public class SystemController extends BaseController {
      *
      * @return
      */
+    @RequiresPermissions("ip:list")
     @RequestMapping(value = "ip", method = RequestMethod.GET)
     public String ip() {
         return "system/ip";
@@ -351,6 +364,7 @@ public class SystemController extends BaseController {
      * @param description 说明
      * @return
      */
+    @RequiresPermissions("ip:insert")
     @ResponseBody
     @RequestMapping(value = "ip/insert", method = RequestMethod.POST)
     public Result ipInsert(@RequestParam String ip,
@@ -374,6 +388,7 @@ public class SystemController extends BaseController {
      * @param id
      * @return
      */
+    @RequiresPermissions("ip:delete")
     @ResponseBody
     @RequestMapping(value = "ip/delete", method = RequestMethod.GET)
     public Result ipDelete(@RequestParam long id) {
@@ -390,13 +405,14 @@ public class SystemController extends BaseController {
      * @param description 说明
      * @return
      */
+    @RequiresPermissions("ip:update")
     @ResponseBody
     @RequestMapping(value = "ip/update", method = RequestMethod.POST)
     public Result ipUpdate(@RequestParam long id,
                            @RequestParam String ip,
                            @RequestParam String expireTime,
                            @RequestParam String description) throws ParseException {
-        boolean isExistIpExcludeId = systemService.isExistIpExcludeId(ip,id);
+        boolean isExistIpExcludeId = systemService.isExistIpExcludeId(ip, id);
         if (isExistIpExcludeId) {
             return Result.error(ResponseCode.name_already_exist.getMsg());
         }
@@ -416,6 +432,7 @@ public class SystemController extends BaseController {
      * @param rows
      * @return
      */
+    @RequiresPermissions("ip:list")
     @ResponseBody
     @RequestMapping(value = "ip/list", method = RequestMethod.GET)
     public PageInfo ipSelect(@RequestParam(defaultValue = "1") int page,

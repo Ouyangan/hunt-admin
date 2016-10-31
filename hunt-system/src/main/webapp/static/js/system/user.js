@@ -6,7 +6,7 @@ user_tool = {
         $("#init_password_form").form('clear');
         $("#user-search-form").form('reset');
         $("#user-search-form").form('clear');
-        $("#user-permissions").treegrid("uncheckAll");
+        $("#user-permissions").datagrid("uncheckAll");
         $("#jobs").treegrid("uncheckAll");
         $("#user_grid").treegrid("uncheckAll");
     },
@@ -215,9 +215,11 @@ user_tool = {
             common_tool.messager_show("请输入必填参数")
         } else if ($("#jobs").treegrid("getChecked").length == 0) {
             common_tool.messager_show('请选择职位');
-        } else if ($("#user-permissions").datagrid("getChecked").length == 0) {
-            common_tool.messager_show('请选择权限');
-        } else {
+        }
+        // else if ($("#user-permissions").datagrid("getChecked").length == 0) {
+        //     common_tool.messager_show('请选择权限');
+        // } 
+        else {
             var loginName = $('#user_edit_dialog input[id="loginName"]').val();
             var zhName = $('#user_edit_dialog input[id="zhName"]').val();
             var enName = $('#user_edit_dialog input[id="enName"]').val();
@@ -279,9 +281,11 @@ user_tool = {
             common_tool.messager_show("请输入必填参数")
         } else if ($("#jobs").treegrid("getChecked").length == 0) {
             common_tool.messager_show('请选择职位');
-        } else if ($("#user-permissions").datagrid("getChecked").length == 0) {
-            common_tool.messager_show('请选择权限');
-        } else {
+        }
+        // else if ($("#user-permissions").datagrid("getChecked").length == 0) {
+        //     common_tool.messager_show('请选择权限');
+        // }
+        else {
             var id = $('#user_edit_dialog input[id="id"]').val();
             var loginName = $('#user_edit_dialog input[id="loginName"]').val();
             var zhName = $('#user_edit_dialog input[id="zhName"]').val();
