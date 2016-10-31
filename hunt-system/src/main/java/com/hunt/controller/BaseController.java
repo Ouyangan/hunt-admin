@@ -46,6 +46,8 @@ public class BaseController {
         log.debug("begin verifyCaptcha");
         int verifyResult = 0;
         GeetestLib gtSdk = new GeetestLib(GeetestConfig.getGeetest_id(), GeetestConfig.getGeetest_key());
+        log.debug(gtSdk.getCaptchaId());
+        log.debug(gtSdk.getPrivateKey());
         String challenge = request.getParameter(GeetestLib.fn_geetest_challenge);
         String validate = request.getParameter(GeetestLib.fn_geetest_validate);
         String seccode = request.getParameter(GeetestLib.fn_geetest_seccode);
@@ -60,9 +62,6 @@ public class BaseController {
         log.debug("verifyResult : {}", verifyResult);
         return verifyResult == 1;
     }
-
-
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
 
 
     @ExceptionHandler(value = Exception.class)
@@ -100,7 +99,9 @@ public class BaseController {
         } else {
             result = Result.instance(ResponseCode.error.getCode(), ResponseCode.error.getMsg());
         }
-        result.setData(StringUtil.exceptionDetail(exception));
+        if (systemService.selectDataItemByKey("error_detail", 2L).equals("true")) {
+            result.setData(StringUtil.exceptionDetail(exception));
+        }
         return result;
     }
 }

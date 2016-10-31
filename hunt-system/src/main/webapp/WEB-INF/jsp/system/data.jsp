@@ -21,15 +21,15 @@
     <form action="#" id="save-data-form">
         <input type="hidden" id="id" name="id">
         <div style="float: left;height: 300px;">
-            <p style="padding: 10px;">&nbsp;&nbsp;名称:<input name="keyName" id="keyName"
+            <p style="padding: 10px;">&nbsp;&nbsp;名称:<input name="data_keyName" id="data_keyName"
                                                             style="width: 300px;height: 35px"
                                                             data-options="required:true"
                                                             class="easyui-textbox easyui-validatebox"></p>
-            <p style="padding: 10px ;">&nbsp;&nbsp;&nbsp;值:<input name="keyValue" id="keyValue"
+            <p style="padding: 10px ;">&nbsp;&nbsp;&nbsp;值:<input name="data_keyValue" id="data_keyValue"
                                                                   style="width: 300px;height: 35px"
                                                                   data-options="required:true"
                                                                   class="easyui-textbox easyui-validatebox"></p>
-            <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="description" id="description"
+            <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="data_description" id="data_description"
                                                              style="width: 300px;height: 130px"
                                                              data-options="required:true,multiline:true"
                                                              class="easyui-textbox easyui-validatebox">
@@ -64,11 +64,11 @@
     <div>
         <form id="save-data-group-form" style="padding: 10px;">
             <div style="float: left;">
-                <p style="padding: 10px;">&nbsp;&nbsp;名称:<input name="name" id="group_name"
+                <p style="padding: 10px;">&nbsp;&nbsp;名称:<input name="data_name" id="data_group_name"
                                                                 style="width: 300px;height: 35px"
                                                                 data-options="required:true"
                                                                 class="easyui-textbox easyui-validatebox"></p>
-                <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="description" id="group_description"
+                <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="data_description" id="data_group_description"
                                                                  style="width: 300px;height: 130px"
                                                                  data-options="required:true,multiline:true"
                                                                  class="easyui-textbox easyui-validatebox">

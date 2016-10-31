@@ -30,20 +30,20 @@ permission_tool = {
         }
     },
     save_permission: function () {
-        if (!$("#name").validatebox('isValid')) {
+        if (!$("#permission_name").validatebox('isValid')) {
             common_tool.messager_show("请输入权限名称");
-        } else if (!$("#code").validatebox('isValid')) {
+        } else if (!$("#permission_code").validatebox('isValid')) {
             common_tool.messager_show("请输入权限编码");
         }
-        else if (!$("#name").validatebox('isValid')) {
+        else if (!$("#permission_description").validatebox('isValid')) {
             common_tool.messager_show("请输入权限描述");
         }
         else if ($("#permission-group").treegrid("getChecked").length == 0) {
             common_tool.messager_show("请选择权限组");
         } else {
-            var name = $("#name").val();
-            var code = $("#code").val();
-            var description = $("#description").val();
+            var name = $("#permission_name").val();
+            var code = $("#permission_code").val();
+            var description = $("#permission_description").val();
             var groupId = $("#permission-group").treegrid("getChecked")[0].id;
             $.ajax({
                 data: {
@@ -71,22 +71,22 @@ permission_tool = {
         }
     },
     update_permission: function () {
-        if (!$("#name").validatebox('isValid')) {
-            common_tool.messager_show("请输入权限名称1");
-        } else if (!$("#code").validatebox('isValid')) {
+        if (!$("#permission_name").validatebox('isValid')) {
+            common_tool.messager_show("请输入权限名称");
+        } else if (!$("#permission_code").validatebox('isValid')) {
             common_tool.messager_show("请输入权限编码");
         }
-        else if (!$("#name").validatebox('isValid')) {
+        else if (!$("#permission_description").validatebox('isValid')) {
             common_tool.messager_show("请输入权限描述");
         }
         else if ($("#permission-group").treegrid("getChecked").length == 0) {
             common_tool.messager_show("请选择权限组");
         } else {
-            var id = $("#id").val();
-            var name = $("#name").val();
-            var code = $("#code").val();
-            var description = $("#description").val();
+            var name = $("#permission_name").val();
+            var code = $("#permission_code").val();
+            var description = $("#permission_description").val();
             var groupId = $("#permission-group").treegrid("getChecked")[0].id;
+            var id = $("#id").val();
             $.ajax({
                 data: {
                     id: id,
@@ -114,13 +114,13 @@ permission_tool = {
         }
     },
     insert_permission_group: function () {
-        if (!$("#group_name").validatebox('isValid')) {
+        if (!$("#permission_group_name").validatebox('isValid')) {
             common_tool.messager_show("请输入权限名称");
-        } else if (!$("#group_description").validatebox('isValid')) {
+        } else if (!$("#permission_group_name").validatebox('isValid')) {
             common_tool.messager_show("请输入权限编码");
         } else {
-            var group_name = $("#group_name").val();
-            var group_description = $("#group_description").val();
+            var group_name = $("#permission_group_name").val();
+            var group_description = $("#permission_group_name").val();
             $.ajax({
                 data: {
                     name: group_name,
@@ -308,9 +308,9 @@ $(document).ready(function () {
         var permission = $("#permission_grid").datagrid('getChecked')[0];
         $("#save-permission-form").form('load', {
             'id': permission.id,
-            'name': permission.name,
-            'code': permission.code,
-            'description': permission.description,
+            'permission_name': permission.name,
+            'permission_code': permission.code,
+            'permission_description': permission.description,
         });
         permission_tool.init_edit_view(2, permission.sysPermissionGroupId);
     });

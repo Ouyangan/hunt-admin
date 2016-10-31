@@ -541,4 +541,20 @@ public class GeetestLib {
         }
         return re_md5;
     }
+
+    public String getCaptchaId() {
+        return captchaId;
+    }
+
+    public void setCaptchaId(String captchaId) {
+        this.captchaId = captchaId;
+    }
+
+    public String getPrivateKey() {
+        return privateKey;
+    }
+
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+    }
 }

@@ -64,9 +64,9 @@ public class SystemController extends BaseController {
                         @RequestParam String password,
                         @RequestParam int platform,
                         HttpServletRequest request) throws Exception {
-//        if (!verifyCaptcha(request)) {
-//            return Result.instance(ResponseCode.verify_captcha_error.getCode(), ResponseCode.verify_captcha_error.getMsg());
-//        }
+        if (!verifyCaptcha(request)) {
+            return Result.instance(ResponseCode.verify_captcha_error.getCode(), ResponseCode.verify_captcha_error.getMsg());
+        }
         SysUser user = sysUserService.selectByLoginName(loginName);
         if (user == null) {
             return Result.instance(ResponseCode.unknown_account.getCode(), ResponseCode.unknown_account.getMsg());
@@ -101,7 +101,7 @@ public class SystemController extends BaseController {
      */
     @ResponseBody
     @RequestMapping(value = "captcha", method = RequestMethod.GET)
-    public String StartCaptcha(HttpServletRequest request) {
+    public String captcha(HttpServletRequest request) {
         GeetestLib gtSdk = new GeetestLib(GeetestConfig.getGeetest_id(), GeetestConfig.getGeetest_key());
         int gtServerStatus = gtSdk.preProcess();
         request.getSession().setAttribute(gtSdk.gtServerStatusSessionKey, gtServerStatus);

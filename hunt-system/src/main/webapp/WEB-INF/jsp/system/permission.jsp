@@ -21,14 +21,14 @@
     <form action="#" id="save-permission-form">
         <input type="hidden" id="id" name="id">
         <div style="float: left;height: 300px;">
-            <p style="padding: 10px;">&nbsp;&nbsp;名称:<input name="name" id="name" style="width: 300px;height: 35px"
+            <p style="padding: 10px;">&nbsp;&nbsp;名称:<input name="permission_name" id="permission_name" style="width: 300px;height: 35px"
                                                             data-options="required:true"
                                                             class="easyui-textbox easyui-validatebox"></p>
-            <p style="padding: 10px ;">&nbsp;&nbsp;编码:<input name="code" id="code"
+            <p style="padding: 10px ;">&nbsp;&nbsp;编码:<input name="permission_code" id="permission_code"
                                                              style="width: 300px;height: 35px"
                                                              data-options="required:true"
                                                              class="easyui-textbox easyui-validatebox"></p>
-            <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="description" id="description"
+            <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="permission_description" id="permission_description"
                                                              style="width: 300px;height: 130px"
                                                              data-options="required:true,multiline:true"
                                                              class="easyui-textbox easyui-validatebox">
@@ -63,11 +63,11 @@
     <div>
         <form action="#" id="save-permission-group-form" style="padding: 10px;">
             <div style="float: left;">
-                <p style="padding: 10px;">&nbsp;&nbsp;名称:<input name="name" id="group_name"
+                <p style="padding: 10px;">&nbsp;&nbsp;名称:<input name="permission_group_name" id="permission_group_name"
                                                                 style="width: 300px;height: 35px"
                                                                 data-options="required:true"
                                                                 class="easyui-textbox easyui-validatebox"></p>
-                <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="description" id="group_description"
+                <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="permission_group_description" id="permission_group_description"
                                                                  style="width: 300px;height: 130px"
                                                                  data-options="required:true,multiline:true"
                                                                  class="easyui-textbox easyui-validatebox">

@@ -31,14 +31,14 @@ data_tool = {
         }
     },
     validatebox: function () {
-        if (!$("#save-data-dialog input[id='keyName']").validatebox('isValid')) {
+        if (!$("#save-data-dialog input[id='data_keyName']").validatebox('isValid')) {
             common_tool.messager_show("请输入权限名称");
             return false;
-        } else if (!$("#save-data-dialog input[id='keyValue']").validatebox('isValid')) {
+        } else if (!$("#save-data-dialog input[id='data_keyValue']").validatebox('isValid')) {
             common_tool.messager_show("请输入权限编码");
             return false;
         }
-        else if (!$("#save-data-dialog input[id='description']").validatebox('isValid')) {
+        else if (!$("#save-data-dialog input[id='data_description']").validatebox('isValid')) {
             common_tool.messager_show("请输入权限描述");
             return false;
         }
@@ -52,9 +52,9 @@ data_tool = {
         if (!data_tool.validatebox()) {
             return false;
         }
-        var name = $("#save-data-dialog input[id='keyName']").val();
-        var code = $("#save-data-dialog input[id='keyValue']").val();
-        var description = $("#save-data-dialog input[id='description']").val();
+        var name = $("#save-data-dialog input[id='data_keyName']").val();
+        var code = $("#save-data-dialog input[id='data_keyValue']").val();
+        var description = $("#save-data-dialog input[id='data_description']").val();
         var groupId = $("#save-data-dialog table[id='data-group']").treegrid("getChecked")[0].id;
         $.ajax({
             data: {
@@ -85,10 +85,10 @@ data_tool = {
             return false;
         }
         var id = $("#save-data-dialog input[id='id']").val();
-        var key = $("#save-data-dialog input[id='keyName']").val();
-        var value = $("#save-data-dialog input[id='keyValue']").val();
-        var description = $("#save-data-dialog input[id='description']").val();
-        var groupId = $("#save-data-dialog table[id='data-group']").treegrid("getChecked")[0].id;
+        var key = $("#save-data-dialog input[id='data_keyName']").val();
+        var value = $("#save-data-dialog input[id='data_keyValue']").val();
+        var description = $("#save-data-dialog input[id='data_description']").val();
+        var groupId = $("#save-data-dialog table[id='data_data-group']").treegrid("getChecked")[0].id;
         $.ajax({
             data: {
                 id: id,
@@ -115,13 +115,13 @@ data_tool = {
         });
     },
     insert_data_group: function () {
-        if (!$("#save-data-group-dialog input[id='group_name']").validatebox('isValid')) {
+        if (!$("#save-data-group-dialog input[id='data_group_name']").validatebox('isValid')) {
             common_tool.messager_show("请输入名称");
-        } else if (!$("#save-data-group-dialog input[id='group_description']").validatebox('isValid')) {
+        } else if (!$("#save-data-group-dialog input[id='data_group_description']").validatebox('isValid')) {
             common_tool.messager_show("请输入描述");
         } else {
-            var group_name = $("#save-data-group-dialog  input[id='group_name']").val();
-            var group_description = $("#save-data-group-dialog input[id='group_description']").val();
+            var group_name = $("#save-data-group-dialog  input[id='data_group_name']").val();
+            var group_description = $("#save-data-group-dialog input[id='data_group_description']").val();
             $.ajax({
                 data: {
                     name: group_name,
@@ -309,9 +309,9 @@ $(document).ready(function () {
         var data = $("#data_grid").datagrid('getChecked')[0];
         $("#save-data-form").form('load', {
             'id': data.id,
-            'keyName': data.keyName,
-            'keyValue': data.keyValue,
-            'description': data.description,
+            'data_keyName': data.keyName,
+            'data_keyValue': data.keyValue,
+            'data_description': data.description,
         });
         data_tool.init_edit_view(2, data.sysDataGroupId);
     });
