@@ -104,7 +104,7 @@
                         </li>
                     </div>
                 </shiro:hasPermission>
-                <%--<shiro:hasPermission name="ip:list">--%>
+                <shiro:hasPermission name="ip:list">
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
@@ -112,7 +112,7 @@
                             </div>
                         </li>
                     </div>
-                <%--</shiro:hasPermission>--%>
+                </shiro:hasPermission>
                 <shiro:hasPermission name="db:select">
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
