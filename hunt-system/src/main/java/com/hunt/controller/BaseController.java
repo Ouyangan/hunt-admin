@@ -101,7 +101,7 @@ public class BaseController {
             response.getWriter().flush();
             response.getWriter().close();
         } else {
-            String url = "/error/500";
+            String url = "/error/internalError";
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=UTF-8");
             if (exception instanceof UnauthorizedException) {

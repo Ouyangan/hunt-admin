@@ -7,10 +7,10 @@
         <property name="securityManager" ref="securityManager"/>
         <!--<property name="loginUrl" value="/"/>-->
         <property name="filters">
-           <map>
-               <entry key="authc" value-ref="authenticationFilter"/>
-               <entry key="authc" value-ref="authorizationFilter"/>
-           </map>
+            <map>
+                <entry key="authc" value-ref="authenticationFilter"/>
+                <entry key="authc" value-ref="authorizationFilter"/>
+            </map>
         </property>
         <property name="filterChainDefinitions">
             <value>
@@ -18,7 +18,6 @@
                 /static/**=anon
                 /system/logout = anon
                 /system/login=anon
-                /=anon
                 /oauth/**=anon
                 /error/404=anon
                 /error/500=anon

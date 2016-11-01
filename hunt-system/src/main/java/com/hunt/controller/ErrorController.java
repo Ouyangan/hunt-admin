@@ -31,7 +31,7 @@ public class ErrorController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "404", method = RequestMethod.GET)
+    @RequestMapping(value = "notFound", method = RequestMethod.GET)
     public String notFound() {
         return "system/404";
     }
@@ -41,7 +41,7 @@ public class ErrorController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "500", method = RequestMethod.GET)
+    @RequestMapping(value = "internalError", method = RequestMethod.GET)
     public String internalError() {
         return "system/500";
     }
