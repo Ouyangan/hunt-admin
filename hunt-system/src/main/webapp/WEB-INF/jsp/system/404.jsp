@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>404页面未找到</title>
 </head>
 <body>
-500
+404页面未找到
 </body>
 </html>

@@ -5,11 +5,11 @@
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <!--<property name="loginUrl" value="/"/>-->
+        <property name="loginUrl" value="/"/>
         <property name="filters">
             <map>
-                <entry key="authc" value-ref="authenticationFilter"/>
                 <entry key="authc" value-ref="authorizationFilter"/>
+                <entry key="authc" value-ref="authenticationFilter"/>
             </map>
         </property>
         <property name="filterChainDefinitions">
@@ -22,6 +22,7 @@
                 /error/404=anon
                 /error/500=anon
                 /error/unAuthorization=anon
+                /system/welcome=authc
                 /**=authc
             </value>
         </property>

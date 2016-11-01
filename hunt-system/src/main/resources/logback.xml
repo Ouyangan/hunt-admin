@@ -58,17 +58,17 @@
         </encoder>
     </appender>
 
-    <logger name="org.springframework" level="error"/>
-    <logger name="org.springframework.web.servlet.handler" level="error"/>
-    <logger name="org.springframework.beans.factory.support" level="error"/>
-    <logger name="org.springframework.data.redis.core.RedisConnectionUtils" level="error"/>
-    <logger name="org.apache.ibatis" level="error"/>
-    <logger name="org.mybatis.spring" level="error"/>
-    <logger name="com.alibaba.druid" level="error"/>
-    <logger name="com.hunt.system.security.shiro.RedisSessionDao" level="error"/>
-    <logger name="com.hunt.dao" level="debug"/>
-    <logger name="org.apache.shiro.web.servlet.SimpleCookie" level="error"/>
-    <logger name="org.apache.http" level="error"/>
+    <!--<logger name="org.springframework" level="error"/>-->
+    <!--<logger name="org.springframework.web.servlet.handler" level="error"/>-->
+    <!--<logger name="org.springframework.beans.factory.support" level="error"/>-->
+    <!--<logger name="org.springframework.data.redis.core.RedisConnectionUtils" level="error"/>-->
+    <!--<logger name="org.apache.ibatis" level="error"/>-->
+    <!--<logger name="org.mybatis.spring" level="error"/>-->
+    <!--<logger name="com.alibaba.druid" level="error"/>-->
+    <!--<logger name="com.hunt.system.security.shiro.RedisSessionDao" level="error"/>-->
+    <!--<logger name="com.hunt.dao" level="debug"/>-->
+    <!--<logger name="org.apache.shiro.web.servlet.SimpleCookie" level="error"/>-->
+    <!--<logger name="org.apache.http" level="error"/>-->
 
     <root level="debug">
         <appender-ref ref="STDOUT"/>

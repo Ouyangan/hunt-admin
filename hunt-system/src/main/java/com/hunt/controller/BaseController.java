@@ -7,12 +7,12 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.session.UnknownSessionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import system.ResponseCode;
 import system.Result;
@@ -105,10 +105,16 @@ public class BaseController {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=UTF-8");
             if (exception instanceof UnauthorizedException) {
+                log.debug("未授权");
                 url = "/error/unAuthorization";
             } else if (exception instanceof UnauthenticatedException) {
+                log.debug("未登录");
                 //未登录
                 url = "/";
+            } else if (exception instanceof UnknownSessionException) {
+                //未找到页面
+                log.debug("未找到页面");
+                url = "/error/notFound";
             }
             response.sendRedirect(url);
         }

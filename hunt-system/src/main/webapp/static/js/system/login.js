@@ -48,13 +48,13 @@ $(document).ready(function () {
                                 loginName: $("#username").val(),
                                 password: $("#password").val(),
                                 platform: 1,
-                                // geetest_challenge: $("input[name='geetest_challenge']").val(),
-                                // geetest_validate: $("input[name='geetest_validate']").val(),
-                                // geetest_seccode: $("input[name='geetest_seccode']").val(),
+                                geetest_challenge: $("input[name='geetest_challenge']").val(),
+                                geetest_validate: $("input[name='geetest_validate']").val(),
+                                geetest_seccode: $("input[name='geetest_seccode']").val(),
                             },
                             success: function (data) {
                                 if (data.code == 10000) {
-                                    location.href = "/system/index";
+                                    location.href = "/system/welcome";
                                 } else if (data.code == 20001) {
                                     common_tool.messager_show(data.msg)
                                     $("#username").focus();
