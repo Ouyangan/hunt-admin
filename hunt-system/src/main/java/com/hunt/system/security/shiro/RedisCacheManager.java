@@ -14,7 +14,7 @@ import java.io.Serializable;
 /**
  * @Author ouyangan
  * @Date 2016/10/9/14:13
- * @Description
+ * @Description 接口实现
  */
 public class RedisCacheManager implements CacheManager, Serializable {
 

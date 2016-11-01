@@ -1,5 +1,6 @@
 package com.hunt.controller;
 
+import com.google.gson.Gson;
 import com.hunt.service.SystemService;
 import com.hunt.system.security.geetest.GeetestLib;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -19,6 +20,7 @@ import system.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * 基础controller,方便统一异常处理
@@ -59,45 +61,56 @@ public class BaseController {
         return verifyResult == 1;
     }
 
-
+    //根据请求类型,响应不同类型
     @ExceptionHandler(value = Exception.class)
-    @ResponseBody
-    public Result exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception exception) {
-        if (request.getHeader("Accept").contains("application/json")) {
-
-        } else {
-
-        }
+    public void exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception exception) throws IOException {
         log.error("exception occur : \n {}", StringUtil.exceptionDetail(exception));
-        Result result = Result.error();
-        //密码错误
-        if (exception instanceof IncorrectCredentialsException) {
-            result = Result.instance(ResponseCode.password_incorrect.getCode(), ResponseCode.password_incorrect.getMsg());
-            //账号不存在
-        } else if (exception instanceof UnknownAccountException) {
-            result = Result.instance(ResponseCode.unknown_account.getCode(), ResponseCode.unknown_account.getMsg());
-            //未授权
-        } else if (exception instanceof UnauthorizedException) {
-            result = Result.instance(ResponseCode.unauthorized.getCode(), ResponseCode.unauthorized.getMsg());
-            //未登录
-        } else if (exception instanceof UnauthenticatedException) {
-            result = Result.instance(ResponseCode.unauthenticated.getCode(), ResponseCode.unauthenticated.getMsg());
-            //缺少参数
-        } else if (exception instanceof MissingServletRequestParameterException) {
-            result = Result.instance(ResponseCode.missing_parameter.getCode(), ResponseCode.missing_parameter.getMsg());
-            //参数格式错误
-        } else if ((exception instanceof MethodArgumentTypeMismatchException)) {
-            result = Result.instance(ResponseCode.param_format_error.getCode(), ResponseCode.param_format_error.getMsg());
-            //ip限制
-        } else if (exception.getCause().getMessage().contains("com.hunt.system.exception.ForbiddenIpException")) {
-            result = Result.instance(ResponseCode.forbidden_ip.getCode(), ResponseCode.forbidden_ip.getMsg());
-            //其他错误
+        log.debug(request.getHeader("Accept"));
+        if (request.getHeader("Accept").contains("application/json")) {
+            log.debug("qingqiu");
+            Result result = Result.error();
+            if (exception instanceof IncorrectCredentialsException) {
+                result = Result.instance(ResponseCode.password_incorrect.getCode(), ResponseCode.password_incorrect.getMsg());
+                //账号不存在
+            } else if (exception instanceof UnknownAccountException) {
+                result = Result.instance(ResponseCode.unknown_account.getCode(), ResponseCode.unknown_account.getMsg());
+                //未授权
+            } else if (exception instanceof UnauthorizedException) {
+                result = Result.instance(ResponseCode.unauthorized.getCode(), ResponseCode.unauthorized.getMsg());
+                //未登录
+            } else if (exception instanceof UnauthenticatedException) {
+                result = Result.instance(ResponseCode.unauthenticated.getCode(), ResponseCode.unauthenticated.getMsg());
+                //缺少参数
+            } else if (exception instanceof MissingServletRequestParameterException) {
+                result = Result.instance(ResponseCode.missing_parameter.getCode(), ResponseCode.missing_parameter.getMsg());
+                //参数格式错误
+            } else if ((exception instanceof MethodArgumentTypeMismatchException)) {
+                result = Result.instance(ResponseCode.param_format_error.getCode(), ResponseCode.param_format_error.getMsg());
+                //ip限制
+            } else if (exception.getCause().getMessage().contains("com.hunt.system.exception.ForbiddenIpException")) {
+                result = Result.instance(ResponseCode.forbidden_ip.getCode(), ResponseCode.forbidden_ip.getMsg());
+                //其他错误
+            }
+            //调试时输出异常日志
+            if (systemService.selectDataItemByKey("error_detail", 2L).equals("true")) {
+                result.setData(StringUtil.exceptionDetail(exception));
+            }
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/json;charset=UTF-8");
+            response.getWriter().append(new Gson().toJson(result));
+            response.getWriter().flush();
+            response.getWriter().close();
         } else {
-            result = Result.instance(ResponseCode.error.getCode(), ResponseCode.error.getMsg());
+            String url = "/error/500";
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html;charset=UTF-8");
+            if (exception instanceof UnauthorizedException) {
+                url = "/error/unAuthorization";
+            } else if (exception instanceof UnauthenticatedException) {
+                //未登录
+                url = "/";
+            }
+            response.sendRedirect(url);
         }
-        if (systemService.selectDataItemByKey("error_detail", 2L).equals("true")) {
-            result.setData(StringUtil.exceptionDetail(exception));
-        }
-        return result;
     }
 }

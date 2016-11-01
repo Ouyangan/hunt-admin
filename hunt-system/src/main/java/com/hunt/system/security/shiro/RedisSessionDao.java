@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Author ouyangan
  * @Date 2016/10/8/11:25
- * @Description
+ * @Description session redis实现
  */
 public class RedisSessionDao extends AbstractSessionDAO {
     private static final String sessionIdPrefix = "shiro-session-";

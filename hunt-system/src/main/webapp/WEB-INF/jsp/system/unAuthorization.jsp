@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>未授权啊</title>
 </head>
 <body>
-500
+未授权啊
 </body>
 </html>

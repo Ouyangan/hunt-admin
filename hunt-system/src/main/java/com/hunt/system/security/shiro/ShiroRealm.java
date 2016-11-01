@@ -24,6 +24,7 @@ import java.util.Set;
 /**
  * @Author: ouyangan
  * @Date : 2016/10/7
+ * @Description 自定义realm实现
  */
 public class ShiroRealm extends AuthorizingRealm {
     private static Logger log = LoggerFactory.getLogger(ShiroRealm.class);
@@ -41,7 +42,6 @@ public class ShiroRealm extends AuthorizingRealm {
     private SysRoleOrganizationMapper sysRoleOrganizationMapper;
     @Autowired
     private SysRolePermissionMapper sysRolePermissionMapper;
-
     @Autowired
     private RedisTemplate<Object, Object> redisTemplate;
 
