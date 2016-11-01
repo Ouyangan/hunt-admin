@@ -29,9 +29,9 @@
 
 
         <br><br>
-        <hr>
+        <%--<hr>--%>
 
-        <div id="github" class="easyui-linkbutton">使用github登录</div>
+        <%--<div id="github" class="easyui-linkbutton">使用github登录</div>--%>
     </div>
 </div>
 </body>
