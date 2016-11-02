@@ -228,6 +228,7 @@ public class SystemServiceImpl implements SystemService {
 
     @Override
     public boolean isForbiddenIp(String remoteAddr) {
+//        redisTemplate.opsForSet()
         return false;
     }
 
