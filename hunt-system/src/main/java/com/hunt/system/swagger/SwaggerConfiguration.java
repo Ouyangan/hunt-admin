@@ -23,7 +23,7 @@ public class SwaggerConfiguration {
 //                .genericModelSubstitutes(DeferredResult.class)
 //                .useDefaultResponseMessages(false)
 //                .forCodeGeneration(false)
-//                .pathMapping("/")
+                .pathMapping("/")
 //                .select()
 //                .build()
                 .apiInfo(apiInfo());
