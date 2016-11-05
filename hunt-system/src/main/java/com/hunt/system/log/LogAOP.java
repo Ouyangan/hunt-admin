@@ -11,6 +11,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Aspect
 @Component
+@Order(2)
 public class LogAOP {
     private static final Logger logger = LoggerFactory.getLogger(LogAOP.class);
 
@@ -71,7 +73,7 @@ public class LogAOP {
         log.setUserAgent(request.getHeader("user-agent"));
         systemService.insertSysControllerLog(log);
 
-        logger.info("request contentType:{}",request.getHeader("Accept"));
+        logger.info("request contentType:{}", request.getHeader("Accept"));
         logger.info("request param : {}", log.getParam());
         logger.info("reuest method : {}", request.getMethod());
         logger.info("request url : {}", log.getUrl());

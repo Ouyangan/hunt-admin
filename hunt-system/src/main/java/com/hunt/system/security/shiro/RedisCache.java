@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author ouyangan
@@ -19,7 +20,7 @@ import java.util.Set;
  * @Description Cache redis实现
  */
 public class RedisCache<K, V> implements Cache<K, V>, Serializable {
-
+    private static final long timeout = 2592000;
     private transient static Logger log = LoggerFactory.getLogger(RedisCache.class);
 
     private transient RedisTemplate<K, V> redisTemplate;
@@ -42,7 +43,7 @@ public class RedisCache<K, V> implements Cache<K, V>, Serializable {
     @Override
     public V put(K key, V value) throws CacheException {
         log.debug("根据key:{}从redis删除对象", key);
-        redisTemplate.opsForValue().set((K) (SystemConstant.shiro_cache_prefix + key), value);
+        redisTemplate.opsForValue().set((K) (SystemConstant.shiro_cache_prefix + key), value,timeout, TimeUnit.SECONDS);
         return value;
     }
 

@@ -2,6 +2,8 @@
 <script type="text/javascript" src="/static/js/system/ip.js"></script>
 <script type="text/javascript" src="/static/js/system/common.js"></script>
 <div id="ip-tool-bar" style="padding: 10px">
+    <strong>拦截开关:</strong><div class="easyui-switchbutton  " id="ip-switchButton-btn" style="width:70px">
+    </div>
     <div class="easyui-linkbutton  " id="ip-select-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
     </div>
     <div class="easyui-linkbutton " id="ip-save-btn" data-options="iconCls:'icon-add'" style="width:70px">新增</div>

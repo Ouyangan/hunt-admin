@@ -16,10 +16,8 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import sun.text.normalizer.UBiDiProps;
 import system.ResponseCode;
 import system.Result;
 import system.StringUtil;
@@ -440,6 +438,27 @@ public class SystemController extends BaseController {
                              @RequestParam(defaultValue = "30") int rows) {
         PageInfo pageInfo = systemService.selectIp(page, rows);
         return pageInfo;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "ip/intercept")
+    public Result intercept(@RequestParam boolean open) {
+        //启用
+        if (open == true) {
+            systemService.openIpIntercept();
+        }
+        //禁用
+        if (open == false) {
+            systemService.closeIpIntercept();
+        }
+        return Result.success();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "ip/intercept/status")
+    public Result interceptStatus() {
+        boolean ip_forbidden = systemService.selectIPForbiddenStatus();
+        return Result.success(ip_forbidden);
     }
 
 }

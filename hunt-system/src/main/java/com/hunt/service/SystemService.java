@@ -62,4 +62,10 @@ public interface SystemService {
     boolean isExistIpExcludeId(String ip, long id);
 
     boolean isForbiddenIp(String remoteAddr);
+
+    void openIpIntercept();
+
+    void closeIpIntercept();
+
+    boolean selectIPForbiddenStatus();
 }

@@ -65,7 +65,6 @@ public class BaseController {
     @ExceptionHandler(value = Exception.class)
     public void exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception exception) throws IOException {
         log.error("exception occur : \n {}", StringUtil.exceptionDetail(exception));
-        log.debug(request.getHeader("Accept"));
         if (request.getHeader("Accept").contains("application/json")) {
             log.debug("qingqiu");
             Result result = Result.error();

@@ -223,13 +223,14 @@ public class SystemServiceImpl implements SystemService {
 
     @Override
     public boolean isExistIpExcludeId(String ip, long id) {
-        return sysIpForbiddenMapper.isExistIpExcludeId(ip,id);
+        return sysIpForbiddenMapper.isExistIpExcludeId(ip, id);
     }
 
     @Override
     public boolean isForbiddenIp(String remoteAddr) {
-//        redisTemplate.opsForSet()
-        return false;
+        Boolean result = redisTemplate.opsForSet().isMember("ip_intercepter", remoteAddr);
+        log.debug("isForbiddenIp result : {}", result);
+        return result;
     }
 
     @Override
@@ -238,4 +239,43 @@ public class SystemServiceImpl implements SystemService {
         sysDataItemMapper.update(sysDataItem);
     }
 
+    @Override
+    public void openIpIntercept() {
+        //更新字典数据
+        SysDataItem sysDataItem = new SysDataItem();
+        sysDataItem.setId(4L);
+        sysDataItem.setKeyValue("true");
+        sysDataItemMapper.update(sysDataItem);
+        //删除缓存
+        redisTemplate.opsForValue().getOperations().delete("3-ip_forbidden");
+        List<SysIpForbidden> sysIpForbiddens = sysIpForbiddenMapper.selectAll();
+        for (SysIpForbidden sysIpForbidden : sysIpForbiddens) {
+            long time = System.currentTimeMillis() - sysIpForbidden.getExpireTime().getTime();
+            log.debug("time:{}", time);
+            if (time < 0) {
+                redisTemplate.opsForSet().add("ip_intercepter", sysIpForbidden.getIp());
+            }
+        }
+    }
+
+    @Override
+    public void closeIpIntercept() {
+        //更新字典数据
+        SysDataItem sysDataItem = new SysDataItem();
+        sysDataItem.setId(4L);
+        sysDataItem.setKeyValue("false");
+        sysDataItemMapper.update(sysDataItem);
+        //删除缓存
+        redisTemplate.opsForValue().getOperations().delete("3-ip_forbidden");
+        redisTemplate.opsForSet().getOperations().delete("ip_intercepter");
+    }
+
+    @Override
+    public boolean selectIPForbiddenStatus() {
+        SysDataItem sysDataItem = sysDataItemMapper.selectById(4L);
+        if (sysDataItem.getKeyValue().equals("true")) {
+            return true;
+        }
+        return false;
+    }
 }

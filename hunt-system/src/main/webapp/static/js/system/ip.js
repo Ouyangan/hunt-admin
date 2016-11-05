@@ -1,5 +1,24 @@
 ip_tool = {
     init_main_view: function () {
+        $.ajax({
+            data: {},
+            method: 'get',
+            url: '/system/ip/intercept/status',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                console.log(result)
+                if (result.code == 10000) {
+                    $('#ip-switchButton-btn').switchbutton({
+                        checked: result.data,
+                    })
+                    return false;
+                }
+                else {
+                    common_tool.messager_show(result.msg);
+                }
+            },
+        });
         $("#ip_grid").datagrid({
             url: "/system/ip/list",
             method: 'get',
@@ -223,5 +242,31 @@ $(document).ready(function () {
             }
         });
     });
+    $('#ip-switchButton-btn').switchbutton({
+        onText: '已启用',
+        offText: '已关闭',
+        onChange: function (checked) {
+            console.log(checked)
+            $.ajax({
+                data: {
+                    open: checked,
+                },
+                method: 'get',
+                url: '/system/ip/intercept',
+                async: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code == 10000) {
+                        ip_tool.init_main_view();
+                        common_tool.messager_show(result.msg);
+                        return false;
+                    }
+                    else {
+                        common_tool.messager_show(result.msg);
+                    }
+                },
+            });
+        }
+    })
 
 });
