@@ -4,6 +4,8 @@ import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysUser;
 import com.hunt.service.SysUserService;
 import com.hunt.service.SystemService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,7 @@ import java.util.UUID;
  * @Date 2016/10/8/13:37
  * @Description
  */
+@Api(value = "用户管理")
 @Controller
 @RequestMapping("user")
 public class UserController extends BaseController {
@@ -57,6 +60,7 @@ public class UserController extends BaseController {
      * @param permissionIds 权限ids
      * @return
      */
+    @ApiOperation(value = "新增用户")
     @RequiresPermissions("user:insert")
     @ResponseBody
     @RequestMapping(value = "insert", method = RequestMethod.POST)
@@ -185,7 +189,7 @@ public class UserController extends BaseController {
                            @RequestParam int rows,
                            @RequestParam(defaultValue = "zhName") String sort,
                            @RequestParam(defaultValue = "asc") String order,
-                           @RequestParam(defaultValue = "") String loginName,
+                           @RequestParam(defaultValue = "", required = false) String loginName,
                            @RequestParam(defaultValue = "") String zhName,
                            @RequestParam(defaultValue = "") String email,
                            @RequestParam(defaultValue = "") String phone,

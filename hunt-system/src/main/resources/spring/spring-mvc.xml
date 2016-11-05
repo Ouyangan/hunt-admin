@@ -35,4 +35,14 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="maxUploadSize" value="102400000"/>
     </bean>
+
+    <!--Standard xml based mvc config-->
+    <mvc:annotation-driven enable-matrix-variables="true"/>
+
+    <!-- Enables swgger ui-->
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+    <!-- Include a swagger configuration-->
+    <bean name="/applicationSwaggerConfig" class="com.hunt.system.swagger.SwaggerConfiguration"/>
 </beans>

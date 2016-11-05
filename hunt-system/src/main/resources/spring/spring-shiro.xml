@@ -22,6 +22,10 @@
                 /error/404=anon
                 /error/500=anon
                 /error/unAuthorization=anon
+                /v2/**/=anon
+                /webjars/**=anon
+                /swagger-resources/**=anon
+                /swagger-ui.html/**=anon
                 /system/welcome=authc
                 /**=authc
             </value>
