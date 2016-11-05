@@ -66,12 +66,12 @@ public class UserController extends BaseController {
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String loginName,
                          @RequestParam String zhName,
-                         @RequestParam(defaultValue = "") String enName,
+                         @RequestParam(defaultValue = "",required = false) String enName,
                          @RequestParam int sex,
-                         @RequestParam(defaultValue = "") String birth,
-                         @RequestParam(defaultValue = "") String email,
-                         @RequestParam(defaultValue = "") String phone,
-                         @RequestParam(defaultValue = "") String address,
+                         @RequestParam(defaultValue = "",required = false) String birth,
+                         @RequestParam(defaultValue = "",required = false) String email,
+                         @RequestParam(defaultValue = "",required = false) String phone,
+                         @RequestParam(defaultValue = "",required = false) String address,
                          @RequestParam String password,
                          @RequestParam(defaultValue = "1") int isFinal,
                          @RequestParam String jobIds,
@@ -141,10 +141,10 @@ public class UserController extends BaseController {
                          @RequestParam String zhName,
                          @RequestParam String enName,
                          @RequestParam int sex,
-                         @RequestParam(defaultValue = "") String birth,
-                         @RequestParam(defaultValue = "") String email,
-                         @RequestParam(defaultValue = "") String phone,
-                         @RequestParam(defaultValue = "") String address,
+                         @RequestParam(defaultValue = "",required = false) String birth,
+                         @RequestParam(defaultValue = "",required = false) String email,
+                         @RequestParam(defaultValue = "",required = false) String phone,
+                         @RequestParam(defaultValue = "",required = false) String address,
                          @RequestParam String jobIds,
                          @RequestParam String permissionIds) {
         boolean isExistLoginNameExlcudeId = sysUserService.isExistLoginNameExcludeId(id, loginName);
@@ -189,11 +189,11 @@ public class UserController extends BaseController {
                            @RequestParam int rows,
                            @RequestParam(defaultValue = "zhName") String sort,
                            @RequestParam(defaultValue = "asc") String order,
-                           @RequestParam(defaultValue = "", required = false) String loginName,
-                           @RequestParam(defaultValue = "") String zhName,
-                           @RequestParam(defaultValue = "") String email,
-                           @RequestParam(defaultValue = "") String phone,
-                           @RequestParam(defaultValue = "") String address) {
+                           @RequestParam(defaultValue = "",required = false) String loginName,
+                           @RequestParam(defaultValue = "",required = false) String zhName,
+                           @RequestParam(defaultValue = "",required = false) String email,
+                           @RequestParam(defaultValue = "",required = false) String phone,
+                           @RequestParam(defaultValue = "",required = false) String address) {
         PageInfo pageInfo = sysUserService.selectPage(page, rows, StringUtil.camelToUnderline(sort), order, loginName, zhName, email, phone, address);
         return pageInfo;
     }
