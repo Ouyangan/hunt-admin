@@ -2,9 +2,7 @@ package com.hunt.system.security.shiro;
 
 import com.google.gson.Gson;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.StringUtils;
 import org.apache.shiro.web.filter.authz.AuthorizationFilter;
-import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import system.ResponseCode;
@@ -30,7 +28,7 @@ public class ShiroAuthorizationFilter extends AuthorizationFilter {
         if (subject.getPrincipal() == null) {
             //未登录跳转至登陆页面
             saveRequest(request);
-            if (((HttpServletRequest)request).getHeader("Accept").contains("application/json")) {
+            if (((HttpServletRequest) request).getHeader("Accept").contains("application/json")) {
                 log.debug("登录认证:未通过:json");
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json;charset=UTF-8");
@@ -46,7 +44,7 @@ public class ShiroAuthorizationFilter extends AuthorizationFilter {
             }
         } else {
             //已登录未授权
-            if (((HttpServletRequest)request).getHeader("Accept").contains("application/json")) {
+            if (((HttpServletRequest) request).getHeader("Accept").contains("application/json")) {
                 log.debug("授权认证:未通过:json");
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json;charset=UTF-8");

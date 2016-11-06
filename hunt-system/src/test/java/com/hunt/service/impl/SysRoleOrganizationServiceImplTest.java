@@ -106,7 +106,7 @@ public class SysRoleOrganizationServiceImplTest {
             service.insertRoleOrganization(ro1);
         }
         SysRoleOrganizationTree tree = service.selectSysRoleOrganizationTree(ro.getId());
-        assertTrue(tree.getChildren().size()==20);
+        assertTrue(tree.getChildren().size() == 20);
     }
 
     @Test
@@ -122,7 +122,7 @@ public class SysRoleOrganizationServiceImplTest {
             service.insertRoleOrganization(ro1);
         }
         List<SysRoleOrganizationTree> sysRoleOrganizationTrees = service.selectSysRoleOrganizationTreeChildrenList(ro.getId());
-        assertTrue(sysRoleOrganizationTrees.size()==20);
+        assertTrue(sysRoleOrganizationTrees.size() == 20);
     }
 
 }

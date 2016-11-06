@@ -2,11 +2,18 @@
 <script type="text/javascript" src="/static/js/system/permission.js"></script>
 <script type="text/javascript" src="/static/js/system/common.js"></script>
 <div id="permission-tool-bar" style="padding: 10px">
-    <div href="#" class="easyui-menubutton" menu="#save-permission-btn" data-options="iconCls:'icon-add'" style="width:70px">新增</div>
-    <div href="#" class="easyui-linkbutton" id="flash-permission" data-options="iconCls:'icon-reload'" style="width:70px">刷新</div>
-    <div href="#" class="easyui-linkbutton" id="update-permission" data-options="iconCls:'icon-edit'" style="width:70px">修改</div>
+    <div href="#" class="easyui-menubutton" menu="#save-permission-btn" data-options="iconCls:'icon-add'"
+         style="width:70px">新增
+    </div>
+    <div href="#" class="easyui-linkbutton" id="flash-permission" data-options="iconCls:'icon-reload'"
+         style="width:70px">刷新
+    </div>
+    <div href="#" class="easyui-linkbutton" id="update-permission" data-options="iconCls:'icon-edit'"
+         style="width:70px">修改
+    </div>
     <div href="#" class="easyui-linkbutton" id="delete-permission" data-options="iconCls:'icon-remove'"
-       style="width:70px">删除</div>
+         style="width:70px">删除
+    </div>
 </div>
 <div id="permission_grid" style="padding: 10px">
 
@@ -21,7 +28,8 @@
     <form action="#" id="save-permission-form">
         <input type="hidden" id="id" name="id">
         <div style="float: left;height: 300px;">
-            <p style="padding: 10px;">&nbsp;&nbsp;名称:<input name="permission_name" id="permission_name" style="width: 300px;height: 35px"
+            <p style="padding: 10px;">&nbsp;&nbsp;名称:<input name="permission_name" id="permission_name"
+                                                            style="width: 300px;height: 35px"
                                                             data-options="required:true"
                                                             class="easyui-textbox easyui-validatebox"></p>
             <p style="padding: 10px ;">&nbsp;&nbsp;编码:<input name="permission_code" id="permission_code"
@@ -67,7 +75,8 @@
                                                                 style="width: 300px;height: 35px"
                                                                 data-options="required:true"
                                                                 class="easyui-textbox easyui-validatebox"></p>
-                <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="permission_group_description" id="permission_group_description"
+                <p style="padding: 10px;"> &nbsp;&nbsp;描述:<input name="permission_group_description"
+                                                                 id="permission_group_description"
                                                                  style="width: 300px;height: 130px"
                                                                  data-options="required:true,multiline:true"
                                                                  class="easyui-textbox easyui-validatebox">

@@ -107,7 +107,7 @@ organization_tool = {
                     modal: true,
                     resizable: false,
                     'onOpen': function () {
-                            $("#organization_save_right").treegrid('select', organizationArray[0].parentId);
+                        $("#organization_save_right").treegrid('select', organizationArray[0].parentId);
                     },
                     'onClose': function () {
                         organization_tool.form_clear();

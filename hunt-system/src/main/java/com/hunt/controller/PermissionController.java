@@ -4,6 +4,8 @@ import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysPermission;
 import com.hunt.model.entity.SysPermissionGroup;
 import com.hunt.service.SysPermissionService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +22,7 @@ import java.util.List;
 /**
  * 权限模块
  */
+@Api("权限模块")
 @Controller
 @RequestMapping("permission")
 public class PermissionController extends BaseController {
@@ -28,6 +31,7 @@ public class PermissionController extends BaseController {
     @Autowired
     private SysPermissionService sysPermissionService;
 
+    @ApiOperation(value = "跳转至权限模块", httpMethod = "GET", produces = "text/html")
     @RequiresPermissions("permission:list")
     @RequestMapping(value = "permission", method = RequestMethod.GET)
     public String permission() {
@@ -44,6 +48,7 @@ public class PermissionController extends BaseController {
      * @param isFinal     是否可修改
      * @return
      */
+    @ApiOperation(value = "新增权限", httpMethod = "POST", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequiresPermissions("permission:insert")
     @RequestMapping(value = "insert", method = RequestMethod.POST)
@@ -78,6 +83,7 @@ public class PermissionController extends BaseController {
      * @param id id
      * @return
      */
+    @ApiOperation(value = "删除权限", httpMethod = "GET", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequiresPermissions("permission:delete")
     @RequestMapping(value = "delete", method = RequestMethod.GET)
@@ -105,6 +111,7 @@ public class PermissionController extends BaseController {
      * @param description 描述
      * @return
      */
+    @ApiOperation(value = "更新权限", httpMethod = "POST", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequiresPermissions("permission:update")
     @RequestMapping(value = "update", method = RequestMethod.POST)
@@ -143,6 +150,7 @@ public class PermissionController extends BaseController {
      * @param rows 分页大小
      * @return
      */
+    @ApiOperation(value = "查询权限列表", httpMethod = "GET", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequiresPermissions("permission:list")
     @RequestMapping(value = "select", method = RequestMethod.GET)
@@ -159,6 +167,7 @@ public class PermissionController extends BaseController {
      * @param description 描述
      * @return
      */
+    @ApiOperation(value = "新增权限组", httpMethod = "POST", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequiresPermissions("permission:group:insert")
     @RequestMapping(value = "group/insert", method = RequestMethod.POST)
@@ -181,6 +190,7 @@ public class PermissionController extends BaseController {
      *
      * @return
      */
+    @ApiOperation(value = "查询权限组", httpMethod = "GET", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequiresPermissions("permission:group:list")
     @RequestMapping(value = "group/list", method = RequestMethod.GET)

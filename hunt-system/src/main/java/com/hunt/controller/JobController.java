@@ -3,7 +3,8 @@ package com.hunt.controller;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysRoleOrganization;
 import com.hunt.service.SysRoleOrganizationService;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,7 +49,7 @@ public class JobController extends BaseController {
      * @param isFinal        是否可修改
      * @return
      */
-    @ApiOperation(value = "新增职位", httpMethod = "POST", produces = "application/json")
+    @ApiOperation(value = "新增职位", httpMethod = "POST", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequiresPermissions("job:insert")
     @RequestMapping(value = "insert", method = RequestMethod.POST)
@@ -87,6 +88,7 @@ public class JobController extends BaseController {
      * @param fullName       全称
      * @return
      */
+    @ApiOperation(value = "更新职位", httpMethod = "POST", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequiresPermissions("job:update")
     @RequestMapping(value = "update", method = RequestMethod.POST)
@@ -124,6 +126,7 @@ public class JobController extends BaseController {
      * @param id id
      * @return
      */
+    @ApiOperation(value = "删除职位", httpMethod = "GET", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequiresPermissions("job:delete")
     @RequestMapping(value = "delete", method = RequestMethod.GET)
@@ -148,6 +151,7 @@ public class JobController extends BaseController {
      * @param id   定级id
      * @return
      */
+    @ApiOperation(value = "删除职位", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @ResponseBody
     @RequiresPermissions("job:list")
     @RequestMapping(value = "select", method = RequestMethod.GET)

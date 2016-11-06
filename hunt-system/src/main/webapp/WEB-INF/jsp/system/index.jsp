@@ -27,7 +27,7 @@
 
     </div>
     <div style="float:right;height: 40px;padding: 0;">
-       <span>欢迎您:</span> &nbsp;&nbsp;<input id="logout-btn" class="easyui-menubutton logout" value="安全退出">
+        <span>欢迎您:</span> &nbsp;&nbsp;<input id="logout-btn" class="easyui-menubutton logout" value="安全退出">
     </div>
 </div>
 <div data-options="region:'west',border:true,split:true" style="text-align: center;width:160px;">

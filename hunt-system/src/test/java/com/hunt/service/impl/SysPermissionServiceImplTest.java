@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @Author: ouyangan
@@ -25,6 +25,7 @@ import static org.junit.Assert.*;
 public class SysPermissionServiceImplTest {
     @Autowired
     private SysPermissionService service;
+
     @Test
     public void isExistName() throws Exception {
         SysPermissionGroup pg = new SysPermissionGroup();
@@ -35,8 +36,8 @@ public class SysPermissionServiceImplTest {
         p.setName("test");
         p.setSysPermissionGroupId(pg.getId());
         service.insertPermission(p);
-        assertTrue(service.isExistName(pg.getId(),"test"));
-        assertTrue(!service.isExistName(pg.getId(),"test1"));
+        assertTrue(service.isExistName(pg.getId(), "test"));
+        assertTrue(!service.isExistName(pg.getId(), "test1"));
     }
 
     @Test
@@ -50,8 +51,8 @@ public class SysPermissionServiceImplTest {
         p.setCode("code");
         p.setSysPermissionGroupId(pg.getId());
         service.insertPermission(p);
-        assertTrue(service.isExistCode(pg.getId(),"code"));
-        assertTrue(!service.isExistCode(pg.getId(),"code1"));
+        assertTrue(service.isExistCode(pg.getId(), "code"));
+        assertTrue(!service.isExistCode(pg.getId(), "code1"));
     }
 
     @Test
@@ -109,8 +110,8 @@ public class SysPermissionServiceImplTest {
         p.setName("test");
         p.setSysPermissionGroupId(pg.getId());
         service.insertPermission(p);
-        assertTrue(service.isExistNameExcludeId(pg.getId(),pg.getId(),"test"));
-        assertTrue(!service.isExistNameExcludeId(pg.getId(),pg.getId(),"test1"));
+        assertTrue(service.isExistNameExcludeId(pg.getId(), pg.getId(), "test"));
+        assertTrue(!service.isExistNameExcludeId(pg.getId(), pg.getId(), "test1"));
 
     }
 
@@ -125,8 +126,8 @@ public class SysPermissionServiceImplTest {
         p.setCode("code");
         p.setSysPermissionGroupId(pg.getId());
         service.insertPermission(p);
-        assertTrue(service.isExistCodeExcludeId(pg.getId(),pg.getId(),"code"));
-        assertTrue(!service.isExistCodeExcludeId(pg.getId(),pg.getId(),"code1"));
+        assertTrue(service.isExistCodeExcludeId(pg.getId(), pg.getId(), "code"));
+        assertTrue(!service.isExistCodeExcludeId(pg.getId(), pg.getId(), "code1"));
     }
 
     @Test
@@ -143,7 +144,7 @@ public class SysPermissionServiceImplTest {
             service.insertPermission(p);
         }
         PageInfo pageInfo = service.selectPage(1, 30);
-        assertTrue(pageInfo.getTotal()>=30);
+        assertTrue(pageInfo.getTotal() >= 30);
     }
 
     @Test
@@ -161,7 +162,7 @@ public class SysPermissionServiceImplTest {
         pg.setName("test pg");
         pg.setDescription("desc");
         service.insertPermissionGroup(pg);
-        assertTrue(pg.getId()!=null);
+        assertTrue(pg.getId() != null);
     }
 
     @Test
@@ -171,7 +172,7 @@ public class SysPermissionServiceImplTest {
         pg.setDescription("desc");
         service.insertPermissionGroup(pg);
         List<SysPermissionGroup> sysPermissionGroups = service.selectGroup();
-        assertTrue(sysPermissionGroups.size()>=1);
+        assertTrue(sysPermissionGroups.size() >= 1);
     }
 
 }

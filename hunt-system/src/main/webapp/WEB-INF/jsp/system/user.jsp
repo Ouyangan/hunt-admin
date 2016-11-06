@@ -140,12 +140,13 @@
 <div id="password_edit_dialog">
     <form id="init_password_form" style="padding: 20px 0 0 0;">
         <p style="padding: 10px 0 10px 23px ;">&nbsp;&nbsp;密码:<input name="newPassword" type="password" id="newPassword"
-                                                        style="width: 300px;height: 35px"
-                                                        data-options="required:true,validType:['length[6,20]']"
-                                                        class="easyui-textbox easyui-validatebox"></p>
-        <p style="padding: 10px 0 10px 23px ;">重复密码:<input name="repeatNewPassword" type="password" id="repeatNewPassword"
-                                                        style="width: 300px;height: 35px"
-                                                        data-options="required:true,validType:['length[6,20]']"
-                                                        class="easyui-textbox easyui-validatebox"></p>
+                                                                     style="width: 300px;height: 35px"
+                                                                     data-options="required:true,validType:['length[6,20]']"
+                                                                     class="easyui-textbox easyui-validatebox"></p>
+        <p style="padding: 10px 0 10px 23px ;">重复密码:<input name="repeatNewPassword" type="password"
+                                                           id="repeatNewPassword"
+                                                           style="width: 300px;height: 35px"
+                                                           data-options="required:true,validType:['length[6,20]']"
+                                                           class="easyui-textbox easyui-validatebox"></p>
     </form>
 </div>

@@ -1,7 +1,6 @@
 package com.hunt.system.security.shiro;
 
 import com.google.gson.Gson;
-import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.PassThruAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +27,7 @@ public class ShiroAuthenticationFilter extends PassThruAuthenticationFilter {
             return true;
         } else {
             saveRequest(request);
-            if (((HttpServletRequest)request).getHeader("Accept").contains("application/json")) {
+            if (((HttpServletRequest) request).getHeader("Accept").contains("application/json")) {
                 log.debug("登录认证:未通过:json");
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json;charset=UTF-8");

@@ -47,7 +47,7 @@ public interface SystemService {
 
     SysDataItem selectDataItemById(Long id);
 
-    String selectDataItemByKey(String key,Long groupId);
+    String selectDataItemByKey(String key, Long groupId);
 
     Long insertIp(SysIpForbidden sysIpForbidden);
 

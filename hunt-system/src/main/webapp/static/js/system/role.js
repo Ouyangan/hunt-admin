@@ -66,12 +66,12 @@ role_tool = {
                     modal: true,
                     resizable: false,
                     'onOpen': function () {
-                            var role = $("#role_grid").datagrid("getChecked")[0];
-                            for (var i = 0; i < role.sysPermissions.length; i++) {
-                                $("#role-permissions").datagrid("selectRecord", role.sysPermissions[i].id);
-                            }
+                        var role = $("#role_grid").datagrid("getChecked")[0];
+                        for (var i = 0; i < role.sysPermissions.length; i++) {
+                            $("#role-permissions").datagrid("selectRecord", role.sysPermissions[i].id);
+                        }
                     },
-                    'onClose':function () {
+                    'onClose': function () {
                         role_tool.form_clear();
                     }
                 });

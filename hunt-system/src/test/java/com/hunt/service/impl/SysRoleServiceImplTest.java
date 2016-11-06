@@ -8,8 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.*;
-
 /**
  * @Author ouyangan
  * @Date 2016/10/27/17:56
@@ -22,6 +20,7 @@ public class SysRoleServiceImplTest {
 
     @Autowired
     private SysRoleService service;
+
     @Test
     public void isExsitRoleName() throws Exception {
 

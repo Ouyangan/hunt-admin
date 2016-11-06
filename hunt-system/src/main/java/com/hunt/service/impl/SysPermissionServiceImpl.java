@@ -1,6 +1,5 @@
 package com.hunt.service.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.hunt.dao.SysPermissionGroupMapper;
 import com.hunt.dao.SysPermissionMapper;
 import com.hunt.model.dto.PageInfo;

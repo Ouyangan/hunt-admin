@@ -244,19 +244,19 @@
         </profile>
     </profiles>
     <!--<repositories>-->
-        <!--<repository>-->
-            <!--&lt;!&ndash; Maven 自带的中央仓库使用的Id为central  如果其他的仓库声明也是用该Id就会覆盖中央仓库的配置 &ndash;&gt;-->
-            <!--<id>mvnrepository</id>-->
-            <!--<name>mvnrepository</name>-->
-            <!--<url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
-            <!--<layout>default</layout>-->
-            <!--<releases>-->
-                <!--<enabled>true</enabled>-->
-            <!--</releases>-->
-            <!--<snapshots>-->
-                <!--<enabled>false</enabled>-->
-            <!--</snapshots>-->
-        <!--</repository>-->
+    <!--<repository>-->
+    <!--&lt;!&ndash; Maven 自带的中央仓库使用的Id为central  如果其他的仓库声明也是用该Id就会覆盖中央仓库的配置 &ndash;&gt;-->
+    <!--<id>mvnrepository</id>-->
+    <!--<name>mvnrepository</name>-->
+    <!--<url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
+    <!--<layout>default</layout>-->
+    <!--<releases>-->
+    <!--<enabled>true</enabled>-->
+    <!--</releases>-->
+    <!--<snapshots>-->
+    <!--<enabled>false</enabled>-->
+    <!--</snapshots>-->
+    <!--</repository>-->
     <!--</repositories>-->
     <build>
         <finalName>hunt</finalName>

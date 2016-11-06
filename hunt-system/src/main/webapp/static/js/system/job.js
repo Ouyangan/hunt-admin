@@ -194,10 +194,10 @@ job_tool = {
                     modal: true,
                     resizable: false,
                     'onOpen': function () {
-                            var job = $("#job_grid").treegrid('getChecked')[0];
-                            $("#job_dialog_parent_tree").treegrid('select', job.parentId);
-                            $("#job_dialog_role").datagrid('selectRecord', job.sysRoleId);
-                            $("#job_dialog_organization").treegrid('select', job.sysOrganizationId);
+                        var job = $("#job_grid").treegrid('getChecked')[0];
+                        $("#job_dialog_parent_tree").treegrid('select', job.parentId);
+                        $("#job_dialog_role").datagrid('selectRecord', job.sysRoleId);
+                        $("#job_dialog_organization").treegrid('select', job.sysOrganizationId);
                     },
                     'onClose': function () {
                         job_tool.form_clear();

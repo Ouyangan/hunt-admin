@@ -217,16 +217,16 @@
     </select>
     <select id="isExistName" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_data_item
-                WHERE status = 1 AND sys_data_group_id = #{groupId} AND key_name = #{key}
+        SELECT *
+        FROM sys_data_item
+        WHERE status = 1 AND sys_data_group_id = #{groupId} AND key_name = #{key}
         )
     </select>
     <select id="isExistDataItemNameExcludeId" resultType="java.lang.Boolean">
         SELECT exists(
-                SELECT *
-                FROM sys_data_item
-                WHERE status = 1 AND id != #{id} AND key_name = #{key} AND sys_data_group_id = #{groupId}
+        SELECT *
+        FROM sys_data_item
+        WHERE status = 1 AND id != #{id} AND key_name = #{key} AND sys_data_group_id = #{groupId}
         )
     </select>
     <select id="selectByKey" resultType="java.lang.String">

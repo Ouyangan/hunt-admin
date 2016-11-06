@@ -3,6 +3,8 @@ package com.hunt.controller;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysOrganization;
 import com.hunt.service.SysOrganizationService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import system.Result;
 /**
  * 组织机构模块
  */
+@Api(value = "组织机构模块")
 @Controller
 @RequestMapping("organization")
 public class OrganizationController extends BaseController {
@@ -25,6 +28,7 @@ public class OrganizationController extends BaseController {
     @Autowired
     private SysOrganizationService sysOrganizationService;
 
+    @ApiOperation(value = "跳转至组织机构", httpMethod = "GET", produces = "text/html")
     @RequiresPermissions("organization:list")
     @RequestMapping(value = "organization", method = RequestMethod.GET)
     public String organization() {
@@ -42,6 +46,7 @@ public class OrganizationController extends BaseController {
      * @param isFinal     是否可修改
      * @return
      */
+    @ApiOperation(value = "新增机构", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("organization:insert")
     @ResponseBody
     @RequestMapping(value = "insert", method = RequestMethod.POST)
@@ -70,6 +75,7 @@ public class OrganizationController extends BaseController {
      * @param id
      * @return
      */
+    @ApiOperation(value = "删除机构", httpMethod = "GET", produces = "application/json", response = Result.class)
     @RequiresPermissions("organization:delete")
     @ResponseBody
     @RequestMapping(value = "delete", method = RequestMethod.GET)
@@ -95,6 +101,7 @@ public class OrganizationController extends BaseController {
      * @param parentId    父级id
      * @return
      */
+    @ApiOperation(value = "更新机构", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("organization:update")
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
@@ -136,6 +143,7 @@ public class OrganizationController extends BaseController {
      * @param id   顶级id
      * @return
      */
+    @ApiOperation(value = "查询机构列表", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @RequiresPermissions("organization:list")
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)

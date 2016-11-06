@@ -4,6 +4,8 @@ import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysRole;
 import com.hunt.service.SysRoleService;
 import com.hunt.service.SystemService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +22,7 @@ import system.Result;
  * @Date 2016/10/14/14:46
  * @Description
  */
-
+@Api("角色模块")
 @RequestMapping("role")
 @Controller
 public class RoleController extends BaseController {
@@ -31,6 +33,7 @@ public class RoleController extends BaseController {
     @Autowired
     private SystemService systemService;
 
+    @ApiOperation(value = "跳转至角色模块", httpMethod = "GET", produces = "text/html")
     @RequiresPermissions("role:list")
     @RequestMapping(value = "role", method = RequestMethod.GET)
     public String role() {
@@ -46,6 +49,7 @@ public class RoleController extends BaseController {
      * @param isFinal       是否可修改
      * @return
      */
+    @ApiOperation(value = "新增角色", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("role:insert")
     @ResponseBody
     @RequestMapping(value = "insert", method = RequestMethod.POST)
@@ -66,7 +70,7 @@ public class RoleController extends BaseController {
     }
 
     /**
-     * 更新权限
+     * 更新角色
      *
      * @param id            id
      * @param name          名称
@@ -74,6 +78,7 @@ public class RoleController extends BaseController {
      * @param permissionIds 权限ids
      * @return
      */
+    @ApiOperation(value = "更新角色", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("role:update")
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
@@ -102,11 +107,12 @@ public class RoleController extends BaseController {
     }
 
     /**
-     * 删除权限
+     * 删除角色
      *
      * @param id
      * @return
      */
+    @ApiOperation(value = "删除角色", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("role:delete")
     @ResponseBody
     @RequestMapping(value = "delete", method = RequestMethod.POST)
@@ -125,12 +131,13 @@ public class RoleController extends BaseController {
     }
 
     /**
-     * 权限列表
+     * 角色列表
      *
      * @param page 起始页码
      * @param rows 分页大小
      * @return
      */
+    @ApiOperation(value = "角色列表", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @RequiresPermissions("role:list")
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)

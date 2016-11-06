@@ -5,10 +5,8 @@ import com.hunt.model.dto.PageInfo;
 import com.hunt.model.dto.SysOrganizationTree;
 import com.hunt.model.entity.SysOrganization;
 import com.hunt.service.SysOrganizationService;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +96,7 @@ public class SysOrganizationServiceImplTest {
         }
         PageInfo pageInfo = service.selectPage(1, 20, o.getId());
         List<SysOrganizationTree> list = (List<SysOrganizationTree>) pageInfo.getRows();
-        assertTrue(list.get(0).getChildren().size()==20);
+        assertTrue(list.get(0).getChildren().size() == 20);
     }
 
     @Test

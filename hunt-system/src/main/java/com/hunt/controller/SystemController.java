@@ -10,14 +10,18 @@ import com.hunt.service.SysUserService;
 import com.hunt.service.SystemService;
 import com.hunt.system.security.geetest.GeetestConfig;
 import com.hunt.system.security.geetest.GeetestLib;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import sun.text.normalizer.UBiDiProps;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import system.ResponseCode;
 import system.Result;
 import system.StringUtil;
@@ -30,6 +34,7 @@ import java.util.List;
 /**
  * 系统功能模块
  */
+@Api(value = "系统功能模块")
 @Controller
 @RequestMapping("system")
 public class SystemController extends BaseController {
@@ -44,6 +49,7 @@ public class SystemController extends BaseController {
      *
      * @return
      */
+    @ApiOperation(value = "跳转至引导页", httpMethod = "GET", produces = "text/html")
     @RequestMapping(value = "welcome", method = RequestMethod.GET)
     public String index() {
         return "system/index";
@@ -57,6 +63,7 @@ public class SystemController extends BaseController {
      * @param platform  终端类型
      * @return
      */
+    @ApiOperation(value = "登录", httpMethod = "POST", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public Result login(@RequestParam String loginName,
@@ -85,6 +92,7 @@ public class SystemController extends BaseController {
      *
      * @return
      */
+    @ApiOperation(value = "退出", httpMethod = "GET", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public Result logout() {
@@ -98,6 +106,7 @@ public class SystemController extends BaseController {
      * @param request
      * @return
      */
+    @ApiOperation(value = "极限验证", httpMethod = "GET", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequestMapping(value = "captcha", method = RequestMethod.GET)
     public String captcha(HttpServletRequest request) {
@@ -112,6 +121,7 @@ public class SystemController extends BaseController {
      *
      * @return
      */
+    @ApiOperation(value = "跳转至用户状态模块", httpMethod = "GET", produces = "text/html")
     @RequiresPermissions("user:loginStatu:list")
     @RequestMapping(value = "online", method = RequestMethod.GET)
     public String online() {
@@ -125,11 +135,12 @@ public class SystemController extends BaseController {
      * @param rows 分页大小
      * @return
      */
+    @ApiOperation(value = "在线用户列表", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @RequiresPermissions("user:loginStatu:list")
     @ResponseBody
     @RequestMapping(value = "online/list", method = RequestMethod.GET)
-    public PageInfo onlineList(@RequestParam int page,
-                               @RequestParam int rows) {
+    public PageInfo onlineList(@RequestParam(defaultValue = "1") int page,
+                               @RequestParam(defaultValue = "30") int rows) {
         PageInfo pageInfo = systemService.selectLogStatus(page, rows);
         return pageInfo;
     }
@@ -140,6 +151,7 @@ public class SystemController extends BaseController {
      * @param userIds 用户ids
      * @return
      */
+    @ApiOperation(value = "强制用户下线", httpMethod = "GET", produces = "application/json", response = Result.class)
     @RequiresPermissions("user:loginout")
     @ResponseBody
     @RequestMapping(value = "forceLogout", method = RequestMethod.GET)
@@ -157,6 +169,7 @@ public class SystemController extends BaseController {
      *
      * @return
      */
+    @ApiOperation(value = "跳转至日志页面", httpMethod = "GET", produces = "text/html")
     @RequiresPermissions("log:list")
     @RequestMapping(value = "log")
     public String log() {
@@ -176,17 +189,18 @@ public class SystemController extends BaseController {
      * @param result 请求响应内容
      * @return
      */
+    @ApiOperation(value = "查询日志列表", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @RequiresPermissions("log:list")
     @ResponseBody
     @RequestMapping(value = "log/list", method = RequestMethod.GET)
-    public PageInfo logList(@RequestParam int page,
-                            @RequestParam int rows,
+    public PageInfo logList(@RequestParam(defaultValue = "1") int page,
+                            @RequestParam(defaultValue = "30") int rows,
                             @RequestParam(defaultValue = "id") String sort,
                             @RequestParam(defaultValue = "desc") String order,
-                            @RequestParam(defaultValue = "",required = false) String method,
-                            @RequestParam(defaultValue = "",required = false) String url,
-                            @RequestParam(defaultValue = "",required = false) String param,
-                            @RequestParam(defaultValue = "",required = false) String result) {
+                            @RequestParam(defaultValue = "", required = false) String method,
+                            @RequestParam(defaultValue = "", required = false) String url,
+                            @RequestParam(defaultValue = "", required = false) String param,
+                            @RequestParam(defaultValue = "", required = false) String result) {
         PageInfo pageInfo = systemService.selectLog(page, rows, StringUtil.camelToUnderline(sort), order, method, url, param, result);
         return pageInfo;
     }
@@ -198,6 +212,7 @@ public class SystemController extends BaseController {
      * @param description 描述
      * @return
      */
+    @ApiOperation(value = "新增字典组", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("data:group:insert")
     @ResponseBody
     @RequestMapping(value = "dataGroup/insert", method = RequestMethod.POST)
@@ -221,6 +236,7 @@ public class SystemController extends BaseController {
      *
      * @return
      */
+    @ApiOperation(value = "字典组列表", httpMethod = "GET", produces = "application/json", response = Result.class)
     @RequiresPermissions("data:group:list")
     @ResponseBody
     @RequestMapping(value = "dataGroup/list", method = RequestMethod.GET)
@@ -229,6 +245,7 @@ public class SystemController extends BaseController {
         return list;
     }
 
+    @ApiOperation(value = "跳转至字典页面", httpMethod = "GET", produces = "text/html")
     @RequestMapping(value = "data", method = RequestMethod.GET)
     public String data() {
         return "system/data";
@@ -243,6 +260,7 @@ public class SystemController extends BaseController {
      * @param groupId     字典组
      * @return
      */
+    @ApiOperation(value = "新增数据字典", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("data:insert")
     @ResponseBody
     @RequestMapping(value = "data/insert", method = RequestMethod.POST)
@@ -270,6 +288,7 @@ public class SystemController extends BaseController {
      * @param id
      * @return
      */
+    @ApiOperation(value = "删除字典", httpMethod = "GET", produces = "application/json", response = Result.class)
     @RequiresPermissions("data:delete")
     @ResponseBody
     @RequestMapping(value = "data/delete", method = RequestMethod.GET)
@@ -288,6 +307,7 @@ public class SystemController extends BaseController {
      * @param groupId     字典组
      * @return
      */
+    @ApiOperation(value = "更新字典", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("data:update")
     @ResponseBody
     @RequestMapping(value = "data/update", method = RequestMethod.POST)
@@ -321,6 +341,7 @@ public class SystemController extends BaseController {
      *
      * @return
      */
+    @ApiOperation(value = "查询字典详情", httpMethod = "GET", produces = "application/json", response = Result.class)
     @RequiresPermissions("data:select")
     @ResponseBody
     @RequestMapping(value = "data/select", method = RequestMethod.GET)
@@ -335,11 +356,12 @@ public class SystemController extends BaseController {
      * @param rows 分页大小
      * @return
      */
+    @ApiOperation(value = "字典列表", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @RequiresPermissions("data:list")
     @ResponseBody
     @RequestMapping(value = "data/list", method = RequestMethod.GET)
-    public PageInfo dataList(@RequestParam int page,
-                             @RequestParam int rows) {
+    public PageInfo dataList(@RequestParam(defaultValue = "1") int page,
+                             @RequestParam(defaultValue = "30") int rows) {
         PageInfo pageInfo = systemService.selectDataItemPage(page, rows);
         return pageInfo;
     }
@@ -349,6 +371,7 @@ public class SystemController extends BaseController {
      *
      * @return
      */
+    @ApiOperation(value = "跳转至ip模块", httpMethod = "GET", produces = "text/html")
     @RequiresPermissions("ip:list")
     @RequestMapping(value = "ip", method = RequestMethod.GET)
     public String ip() {
@@ -363,6 +386,7 @@ public class SystemController extends BaseController {
      * @param description 说明
      * @return
      */
+    @ApiOperation(value = "插入ip", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("ip:insert")
     @ResponseBody
     @RequestMapping(value = "ip/insert", method = RequestMethod.POST)
@@ -387,6 +411,7 @@ public class SystemController extends BaseController {
      * @param id
      * @return
      */
+    @ApiOperation(value = "删除ip", httpMethod = "GET", produces = "application/json", response = Result.class)
     @RequiresPermissions("ip:delete")
     @ResponseBody
     @RequestMapping(value = "ip/delete", method = RequestMethod.GET)
@@ -404,6 +429,7 @@ public class SystemController extends BaseController {
      * @param description 说明
      * @return
      */
+    @ApiOperation(value = "更新ip", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("ip:update")
     @ResponseBody
     @RequestMapping(value = "ip/update", method = RequestMethod.POST)
@@ -431,6 +457,7 @@ public class SystemController extends BaseController {
      * @param rows
      * @return
      */
+    @ApiOperation(value = "查询ip列表", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @RequiresPermissions("ip:list")
     @ResponseBody
     @RequestMapping(value = "ip/list", method = RequestMethod.GET)
@@ -440,8 +467,9 @@ public class SystemController extends BaseController {
         return pageInfo;
     }
 
+    @ApiOperation(value = "ip拦截开关", httpMethod = "GET", produces = "application/json", response = Result.class)
     @ResponseBody
-    @RequestMapping(value = "ip/intercept")
+    @RequestMapping(value = "ip/intercept", method = RequestMethod.GET)
     public Result intercept(@RequestParam boolean open) {
         //启用
         if (open == true) {
@@ -454,6 +482,7 @@ public class SystemController extends BaseController {
         return Result.success();
     }
 
+    @ApiOperation(value = "ip拦截开关状态", httpMethod = "GET", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequestMapping(value = "ip/intercept/status")
     public Result interceptStatus() {

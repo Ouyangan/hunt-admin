@@ -27,7 +27,7 @@ import java.util.UUID;
  * @Date 2016/10/8/13:37
  * @Description
  */
-@Api(value = "用户管理")
+@Api(value = "用户管理模块")
 @Controller
 @RequestMapping("user")
 public class UserController extends BaseController {
@@ -37,6 +37,7 @@ public class UserController extends BaseController {
     @Autowired
     private SystemService systemService;
 
+    @ApiOperation(value = "跳转至用户管理模块", httpMethod = "GET", produces = "text/html")
     @RequiresPermissions("user:list")
     @RequestMapping(value = "user", method = RequestMethod.GET)
     public String user() {
@@ -60,18 +61,18 @@ public class UserController extends BaseController {
      * @param permissionIds 权限ids
      * @return
      */
-    @ApiOperation(value = "新增用户")
+    @ApiOperation(value = "新增用户", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("user:insert")
     @ResponseBody
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public Result insert(@RequestParam String loginName,
                          @RequestParam String zhName,
-                         @RequestParam(defaultValue = "",required = false) String enName,
+                         @RequestParam(defaultValue = "", required = false) String enName,
                          @RequestParam int sex,
-                         @RequestParam(defaultValue = "",required = false) String birth,
-                         @RequestParam(defaultValue = "",required = false) String email,
-                         @RequestParam(defaultValue = "",required = false) String phone,
-                         @RequestParam(defaultValue = "",required = false) String address,
+                         @RequestParam(defaultValue = "", required = false) String birth,
+                         @RequestParam(defaultValue = "", required = false) String email,
+                         @RequestParam(defaultValue = "", required = false) String phone,
+                         @RequestParam(defaultValue = "", required = false) String address,
                          @RequestParam String password,
                          @RequestParam(defaultValue = "1") int isFinal,
                          @RequestParam String jobIds,
@@ -100,6 +101,7 @@ public class UserController extends BaseController {
         return Result.success(id);
     }
 
+    @ApiOperation(value = "删除用户", httpMethod = "GET", produces = "application/json", response = Result.class)
     @RequiresPermissions("user:delete")
     @ResponseBody
     @RequestMapping(value = "delete", method = RequestMethod.GET)
@@ -133,6 +135,7 @@ public class UserController extends BaseController {
      * @param permissionIds 权限ids
      * @return
      */
+    @ApiOperation(value = "更新用户", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("user:update")
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
@@ -141,10 +144,10 @@ public class UserController extends BaseController {
                          @RequestParam String zhName,
                          @RequestParam String enName,
                          @RequestParam int sex,
-                         @RequestParam(defaultValue = "",required = false) String birth,
-                         @RequestParam(defaultValue = "",required = false) String email,
-                         @RequestParam(defaultValue = "",required = false) String phone,
-                         @RequestParam(defaultValue = "",required = false) String address,
+                         @RequestParam(defaultValue = "", required = false) String birth,
+                         @RequestParam(defaultValue = "", required = false) String email,
+                         @RequestParam(defaultValue = "", required = false) String phone,
+                         @RequestParam(defaultValue = "", required = false) String address,
                          @RequestParam String jobIds,
                          @RequestParam String permissionIds) {
         boolean isExistLoginNameExlcudeId = sysUserService.isExistLoginNameExcludeId(id, loginName);
@@ -182,6 +185,7 @@ public class UserController extends BaseController {
      * @param address   地址
      * @return
      */
+    @ApiOperation(value = "查询用户列表", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @RequiresPermissions("user:list")
     @ResponseBody
     @RequestMapping(value = "select", method = RequestMethod.GET)
@@ -189,11 +193,11 @@ public class UserController extends BaseController {
                            @RequestParam int rows,
                            @RequestParam(defaultValue = "zhName") String sort,
                            @RequestParam(defaultValue = "asc") String order,
-                           @RequestParam(defaultValue = "",required = false) String loginName,
-                           @RequestParam(defaultValue = "",required = false) String zhName,
-                           @RequestParam(defaultValue = "",required = false) String email,
-                           @RequestParam(defaultValue = "",required = false) String phone,
-                           @RequestParam(defaultValue = "",required = false) String address) {
+                           @RequestParam(defaultValue = "", required = false) String loginName,
+                           @RequestParam(defaultValue = "", required = false) String zhName,
+                           @RequestParam(defaultValue = "", required = false) String email,
+                           @RequestParam(defaultValue = "", required = false) String phone,
+                           @RequestParam(defaultValue = "", required = false) String address) {
         PageInfo pageInfo = sysUserService.selectPage(page, rows, StringUtil.camelToUnderline(sort), order, loginName, zhName, email, phone, address);
         return pageInfo;
     }
@@ -206,6 +210,7 @@ public class UserController extends BaseController {
      * @param newPassword       新密码
      * @return
      */
+    @ApiOperation(value = "更新密码", httpMethod = "POST", produces = "application/json", response = Result.class)
     @RequiresPermissions("user:updatePassword")
     @ResponseBody
     @RequestMapping(value = "updatePassword", method = RequestMethod.POST)
@@ -239,6 +244,8 @@ public class UserController extends BaseController {
      * @param id id
      * @return
      */
+
+    @ApiOperation(value = "禁用账户", httpMethod = "GET", produces = "application/json", response = Result.class)
     @RequiresPermissions("user:forbidden")
     @ResponseBody
     @RequestMapping(value = "forbiddenUser", method = RequestMethod.GET)
@@ -259,6 +266,7 @@ public class UserController extends BaseController {
      * @param id
      * @return
      */
+    @ApiOperation(value = "启用账户", httpMethod = "GET", produces = "application/json", response = Result.class)
     @RequiresPermissions("user:enable")
     @ResponseBody
     @RequestMapping(value = "enableUser", method = RequestMethod.GET)

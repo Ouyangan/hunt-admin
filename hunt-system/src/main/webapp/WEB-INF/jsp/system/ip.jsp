@@ -2,7 +2,8 @@
 <script type="text/javascript" src="/static/js/system/ip.js"></script>
 <script type="text/javascript" src="/static/js/system/common.js"></script>
 <div id="ip-tool-bar" style="padding: 10px">
-    <strong>拦截开关:</strong><div class="easyui-switchbutton  " id="ip-switchButton-btn" style="width:70px">
+    <strong>拦截开关:</strong>
+    <div class="easyui-switchbutton  " id="ip-switchButton-btn" style="width:70px">
     </div>
     <div class="easyui-linkbutton  " id="ip-select-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
     </div>
@@ -19,9 +20,9 @@
         <input type="hidden" name="id" id="ip-id">
         <div style="float: left;height: 100%;">
             <p style="padding: 10px;">&nbsp;&nbsp;&nbsp;IP:<input name="ip" id="ip-name"
-                                                            style="width: 300px;height: 35px"
-                                                            data-options="required:true"
-                                                            class="easyui-textbox easyui-validatebox"></p>
+                                                                  style="width: 300px;height: 35px"
+                                                                  data-options="required:true"
+                                                                  class="easyui-textbox easyui-validatebox"></p>
             <p style="padding: 10px ;">到期时间:<input name="expireTime" id="ip-expireTime"
                                                    style="width: 300px;height: 35px"
                                                    data-options="required:true"
