@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @Date 2016/11/1/19:49
  * @Description
  */
-@Api(value = "错误处理")
+@Api(tags = {"错误处理"})
 @Controller
 @RequestMapping("error")
 public class ErrorController extends BaseController {
@@ -24,7 +24,7 @@ public class ErrorController extends BaseController {
      *
      * @return
      */
-    @ApiOperation(value = "根据用户id查询用户信息", httpMethod = "GET", produces = "application/json")
+    @ApiOperation(value = "未授权", httpMethod = "GET", produces = "text/html")
     @RequestMapping(value = "unAuthorization", method = RequestMethod.GET)
     public String unAuthorization() {
         return "system/unAuthorization";
@@ -35,6 +35,7 @@ public class ErrorController extends BaseController {
      *
      * @return
      */
+    @ApiOperation(value = "未找到页面", httpMethod = "GET", produces = "text/html")
     @RequestMapping(value = "notFound", method = RequestMethod.GET)
     public String notFound() {
         return "system/404";
@@ -45,6 +46,7 @@ public class ErrorController extends BaseController {
      *
      * @return
      */
+    @ApiOperation(value = "内部错误", httpMethod = "GET", produces = "text/html")
     @RequestMapping(value = "internalError", method = RequestMethod.GET)
     public String internalError() {
         return "system/500";

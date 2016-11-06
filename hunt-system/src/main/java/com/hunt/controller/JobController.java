@@ -3,6 +3,7 @@ package com.hunt.controller;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysRoleOrganization;
 import com.hunt.service.SysRoleOrganizationService;
+import io.swagger.annotations.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import system.Result;
 /**
  * 职位模块
  */
+@Api(value = "职位模块")
 @Controller
 @RequestMapping("job")
 public class JobController extends BaseController {
@@ -27,6 +29,7 @@ public class JobController extends BaseController {
      *
      * @return
      */
+    @ApiOperation(value = "跳转至职位页面", httpMethod = "GET", produces = "text/html")
     @RequiresPermissions("job:list")
     @RequestMapping(value = "job", method = RequestMethod.GET)
     public String job() {
@@ -45,6 +48,7 @@ public class JobController extends BaseController {
      * @param isFinal        是否可修改
      * @return
      */
+    @ApiOperation(value = "新增职位", httpMethod = "POST", produces = "application/json")
     @ResponseBody
     @RequiresPermissions("job:insert")
     @RequestMapping(value = "insert", method = RequestMethod.POST)
