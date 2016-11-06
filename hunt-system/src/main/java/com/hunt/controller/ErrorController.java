@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @Date 2016/11/1/19:49
  * @Description
  */
-@Api(tags = {"错误处理"})
+@Api(value = "错误处理")
 @Controller
 @RequestMapping("error")
 public class ErrorController extends BaseController {
