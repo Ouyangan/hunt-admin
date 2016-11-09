@@ -1,6 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<script type="text/javascript" src="/static/js/system/job.js"></script>
-<script type="text/javascript" src="/static/js/system/common.js"></script>
+<c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
+<script type="text/javascript" src="${ctx}/static/js/system/job.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/system/common.js"></script>
 <div id="job-tool-bar" style="padding: 10px">
     <div class="easyui-linkbutton  " id="job-select-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
     </div>

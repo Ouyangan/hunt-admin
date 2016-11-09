@@ -5,11 +5,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>hun-admin</title>
-    <link rel="stylesheet" type="text/css" href="static/css/easyui.css"/>
-    <link rel="stylesheet" type="text/css" href="static/css/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/static/css/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/static/css/icon.css"/>
 
 
-    <script type="text/javascript" src="static/js/easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="static/js/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="static/js/easyui/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctx}/static/js/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctx}/static/js/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctx}/static/js/easyui/easyui-lang-zh_CN.js"></script>
 

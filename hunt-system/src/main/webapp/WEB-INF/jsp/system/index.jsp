@@ -6,16 +6,16 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>hun-admin</title>
-    <link type="image/x-icon" rel="shortcut icon" href="/static/image/favicon.ico">
-    <link type="image/x-icon" rel="bookmark" href="/static/image/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="/static/css/easyui.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/icon.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/system/index.css"/>
-    <script type="text/javascript" src="/static/js/easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="/static/js/easyui/datagrid-groupview.js"></script>
-    <script type="text/javascript" src="/static/js/easyui/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="/static/js/system/index.js"></script>
+    <link type="image/x-icon" rel="shortcut icon" href="${ctx}/static/image/favicon.ico">
+    <link type="image/x-icon" rel="bookmark" href="${ctx}/static/image/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="${ctx}/static/css/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/static/css/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/static/css/system/index.css"/>
+    <script type="text/javascript" src="${ctx}/static/js/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctx}/static/js/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctx}/static/js/easyui/datagrid-groupview.js"></script>
+    <script type="text/javascript" src="${ctx}/static/js/easyui/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctx}/static/js/system/index.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body class="easyui-layout">
