@@ -17,11 +17,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Author ouyangan
  * @Date 2016/10/9/13:55
- * @Description Cache redis实现
+ * @Description Cache   redis实现
  */
 public class RedisCache<K, V> implements Cache<K, V>, Serializable {
     private static final long timeout = 2592000;
-    private transient static Logger log = LoggerFactory.getLogger(RedisCache.class);
+    private transient static Logger log =   LoggerFactory.getLogger(RedisCache.class);
 
     private transient RedisTemplate<K, V> redisTemplate;
 
