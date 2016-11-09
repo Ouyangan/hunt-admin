@@ -89,7 +89,7 @@ role_tool = {
             },
             traditional: true,
             method: 'post',
-            url: getRootPath() + '/role/delete',
+            url: '/role/delete',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -128,7 +128,7 @@ role_tool = {
                 },
                 traditional: true,
                 method: 'post',
-                url: getRootPath() + '/role/insert',
+                url: '/role/insert',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -172,7 +172,7 @@ role_tool = {
                 },
                 traditional: true,
                 method: 'post',
-                url: getRootPath() + '/role/update',
+                url: '/role/update',
                 async: false,
                 dataType: 'json',
                 success: function (result) {

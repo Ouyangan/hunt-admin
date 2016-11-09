@@ -10,7 +10,7 @@ organization_tool = {
         var data_json = '';
         $.ajax({
             method: 'get',
-            url: getRootPath() + '/organization/select',
+            url: '/organization/select',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -46,7 +46,7 @@ organization_tool = {
     init_mian_view: function () {
         $("#organization").treegrid({
             // data: organization_tool.init_data(),
-            url: getRootPath() + '/organization/select',
+            url: '/organization/select',
             method: 'get',
             idField: "id",
             nodeId: 'id',
@@ -174,7 +174,7 @@ organization_tool = {
                 id: id,
             },
             method: 'get',
-            url: getRootPath() + '/organization/delete',
+            url: '/organization/delete',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -205,7 +205,7 @@ organization_tool = {
                 parentId: parentId,
             },
             method: 'post',
-            url: getRootPath() + '/organization/insert',
+            url: '/organization/insert',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -238,7 +238,7 @@ organization_tool = {
                 parentId: parentId,
             },
             method: 'post',
-            url: getRootPath() + '/organization/update',
+            url: '/organization/update',
             async: false,
             dataType: 'json',
             success: function (result) {

@@ -1,8 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
-<script type="text/javascript" src="${ctx}/static/js/system/common.js"></script>
-<script type="text/javascript" src="${ctx}/static/js/system/permission.js"></script>
+
+<script type="text/javascript" src="/static/js/system/common.js"></script>
+<script type="text/javascript" src="/static/js/system/permission.js"></script>
 <div id="permission-tool-bar" style="padding: 10px">
     <div href="#" class="easyui-menubutton" menu="#save-permission-btn" data-options="iconCls:'icon-add'"
          style="width:70px">新增

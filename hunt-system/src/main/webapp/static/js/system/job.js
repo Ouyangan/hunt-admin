@@ -49,7 +49,7 @@ job_tool = {
                 organizationId: organization.id,
             },
             method: 'post',
-            url: getRootPath() + '/job/insert',
+            url: '/job/insert',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -88,7 +88,7 @@ job_tool = {
                 organizationId: organization.id,
             },
             method: 'post',
-            url: getRootPath() + '/job/update',
+            url: '/job/update',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -109,7 +109,7 @@ job_tool = {
                 id: id,
             },
             method: 'get',
-            url: getRootPath() + '/job/delete',
+            url: '/job/delete',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -126,7 +126,7 @@ job_tool = {
     ,
     init_main_view: function () {
         $("#job_grid").treegrid({
-            url: getRootPath() + '/job/select',
+            url: '/job/select',
             method: 'get',
             idField: "id",
             nodeId: 'id',

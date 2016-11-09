@@ -6,7 +6,7 @@ $(document).ready(function () {
         captcha = captchaObj;
     };
     $.ajax({
-        url: getRootPath() + '/system/captcha?t=" + (new Date()).getTime()', // 加随机数防止缓存
+        url: '/system/captcha?t=" + (new Date()).getTime()', // 加随机数防止缓存
         type: "get",
         dataType: "json",
         success: function (data) {
