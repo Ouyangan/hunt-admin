@@ -15,6 +15,7 @@
     <script type="text/javascript" src="${ctx}/static/js/easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="${ctx}/static/js/easyui/datagrid-groupview.js"></script>
     <script type="text/javascript" src="${ctx}/static/js/easyui/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctx}/static/js/system/common.js"></script>
     <script type="text/javascript" src="${ctx}/static/js/system/index.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
@@ -38,7 +39,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/user/user">用户管理
+                                 href="${ctx}/user/user">用户管理
                             </div>
                         </li>
                     </div>
@@ -47,7 +48,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
-                                 href="/job/job">职位管理
+                                 href="${ctx}/job/job">职位管理
                             </div>
                         </li>
                     </div>
@@ -56,7 +57,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/organization/organization">机构管理
+                                  href="${ctx}/organization/organization">机构管理
                             </div>
                         </li>
                     </div>
@@ -66,7 +67,7 @@
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
                                  style="border: 0;"
-                                 href="/role/role">角色管理
+                                  href="${ctx}/role/role">角色管理
                             </div>
                         </li>
                     </div>
@@ -75,7 +76,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/permission/permission">权限管理
+                                  href="${ctx}/permission/permission">权限管理
                             </div>
                         </li>
                     </div>
@@ -84,7 +85,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/system/data">数据字典
+                                  href="${ctx}/system/data">数据字典
                             </div>
                         </li>
                     </div>
@@ -93,7 +94,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/system/online">在线状态
+                                  href="${ctx}/system/online">在线状态
                             </div>
                         </li>
                     </div>
@@ -102,7 +103,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/system/log">系统日志
+                                  href="${ctx}/system/log">系统日志
                             </div>
                         </li>
                     </div>
@@ -111,7 +112,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/system/ip">IP访问限制
+                                  href="${ctx}/system/ip">IP访问限制
                             </div>
                         </li>
                     </div>
@@ -120,7 +121,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/druid/index.html">数据库监控
+                                  href="${ctx}/druid/index.html">数据库监控
                             </div>
                         </li>
                     </div>
@@ -128,7 +129,7 @@
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/swagger-ui.html">接口文档
+                              href="${ctx}/swagger-ui.html">接口文档
                         </div>
                     </li>
                 </div>

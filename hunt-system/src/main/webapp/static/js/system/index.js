@@ -5,7 +5,7 @@ $(document).ready(function () {
                 $.ajax({
                     data: {},
                     method: 'get',
-                    url: common_tool.getRootPath() + '/system/logout',
+                    url: getRootPath() + '/system/logout',
                     async: false,
                     dataType: 'json',
                     success: function (result) {
@@ -22,7 +22,7 @@ $(document).ready(function () {
             $('#tab').tabs('select', title);
         } else {
             if (href == '/druid/index.html') {
-                var content = '<iframe scrolling="true" frameborder="0"  src="${ctx}' + href + '" style="width:100%;height:100%;"></iframe>';
+                var content = '<iframe scrolling="true" frameborder="0"  src=' + href + ' style="width:100%;height:100%;"></iframe>';
                 $('#tab').tabs('add', {
                     tabWidth: 100,
                     tabHeight: 35,
