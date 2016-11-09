@@ -65,7 +65,7 @@ online_tool = {
             },
             traditional: true,
             method: 'get',
-            url: '/system/forceLogout',
+            url: common_tool.getRootPath() + '/system/forceLogout',
             async: false,
             dataType: 'json',
             success: function (result) {

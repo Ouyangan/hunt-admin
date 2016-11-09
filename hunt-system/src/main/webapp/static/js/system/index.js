@@ -5,7 +5,7 @@ $(document).ready(function () {
                 $.ajax({
                     data: {},
                     method: 'get',
-                    url: '/system/logout',
+                    url: common_tool.getRootPath() + '/system/logout',
                     async: false,
                     dataType: 'json',
                     success: function (result) {

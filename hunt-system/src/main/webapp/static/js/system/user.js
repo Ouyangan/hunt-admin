@@ -255,7 +255,7 @@ user_tool = {
                 },
                 traditional: true,
                 method: 'post',
-                url: '/user/insert',
+                url: common_tool.getRootPath() + '/user/insert',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -322,7 +322,7 @@ user_tool = {
                 },
                 traditional: true,
                 method: 'post',
-                url: '/user/update',
+                url: common_tool.getRootPath() + '/user/update',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -348,7 +348,7 @@ user_tool = {
             },
             traditional: true,
             method: 'get',
-            url: '/user/delete',
+            url: common_tool.getRootPath() + '/user/delete',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -417,7 +417,7 @@ user_tool = {
             },
             traditional: true,
             method: 'post',
-            url: '/user/updatePassword',
+            url: common_tool.getRootPath() + '/user/updatePassword',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -441,7 +441,7 @@ user_tool = {
             },
             traditional: true,
             method: 'get',
-            url: '/user/forbiddenUser',
+            url: common_tool.getRootPath() + '/user/forbiddenUser',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -464,7 +464,7 @@ user_tool = {
             },
             traditional: true,
             method: 'get',
-            url: '/user/enableUser',
+            url: common_tool.getRootPath() + '/user/enableUser',
             async: false,
             dataType: 'json',
             success: function (result) {
