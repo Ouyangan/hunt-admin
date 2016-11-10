@@ -15,7 +15,7 @@ data_tool = {
                     id: id,
                 },
                 method: 'get',
-                url: 'system/data/delete',
+                url: getRootPath() + '/system/data/delete',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -64,7 +64,7 @@ data_tool = {
                 groupId: groupId,
             },
             method: 'post',
-            url: 'system/data/insert',
+            url: getRootPath() + '/system/data/insert',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -98,7 +98,7 @@ data_tool = {
                 groupId: groupId,
             },
             method: 'post',
-            url: 'system/data/update',
+            url: getRootPath() + '/system/data/update',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -128,7 +128,7 @@ data_tool = {
                     description: group_description,
                 },
                 method: 'post',
-                url: 'system/dataGroup/insert',
+                url: getRootPath() + '/system/dataGroup/insert',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -236,7 +236,7 @@ data_tool = {
     },
     init_main_view: function () {
         $("#data_grid").datagrid({
-            url: "system/data/list",
+             url: getRootPath() + "/system/data/list",
             method: 'get',
             view: groupview,
             groupField: 'sysDataGroupId',

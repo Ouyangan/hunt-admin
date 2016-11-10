@@ -14,7 +14,7 @@ permission_tool = {
                     id: id,
                 },
                 method: 'get',
-                url: 'permission/delete',
+                 url: getRootPath() + '/permission/delete',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -53,7 +53,7 @@ permission_tool = {
                     groupId: groupId,
                 },
                 method: 'post',
-                url: 'permission/insert',
+                 url: getRootPath() + '/permission/insert',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -96,7 +96,7 @@ permission_tool = {
                     groupId: groupId,
                 },
                 method: 'post',
-                url: 'permission/update',
+                 url: getRootPath() + '/permission/update',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -127,7 +127,7 @@ permission_tool = {
                     description: group_description,
                 },
                 method: 'post',
-                url: 'permission/group/insert',
+                 url: getRootPath() + '/permission/group/insert',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -235,7 +235,7 @@ permission_tool = {
     },
     init_main_view: function () {
         $("#permission_grid").datagrid({
-            url: "permission/select",
+             url: getRootPath() + "/permission/select",
             method: 'get',
             view: groupview,
             groupField: 'sysPermissionGroupId',

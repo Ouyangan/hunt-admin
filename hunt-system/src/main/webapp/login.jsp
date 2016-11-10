@@ -13,8 +13,8 @@
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/static/js/easyui/easyui-lang-zh_CN.js"></script>
     <%--<link rel="stylesheet" type="text/css" href=${pageContext.request.contextPath}/static/css/system/login.css"/>--%>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/login.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/common.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/login.js"></script>
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/static/js/system/http_static.geetest.com_static_tools_gt.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">

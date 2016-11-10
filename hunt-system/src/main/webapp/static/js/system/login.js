@@ -5,7 +5,7 @@ $(document).ready(function () {
         captcha = captchaObj;
     };
     $.ajax({
-        url: "system/captcha?t=" + (new Date()).getTime(), // 加随机数防止缓存
+        url: getRootPath() + "/system/captcha?t=" + (new Date()).getTime(), // 加随机数防止缓存
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -40,7 +40,7 @@ $(document).ready(function () {
                         common_tool.messager_show("请刷新并滑动验证码!")
                     } else {
                         $.ajax({
-                            url: "system/login",
+                            url: getRootPath() + "/system/login",
                             type: "post",
                             dataType: "json",
                             data: {
@@ -53,7 +53,7 @@ $(document).ready(function () {
                             },
                             success: function (data) {
                                 if (data.code == 10000) {
-                                    location.href = "system/welcome";
+                                    location.href = getRootPath() + "/system/welcome";
                                 } else if (data.code == 20001) {
                                     common_tool.messager_show(data.msg)
                                     $("#username").focus();
