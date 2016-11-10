@@ -299,5 +299,4 @@ $(document).ready(function () {
         job_tool.form_clear();
         job_tool.init_main_view();
     });
-
 });
