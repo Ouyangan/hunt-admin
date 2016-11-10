@@ -13,9 +13,9 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-        <file>../logs/smart/hunt-dminDdebug.log</file>
+        <file>/app/logs/smart/hunt-dminDdebug.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>../logs/hunt-admin/hunt-admin-Debug-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>/app/logs/hunt-admin-Debug-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -31,9 +31,9 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-        <file>../logs/hunt-admin/hunt-admin-Info.log</file>
+        <file>/app/logs/hunt-admin/hunt-admin-Info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>../logs/hunt-admin/hunt-admin-Info-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>/app/logs/hunt-admin/hunt-admin-Info-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -48,9 +48,9 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-        <file>../logs/hunt-admin/hunt-admin-Error.log</file>
+        <file>/app/logs/hunt-admin/hunt-admin-Error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>../logs/hunt-admin/hunt-admin-Error-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>/app/logs/hunt-admin/hunt-admin-Error-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
