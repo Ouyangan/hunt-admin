@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<script type="text/javascript" src="/static/js/system/permission.js"></script>
-<script type="text/javascript" src="/static/js/system/common.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/permission.js"></script>
 <div id="permission-tool-bar" style="padding: 10px">
     <div href="#" class="easyui-menubutton" menu="#save-permission-btn" data-options="iconCls:'icon-add'"
          style="width:70px">新增
@@ -44,7 +45,7 @@
         </div>
         <div style="float: right; width: 40%; height:326px;">
             <table class="easyui-datagrid" id="permission-group" data-options="
-                   url:'/permission/group/list',
+                   url:'${pageContext.request.contextPath}/permission/group/list',
                    idField: 'id',
                    method:'get',
                    fitColumns:true,

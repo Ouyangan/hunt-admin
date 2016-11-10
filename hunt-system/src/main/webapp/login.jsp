@@ -1,21 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>hun-admin</title>
-    <link type="image/x-icon" rel="shortcut icon" href="/static/image/favicon.ico">
-    <link type="image/x-icon" rel="bookmark" href="/static/image/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="/static/css/easyui.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/icon.css"/>
-    <script type="text/javascript" src="/static/js/easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="/static/js/easyui/easyui-lang-zh_CN.js"></script>
-    <%--<link rel="stylesheet" type="text/css" href="static/css/system/login.css"/>--%>
-    <script type="text/javascript" src="/static/js/system/login.js"></script>
-    <script type="text/javascript" src="/static/js/system/common.js"></script>
-    <script type="text/javascript" src="/static/js/system/http_static.geetest.com_static_tools_gt.js"></script>
+    <link type="image/x-icon" rel="shortcut icon" href="${pageContext.request.contextPath}/static/image/favicon.ico">
+    <link type="image/x-icon" rel="bookmark" href="${pageContext.request.contextPath}/static/image/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/icon.css"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/easyui/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/js/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/js/easyui/easyui-lang-zh_CN.js"></script>
+    <%--<link rel="stylesheet" type="text/css" href=${pageContext.request.contextPath}/static/css/system/login.css"/>--%>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/login.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/common.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/js/system/http_static.geetest.com_static_tools_gt.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>

@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<script type="text/javascript" src="/static/js/system/organization.js"></script>
-<script type="text/javascript" src="/static/js/system/common.js"></script>
+
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/organization.js"></script>
 <div id="tool-bar" style="padding: 10px">
     <div class="easyui-linkbutton select-btn " data-options="iconCls:'icon-reload'" style="width:70px">刷新</div>
     <div class="easyui-linkbutton save-btn" data-options="iconCls:'icon-add'" style="width:70px">新增</div>
@@ -31,7 +33,7 @@
         <div style="float: right;width:50%;height: 100%;">
             <table id="organization_save_right" class="easyui-treegrid easyui-validatebox"
                    data-options="
-                url:'/organization/select',
+                url:'${pageContext.request.contextPath}/organization/select',
                 method:'get',
                 idField: 'id',
                 treeField: 'name',

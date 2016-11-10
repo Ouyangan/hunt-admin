@@ -48,7 +48,8 @@ CREATE TABLE sys_data_group
   COMMENT '排序',
   create_time DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by   BIGINT          DEFAULT 0
   COMMENT '创建人',
   update_by   BIGINT          DEFAULT 0
@@ -73,7 +74,8 @@ CREATE TABLE sys_data_item
   COMMENT '排序',
   create_time       DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time       DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time       DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by         BIGINT          DEFAULT 0
   COMMENT '创建人',
   update_by         BIGINT          DEFAULT 0
@@ -96,7 +98,8 @@ CREATE TABLE sys_ip_forbidden
   COMMENT '排序',
   create_time DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by   BIGINT          DEFAULT 0
   COMMENT '创建人',
   update_by   BIGINT          DEFAULT 0
@@ -120,7 +123,8 @@ CREATE TABLE sys_log
   COMMENT '排序',
   create_time DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by   BIGINT          DEFAULT 0
   COMMENT '创建人',
   update_by   BIGINT          DEFAULT 0
@@ -156,7 +160,8 @@ CREATE TABLE sys_login_status
   COMMENT '排序',
   create_time         DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time         DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time         DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by           BIGINT          DEFAULT 0
   COMMENT '创建人',
   update_by           BIGINT          DEFAULT 0
@@ -181,7 +186,8 @@ CREATE TABLE sys_organization
   COMMENT '排序',
   create_time DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by   BIGINT          DEFAULT 0
   COMMENT '创建人id',
   update_by   BIGINT          DEFAULT 0
@@ -208,7 +214,8 @@ CREATE TABLE sys_permission
   COMMENT '排序',
   create_time             DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time             DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time             DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by               BIGINT          DEFAULT 0
   COMMENT '创建人id',
   update_by               BIGINT          DEFAULT 0
@@ -234,7 +241,8 @@ CREATE TABLE sys_permission_group
   COMMENT '排序',
   create_time DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by   BIGINT          DEFAULT 0
   COMMENT '创建人id',
   update_by   BIGINT          DEFAULT 0
@@ -258,7 +266,8 @@ CREATE TABLE sys_role
   COMMENT '是否可删除',
   create_time DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by   BIGINT          DEFAULT 0
   COMMENT '创建人id',
   update_by   BIGINT          DEFAULT 0
@@ -284,7 +293,8 @@ CREATE TABLE sys_role_organization
   COMMENT '排序',
   create_time         DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time         DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time         DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by           BIGINT          DEFAULT 0
   COMMENT '创建人id',
   update_by           BIGINT          DEFAULT 0
@@ -307,7 +317,8 @@ CREATE TABLE sys_role_permission
   COMMENT '排序',
   create_time       DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time       DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time       DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by         BIGINT          DEFAULT 0
   COMMENT '创建人id',
   update_by         BIGINT          DEFAULT 0
@@ -338,7 +349,8 @@ CREATE TABLE sys_user
   COMMENT '排序',
   create_time   DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time   DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time   DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by     BIGINT          DEFAULT 0
   COMMENT '创建人',
   update_by     BIGINT          DEFAULT 0
@@ -362,7 +374,8 @@ CREATE TABLE sys_user_permission
   COMMENT '排序',
   create_time       DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time       DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time       DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by         BIGINT          DEFAULT 0
   COMMENT '创建人id',
   update_by         BIGINT          DEFAULT 0
@@ -384,7 +397,8 @@ CREATE TABLE sys_user_role_organization
   COMMENT '排序',
   create_time              DATETIME        DEFAULT CURRENT_TIMESTAMP
   COMMENT '创建时间',
-  update_time              DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  update_time              DATETIME        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间',
   create_by                BIGINT          DEFAULT 0
   COMMENT '创建人id',
   update_by                BIGINT          DEFAULT 0

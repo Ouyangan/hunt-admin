@@ -3,7 +3,7 @@ ip_tool = {
         $.ajax({
             data: {},
             method: 'get',
-            url: '/system/ip/intercept/status',
+            url: 'system/ip/intercept/status',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -20,7 +20,7 @@ ip_tool = {
             },
         });
         $("#ip_grid").datagrid({
-            url: "/system/ip/list",
+            url: "system/ip/list",
             method: 'get',
             idField: "id",
             fitColumns: true,
@@ -123,7 +123,7 @@ ip_tool = {
                 },
                 traditional: true,
                 method: 'post',
-                url: '/system/ip/insert',
+                url: 'system/ip/insert',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -162,7 +162,7 @@ ip_tool = {
                 },
                 traditional: true,
                 method: 'post',
-                url: '/system/ip/update',
+                url: 'system/ip/update',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -187,7 +187,7 @@ ip_tool = {
             },
             traditional: true,
             method: 'get',
-            url: '/system/ip/delete',
+            url: 'system/ip/delete',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -252,7 +252,7 @@ $(document).ready(function () {
                     open: checked,
                 },
                 method: 'get',
-                url: '/system/ip/intercept',
+                url: 'system/ip/intercept',
                 async: false,
                 dataType: 'json',
                 success: function (result) {

@@ -9,7 +9,7 @@ $(document).ready(function () {
                     async: false,
                     dataType: 'json',
                     success: function (result) {
-                        location = "/"
+                        location = '/'
                     },
                 });
             }
@@ -21,7 +21,7 @@ $(document).ready(function () {
         if ($('#tab').tabs('exists', title)) {
             $('#tab').tabs('select', title);
         } else {
-            if (href == '/druid/index.html') {
+            if (href.indexOf('druid/index.html') != -1) {
                 var content = '<iframe scrolling="true" frameborder="0"  src="' + href + '" style="width:100%;height:100%;"></iframe>';
                 $('#tab').tabs('add', {
                     tabWidth: 100,
@@ -38,12 +38,12 @@ $(document).ready(function () {
                             fit: true,
                             title: '系统错误',
                             closable: true,
-                            href: "/404.jsp",
+                            href: "error/internalError",
                             border: true,
                         });
                     },
                 });
-            } else if (href == '/swagger-ui.html') {
+            } else if (href.indexOf('swagger-ui.html') != -1) {
                 window.open(href)
             }
 
@@ -63,7 +63,7 @@ $(document).ready(function () {
                             fit: true,
                             title: '系统错误',
                             closable: true,
-                            href: "/404.jsp",
+                            href: "error/internalError",
                             border: true,
                         });
                     },

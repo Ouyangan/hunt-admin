@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<script type="text/javascript" src="/static/js/system/ip.js"></script>
-<script type="text/javascript" src="/static/js/system/common.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/ip.js"></script>
 <div id="ip-tool-bar" style="padding: 10px">
     <strong>拦截开关:</strong>
     <div class="easyui-switchbutton  " id="ip-switchButton-btn" style="width:70px">

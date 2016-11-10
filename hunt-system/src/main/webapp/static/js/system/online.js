@@ -4,7 +4,7 @@ online_tool = {
     },
     init_main_view: function () {
         $("#online_grid").datagrid({
-            url: "/system/online/list",
+            url:"system/online/list",
             method: 'get',
             idField: "id",
             fitColumns: true,
@@ -65,7 +65,7 @@ online_tool = {
             },
             traditional: true,
             method: 'get',
-            url: '/system/forceLogout',
+            url: 'system/forceLogout',
             async: false,
             dataType: 'json',
             success: function (result) {

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<script type="text/javascript" src="/static/js/system/role.js"></script>
-<script type="text/javascript" src="/static/js/system/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/role.js"></script>
 <div id="role-tool-bar" style="padding: 10px">
     <div class="easyui-linkbutton " id="role-select-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
     </div>
@@ -29,7 +29,7 @@
         </div>
         <div style="float: right; width: 50%;height: 100%;">
             <table id="role-permissions" class="easyui-datagrid" data-options="
-                url:'/permission/select',
+                url:'${pageContext.request.contextPath}/permission/select',
                 method:'get',
                 idField:'id',
                 view:groupview,

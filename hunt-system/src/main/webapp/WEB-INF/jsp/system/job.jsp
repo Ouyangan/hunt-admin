@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<script type="text/javascript" src="/static/js/system/job.js"></script>
-<script type="text/javascript" src="/static/js/system/common.js"></script>
+
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/job.js"></script>
 <div id="job-tool-bar" style="padding: 10px">
     <div class="easyui-linkbutton  " id="job-select-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
     </div>
@@ -30,9 +32,9 @@
             </p>
         </div>
         <div style="float: right;width: 300px;;height: 100%;">
-            <table id="job_dialog_parent_tree" class="easyui-treegrid"
+            <table id="${pageContext.request.contextPath}/job_dialog_parent_tree" class="easyui-treegrid"
                    data-options="
-                url:'/job/select',
+                url:'job/select',
                 method:'get',
                 idField: 'id',
                 nodeId:'id',
@@ -59,7 +61,7 @@
         <div style="float: right;width: 200px;height: 100%">
             <table id="job_dialog_role" class="easyui-datagrid"
                    data-options="
-                url:'/role/select',
+                url:'${pageContext.request.contextPath}/role/select',
                 method:'get',
                 idField: 'id',
                 nodeId:'id',
@@ -87,7 +89,7 @@
         <div style="float: right;width: 300px;height: 100%">
             <table id="job_dialog_organization" class="easyui-treegrid"
                    data-options="
-                url:'/organization/select',
+                url:'${pageContext.request.contextPath}/organization/select',
                 method:'get',
                 idField: 'id',
                 nodeId:'id',

@@ -1,21 +1,24 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>hun-admin</title>
-    <link type="image/x-icon" rel="shortcut icon" href="/static/image/favicon.ico">
-    <link type="image/x-icon" rel="bookmark" href="/static/image/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="/static/css/easyui.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/icon.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/system/index.css"/>
-    <script type="text/javascript" src="/static/js/easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="/static/js/easyui/datagrid-groupview.js"></script>
-    <script type="text/javascript" src="/static/js/easyui/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="/static/js/system/index.js"></script>
+    <link type="image/x-icon" rel="shortcut icon" href="${pageContext.request.contextPath}/static/image/favicon.ico">
+    <link type="image/x-icon" rel="bookmark" href="${pageContext.request.contextPath}/static/image/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/system/index.css"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/easyui/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/js/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/js/easyui/datagrid-groupview.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/js/easyui/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/common.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/index.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body class="easyui-layout">
@@ -38,7 +41,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/user/user">用户管理
+                                 href="${pageContext.request.contextPath}/user/user">用户管理
                             </div>
                         </li>
                     </div>
@@ -47,7 +50,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
-                                 href="/job/job">职位管理
+                                 href="${pageContext.request.contextPath}/job/job">职位管理
                             </div>
                         </li>
                     </div>
@@ -56,7 +59,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/organization/organization">机构管理
+                                 href="${pageContext.request.contextPath}/organization/organization">机构管理
                             </div>
                         </li>
                     </div>
@@ -66,7 +69,7 @@
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'"
                                  style="border: 0;"
-                                 href="/role/role">角色管理
+                                 href="${pageContext.request.contextPath}/role/role">角色管理
                             </div>
                         </li>
                     </div>
@@ -75,7 +78,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/permission/permission">权限管理
+                                 href="${pageContext.request.contextPath}/permission/permission">权限管理
                             </div>
                         </li>
                     </div>
@@ -84,7 +87,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/system/data">数据字典
+                                 href="${pageContext.request.contextPath}/system/data">数据字典
                             </div>
                         </li>
                     </div>
@@ -93,7 +96,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/system/online">在线状态
+                                 href="${pageContext.request.contextPath}/system/online">在线状态
                             </div>
                         </li>
                     </div>
@@ -102,7 +105,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/system/log">系统日志
+                                 href="${pageContext.request.contextPath}/system/log">系统日志
                             </div>
                         </li>
                     </div>
@@ -111,7 +114,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/system/ip">IP访问限制
+                                 href="${pageContext.request.contextPath}/system/ip">IP访问限制
                             </div>
                         </li>
                     </div>
@@ -120,7 +123,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                                 href="/druid/index.html">数据库监控
+                                 href="${pageContext.request.contextPath}/druid/index.html">数据库监控
                             </div>
                         </li>
                     </div>
@@ -128,7 +131,7 @@
                 <div style="padding: 5px 10px;">
                     <li class="nav-list">
                         <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0;"
-                             href="/swagger-ui.html">接口文档
+                             href="${pageContext.request.contextPath}/swagger-ui.html">接口文档
                         </div>
                     </li>
                 </div>

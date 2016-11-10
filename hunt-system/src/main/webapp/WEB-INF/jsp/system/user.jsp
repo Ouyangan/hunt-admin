@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<script type="text/javascript" src="/static/js/system/user.js"></script>
-<script type="text/javascript" src="/static/js/system/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/system/user.js"></script>
 <div id="user-tool-bar" style="padding: 10px 10px 0 10px">
     <form id="user-search-form">
         <div class="easyui-linkbutton " id="user-flash-btn" data-options="iconCls:'icon-reload'" style="width:70px">刷新
@@ -83,7 +83,7 @@
         </div>
         <div style="float: right;width: 200px;height: 100%">
             <table id="user-permissions" class="easyui-datagrid" data-options="
-                url:'/permission/select',
+                url:'${pageContext.request.contextPath}/permission/select',
                 method:'get',
                 idField:'id',
                 view:groupview,
@@ -110,7 +110,7 @@
         <div style="float: right;width: 300px;height: 100%;">
             <table id="jobs" class="easyui-treegrid"
                    data-options="
-                url:'/job/select',
+                url:'${pageContext.request.contextPath}/job/select',
                 method:'get',
                 idField: 'id',
                 nodeId:'id',

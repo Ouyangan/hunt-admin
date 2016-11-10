@@ -7,7 +7,7 @@ role_tool = {
     //初始化页面+加载数据
     init_main_view: function () {
         $("#role_grid").datagrid({
-            url: "/role/select",
+            url: "role/select",
             method: 'get',
             idField: "id",
             treeField: 'name',
@@ -89,7 +89,7 @@ role_tool = {
             },
             traditional: true,
             method: 'post',
-            url: '/role/delete',
+            url: 'role/delete',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -128,7 +128,7 @@ role_tool = {
                 },
                 traditional: true,
                 method: 'post',
-                url: '/role/insert',
+                url: 'role/insert',
                 async: false,
                 dataType: 'json',
                 success: function (result) {
@@ -172,7 +172,7 @@ role_tool = {
                 },
                 traditional: true,
                 method: 'post',
-                url: '/role/update',
+                url: 'role/update',
                 async: false,
                 dataType: 'json',
                 success: function (result) {

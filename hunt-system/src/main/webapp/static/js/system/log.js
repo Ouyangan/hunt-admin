@@ -5,7 +5,7 @@ log_tools = {
         var param = $("input[name='param']").val();
         var result = $("input[name='result']").val();
         $("#log_grid").datagrid({
-            url: "/system/log/list",
+            url: "system/log/list",
             method: 'get',
             idField: "id",
             fitColumns: true,
