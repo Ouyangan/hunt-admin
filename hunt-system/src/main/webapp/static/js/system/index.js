@@ -5,7 +5,7 @@ $(document).ready(function () {
                 $.ajax({
                     data: {},
                     method: 'get',
-                     url: getRootPath() + '//system/logout',
+                    url: getRootPath() + '//system/logout',
                     async: false,
                     dataType: 'json',
                     success: function (result) {

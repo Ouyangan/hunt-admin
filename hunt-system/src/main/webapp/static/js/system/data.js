@@ -236,7 +236,7 @@ data_tool = {
     },
     init_main_view: function () {
         $("#data_grid").datagrid({
-             url: getRootPath() + "/system/data/list",
+            url: getRootPath() + "/system/data/list",
             method: 'get',
             view: groupview,
             groupField: 'sysDataGroupId',
