@@ -30,7 +30,7 @@
 
     </div>
     <div style="float:right;height: 40px;padding: 0;">
-        <span>欢迎您:</span> &nbsp;&nbsp;<input id="logout-btn" class="easyui-menubutton logout" value="安全退出">
+        <span style="color: #ffffff ;font-weight: bolder">欢迎您:${sessionScope.get("loginInfo").loginName}</span> &nbsp;&nbsp;<input id="logout-btn" class="easyui-menubutton logout" value="安全退出">
     </div>
 </div>
 <div data-options="region:'west',border:true,split:true" style="text-align: center;width:160px;">
@@ -141,7 +141,7 @@
 </div>
 <div data-options="region:'south',boder:true" style="height:26px;">
     <div style="text-align: center;line-height: 24px;font-size: inherit">
-        作者:ananan&nbsp;QQ群:981017952
+        作者:ananan&nbsp;QQ群:234700542
     </div>
 
 </div>
