@@ -16,7 +16,7 @@ organization_tool = {
             success: function (result) {
                 if (result.code == 10000) {
                     data_json = result.data;
-                    console.log(data_json);
+
                 }
                 else {
                     common_tool.messager_show(result.msg);

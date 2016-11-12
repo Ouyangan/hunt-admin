@@ -119,7 +119,7 @@ role_tool = {
             for (var i = 0; i < permission_array.length; i++) {
                 permission_ids[i] = permission_array[i].id;
             }
-            console.log(permission_ids)
+
             $.ajax({
                 data: {
                     name: name,
@@ -162,7 +162,7 @@ role_tool = {
             for (var i = 0; i < permission_array.length; i++) {
                 permission_ids[i] = permission_array[i].id;
             }
-            console.log(permission_ids)
+
             $.ajax({
                 data: {
                     id: id,
@@ -201,7 +201,7 @@ role_tool = {
             modal: true,
             resizable: false,
             'onOpen': function () {
-                console.log('load permissions data')
+
                 if (type == 2) {
                     var role = $("#role_grid").datagrid("getChecked")[0];
                     for (var i = 0; i < role.sysPermissions.length; i++) {

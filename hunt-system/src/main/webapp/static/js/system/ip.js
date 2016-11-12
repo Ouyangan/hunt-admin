@@ -7,7 +7,7 @@ ip_tool = {
             async: false,
             dataType: 'json',
             success: function (result) {
-                console.log(result)
+
                 if (result.code == 10000) {
                     $('#ip-switchButton-btn').switchbutton({
                         checked: result.data,
@@ -246,7 +246,7 @@ $(document).ready(function () {
         onText: '已启用',
         offText: '已关闭',
         onChange: function (checked) {
-            console.log(checked)
+
             $.ajax({
                 data: {
                     open: checked,

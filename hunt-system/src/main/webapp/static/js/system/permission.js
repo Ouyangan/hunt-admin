@@ -195,7 +195,7 @@ permission_tool = {
             resizable: false,
             'onOpen': function () {
                 if (groupId != null) {
-                    console.log(groupId);
+
                     $("#permission-group").datagrid('selectRecord', groupId);
                 }
             },

@@ -529,7 +529,7 @@ $(document).ready(function () {
             return false;
         }
         if (users[0].status == 1) {
-            console.log('asfasfd')
+
             common_tool.messager_show("该账号已经处于启用状态");
             return false;
         }

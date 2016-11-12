@@ -196,7 +196,7 @@ data_tool = {
             resizable: false,
             'onOpen': function () {
                 if (groupId != null) {
-                    console.log(groupId);
+
                     $("#data-group").datagrid('selectRecord', groupId);
                 }
             },
