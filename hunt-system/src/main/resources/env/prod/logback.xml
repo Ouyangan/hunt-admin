@@ -13,7 +13,7 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-        <file>/app/logs/smart/hunt-dminDdebug.log</file>
+        <file>/app/logs/hunt-admin/hunt-dminDdebug.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>/app/logs/hunt-admin-Debug-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>

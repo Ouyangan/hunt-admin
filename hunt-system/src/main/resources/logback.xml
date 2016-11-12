@@ -1,3 +1,4 @@
+<!--product-->
 <configuration scan="true">
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -12,9 +13,9 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-        <file>../logs/smart/hunt-dminDdebug.log</file>
+        <file>/app/logs/hunt-admin/hunt-dminDdebug.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>../logs/hunt-admin/hunt-admin-Debug-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>/app/logs/hunt-admin-Debug-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -30,9 +31,9 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-        <file>../logs/hunt-admin/hunt-admin-Info.log</file>
+        <file>/app/logs/hunt-admin/hunt-admin-Info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>../logs/hunt-admin/hunt-admin-Info-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>/app/logs/hunt-admin/hunt-admin-Info-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -47,9 +48,9 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-        <file>../logs/hunt-admin/hunt-admin-Error.log</file>
+        <file>/app/logs/hunt-admin/hunt-admin-Error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>../logs/hunt-admin/hunt-admin-Error-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>/app/logs/hunt-admin/hunt-admin-Error-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -58,17 +59,6 @@
         </encoder>
     </appender>
 
-    <!--<logger name="org.springframework" level="error"/>-->
-    <!--<logger name="org.springframework.web.servlet.handler" level="error"/>-->
-    <!--<logger name="org.springframework.beans.factory.support" level="error"/>-->
-    <!--<logger name="org.springframework.data.redis.core.RedisConnectionUtils" level="error"/>-->
-    <!--<logger name="org.apache.ibatis" level="error"/>-->
-    <!--<logger name="org.mybatis.spring" level="error"/>-->
-    <!--<logger name="com.alibaba.druid" level="error"/>-->
-    <!--<logger name="com.hunt.system.security.shiro.RedisSessionDao" level="error"/>-->
-    <!--<logger name="com.hunt.dao" level="debug"/>-->
-    <!--<logger name="org.apache.shiro.web.servlet.SimpleCookie" level="error"/>-->
-    <!--<logger name="org.apache.http" level="error"/>-->
 
     <root level="debug">
         <appender-ref ref="STDOUT"/>
