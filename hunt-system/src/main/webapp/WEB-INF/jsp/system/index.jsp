@@ -1,6 +1,5 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -30,7 +29,8 @@
 
     </div>
     <div style="float:right;height: 40px;padding: 0;">
-        <span style="color: #ffffff ;font-weight: bolder">欢迎您:${sessionScope.get("loginInfo").loginName}</span> &nbsp;&nbsp;<input id="logout-btn" class="easyui-menubutton logout" value="安全退出">
+        <span style="color: #ffffff ;font-weight: bolder">欢迎您:${sessionScope.get("loginInfo").loginName}</span> &nbsp;&nbsp;<input
+            id="logout-btn" class="easyui-menubutton logout" value="安全退出">
     </div>
 </div>
 <div data-options="region:'west',border:true,split:true" style="text-align: center;width:160px;">
