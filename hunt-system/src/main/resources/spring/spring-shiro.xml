@@ -8,7 +8,7 @@
         <property name="loginUrl" value="/"/>
         <property name="filters">
             <map>
-                <entry key="authc" value-ref="authorizationFilter"/>
+                <!--<entry key="authc" value-ref="authorizationFilter"/>-->
                 <entry key="authc" value-ref="authenticationFilter"/>
             </map>
         </property>
@@ -19,9 +19,7 @@
                 /system/logout = anon
                 /system/login=anon
                 /oauth/**=anon
-                /error/404=anon
-                /error/500=anon
-                /error/unAuthorization=anon
+                /error/**=anon
                 /v2/**/=anon
                 /webjars/**=anon
                 /swagger-resources/**=anon
@@ -65,7 +63,7 @@
         <property name="sessionDAO" ref="redisSessionDAO"/>
     </bean>
 
-    <bean id="authorizationFilter" class="com.hunt.system.security.shiro.ShiroAuthorizationFilter"/>
+    <!--<bean id="authorizationFilter" class="com.hunt.system.security.shiro.ShiroAuthorizationFilter"/>-->
     <bean id="authenticationFilter" class="com.hunt.system.security.shiro.ShiroAuthenticationFilter"/>
 
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>

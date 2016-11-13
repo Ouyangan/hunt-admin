@@ -28,8 +28,8 @@
     <div style="float:right;height: 40px;padding: 0;">
 
     </div>
-    <div style="float:right;height: 40px;padding: 0;">
-        <span style="color: #ffffff ;font-weight: bolder">欢迎您:${sessionScope.get("loginInfo").loginName}</span> &nbsp;&nbsp;<input
+    <div style="float:right;height: 40px;padding-top: 0;">
+        <span style="color: #ffffff ;font-weight: bolder;">欢迎您:${sessionScope.get("loginInfo").loginName}</span> &nbsp;&nbsp;<input
             id="logout-btn" class="easyui-menubutton logout" value="安全退出">
     </div>
 </div>
@@ -50,7 +50,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
-                                 href="${pageContext.request.contextPath}/job/job">职位管理
+                                 href="${pageContext.request.contextPath}/job/jo">职位管理
                             </div>
                         </li>
                     </div>

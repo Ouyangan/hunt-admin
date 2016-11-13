@@ -28,7 +28,7 @@ public class ShiroAuthenticationFilter extends PassThruAuthenticationFilter {
         } else {
             saveRequest(request);
             if (((HttpServletRequest) request).getHeader("Accept").contains("application/json")) {
-                log.debug("登录认证:未通过:json");
+                log.debug("登录认证:未通过:json" + ((HttpServletRequest) request).getRequestURL());
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json;charset=UTF-8");
                 Result result = new Result(ResponseCode.unauthenticated.getCode(), ResponseCode.unauthenticated.getMsg());
@@ -36,10 +36,10 @@ public class ShiroAuthenticationFilter extends PassThruAuthenticationFilter {
                 response.getWriter().flush();
                 response.getWriter().close();
             } else {
-                log.debug("登录认证:未通过:web");
+                log.debug("登录认证:未通过:web" + ((HttpServletRequest) request).getRequestURL());
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("text/html;charset=UTF-8");
-                ((HttpServletResponse) response).sendRedirect("/");
+                ((HttpServletResponse) response).sendRedirect("/hunt-admin");
             }
             return false;
         }

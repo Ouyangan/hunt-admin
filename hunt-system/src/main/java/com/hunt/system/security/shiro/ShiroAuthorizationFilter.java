@@ -7,7 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import system.ResponseCode;
 import system.Result;
+import system.StringUtil;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +32,7 @@ public class ShiroAuthorizationFilter extends AuthorizationFilter {
             //未登录跳转至登陆页面
             saveRequest(request);
             if (((HttpServletRequest) request).getHeader("Accept").contains("application/json")) {
-                log.debug("登录认证:未通过:json");
+                log.debug("登录认证:未通过:json"+((HttpServletRequest) request).getRequestURL());
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json;charset=UTF-8");
                 Result result = new Result(ResponseCode.unauthenticated.getCode(), ResponseCode.unauthenticated.getMsg());
@@ -37,7 +40,7 @@ public class ShiroAuthorizationFilter extends AuthorizationFilter {
                 response.getWriter().flush();
                 response.getWriter().close();
             } else {
-                log.debug("登录认证:未通过:web");
+                log.debug("登录认证:未通过:web"+((HttpServletRequest) request).getRequestURL());
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("text/html;charset=UTF-8");
                 ((HttpServletResponse) response).sendRedirect("/");
@@ -45,7 +48,7 @@ public class ShiroAuthorizationFilter extends AuthorizationFilter {
         } else {
             //已登录未授权
             if (((HttpServletRequest) request).getHeader("Accept").contains("application/json")) {
-                log.debug("授权认证:未通过:json");
+                log.debug("授权认证:未通过:json"+((HttpServletRequest) request).getRequestURL());
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json;charset=UTF-8");
                 Result result = new Result(ResponseCode.unauthorized.getCode(), ResponseCode.unauthorized.getMsg());
@@ -53,10 +56,16 @@ public class ShiroAuthorizationFilter extends AuthorizationFilter {
                 response.getWriter().flush();
                 response.getWriter().close();
             } else {
-                log.debug("授权认证:未通过:web");
+                log.debug("授权认证:未通过:web"+((HttpServletRequest) request).getRequestURL());
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("text/html;charset=UTF-8");
                 ((HttpServletResponse) response).sendRedirect("/error/unAuthorization");
+//                RequestDispatcher rd = request.getRequestDispatcher("/error/unAuthorization");
+//                try {
+//                    rd.forward(request, response);
+//                } catch (ServletException e) {
+//                    log.error("转发错误!" + StringUtil.exceptionDetail(e));
+//                }
             }
         }
         return false;

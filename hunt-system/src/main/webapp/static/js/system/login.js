@@ -22,7 +22,7 @@ $(document).ready(function () {
         title: '系统登录',
         closable: false,
         width: 500,
-        height: 500,
+        height: 450,
         cache: false,
         modal: true,
         resizable: false,

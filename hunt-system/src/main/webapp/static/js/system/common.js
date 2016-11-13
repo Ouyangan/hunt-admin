@@ -8,13 +8,6 @@ common_tool = {
             showType: 'slide'
         });
     },
-    messager_confirm: function (msg) {
-        $.messager.confirm('确认对话框', msg, function (r) {
-            if (r) {
-                return true;
-            }
-        });
-    },
     timestampToDateTime: function (value) {
         date = new Date(value);
         timeStr = date.getFullYear() + "-" + (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + "-" + date.getDate() + " " + (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ":" + (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
@@ -27,6 +20,6 @@ function getRootPath() {
     var pos = curWwwPath.indexOf(pathName);
     var localhostPatht = curWwwPath.substring(0, pos);
     var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1)
-
+    console.log((localhostPatht + projectName))
     return (localhostPatht + projectName);
 }

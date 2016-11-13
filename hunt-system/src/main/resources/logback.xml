@@ -59,7 +59,15 @@
         </encoder>
     </appender>
 
-
+    <!--<logger name="org.mybatis.spring.SqlSessionUtils" level="error"/>-->
+    <!--<logger name="org.springframework" level="error"/>-->
+    <!--<logger name="org.apache.shiro" level="error"/>-->
+    <!--<logger name="com.hunt.dao.SysLogMapper" level="error"/>-->
+    <!--<logger name="com.hunt.system.security.shiro" level="error"/>-->
+    <!--<logger name="com.hunt.system.log.LogAOP" level="error"/>-->
+    <!--<logger name="com.hunt.system.log.LogAOP" level="error"/>-->
+    <!--<logger name="org.mybatis.spring.transaction.SpringManagedTransaction" level="error"/>-->
+    <!--<logger name="com.hunt.dao" level="error"/>-->
     <root level="debug">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILEDEBUG"/>

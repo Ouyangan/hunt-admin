@@ -5,7 +5,7 @@ $(document).ready(function () {
                 $.ajax({
                     data: {},
                     method: 'get',
-                    url: getRootPath() + '//system/logout',
+                    url: getRootPath() + '/system/logout',
                     async: false,
                     dataType: 'json',
                     success: function (result) {
@@ -32,13 +32,14 @@ $(document).ready(function () {
                     content: content,
                     border: true,
                     onLoadError: function () {
+                        $('#tab').tabs('close',title)
                         $('#tab').tabs('add', {
                             tabWidth: 100,
                             tabHeight: 35,
                             fit: true,
-                            title: '系统错误',
+                            title: '404',
                             closable: true,
-                            href: "error/internalError",
+                            href: getRootPath()+"/error/notFound",
                             border: true,
                         });
                     },
@@ -56,13 +57,14 @@ $(document).ready(function () {
                     href: href,
                     border: true,
                     onLoadError: function () {
+                        $('#tab').tabs('close',title)
                         $('#tab').tabs('add', {
                             tabWidth: 100,
                             tabHeight: 35,
                             fit: true,
-                            title: '系统错误',
+                            title: '404',
                             closable: true,
-                            href: "error/internalError",
+                            href: getRootPath()+"/error/notFound",
                             border: true,
                         });
                     },
