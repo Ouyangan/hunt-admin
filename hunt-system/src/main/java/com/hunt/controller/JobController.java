@@ -151,7 +151,7 @@ public class JobController extends BaseController {
      * @param id   定级id
      * @return
      */
-    @ApiOperation(value = "删除职位", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
+    @ApiOperation(value = "查询职位列表", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @ResponseBody
     @RequiresPermissions("job:list")
     @RequestMapping(value = "list", method = RequestMethod.GET)
