@@ -83,7 +83,7 @@
         </div>
         <div style="float: right;width: 200px;height: 100%">
             <table id="user-permissions" class="easyui-datagrid" data-options="
-                url:'${pageContext.request.contextPath}/permission/select',
+                url:'${pageContext.request.contextPath}/permission/list',
                 method:'get',
                 idField:'id',
                 view:groupview,
@@ -110,7 +110,7 @@
         <div style="float: right;width: 300px;height: 100%;">
             <table id="jobs" class="easyui-treegrid"
                    data-options="
-                url:'${pageContext.request.contextPath}/job/select',
+                url:'${pageContext.request.contextPath}/job/list',
                 method:'get',
                 idField: 'id',
                 nodeId:'id',

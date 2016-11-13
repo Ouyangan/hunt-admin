@@ -33,7 +33,7 @@
         <div style="float: right;width:50%;height: 100%;">
             <table id="organization_save_right" class="easyui-treegrid easyui-validatebox"
                    data-options="
-                url:'${pageContext.request.contextPath}/organization/select',
+                url:'${pageContext.request.contextPath}/organization/list',
                 method:'get',
                 idField: 'id',
                 treeField: 'name',

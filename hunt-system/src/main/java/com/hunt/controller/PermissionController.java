@@ -153,8 +153,8 @@ public class PermissionController extends BaseController {
     @ApiOperation(value = "查询权限列表", httpMethod = "GET", produces = "application/json", response = Result.class)
     @ResponseBody
     @RequiresPermissions("permission:list")
-    @RequestMapping(value = "select", method = RequestMethod.GET)
-    public PageInfo select(@RequestParam(defaultValue = "1") int page,
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public PageInfo list(@RequestParam(defaultValue = "1") int page,
                            @RequestParam(defaultValue = "30") int rows) {
         PageInfo pageInfo = sysPermissionService.selectPage(page, rows);
         return pageInfo;

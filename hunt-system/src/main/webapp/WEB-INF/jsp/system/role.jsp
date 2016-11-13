@@ -29,7 +29,7 @@
         </div>
         <div style="float: right; width: 50%;height: 100%;">
             <table id="role-permissions" class="easyui-datagrid" data-options="
-                url:'${pageContext.request.contextPath}/permission/select',
+                url:'${pageContext.request.contextPath}/permission/list',
                 method:'get',
                 idField:'id',
                 view:groupview,

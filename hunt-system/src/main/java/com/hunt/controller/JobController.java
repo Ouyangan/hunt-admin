@@ -154,8 +154,8 @@ public class JobController extends BaseController {
     @ApiOperation(value = "删除职位", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @ResponseBody
     @RequiresPermissions("job:list")
-    @RequestMapping(value = "select", method = RequestMethod.GET)
-    public PageInfo select(@RequestParam(defaultValue = "1") int page,
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public PageInfo list(@RequestParam(defaultValue = "1") int page,
                            @RequestParam(defaultValue = "15") int rows,
                            @RequestParam(defaultValue = "1") long id) {
         PageInfo pageInfo = roleOrganizationService.selectPage(page, rows, id);

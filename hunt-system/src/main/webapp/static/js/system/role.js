@@ -7,7 +7,7 @@ role_tool = {
     //初始化页面+加载数据
     init_main_view: function () {
         $("#role_grid").datagrid({
-            url: getRootPath() + "/role/select",
+            url: getRootPath() + "/role/list",
             method: 'get',
             idField: "id",
             treeField: 'name',

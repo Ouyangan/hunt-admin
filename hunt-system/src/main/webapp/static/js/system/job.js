@@ -126,7 +126,7 @@ job_tool = {
     ,
     init_main_view: function () {
         $("#job_grid").treegrid({
-            url: getRootPath() + '/job/select',
+            url: getRootPath() + '/job/list',
             method: 'get',
             idField: "id",
             nodeId: 'id',

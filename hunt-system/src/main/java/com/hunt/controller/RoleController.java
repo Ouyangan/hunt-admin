@@ -140,8 +140,8 @@ public class RoleController extends BaseController {
     @ApiOperation(value = "角色列表", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @RequiresPermissions("role:list")
     @ResponseBody
-    @RequestMapping(value = "select", method = RequestMethod.GET)
-    public PageInfo select(@RequestParam(defaultValue = "1") int page,
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public PageInfo list(@RequestParam(defaultValue = "1") int page,
                            @RequestParam(defaultValue = "15") int rows) {
         PageInfo pageInfo = sysRoleService.selectPage(page, rows);
         return pageInfo;

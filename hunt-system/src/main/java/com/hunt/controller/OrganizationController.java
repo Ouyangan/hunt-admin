@@ -146,8 +146,8 @@ public class OrganizationController extends BaseController {
     @ApiOperation(value = "查询机构列表", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @RequiresPermissions("organization:list")
     @ResponseBody
-    @RequestMapping(value = "select", method = RequestMethod.GET)
-    public PageInfo select(@RequestParam(value = "page", defaultValue = "1") int page,
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public PageInfo list(@RequestParam(value = "page", defaultValue = "1") int page,
                            @RequestParam(value = "row", defaultValue = "15") int row,
                            @RequestParam(value = "id", defaultValue = "1") long id) {
         PageInfo pageInfo = sysOrganizationService.selectPage(page, row, id);

@@ -10,7 +10,7 @@ organization_tool = {
         var data_json = '';
         $.ajax({
             method: 'get',
-            url: getRootPath() + '/organization/select',
+            url: getRootPath() + '/organization/list',
             async: false,
             dataType: 'json',
             success: function (result) {
@@ -46,7 +46,7 @@ organization_tool = {
     init_mian_view: function () {
         $("#organization").treegrid({
             // data: organization_tool.init_data(),
-            url: getRootPath() + '/organization/select',
+            url: getRootPath() + '/organization/list',
             method: 'get',
             idField: "id",
             nodeId: 'id',

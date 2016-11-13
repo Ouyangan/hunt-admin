@@ -46,7 +46,6 @@ $(document).ready(function () {
             } else if (href.indexOf('swagger-ui.html') != -1) {
                 window.open(href)
             }
-
             else {
                 $('#tab').tabs('add', {
                     tabWidth: 100,

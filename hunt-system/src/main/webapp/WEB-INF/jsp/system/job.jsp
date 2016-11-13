@@ -34,7 +34,7 @@
         <div style="float: right;width: 300px;;height: 100%;">
             <table id="job_dialog_parent_tree" class="easyui-treegrid"
                    data-options="
-                url:'${pageContext.request.contextPath}/job/select',
+                url:'${pageContext.request.contextPath}/job/list',
                 method:'get',
                 idField: 'id',
                 nodeId:'id',
@@ -61,7 +61,7 @@
         <div style="float: right;width: 200px;height: 100%">
             <table id="job_dialog_role" class="easyui-datagrid"
                    data-options="
-                url:'${pageContext.request.contextPath}/role/select',
+                url:'${pageContext.request.contextPath}/role/list',
                 method:'get',
                 idField: 'id',
                 nodeId:'id',
@@ -89,7 +89,7 @@
         <div style="float: right;width: 300px;height: 100%">
             <table id="job_dialog_organization" class="easyui-treegrid"
                    data-options="
-                url:'${pageContext.request.contextPath}/organization/select',
+                url:'${pageContext.request.contextPath}/organization/list',
                 method:'get',
                 idField: 'id',
                 nodeId:'id',

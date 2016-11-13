@@ -235,7 +235,7 @@ permission_tool = {
     },
     init_main_view: function () {
         $("#permission_grid").datagrid({
-            url: getRootPath() + "/permission/select",
+            url: getRootPath() + "/permission/list",
             method: 'get',
             view: groupview,
             groupField: 'sysPermissionGroupId',

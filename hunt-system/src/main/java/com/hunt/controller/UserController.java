@@ -188,8 +188,8 @@ public class UserController extends BaseController {
     @ApiOperation(value = "查询用户列表", httpMethod = "GET", produces = "application/json", response = PageInfo.class)
     @RequiresPermissions("user:list")
     @ResponseBody
-    @RequestMapping(value = "select", method = RequestMethod.GET)
-    public PageInfo select(@RequestParam(defaultValue = "1") int page,
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public PageInfo list(@RequestParam(defaultValue = "1") int page,
                            @RequestParam(defaultValue = "30") int rows,
                            @RequestParam(defaultValue = "zhName") String sort,
                            @RequestParam(defaultValue = "asc") String order,

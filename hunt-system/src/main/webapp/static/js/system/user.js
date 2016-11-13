@@ -17,7 +17,7 @@ user_tool = {
         var phone = $("input[name='search-phone']").val();
         var address = $("input[name='search-address']").val();
         $("#user_grid").datagrid({
-            url: getRootPath() + '/user/select',
+            url: getRootPath() + '/user/list',
             method: 'get',
             idField: "id",
             fitColumns: true,
