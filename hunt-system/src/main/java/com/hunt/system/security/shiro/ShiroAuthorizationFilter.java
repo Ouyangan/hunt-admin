@@ -27,6 +27,8 @@ public class ShiroAuthorizationFilter extends AuthorizationFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {
+        HttpServletResponse response1 = (HttpServletResponse) response;
+        log.debug("请求状态码是:"+response1.getStatus());
         Subject subject = getSubject(request, response);
         if (subject.getPrincipal() == null) {
             //未登录跳转至登陆页面

@@ -45,4 +45,13 @@
 
     <!-- Include a swagger configuration-->
     <bean name="/applicationSwaggerConfig" class="com.hunt.system.swagger.SwaggerConfiguration"/>
+
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller &ndash;&gt;-->
+            <!--<mvc:mapping path="/**" />-->
+            <!--<bean class="com.hunt.system.error.ErrorInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+        <!--&lt;!&ndash; 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 &ndash;&gt;-->
+    <!--</mvc:interceptors>-->
 </beans>

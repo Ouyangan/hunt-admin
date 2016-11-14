@@ -8,7 +8,7 @@
         <property name="loginUrl" value="/"/>
         <property name="filters">
             <map>
-                <!--<entry key="authc" value-ref="authorizationFilter"/>-->
+                <entry key="authc" value-ref="authorizationFilter"/>
                 <entry key="authc" value-ref="authenticationFilter"/>
             </map>
         </property>
@@ -63,7 +63,7 @@
         <property name="sessionDAO" ref="redisSessionDAO"/>
     </bean>
 
-    <!--<bean id="authorizationFilter" class="com.hunt.system.security.shiro.ShiroAuthorizationFilter"/>-->
+    <bean id="authorizationFilter" class="com.hunt.system.security.shiro.ShiroAuthorizationFilter"/>
     <bean id="authenticationFilter" class="com.hunt.system.security.shiro.ShiroAuthenticationFilter"/>
 
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>

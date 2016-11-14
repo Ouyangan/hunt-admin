@@ -49,6 +49,10 @@
         <servlet-name>springServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
+            <param-name>throwExceptionIfNoHandlerFound</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath*:spring/spring-mvc.xml</param-value>
         </init-param>
@@ -105,12 +109,12 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
-    <error-page>
-        <error-code>500</error-code>
-        <location>/error/internalError</location>
-    </error-page>
-    <error-page>
-        <error-code>404</error-code>
-        <location>/error/notFound</location>
-    </error-page>
+    <!--<error-page>-->
+        <!--<error-code>500</error-code>-->
+        <!--<location>/error/internalError</location>-->
+    <!--</error-page>-->
+    <!--<error-page>-->
+        <!--<error-code>404</error-code>-->
+        <!--<location>/error/notFound</location>-->
+    <!--</error-page>-->
 </web-app>

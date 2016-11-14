@@ -22,6 +22,8 @@ public class ShiroAuthenticationFilter extends PassThruAuthenticationFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
+        HttpServletResponse response1 = (HttpServletResponse) response;
+        log.debug("请求状态码是:"+response1.getStatus());
         if (isLoginRequest(request, response)) {
             log.debug("是否为登陆url:是");
             return true;

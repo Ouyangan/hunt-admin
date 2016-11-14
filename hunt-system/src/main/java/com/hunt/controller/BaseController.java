@@ -65,9 +65,16 @@ public class BaseController {
         return verifyResult == 1;
     }
 
+//    @ExceptionHandler(ResourceNotFoundException.class)
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    public String handleResourceNotFoundException() {
+//        return "meters/notfound";
+//    }
+
     //根据请求类型,响应不同类型
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(Exception.class)
     public void exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception exception) throws IOException, ServletException {
+        log.debug("get http status " + response.getStatus());
         log.error("exception occur : \n {}", StringUtil.exceptionDetail(exception));
         if (request.getHeader("Accept").contains("application/json")) {
             log.debug("qingqiu");
