@@ -50,7 +50,7 @@
                     <div style="padding: 5px 10px;">
                         <li class="nav-list">
                             <div class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="border: 0; "
-                                 href="${pageContext.request.contextPath}/job/jo">职位管理
+                                 href="${pageContext.request.contextPath}/job/job">职位管理
                             </div>
                         </li>
                     </div>
