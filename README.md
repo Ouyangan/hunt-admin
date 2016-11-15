@@ -34,14 +34,18 @@
 
 
 **系统截图**
-![替代文字](https://box.worktile.com/view/76ad7299001b463984c319216574312d?pid=ea3ba2f9b5834cdca4a533587ea0725b)
-![替代文字](https://box.worktile.com/view/8dccf1498b5845fcbd1bc76155a47835?pid=ea3ba2f9b5834cdca4a533587ea0725b)
-![替代文字](https://box.worktile.com/view/f428fa3e1bb64508bac1205fd10261f9?pid=ea3ba2f9b5834cdca4a533587ea0725b)
-![替代文字](https://box.worktile.com/view/341f35c0f4e54c4a8acd49217349c4ed?pid=ea3ba2f9b5834cdca4a533587ea0725b)
-![替代文字](https://box.worktile.com/view/fbf5ec474cea4bd4a32de44e690f2a11?pid=ea3ba2f9b5834cdca4a533587ea0725b)
-![替代文字](https://box.worktile.com/view/407b241a11e2437b9f5a057bc49aaa8b?pid=ea3ba2f9b5834cdca4a533587ea0725b)
-![替代文字](https://box.worktile.com/view/8f8d2b9b82fb437da5962343ff97b5d3?pid=ea3ba2f9b5834cdca4a533587ea0725b)
-![替代文字](https://box.worktile.com/view/93b4385bbe6d46de9250e98d9be007cd?pid=ea3ba2f9b5834cdca4a533587ea0725b)
-![替代文字](https://box.worktile.com/view/d571f8ec5c4942fbb6330f432f24939d?pid=ea3ba2f9b5834cdca4a533587ea0725b)
-![替代文字](https://box.worktile.com/view/429683b34db645ad9670f857737f2e7e?pid=ea3ba2f9b5834cdca4a533587ea0725b)
-![替代文字](https://box.worktile.com/view/6cbbe50fa5c84d4b9401f9c5d44c2edd?pid=ea3ba2f9b5834cdca4a533587ea0725b)
+![替代文字](http://p1.bqimg.com/4851/4a6a222a29b1d4c1.png)
+![替代文字](http://p1.bqimg.com/4851/6a30506afe02caa2.png)
+![替代文字](http://p1.bqimg.com/4851/9dbcd8135b7b9cb1.png)
+![替代文字](http://p1.bqimg.com/4851/afe209af02550a34.png)
+![替代文字](http://p1.bqimg.com/4851/66e82ce59fb03549.png)
+![替代文字](http://p1.bqimg.com/4851/e24fef8561511726.png)
+![替代文字](http://p1.bqimg.com/4851/db2808f33d551d37.png)
+![替代文字](http://p1.bqimg.com/4851/9cc5071731aa3c18.png)
+![替代文字](http://p1.bqimg.com/4851/62293ece6299db68.png)
+![替代文字](http://p1.bqimg.com/4851/896e1bc570dd3e45.png)
+![替代文字](http://p1.bqimg.com/4851/a7e3a4b73f160607.png)
+![替代文字](http://p1.bqimg.com/4851/7096c16da9922919.png)
+![替代文字](http://p1.bqimg.com/4851/9513db5d2381aa20.png)
+
+
