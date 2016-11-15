@@ -73,9 +73,10 @@ public class SystemController extends BaseController {
                         @RequestParam String password,
                         @RequestParam int platform,
                         HttpServletRequest request) throws Exception {
-//        if (!verifyCaptcha(request)) {
-//            return Result.instance(ResponseCode.verify_captcha_error.getCode(), ResponseCode.verify_captcha_error.getMsg());
-//        }
+        //极限验证二次服务验证
+        if (!verifyCaptcha(request)) {
+            return Result.instance(ResponseCode.verify_captcha_error.getCode(), ResponseCode.verify_captcha_error.getMsg());
+        }
         SysUser user = sysUserService.selectByLoginName(loginName);
         if (user == null) {
             return Result.instance(ResponseCode.unknown_account.getCode(), ResponseCode.unknown_account.getMsg());
