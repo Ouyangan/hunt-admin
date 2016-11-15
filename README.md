@@ -16,7 +16,7 @@
 
 **系统部署**
 
-- 创建`mysql`数据库 ,运行`doc`文件下有`init-mysql-data.sql`, 安装`Redis`(port:6379)... 根据自身环境修改`env.properties`的数据库和redis属性.
+- 创建`mysql`数据库 ,运行`doc`文件夹下的`hunt-admin-initdb.sql`, 安装`Redis`(port:6379)... 可根据自身环境修改`env.properties`的数据库和redis属性.
 - IDE导入maven工程 ,等待依赖下载 .
 - 设置访问端口为:8086 ,不然极限验证通不过(绑定了127.0.0.1:8086端口) , 当然你可以自己申请极限验证账号绑定自己设置的端口,然后替换调数据字典的值
 - `run` , `用户名`:admin/admin2 `密码`:111111,,然后就随意折腾吧
@@ -28,6 +28,7 @@
 - Shiro
 - Springfox
 - Mybatis
+- Mysql
 - Redis
 - Jquery
 - EasyUi

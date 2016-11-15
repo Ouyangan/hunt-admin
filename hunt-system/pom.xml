@@ -243,9 +243,9 @@
             </properties>
         </profile>
     </profiles>
+    <!--alimaven中心-->
     <repositories>
         <repository>
-            <!-- Maven 自带的中央仓库使用的Id为central  如果其他的仓库声明也是用该Id就会覆盖中央仓库的配置 -->
             <id>mvnrepository</id>
             <name>mvnrepository</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
