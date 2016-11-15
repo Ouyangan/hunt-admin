@@ -18,7 +18,7 @@
 - 创建`mysql`数据库 ,运行`doc`文件下有`init-mysql-data.sql`, 安装`Redis`(port:6379)... 根据自身环境修改`env.properties`的数据库和redis属性.
 - IDE导入maven工程 ,等待依赖下载 .
 - 设置访问端口为:8086 ,不然验证码通不过 , 当然你可以自己申请极限验证账号,然后替换调数据字典的值
-- `run`.......
+- `run` , `用户名`:admin `密码`:111111 ,然后就随意折腾吧
 
 **技术方案**
 
@@ -32,6 +32,10 @@
 - EasyUi
 - Maven
 
+**License**
+
+- apache license 2.0
+
 
 **系统截图**
 ![替代文字](http://p1.bqimg.com/4851/4a6a222a29b1d4c1.png)
@@ -44,7 +48,7 @@
 ![替代文字](http://p1.bqimg.com/4851/9cc5071731aa3c18.png)
 ![替代文字](http://p1.bqimg.com/4851/62293ece6299db68.png)
 ![替代文字](http://p1.bqimg.com/4851/896e1bc570dd3e45.png)
-![替代文字](http://p1.bqimg.com/4851/a7e3a4b73f160607.png)
+![替代文字](http://p1.bqimg.com/4851/5755af87a04925cf.png)
 ![替代文字](http://p1.bqimg.com/4851/7096c16da9922919.png)
 ![替代文字](http://p1.bqimg.com/4851/9513db5d2381aa20.png)
 
