@@ -32,6 +32,11 @@
 - EasyUi
 - Maven
 
+**接下来工作**
+
+- url风格调整为restful
+- controller层单元测试
+
 **License**
 
 - apache license 2.0
