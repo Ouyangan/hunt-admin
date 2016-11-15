@@ -61,12 +61,6 @@ public class BaseController {
         return verifyResult == 1;
     }
 
-//    @ExceptionHandler(ResourceNotFoundException.class)
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    public String handleResourceNotFoundException() {
-//        return "meters/notfound";
-//    }
-
     //根据请求类型,响应不同类型
     @ExceptionHandler(Exception.class)
     public void exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception exception) throws IOException, ServletException {
