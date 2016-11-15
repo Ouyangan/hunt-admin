@@ -101,14 +101,14 @@ public class BaseController {
             response.getWriter().close();
         } else {
             String basePath = systemService.selectDataItemByKey("basePath", 4L);
-            String url = basePath + "/error/internalError";
+            String url = "/error/internalError";
 
             if (exception instanceof UnauthorizedException) {
-                url = basePath + "/error/unAuthorization";
+                url = "/error/unAuthorization";
             }
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=UTF-8");
-            response.sendRedirect(url);
+            response.sendRedirect(basePath + url);
         }
     }
 }
