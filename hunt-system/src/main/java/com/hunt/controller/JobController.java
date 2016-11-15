@@ -60,6 +60,7 @@ public class JobController extends BaseController {
                          @RequestParam String description,
                          @RequestParam String fullName,
                          @RequestParam(defaultValue = "1") int isFinal) {
+
         boolean isExistName = roleOrganizationService.isExistName(name, parentId);
         if (isExistName) {
             return Result.error(ResponseCode.name_already_exist.getMsg());
@@ -156,8 +157,8 @@ public class JobController extends BaseController {
     @RequiresPermissions("job:list")
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public PageInfo list(@RequestParam(defaultValue = "1") int page,
-                           @RequestParam(defaultValue = "15") int rows,
-                           @RequestParam(defaultValue = "1") long id) {
+                         @RequestParam(defaultValue = "15") int rows,
+                         @RequestParam(defaultValue = "1") long id) {
         PageInfo pageInfo = roleOrganizationService.selectPage(page, rows, id);
         return pageInfo;
     }

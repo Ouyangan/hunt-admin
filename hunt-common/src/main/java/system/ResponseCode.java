@@ -7,7 +7,7 @@ package system;
  */
 public enum ResponseCode {
     success(10000, "操作成功"),
-    error(20000, "服务错误"),
+    error(20000, "服务器错误"),
     unknown_account(20001, "账户不存在"),
     forbidden_account(20002, "账户已禁用"),
     password_incorrect(20003, "密码错误"),

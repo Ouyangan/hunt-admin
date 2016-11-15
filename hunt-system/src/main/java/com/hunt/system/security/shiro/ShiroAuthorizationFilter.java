@@ -20,7 +20,7 @@ import java.io.IOException;
 /**
  * @Author ouyangan
  * @Date 2016/11/1/19:35
- * @Description 权限过滤器
+ * @Description 权限过滤器 未启用
  */
 public class ShiroAuthorizationFilter extends AuthorizationFilter {
     private static Logger log = LoggerFactory.getLogger(ShiroAuthorizationFilter.class);
@@ -28,13 +28,11 @@ public class ShiroAuthorizationFilter extends AuthorizationFilter {
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {
         HttpServletResponse response1 = (HttpServletResponse) response;
-        log.debug("请求状态码是:"+response1.getStatus());
         Subject subject = getSubject(request, response);
         if (subject.getPrincipal() == null) {
             //未登录跳转至登陆页面
             saveRequest(request);
             if (((HttpServletRequest) request).getHeader("Accept").contains("application/json")) {
-                log.debug("登录认证:未通过:json"+((HttpServletRequest) request).getRequestURL());
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json;charset=UTF-8");
                 Result result = new Result(ResponseCode.unauthenticated.getCode(), ResponseCode.unauthenticated.getMsg());
@@ -42,7 +40,6 @@ public class ShiroAuthorizationFilter extends AuthorizationFilter {
                 response.getWriter().flush();
                 response.getWriter().close();
             } else {
-                log.debug("登录认证:未通过:web"+((HttpServletRequest) request).getRequestURL());
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("text/html;charset=UTF-8");
                 ((HttpServletResponse) response).sendRedirect("/");
@@ -62,12 +59,6 @@ public class ShiroAuthorizationFilter extends AuthorizationFilter {
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("text/html;charset=UTF-8");
                 ((HttpServletResponse) response).sendRedirect("/error/unAuthorization");
-//                RequestDispatcher rd = request.getRequestDispatcher("/error/unAuthorization");
-//                try {
-//                    rd.forward(request, response);
-//                } catch (ServletException e) {
-//                    log.error("转发错误!" + StringUtil.exceptionDetail(e));
-//                }
             }
         }
         return false;

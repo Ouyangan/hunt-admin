@@ -22,15 +22,11 @@ public class ShiroAuthenticationFilter extends PassThruAuthenticationFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-        HttpServletResponse response1 = (HttpServletResponse) response;
-        log.debug("请求状态码是:"+response1.getStatus());
         if (isLoginRequest(request, response)) {
-            log.debug("是否为登陆url:是");
             return true;
         } else {
             saveRequest(request);
             if (((HttpServletRequest) request).getHeader("Accept").contains("application/json")) {
-                log.debug("登录认证:未通过:json" + ((HttpServletRequest) request).getRequestURL());
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json;charset=UTF-8");
                 Result result = new Result(ResponseCode.unauthenticated.getCode(), ResponseCode.unauthenticated.getMsg());
@@ -38,7 +34,6 @@ public class ShiroAuthenticationFilter extends PassThruAuthenticationFilter {
                 response.getWriter().flush();
                 response.getWriter().close();
             } else {
-                log.debug("登录认证:未通过:web" + ((HttpServletRequest) request).getRequestURL());
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("text/html;charset=UTF-8");
                 ((HttpServletResponse) response).sendRedirect("/hunt-admin");

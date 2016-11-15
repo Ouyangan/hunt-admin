@@ -7,20 +7,16 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
-import org.apache.shiro.session.UnknownSessionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import system.ResponseCode;
 import system.Result;
 import system.StringUtil;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -74,7 +70,6 @@ public class BaseController {
     //根据请求类型,响应不同类型
     @ExceptionHandler(Exception.class)
     public void exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception exception) throws IOException, ServletException {
-        log.debug("get http status " + response.getStatus());
         log.error("exception occur : \n {}", StringUtil.exceptionDetail(exception));
         if (request.getHeader("Accept").contains("application/json")) {
             log.debug("qingqiu");
@@ -111,23 +106,15 @@ public class BaseController {
             response.getWriter().flush();
             response.getWriter().close();
         } else {
+            String basePath = systemService.selectDataItemByKey("basePath", 4L);
+            String url = basePath + "/error/internalError";
+
+            if (exception instanceof UnauthorizedException) {
+                url = basePath + "/error/unAuthorization";
+            }
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html;charset=UTF-8");
-            if (exception instanceof UnauthorizedException) {
-                log.debug("未授权");
-//                RequestDispatcher rd = request.getRequestDispatcher("/error/unAuthorization");
-//                rd.forward(request, response);
-                response.sendRedirect("/error/unAuthorization");
-            } else if (exception instanceof UnauthenticatedException) {
-                log.debug("未登录");
-                response.sendRedirect("/");
-
-            } else if (exception instanceof UnknownSessionException) {
-                log.debug("未找到页面");
-//                RequestDispatcher rd = request.getRequestDispatcher("/error/notFound");
-//                rd.forward(request, response);
-                response.sendRedirect("/error/notFound");
-            }
+            response.sendRedirect(url);
         }
     }
 }
