@@ -37,7 +37,6 @@
 - url风格调整为restful
 - controller层单元测试
 - 第三方登录模块开发
--
 
 **License**
 
