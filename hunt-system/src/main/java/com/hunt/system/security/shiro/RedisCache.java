@@ -20,6 +20,8 @@ import java.util.concurrent.TimeUnit;
  * @Description Cache   redis实现
  */
 public class RedisCache<K, V> implements Cache<K, V>, Serializable {
+    public static final String shiro_cache_prefix = "shiro-cache-";
+    public static final String shiro_cache_prefix_keys = "shiro-cache-*";
     private static final long timeout = 2592000;
     private transient static Logger log = LoggerFactory.getLogger(RedisCache.class);
 
@@ -37,20 +39,20 @@ public class RedisCache<K, V> implements Cache<K, V>, Serializable {
     public V get(K key) throws CacheException {
         log.debug("根据key:{}从redis获取对象", key);
         log.debug("redisTemplate : {}", redisTemplate);
-        return redisTemplate.opsForValue().get(SystemConstant.shiro_cache_prefix + key);
+        return redisTemplate.opsForValue().get(shiro_cache_prefix + key);
     }
 
     @Override
     public V put(K key, V value) throws CacheException {
         log.debug("根据key:{}从redis删除对象", key);
-        redisTemplate.opsForValue().set((K) (SystemConstant.shiro_cache_prefix + key), value, timeout, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set((K) (shiro_cache_prefix + key), value, timeout, TimeUnit.SECONDS);
         return value;
     }
 
     @Override
     public V remove(K key) throws CacheException {
         log.debug("redis cache remove :{}", key.toString());
-        V value = redisTemplate.opsForValue().get(SystemConstant.shiro_cache_prefix + key);
+        V value = redisTemplate.opsForValue().get(shiro_cache_prefix + key);
         redisTemplate.delete(key);
         return value;
     }
@@ -58,20 +60,20 @@ public class RedisCache<K, V> implements Cache<K, V>, Serializable {
     @Override
     public void clear() throws CacheException {
         log.debug("清除redis所有缓存对象");
-        Set<K> keys = redisTemplate.keys((K) SystemConstant.shiro_cache_prefix_keys);
+        Set<K> keys = redisTemplate.keys((K) shiro_cache_prefix_keys);
         redisTemplate.delete(keys);
     }
 
     @Override
     public int size() {
-        Set<K> keys = redisTemplate.keys((K) SystemConstant.shiro_cache_prefix_keys);
+        Set<K> keys = redisTemplate.keys((K) shiro_cache_prefix_keys);
         log.debug("获取redis缓存对象数量:{}", keys.size());
         return keys.size();
     }
 
     @Override
     public Set<K> keys() {
-        Set<K> keys = redisTemplate.keys((K) SystemConstant.shiro_cache_prefix_keys);
+        Set<K> keys = redisTemplate.keys((K)shiro_cache_prefix_keys);
         log.debug("获取所有缓存对象的key");
         if (keys.size() == 0) {
             return Collections.emptySet();
@@ -81,7 +83,7 @@ public class RedisCache<K, V> implements Cache<K, V>, Serializable {
 
     @Override
     public Collection<V> values() {
-        Set<K> keys = redisTemplate.keys((K) SystemConstant.shiro_cache_prefix_keys);
+        Set<K> keys = redisTemplate.keys((K) shiro_cache_prefix_keys);
         log.debug("获取所有缓存对象的value");
         if (keys.size() == 0) {
             return Collections.emptySet();
