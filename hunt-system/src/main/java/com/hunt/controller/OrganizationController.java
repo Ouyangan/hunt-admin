@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import system.ResponseCode;
 import system.Result;
 
 /**
@@ -57,7 +58,7 @@ public class OrganizationController extends BaseController {
                          @RequestParam(defaultValue = "1") int isFinal) {
         boolean isExistFullName = sysOrganizationService.isExistFullName(fullName);
         if (isExistFullName) {
-            return Result.error("全称重复,请重新填写!");
+            return Result.error(ResponseCode.fullname_already_exist.getMsg());
         }
         SysOrganization organization = new SysOrganization();
         organization.setFullName(fullName);
@@ -82,10 +83,10 @@ public class OrganizationController extends BaseController {
     public Result delete(@RequestParam long id) {
         SysOrganization sysOrganization = sysOrganizationService.selectOrganization(id);
         if (sysOrganization == null) {
-            return Result.error("组织机构不存在!");
+            return Result.error(ResponseCode.data_not_exist.getMsg());
         }
         if (sysOrganization.getIsFinal() == 2) {
-            return Result.error("该数据不可删除!");
+            return Result.error(ResponseCode.can_not_edit.getMsg());
         }
         int i = sysOrganizationService.deleteOrganization(id);
         return Result.success();
@@ -110,20 +111,19 @@ public class OrganizationController extends BaseController {
                          @RequestParam String fullName,
                          @RequestParam String description,
                          @RequestParam long parentId) {
-        System.out.println("id = [" + id + "], name = [" + name + "], fullName = [" + fullName + "], description = [" + description + "], parentId = [" + parentId + "]");
         SysOrganization sysOrganization = sysOrganizationService.selectOrganization(id);
         if (sysOrganization == null) {
-            return Result.error("组织机构不存在!");
+            return Result.error(ResponseCode.data_not_exist.getMsg());
         }
         if (sysOrganization.getIsFinal() == 2) {
-            return Result.error("该数据不可编辑!");
+            return Result.error(ResponseCode.can_not_edit.getMsg());
         }
         if (sysOrganization.getId() == parentId) {
             return Result.error("上级机构不能选择自己,请选择其他组织机构!");
         }
         boolean isExistFullNameExcludeId = sysOrganizationService.isExistFullNameExcludeId(id, fullName);
         if (isExistFullNameExcludeId) {
-            return Result.error("全称重复,请重新填写!");
+            return Result.error(ResponseCode.fullname_already_exist.getMsg());
         }
         SysOrganization organization = new SysOrganization();
         organization.setId(id);

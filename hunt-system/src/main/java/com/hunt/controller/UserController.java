@@ -227,14 +227,10 @@ public class UserController extends BaseController {
         if (user.getIsFinal() == 2) {
             return Result.error(ResponseCode.can_not_edit.getMsg());
         }
-//        if (!oldPassword.equals(StringUtil.createPassword(oldPassword, user.getPasswordSalt(), 2))) {
-//            return Result.error("原密码错误");
-//        }
         String salt = UUID.randomUUID().toString().replaceAll("-", "");
         user.setPasswordSalt(salt);
         user.setPassword(StringUtil.createPassword(newPassword, salt, 2));
         sysUserService.updateUser(user);
-//        systemService.forceLogout(id);
         return Result.success();
     }
 

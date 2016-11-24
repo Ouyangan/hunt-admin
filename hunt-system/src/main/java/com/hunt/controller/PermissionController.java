@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import system.ResponseCode;
 import system.Result;
 
 import java.util.List;
@@ -90,10 +91,10 @@ public class PermissionController extends BaseController {
     public Result delete(@RequestParam long id) {
         SysPermission sysPermission = sysPermissionService.selectById(id);
         if (sysPermission == null) {
-            return Result.error("该记录不存在");
+            return Result.error(ResponseCode.data_not_exist.getMsg());
         }
         if (sysPermission.getIsFinal() == 2) {
-            return Result.error("该数据不可修改");
+            return Result.error(ResponseCode.can_not_edit.getMsg());
         }
         sysPermission.setStatus(2);
         // TODO: 2016/10/26  级联删除关联表 ,角色权限,用户权限
@@ -122,18 +123,18 @@ public class PermissionController extends BaseController {
                          @RequestParam String description) {
         SysPermission sysPermission = sysPermissionService.selectById(id);
         if (sysPermission == null) {
-            return Result.error("该记录不存在");
+            return Result.error(ResponseCode.data_not_exist.getMsg());
         }
         if (sysPermission.getIsFinal() == 2) {
-            return Result.error("该数据不可修改");
+            return Result.error(ResponseCode.can_not_edit.getMsg());
         }
         boolean isExistName = sysPermissionService.isExistNameExcludeId(id, groupId, name);
         if (isExistName) {
-            return Result.error("该分组下名称已存在");
+            return Result.error(ResponseCode.name_already_exist.getMsg());
         }
         boolean isExistCode = sysPermissionService.isExistCodeExcludeId(id, groupId, code);
         if (isExistCode) {
-            return Result.error("该权限分组下编码已存在已存在");
+            return Result.error(ResponseCode.code_already_exist.getMsg());
         }
         sysPermission.setName(name);
         sysPermission.setCode(code);
@@ -175,7 +176,7 @@ public class PermissionController extends BaseController {
                               @RequestParam String description) {
         boolean isExistGroupName = sysPermissionService.isExistGroupName(name);
         if (isExistGroupName) {
-            return Result.error("该分组名称已存在");
+            return Result.error(ResponseCode.name_already_exist.getMsg());
         }
         SysPermissionGroup sysPermissionGroup = new SysPermissionGroup();
         sysPermissionGroup.setName(name);

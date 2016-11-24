@@ -6,15 +6,18 @@ import com.hunt.service.SysRoleService;
 import com.hunt.service.SystemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.ResultType;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.RecoverableDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import system.ResponseCode;
 import system.Result;
 
 /**
@@ -59,7 +62,7 @@ public class RoleController extends BaseController {
                          @RequestParam(defaultValue = "1") int isFinal) {
         boolean isExsitRoleName = sysRoleService.isExsitRoleName(name);
         if (isExsitRoleName) {
-            return Result.error("角色名称已存在");
+            return Result.error(ResponseCode.can_not_edit.getMsg());
         }
         SysRole sysRole = new SysRole();
         sysRole.setName(name);
@@ -89,14 +92,14 @@ public class RoleController extends BaseController {
         System.out.println("id = [" + id + "], name = [" + name + "], description = [" + description + "], permissionIds = [" + permissionIds + "]");
         boolean isExsitRoleNameExcludeId = sysRoleService.isExsitRoleNameExcludeId(id, name);
         if (isExsitRoleNameExcludeId) {
-            return Result.error("角色名称已存在");
+            return Result.error(ResponseCode.name_already_exist.getMsg());
         }
         SysRole sysRole = sysRoleService.selectById(id);
         if (sysRole == null) {
-            return Result.error("记录不存在");
+            return Result.error(ResponseCode.data_not_exist.getMsg());
         }
         if (sysRole.getIsFinal() == 2) {
-            return Result.error("该条记录不能被编辑");
+            return Result.error(ResponseCode.can_not_edit.getMsg());
         }
         sysRole.setId(id);
         sysRole.setName(name);
@@ -119,10 +122,10 @@ public class RoleController extends BaseController {
     public Result delete(@RequestParam long id) {
         SysRole sysRole = sysRoleService.selectById(id);
         if (sysRole == null) {
-            return Result.error("记录不存在");
+            return Result.error(ResponseCode.data_not_exist.getMsg());
         }
         if (sysRole.getIsFinal() == 2) {
-            return Result.error("该条记录不能被删除");
+            return Result.error(ResponseCode.can_not_edit.getMsg());
         }
         sysRole.setStatus(2);
         sysRoleService.deleteRole(sysRole);
@@ -142,7 +145,7 @@ public class RoleController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public PageInfo list(@RequestParam(defaultValue = "1") int page,
-                           @RequestParam(defaultValue = "15") int rows) {
+                         @RequestParam(defaultValue = "15") int rows) {
         PageInfo pageInfo = sysRoleService.selectPage(page, rows);
         return pageInfo;
     }
