@@ -224,7 +224,7 @@ organization_tool = {
         if (!organization_tool.checkValidatebox()) {
             return false;
         }
-        var id = $("#id").val();
+        var id = $('#organization_form input[id="id"]').val();
         var name = $('#organization_form input[id="name"]').val();
         var fullName = $('#organization_form input[id="fullName"]').val();
         var description = $('#organization_form input[id="description"]').val();
