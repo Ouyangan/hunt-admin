@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <settings>
+        <!--mybatis封装结果集时下划线自动转驼峰-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <!--使用别名-->
