@@ -13,10 +13,10 @@
     <modules>
         <module>hunt-parent</module>
         <module>hunt-common</module>
-        <module>hunt-system</module>
         <module>hunt-model</module>
         <module>hunt-dao</module>
         <module>hunt-service</module>
+        <module>hunt-web</module>
     </modules>
 
     <developers>

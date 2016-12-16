@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hunt-system</artifactId>
+    <artifactId>hunt-web</artifactId>
     <packaging>war</packaging>
     <description>web模块</description>
 
@@ -32,11 +32,6 @@
             <artifactId>hunt-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>com.anouyang.hunt</groupId>-->
-        <!--<artifactId>hunt-dao</artifactId>-->
-        <!--<version>1.0-SNAPSHOT</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
