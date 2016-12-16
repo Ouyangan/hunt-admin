@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 import org.apache.shiro.web.filter.authc.PassThruAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import system.ResponseCode;
-import system.Result;
+import com.hunt.util.ResponseCode;
+import com.hunt.util.Result;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;

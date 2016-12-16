@@ -2,6 +2,7 @@ package com.hunt.system.security.shiro;
 
 import com.hunt.dao.*;
 import com.hunt.model.entity.*;
+import com.hunt.util.SystemConstant;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -15,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import system.SystemConstant;
 
 import java.util.HashSet;
 import java.util.List;

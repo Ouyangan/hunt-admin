@@ -14,8 +14,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import system.Result;
-import system.SystemConstant;
+import com.hunt.util.Result;
+import com.hunt.util.SystemConstant;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;

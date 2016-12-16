@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import system.ResponseCode;
-import system.Result;
+import com.hunt.util.ResponseCode;
+import com.hunt.util.Result;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

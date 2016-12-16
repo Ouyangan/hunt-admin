@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunt.dao.SysUserMapper">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysUser">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="login_name" property="loginName" jdbcType="VARCHAR"/>
+        <result column="zh_name" property="zhName" jdbcType="VARCHAR"/>
+        <result column="en_name" property="enName" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="birth" property="birth" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="password_salt" property="passwordSalt" jdbcType="VARCHAR"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="is_final" property="isFinal" jdbcType="TINYINT"/>
+    </resultMap>
+    <!--  -->
+    <sql id="sql_column">
+        id,
+        loginName,
+        zhName,
+        enName,
+        sex,
+        birth,
+        email,
+        phone,
+        address,
+        password,
+        passwordSalt,
+        rank,
+        createTime,
+        updateTime,
+        createBy,
+        updateBy,
+        status,
+        isFinal
+    </sql>
+
+    <sql id="sql_column_where">
+        <if test="id !=null ">
+            AND id = #{id}
+        </if>
+        <if test="loginName !=null and loginName.length() != 0">
+            AND login_name = #{loginName}
+        </if>
+        <if test="zhName !=null and zhName.length() != 0">
+            AND zh_name = #{zhName}
+        </if>
+        <if test="enName !=null and enName.length() != 0">
+            AND en_name = #{enName}
+        </if>
+        <if test="sex !=null ">
+            AND sex = #{sex}
+        </if>
+        <if test="birth !=null and birth.length() != 0">
+            AND birth = #{birth}
+        </if>
+        <if test="email !=null and email.length() != 0">
+            AND email = #{email}
+        </if>
+        <if test="phone !=null and phone.length() != 0">
+            AND phone = #{phone}
+        </if>
+        <if test="address !=null and address.length() != 0">
+            AND address = #{address}
+        </if>
+        <if test="password !=null and password.length() != 0">
+            AND password = #{password}
+        </if>
+        <if test="passwordSalt !=null and passwordSalt.length() != 0">
+            AND password_salt = #{passwordSalt}
+        </if>
+        <if test="rank !=null ">
+            AND rank = #{rank}
+        </if>
+        <if test="createTime !=null ">
+            AND create_time = #{createTime}
+        </if>
+        <if test="updateTime !=null ">
+            AND update_time = #{updateTime}
+        </if>
+        <if test="createBy !=null ">
+            AND create_by = #{createBy}
+        </if>
+        <if test="updateBy !=null ">
+            AND update_by = #{updateBy}
+        </if>
+        <if test="status !=null ">
+            AND status = #{status}
+        </if>
+        <if test="isFinal !=null ">
+            AND is_final = #{isFinal}
+        </if>
+    </sql>
+
+    <insert id="insert" parameterType="SysUser" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="loginName !=null and loginName.length() !=0">
+                login_name,
+            </if>
+            <if test="zhName !=null and zhName.length() !=0">
+                zh_name,
+            </if>
+            <if test="enName !=null and enName.length() !=0">
+                en_name,
+            </if>
+            <if test="sex !=null">
+                sex,
+            </if>
+            <if test="birth !=null and birth.length() !=0">
+                birth,
+            </if>
+            <if test="email !=null and email.length() !=0">
+                email,
+            </if>
+            <if test="phone !=null and phone.length() !=0">
+                phone,
+            </if>
+            <if test="address !=null and address.length() !=0">
+                address,
+            </if>
+            <if test="password !=null and password.length() !=0">
+                password,
+            </if>
+            <if test="passwordSalt !=null and passwordSalt.length() !=0">
+                password_salt,
+            </if>
+            <if test="rank !=null">
+                rank,
+            </if>
+            <if test="createTime !=null">
+                create_time,
+            </if>
+            <if test="updateTime !=null">
+                update_time,
+            </if>
+            <if test="createBy !=null">
+                create_by,
+            </if>
+            <if test="updateBy !=null">
+                update_by,
+            </if>
+            <if test="status !=null">
+                status,
+            </if>
+            <if test="isFinal !=null">
+                is_final,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="loginName !=null and loginName.length() !=0">
+                #{loginName},
+            </if>
+            <if test="zhName !=null and zhName.length() !=0">
+                #{zhName},
+            </if>
+            <if test="enName !=null and enName.length() !=0">
+                #{enName},
+            </if>
+            <if test="sex !=null">
+                #{sex},
+            </if>
+            <if test="birth !=null and birth.length() !=0">
+                #{birth},
+            </if>
+            <if test="email !=null and email.length() !=0">
+                #{email},
+            </if>
+            <if test="phone !=null and phone.length() !=0">
+                #{phone},
+            </if>
+            <if test="address !=null and address.length() !=0">
+                #{address},
+            </if>
+            <if test="password !=null and password.length() !=0">
+                #{password},
+            </if>
+            <if test="passwordSalt !=null and passwordSalt.length() !=0">
+                #{passwordSalt},
+            </if>
+            <if test="rank !=null">
+                #{rank},
+            </if>
+            <if test="createTime !=null">
+                #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime},
+            </if>
+            <if test="createBy !=null">
+                #{createBy},
+            </if>
+            <if test="updateBy !=null">
+                #{updateBy},
+            </if>
+            <if test="status !=null">
+                #{status},
+            </if>
+            <if test="isFinal !=null">
+                #{isFinal},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="SysUser">
+        update sys_user
+        <set>
+            <if test="loginName !=null and loginName.length() !=0">
+                login_name = #{loginName},
+            </if>
+            <if test="zhName !=null and zhName.length() !=0">
+                zh_name = #{zhName},
+            </if>
+            <if test="enName !=null and enName.length() !=0">
+                en_name = #{enName},
+            </if>
+            <if test="sex !=null">
+                sex = #{sex},
+            </if>
+            <if test="birth !=null and birth.length() !=0">
+                birth = #{birth},
+            </if>
+            <if test="email !=null and email.length() !=0">
+                email = #{email},
+            </if>
+            <if test="phone !=null and phone.length() !=0">
+                phone = #{phone},
+            </if>
+            <if test="address !=null and address.length() !=0">
+                address = #{address},
+            </if>
+            <if test="password !=null and password.length() !=0">
+                password = #{password},
+            </if>
+            <if test="passwordSalt !=null and passwordSalt.length() !=0">
+                password_salt = #{passwordSalt},
+            </if>
+            <if test="rank !=null">
+                rank = #{rank},
+            </if>
+            <if test="createTime !=null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createBy !=null">
+                create_by = #{createBy},
+            </if>
+            <if test="updateBy !=null">
+                update_by = #{updateBy},
+            </if>
+            <if test="status !=null">
+                status = #{status},
+            </if>
+            <if test="isFinal !=null">
+                is_final = #{isFinal},
+            </if>
+        </set>
+        where id =#{id} and status !=2
+    </update>
+    <update id="deleteById">
+        UPDATE sys_user
+        SET status = 2
+        WHERE id = #{id}
+    </update>
+
+    <select id="select" parameterType="SysUser" resultType="SysUser">
+        select * from sys_user where
+        <where>
+            <include refid="sql_column_where"/>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="long" resultType="SysUser">
+        SELECT *
+        FROM sys_user
+        WHERE id = #{id} AND status != 2
+    </select>
+
+    <select id="selectAll" resultType="SysUser">
+        SELECT *
+        FROM sys_user
+        WHERE status != 2
+        <if test="loginName != null and loginName.length() != 0">
+            AND login_name LIKE concat('%', #{loginName},'%')
+        </if>
+        <if test="zhName != null and zhName.length() != 0">
+            AND zh_name LIKE concat('%', #{zhName},'%')
+        </if>
+        <if test="email != null and email.length() != 0">
+            AND email LIKE concat('%', #{email},'%')
+        </if>
+        <if test="phone != null and phone.length() != 0">
+            AND phone LIKE concat('%', #{phone},'%')
+        </if>
+        <if test="address != null and address.length() != 0">
+            AND address LIKE concat('%', #{address},'%')
+        </if>
+        <if test="sort!=''">
+            ORDER BY #{sort}
+        </if>
+        <if test="order!=''">
+            #{order}
+        </if>
+    </select>
+
+    <select id="selectCounts" resultType="integer">
+        SELECT count(*)
+        FROM sys_user
+        WHERE status != 2
+    </select>
+    <select id="selectByLoginName" resultType="boolean">
+        SELECT exists(
+                SELECT *
+                FROM sys_user
+                WHERE status != 2 AND login_name = #{loginName}
+        )
+    </select>
+    <select id="isExistLoginNameExcludeId" resultType="java.lang.Boolean">
+        SELECT exists(
+                SELECT *
+                FROM sys_user
+                WHERE status != 2 AND id != #{id} AND login_name = #{loginName}
+        )
+    </select>
+    <select id="selectUserByLoginName" resultType="com.hunt.model.entity.SysUser">
+        SELECT *
+        FROM sys_user
+        WHERE status != 2 AND login_name = #{loginName}
+    </select>
+</mapper>

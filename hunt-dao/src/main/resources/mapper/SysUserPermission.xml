@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunt.dao.SysUserPermissionMapper">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysUserPermission">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="sys_user_id" property="sysUserId" jdbcType="BIGINT"/>
+        <result column="sys_permission_id" property="sysPermissionId" jdbcType="BIGINT"/>
+        <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+    </resultMap>
+    <!--  -->
+    <sql id="sql_column">
+        id,
+        sysUserId,
+        sysPermissionId,
+        isFinal,
+        rank,
+        createTime,
+        updateTime,
+        createBy,
+        updateBy,
+        status
+    </sql>
+
+    <sql id="sql_column_where">
+        <if test="id !=null ">
+            AND id = #{id}
+        </if>
+        <if test="sysUserId !=null ">
+            AND sys_user_id = #{sysUserId}
+        </if>
+        <if test="sysPermissionId !=null ">
+            AND sys_permission_id = #{sysPermissionId}
+        </if>
+        <if test="isFinal !=null ">
+            AND is_final = #{isFinal}
+        </if>
+        <if test="rank !=null ">
+            AND rank = #{rank}
+        </if>
+        <if test="createTime !=null ">
+            AND create_time = #{createTime}
+        </if>
+        <if test="updateTime !=null ">
+            AND update_time = #{updateTime}
+        </if>
+        <if test="createBy !=null ">
+            AND create_by = #{createBy}
+        </if>
+        <if test="updateBy !=null ">
+            AND update_by = #{updateBy}
+        </if>
+        <if test="status !=null ">
+            AND status = #{status}
+        </if>
+    </sql>
+
+    <insert id="insert" parameterType="SysUserPermission" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_user_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sysUserId !=null">
+                sys_user_id,
+            </if>
+            <if test="sysPermissionId !=null">
+                sys_permission_id,
+            </if>
+            <if test="isFinal !=null">
+                is_final,
+            </if>
+            <if test="rank !=null">
+                rank,
+            </if>
+            <if test="createTime !=null">
+                create_time,
+            </if>
+            <if test="updateTime !=null">
+                update_time,
+            </if>
+            <if test="createBy !=null">
+                create_by,
+            </if>
+            <if test="updateBy !=null">
+                update_by,
+            </if>
+            <if test="status !=null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sysUserId !=null">
+                #{sysUserId},
+            </if>
+            <if test="sysPermissionId !=null">
+                #{sysPermissionId},
+            </if>
+            <if test="isFinal !=null">
+                #{isFinal},
+            </if>
+            <if test="rank !=null">
+                #{rank},
+            </if>
+            <if test="createTime !=null">
+                #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime},
+            </if>
+            <if test="createBy !=null">
+                #{createBy},
+            </if>
+            <if test="updateBy !=null">
+                #{updateBy},
+            </if>
+            <if test="status !=null">
+                #{status},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="SysUserPermission">
+        update sys_user_permission
+        <set>
+            <if test="id !=null">
+                id = #{id},
+            </if>
+            <if test="sysUserId !=null">
+                sys_user_id = #{sysUserId},
+            </if>
+            <if test="sysPermissionId !=null">
+                sys_permission_id = #{sysPermissionId},
+            </if>
+            <if test="isFinal !=null">
+                is_final = #{isFinal},
+            </if>
+            <if test="rank !=null">
+                rank = #{rank},
+            </if>
+            <if test="createTime !=null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createBy !=null">
+                create_by = #{createBy},
+            </if>
+            <if test="updateBy !=null">
+                update_by = #{updateBy},
+            </if>
+            <if test="status !=null">
+                status = #{status},
+            </if>
+        </set>
+        where id =#{id} and status=1
+    </update>
+    <update id="deleteByUserId">
+        UPDATE sys_user_permission
+        SET status = 2
+        WHERE sys_user_id = #{userId}
+    </update>
+
+    <select id="select" parameterType="SysUserPermission" resultType="SysUserPermission">
+        select * from sys_user_permission where
+        <where>
+            <include refid="sql_column_where"/>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="long" resultType="SysUserPermission">
+        SELECT *
+        FROM sys_user_permission
+        WHERE id = #{id} AND status = 1
+    </select>
+
+    <select id="selectAll" resultType="SysUserPermission">
+        SELECT *
+        FROM sys_user_permission
+        WHERE status = 1
+    </select>
+
+    <select id="selectCounts" resultType="integer">
+        SELECT count(*)
+        FROM sys_user_permission
+        WHERE status = 1
+    </select>
+    <select id="selectByUserId" resultType="com.hunt.model.entity.SysUserPermission">
+        SELECT *
+        FROM sys_user_permission
+        WHERE status = 1 AND sys_user_id = #{userId}
+    </select>
+
+</mapper>

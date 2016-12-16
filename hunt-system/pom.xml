@@ -27,12 +27,16 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-petstore</artifactId>
         </dependency>
-        <!--utils-->
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>hunt-common</artifactId>
+            <groupId>com.anouyang.hunt</groupId>
+            <artifactId>hunt-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--<dependency>-->
+        <!--<groupId>com.anouyang.hunt</groupId>-->
+        <!--<artifactId>hunt-dao</artifactId>-->
+        <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -172,11 +176,6 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
@@ -219,7 +218,9 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
+
     <profiles>
         <profile>
             <id>local</id>

@@ -1,5 +1,6 @@
 package com.hunt.controller;
 
+import com.hunt.controller.BaseController;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysRoleOrganization;
 import com.hunt.service.SysRoleOrganizationService;
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import system.ResponseCode;
-import system.Result;
+import com.hunt.util.ResponseCode;
+import com.hunt.util.Result;
 
 /**
  * 职位模块

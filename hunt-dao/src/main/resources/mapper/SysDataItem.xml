@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hunt.dao.SysDataItemMapper">
+    <resultMap id="baseResultMap" type="com.hunt.model.entity.SysDataItem">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="sys_data_group_id" property="sysDataGroupId" jdbcType="BIGINT"/>
+        <result column="key_value" property="keyValue" jdbcType="VARCHAR"/>
+        <result column="key_name" property="keyName" jdbcType="VARCHAR"/>
+        <result column="is_final" property="isFinal" jdbcType="INTEGER"/>
+        <result column="rank" property="rank" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+    </resultMap>
+    <!--  -->
+    <sql id="sql_column">
+        id,
+        sysDataGroupId,
+        keyValue,
+        keyName,
+        isFinal,
+        rank,
+        createTime,
+        updateTime,
+        createBy,
+        updateBy,
+        status,
+        description
+    </sql>
+
+    <sql id="sql_column_where">
+        <if test="id !=null ">
+            AND id = #{id}
+        </if>
+        <if test="sysDataGroupId !=null ">
+            AND sys_data_group_id = #{sysDataGroupId}
+        </if>
+        <if test="keyValue !=null and keyValue.length() != 0">
+            AND key_value = #{keyValue}
+        </if>
+        <if test="keyName !=null and keyName.length() != 0">
+            AND key_name = #{keyName}
+        </if>
+        <if test="isFinal !=null ">
+            AND is_final = #{isFinal}
+        </if>
+        <if test="rank !=null ">
+            AND rank = #{rank}
+        </if>
+        <if test="createTime !=null ">
+            AND create_time = #{createTime}
+        </if>
+        <if test="updateTime !=null ">
+            AND update_time = #{updateTime}
+        </if>
+        <if test="createBy !=null ">
+            AND create_by = #{createBy}
+        </if>
+        <if test="updateBy !=null ">
+            AND update_by = #{updateBy}
+        </if>
+        <if test="status !=null ">
+            AND status = #{status}
+        </if>
+        <if test="description !=null and description.length() != 0">
+            AND description = #{description}
+        </if>
+    </sql>
+
+    <insert id="insert" parameterType="SysDataItem" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_data_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sysDataGroupId !=null">
+                sys_data_group_id,
+            </if>
+            <if test="keyValue !=null and keyValue.length() !=0">
+                key_value,
+            </if>
+            <if test="keyName !=null and keyName.length() !=0">
+                key_name,
+            </if>
+            <if test="isFinal !=null">
+                is_final,
+            </if>
+            <if test="rank !=null">
+                rank,
+            </if>
+            <if test="createTime !=null">
+                create_time,
+            </if>
+            <if test="updateTime !=null">
+                update_time,
+            </if>
+            <if test="createBy !=null">
+                create_by,
+            </if>
+            <if test="updateBy !=null">
+                update_by,
+            </if>
+            <if test="status !=null">
+                status,
+            </if>
+            <if test="description !=null and description.length() !=0">
+                description,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sysDataGroupId !=null">
+                #{sysDataGroupId},
+            </if>
+            <if test="keyValue !=null and keyValue.length() !=0">
+                #{keyValue},
+            </if>
+            <if test="keyName !=null and keyName.length() !=0">
+                #{keyName},
+            </if>
+            <if test="isFinal !=null">
+                #{isFinal},
+            </if>
+            <if test="rank !=null">
+                #{rank},
+            </if>
+            <if test="createTime !=null">
+                #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime},
+            </if>
+            <if test="createBy !=null">
+                #{createBy},
+            </if>
+            <if test="updateBy !=null">
+                #{updateBy},
+            </if>
+            <if test="status !=null">
+                #{status},
+            </if>
+            <if test="description !=null and description.length() !=0">
+                #{description},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="SysDataItem">
+        update sys_data_item
+        <set>
+            <if test="id !=null">
+                id = #{id},
+            </if>
+            <if test="sysDataGroupId !=null">
+                sys_data_group_id = #{sysDataGroupId},
+            </if>
+            <if test="keyValue !=null and keyValue.length() !=0">
+                key_value = #{keyValue},
+            </if>
+            <if test="keyName !=null and keyName.length() !=0">
+                key_name = #{keyName},
+            </if>
+            <if test="isFinal !=null">
+                is_final = #{isFinal},
+            </if>
+            <if test="rank !=null">
+                rank = #{rank},
+            </if>
+            <if test="createTime !=null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime !=null">
+                update_time = #{updateTime},
+            </if>
+            <if test="createBy !=null">
+                create_by = #{createBy},
+            </if>
+            <if test="updateBy !=null">
+                update_by = #{updateBy},
+            </if>
+            <if test="status !=null">
+                status = #{status},
+            </if>
+            <if test="description !=null and description.length() !=0">
+                description = #{description},
+            </if>
+        </set>
+        where id =#{id} and status=1
+    </update>
+    <update id="deleteById">
+        UPDATE sys_data_item
+        SET status = 2
+        WHERE id = #{id}
+    </update>
+
+    <select id="select" parameterType="SysDataItem" resultType="SysDataItem">
+        select * from sys_data_item where
+        <where>
+            <include refid="sql_column_where"/>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="long" resultType="SysDataItem">
+        SELECT *
+        FROM sys_data_item
+        WHERE id = #{id} AND status = 1
+    </select>
+
+    <select id="selectAll" resultType="SysDataItem">
+        SELECT *
+        FROM sys_data_item
+        WHERE status = 1
+    </select>
+
+    <select id="selectCounts" resultType="integer">
+        SELECT count(*)
+        FROM sys_data_item
+        WHERE status = 1
+    </select>
+    <select id="isExistName" resultType="java.lang.Boolean">
+        SELECT exists(
+                SELECT *
+                FROM sys_data_item
+                WHERE status = 1 AND sys_data_group_id = #{groupId} AND key_name = #{key}
+        )
+    </select>
+    <select id="isExistDataItemNameExcludeId" resultType="java.lang.Boolean">
+        SELECT exists(
+                SELECT *
+                FROM sys_data_item
+                WHERE status = 1 AND id != #{id} AND key_name = #{key} AND sys_data_group_id = #{groupId}
+        )
+    </select>
+    <select id="selectByKey" resultType="java.lang.String">
+        SELECT key_value
+        FROM sys_data_item
+        WHERE status = 1 AND key_name = #{key} AND sys_data_group_id = #{groupId}
+    </select>
+
+</mapper>

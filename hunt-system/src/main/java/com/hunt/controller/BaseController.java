@@ -1,7 +1,6 @@
 package com.hunt.controller;
 
 import com.google.gson.Gson;
-import com.hunt.service.SystemService;
 import com.hunt.system.security.geetest.GeetestLib;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -13,9 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import system.ResponseCode;
-import system.Result;
-import system.StringUtil;
+import com.hunt.service.SystemService;
+import com.hunt.util.ResponseCode;
+import com.hunt.util.Result;
+import com.hunt.util.StringUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -86,7 +86,7 @@ public class BaseController {
             } else if ((exception instanceof MethodArgumentTypeMismatchException)) {
                 result = Result.instance(ResponseCode.param_format_error.getCode(), ResponseCode.param_format_error.getMsg());
                 //ip限制
-            } else if (exception.getCause().getMessage().contains("com.hunt.system.exception.ForbiddenIpException")) {
+            } else if (exception.getCause().getMessage().contains("system.exception.ForbiddenIpException")) {
                 result = Result.instance(ResponseCode.forbidden_ip.getCode(), ResponseCode.forbidden_ip.getMsg());
                 //其他错误
             }

@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import system.ResponseCode;
-import system.Result;
-import system.StringUtil;
+import com.hunt.util.ResponseCode;
+import com.hunt.util.Result;
+import com.hunt.util.StringUtil;
 
 import java.util.UUID;
 

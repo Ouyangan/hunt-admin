@@ -1,5 +1,7 @@
 package com.hunt.controller;
 
+import com.hunt.system.security.geetest.GeetestConfig;
+import com.hunt.system.security.geetest.GeetestLib;
 import com.hunt.model.dto.LoginInfo;
 import com.hunt.model.dto.PageInfo;
 import com.hunt.model.entity.SysDataGroup;
@@ -8,8 +10,6 @@ import com.hunt.model.entity.SysIpForbidden;
 import com.hunt.model.entity.SysUser;
 import com.hunt.service.SysUserService;
 import com.hunt.service.SystemService;
-import com.hunt.system.security.geetest.GeetestConfig;
-import com.hunt.system.security.geetest.GeetestLib;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
@@ -24,10 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import system.ResponseCode;
-import system.Result;
-import system.StringUtil;
-import system.SystemConstant;
+import com.hunt.util.ResponseCode;
+import com.hunt.util.Result;
+import com.hunt.util.StringUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;

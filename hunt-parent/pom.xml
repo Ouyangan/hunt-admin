@@ -30,7 +30,7 @@
         <spring.redis.version>1.7.4.RELEASE</spring.redis.version>
         <junit.version>4.12</junit.version>
         <druid.version>1.0.26</druid.version>
-        <tk.mapper.version>3.3.9</tk.mapper.version>
+        <tk.com.hunt.controller.mapper.version>3.3.9</tk.com.hunt.controller.mapper.version>
         <tk.pagehelper.version>4.1.6</tk.pagehelper.version>
         <common.io.version>1.3.2</common.io.version>
         <commons.fileupload.version>1.3</commons.fileupload.version>
@@ -285,8 +285,8 @@
             </dependency>
             <dependency>
                 <groupId>tk.mybatis</groupId>
-                <artifactId>mapper</artifactId>
-                <version>${tk.mapper.version}</version>
+                <artifactId>com.hunt.controller.mapper</artifactId>
+                <version>${tk.com.hunt.controller.mapper.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
