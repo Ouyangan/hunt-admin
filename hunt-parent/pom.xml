@@ -300,7 +300,7 @@
         <repository>
             <id>mvnrepository</id>
             <name>mvnrepository</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
             <layout>default</layout>
             <releases>
                 <enabled>true</enabled>
